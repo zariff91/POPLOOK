@@ -1268,11 +1268,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void onResume() {
         super.onResume();
 
-        System.out.println("Test commit on github");
-
-        System.out.println("Test create new branches");
-
-
     }
 
     @Override
