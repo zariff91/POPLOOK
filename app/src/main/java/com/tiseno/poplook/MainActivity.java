@@ -1270,6 +1270,9 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         System.out.println("Test commit on github");
 
+        System.out.println("Test create new branches");
+
+
     }
 
     @Override
