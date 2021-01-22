@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tiseno.poplook.VisitOurStoreFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <com.tiseno.poplook.functions.HackyViewPager
+            android:id="@+id/VP"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.9"/>
+
+        <com.viewpagerindicator.CirclePageIndicator
+            android:id="@+id/welcomePageIndicator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_weight="0.1"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+
+</FrameLayout>

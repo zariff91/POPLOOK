@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical"
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?android:attr/selectableItemBackground">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TextView
+            android:id="@+id/title_nameTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textColor="@color/dark_grey"/>
+
+        <ImageView
+            android:id="@+id/dummy2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"/>
+
+        <!--<TextView-->
+            <!--android:id="@+id/title_nameTVChange"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:singleLine="true"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:textSize="17dp"-->
+            <!--android:text="@string/changeSideMenu"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:textColor="@color/light_green"-->
+            <!--android:visibility="invisible"/>-->
+
+        <!--<ImageView-->
+            <!--android:id="@+id/sideImageIV"-->
+            <!--android:layout_width="20dp"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:paddingRight="20dp"-->
+            <!--android:src="@drawable/icon_arrow"-->
+            <!--android:layout_centerVertical="true"/>-->
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/title_withDividerRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/divider_1"
+            android:layout_alignParentTop="true"/>
+
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/divider_1"-->
+            <!--android:layout_alignParentBottom="true"/>-->
+
+    </RelativeLayout>
+
+</RelativeLayout>

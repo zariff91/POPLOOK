@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: artifacts:eghl-sdk-v2.2.9:unspecified@jar">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../eghl-sdk-v2.2.9/build/.transforms/66a18fca29110b9b01fb4ea924ed789d/jetified-eghl-sdk-v2.2.9/jars/classes.jar!/" />
+      <root url="file://$PROJECT_DIR$/../eghl-sdk-v2.2.9/build/.transforms/66a18fca29110b9b01fb4ea924ed789d/jetified-eghl-sdk-v2.2.9/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

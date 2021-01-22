@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?android:attr/actionBarSize"
+    android:background="@drawable/bar_navigation"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark"
+    android:elevation="4dp"
+    >
+
+
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Country"
+        android:textColor="@color/darkgrey2"
+        android:textSize="18dp"
+        android:layout_gravity="center"
+        android:gravity="left|start"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:id="@+id/toolbar_title_country"
+        android:visibility="visible"/>
+
+
+
+
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="right"
+        >
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/btn_close"
+            android:layout_gravity="right"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/xCloseBtnCountry"
+            android:layout_marginRight="10dp"
+            android:visibility="visible"
+            />
+
+    </RelativeLayout>
+
+
+
+
+
+
+
+
+
+</androidx.appcompat.widget.Toolbar>

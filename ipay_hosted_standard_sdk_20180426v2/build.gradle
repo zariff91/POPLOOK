@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('ipay_hosted_standard_sdk_20180426.aar'))

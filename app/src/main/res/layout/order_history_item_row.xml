@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/orderhistoryItemLL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:paddingTop="5dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/orderno"
+            android:id="@+id/OrderNoLabel"
+            android:textColor="@color/dark_grey"
+            android:textStyle="bold"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/orderhistoryOrderNoTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text=""
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:id="@+id/DateLabel"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/date"
+            android:textColor="@color/light_grey"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/orderhistoryDateTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textColor="@color/black"
+            android:text=""
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/StatusLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/status"
+            android:textColor="@color/light_grey"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/orderhistoryStatusTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.55"
+            android:textColor="@color/black"
+            android:text=""
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/orderhistoryGoToIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:clickable="true"
+            android:focusable="true"
+            android:src="@drawable/icon_go"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/TrackingLabel"
+            android:layout_weight="0.4"
+            android:text="@string/trackingno"
+            android:textColor="@color/light_grey"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/orderhistoryTrackingNoTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textColor="@color/black"
+            android:text="-"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/DeliveryLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.4"
+            android:text="@string/deliveryinfo"
+            android:textColor="@color/light_grey"
+            android:textSize="15dp"/>
+
+        <TextView
+            android:id="@+id/orderhistoryDeliveryInfoTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textColor="@color/black"
+            android:text="-"
+            android:textSize="15dp"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/orderhistoryIncompleteRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+
+        <RelativeLayout
+            android:id="@+id/orderhistoryPayNowBtnRL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="10dp">
+
+            <ImageButton
+                android:id="@+id/orderhistoryPayNowBtnIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_short_click"
+                android:background="@android:color/transparent"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/payNowTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/paynow"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/orderhistoryCancelBtnRL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/orderhistoryPayNowBtnRL">
+
+            <ImageButton
+                android:id="@+id/orderhistoryCancelBtnIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_short_click"
+                android:background="@android:color/transparent"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/cancelTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="15dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
+
+</LinearLayout>

@@ -1,0 +1,743 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/topLabel"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textColor="@color/white"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:text="POPLOOK Rewards Dashboard"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/black"
+        />
+
+    <LinearLayout
+        android:id="@+id/ButtonLayout"
+        android:layout_below="@+id/topLabel"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/beneButn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="Benefits"
+            android:textColor="@color/white"
+            android:background="@color/black"/>
+        <Button
+            android:id="@+id/detailBtn"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="Details"
+            android:textColor="@color/black"
+            android:background="@color/white"/>
+
+    </LinearLayout>
+
+
+
+    <ScrollView
+        android:layout_below="@+id/ButtonLayout"
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+
+    <RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/DetailLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:visibility="invisible">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/labelOne"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="Your Details"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:id="@+id/labelTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="13dp"
+                android:gravity="center"
+                android:text="Every purchase this year gets you closer to the next level"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                />
+
+            <RelativeLayout
+                android:id="@+id/progressBarLayout"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp">
+
+                <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                    android:layout_width="150dp"
+                    android:layout_height="150dp"
+                    android:id="@+id/progressBarr"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:cpb_background_progressbar_color="@color/lightgrey"
+                    app:cpb_background_progressbar_width="2dp"
+                    app:cpb_progressbar_color="@color/loyalty_green"
+                    app:cpb_progressbar_width="10dp"
+                    app:cpb_progress="0"
+                    app:cpb_progress_max="100"/>
+
+
+                <TextView
+                    android:id="@+id/txtProgress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="0%"
+                    android:textColor="@color/black"
+                    android:textSize="60dp"
+                    android:textAppearance="?android:attr/textAppearanceSmall" />
+            </RelativeLayout>
+
+            <RelativeLayout
+
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/towardsLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:gravity="center"
+                    android:text="TOWARDS SILVER"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/white"
+                    />
+
+                <TextView
+                    android:id="@+id/spendLabel"
+                    android:layout_below="@id/towardsLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:textColor="@color/black"
+                    android:textSize="13dp"
+                    android:gravity="center"
+                    android:text="Spend RM0 to level up"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/loyalty_green"
+                    android:paddingRight="15dp"
+                    android:paddingLeft="15dp"
+                    />
+
+                <Button
+                    android:id="@+id/levelUnlockBtn"
+                    android:layout_below="@+id/spendLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:text="LEVEL UP TO UNLOCK :"
+                    android:layout_centerHorizontal="true"
+                    android:textSize="13dp"
+                    android:textColor="@color/white"
+                    android:background="@color/black"
+                    android:paddingRight="15dp"
+                    android:layout_marginTop="10dp"
+                    android:paddingLeft="15dp"/>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:id="@+id/bottomLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <RelativeLayout
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/earlyAccessRL">
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/dashboard_image_detail"
+                        android:src="@drawable/dashboard_detail_icon5"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerHorizontal="true"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5_detail"
+                        android:layout_below="@+id/dashboard_image_detail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center|top"
+                        android:text="Early Access to Sale"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/white"/>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/earlyAccessRayaRL"
+                   >
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/dashboard_image_detail2"
+                        android:src="@drawable/dashboard_detail_icon4"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerHorizontal="true"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5_detail2"
+                        android:layout_below="@+id/dashboard_image_detail2"
+                        android:layout_width="85dp"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center|top"
+                        android:lines="4"
+                        android:text="Early Access to Raya Launches"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/white"/>
+
+
+                </RelativeLayout>
+zz
+                <RelativeLayout
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/levelUpRL"
+                    >
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/dashboard_image_detail3"
+                        android:src="@drawable/dashboard_detail_icon3"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerHorizontal="true"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5_detail3"
+                        android:layout_below="@+id/dashboard_image_detail3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center|top"
+                        android:lines="4"
+                        android:text="Level Up Gift"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_centerHorizontal="true"
+
+                        android:background="@color/white"/>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mysteryMoneyRL"
+
+                    >
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/dashboard_image_detail4"
+                        android:src="@drawable/dashboard_detail_icon1"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerHorizontal="true"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5_detail4"
+                        android:layout_below="@+id/dashboard_image_detail4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center|top"
+                        android:lines="4"
+                        android:text="Mystery Money"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/white"/>
+
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/inviteExcRL"
+                    >
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:id="@+id/dashboard_image_detail5"
+                        android:src="@drawable/dashboard_detail_icon2"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_centerHorizontal="true"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5_detail5"
+                        android:layout_below="@+id/dashboard_image_detail5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center|top"
+                        android:lines="4"
+                        android:text="Invites to Exclusive Events"
+                        android:layout_marginRight="30dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="1dp"
+                        android:layout_centerHorizontal="true"
+                        android:background="@color/white"/>
+
+
+                </RelativeLayout>
+
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="65dp">
+
+
+            </View>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/BenefitsLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/labelOne1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:text="Get to know your"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/labelOne2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="30dp"
+                android:gravity="center"
+                android:text="Benefits"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/labelOne3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="10dp"
+                android:gravity="center"
+                android:text="Starts collecting your points now!"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/white"
+                />
+
+            <ImageView
+                android:layout_width="250dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/dashboard_image"
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center_horizontal"
+
+                />
+
+            <TextView
+                android:id="@+id/labelOne4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:text="WELCOME TO BRONZE"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="10dp"
+                android:background="@color/white"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/lowerLLForSilver"
+                android:visibility="invisible"
+                android:layout_gravity="center_horizontal">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image2_silver"
+                        android:src="@drawable/dashboard_detail_icon5"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5_silver"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Early Access to Sale"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image3_silver"
+                        android:src="@drawable/dashboard_detail_icon4"
+                        android:layout_gravity="center_horizontal"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne6_silver"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Early Access to Raya Launches"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"/>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image4_silver_11"
+                        android:src="@drawable/dashboard_detail_icon3"
+                        android:layout_gravity="center_horizontal"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne7_silver_11"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Level Up Gift"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"/>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/mmLL"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image4_silver_1"
+                        android:src="@drawable/dashboard_detail_icon1"
+                        android:layout_gravity="center_horizontal"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne7_silver_1"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Mystery Money"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"/>
+
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/lowerLLForBronze"
+                android:layout_marginTop="10dp"
+                android:visibility="invisible"
+                android:layout_gravity="center_horizontal"
+
+                >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/inviteLL"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image4_silver"
+                        android:src="@drawable/dashboard_detail_icon2"
+                        android:layout_gravity="center_horizontal"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne7_silver"
+                        android:layout_width="70dp"
+                        android:layout_height="80dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:text="Invites to Exclusive Events"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        android:background="@color/white"/>
+
+
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image2"
+                        android:src="@drawable/dashboard_detail_icon1"
+                        android:layout_gravity="center_horizontal"
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne5"
+                        android:layout_width="60dp"
+                        android:layout_height="50dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:text="Birthday Discount"
+                        android:gravity="center_horizontal"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/dashboard_image3"
+                        android:src="@drawable/dashboard_detail_icon2"
+                        android:layout_gravity="center_horizontal"
+
+
+                        />
+
+                    <TextView
+                        android:id="@+id/labelOne6"
+                        android:layout_width="70dp"
+                        android:layout_height="50dp"
+                        android:textColor="@color/black"
+                        android:textSize="12dp"
+                        android:gravity="center_horizontal"
+                        android:layout_marginRight="15dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="1dp"
+                        android:text="Exclusive Promotions"
+                        android:background="@color/white"/>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/submitBtnn"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:text="MORE ABOUT THE REWARDS"
+                android:textSize="10dp"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:layout_gravity="center_horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:layout_marginTop="30dp"
+                style="?android:attr/borderlessButtonStyle"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="100dp">
+
+
+            </View>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
+    </ScrollView>
+
+
+</RelativeLayout>

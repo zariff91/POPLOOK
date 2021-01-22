@@ -1,0 +1,182 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/white"
+    tools:context="com.tiseno.poplook.SavedItemsFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/stepBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/step1TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/myaccount"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/step2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SAVED ITEMS"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/step1TV"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/stocknotreserveduntiladdedtobag"
+            android:layout_below="@id/step1TV"
+            android:paddingTop="5dp"
+            android:textStyle="bold"
+            android:textColor="@color/dark_grey"
+            android:textSize="14dp"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/sortByBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_sortby"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/stepBarRL">
+
+        <TextView
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"
+            android:id="@+id/productListSortByTV1"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_weight="0.2"
+            android:gravity="center_vertical"
+            android:text="Sort By"
+            android:lines="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="15dp"
+            />
+
+        <TextView
+            android:id="@+id/savedItemSortByTV"
+            android:layout_width="0dp"
+            android:layout_height="33dp"
+            android:layout_weight="0.53"
+            android:gravity="center_vertical"
+            android:text="View all"
+            android:lines="1"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="15dp"
+            />
+
+        <ImageView
+            android:id="@+id/savedItemSortByDropDownIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:src="@drawable/btn_dropdown"
+            android:background="@android:color/transparent"
+            android:layout_gravity="center_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"/>
+
+    </LinearLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:visibility="gone"
+            android:id="@+id/emptyRL"
+            android:layout_below="@+id/sortByBarRL">
+            <View
+                android:id="@+id/viewTOP"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/white"/>
+            <TextView
+                android:layout_below="@+id/viewTOP"
+                android:id="@+id/textViewSaja"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No voucher yet"
+                android:textSize="16dp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_centerInParent="true" />
+
+        </RelativeLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/savedItemsRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/sortByBarRL"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/savedItemSortByRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_popout"
+        android:gravity="bottom"
+        android:visibility="gone">
+
+        <NumberPicker
+            android:id="@+id/savedItemSortByNP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:textSize="15dp"
+            ></NumberPicker>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/savedItemSortByNP">
+
+            <ImageButton
+                android:id="@+id/savedItemSortBySelectIB"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_long_click"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:text="@string/select"
+                android:textSize="16dp"
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+</FrameLayout>

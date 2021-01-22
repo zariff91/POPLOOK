@@ -1,0 +1,173 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.tiseno.poplook.LoginFragment"
+    android:background="#FFFFFF">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+    </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/logo_new"
+            android:layout_marginBottom="10dp"
+            android:gravity="bottom"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightgrey"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:layout_marginBottom="-7dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+
+
+        <EditText
+            android:id="@+id/login_userNameET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:layout_marginTop="2dp"
+            android:background="@null"
+            android:inputType="textEmailAddress"
+            android:hint="Email" />
+
+    </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightgrey"/>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="25dp"
+        android:paddingRight="10dp"
+        android:orientation="horizontal">
+
+
+
+        <EditText
+            android:id="@+id/login_passwordET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_marginTop="10dp"
+            android:textSize="16dp"
+            android:hint="Password"
+            android:password="true"
+            android:inputType="textPassword" />
+
+    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightgrey"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:weightSum="1" >
+
+            <TextView
+                android:id="@+id/forgot_passwordTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:textSize="17dp"
+                android:textColor="@color/dark_grey"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_weight="0.01">
+
+        <Button
+            android:id="@+id/login_submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="60dp"
+            android:layout_marginLeft="60dp"
+            android:background="@color/accent"
+            android:clickable="true"
+            android:textColor="@color/white"
+            android:text="LOG IN"
+            android:textSize="16dp"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_weight="0.01">
+
+            <Button
+                android:id="@+id/login_signup_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:background="@color/accent"
+                android:clickable="true"
+                android:textColor="@color/white"
+                android:text="NEW HERE? SIGN UP"
+                android:textSize="16dp"
+                android:layout_centerInParent="true"/>
+
+
+        </RelativeLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:gravity="center"
+            android:weightSum="1" >
+
+            <TextView
+                android:id="@+id/shippingTOTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Shipping To"
+                android:textSize="17dp"
+                android:textColor="@color/dark_grey"
+                android:gravity="center"
+                />
+        </LinearLayout>
+    </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>

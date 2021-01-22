@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:src="@drawable/poplook_dashboard_main"/>
+
+        <Button
+            android:id="@+id/joinBtn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="JOIN POPLOOK REWARDS"
+            android:textColor="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="15dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/black"/>
+
+        <Button
+            android:id="@+id/signInBtnn"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="ALREADY A MEMBER? SIGN IN"
+            android:textColor="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:textSize="15dp"
+            android:layout_marginLeft="65dp"
+            android:layout_marginRight="65dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/black"/>
+
+        <ImageView
+            android:id="@+id/sampleBarcode"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/early_access"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/earlyAccessTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="EARLY ACCESS TO RAYA LAUNCHES"/>
+        <TextView
+            android:id="@+id/earlyAccessTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Our most anticipated collections every year, which also mean sold out sizes and styles. Enjoy early access and get first dibs on these pieces!"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/early_access_sale"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/earlyAccessSalesTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="EARLY ACCESS TO SALES"/>
+        <TextView
+            android:id="@+id/earlyAccessSalesTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Get in on our biggest sales ahead of everyone else. When sizes are limited, early access is key!"/>
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/level_up_gift_icon"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/giftTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="LEVEL UP GIFT"/>
+        <TextView
+            android:id="@+id/giftTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="You'll graduate to the next level once you've reached the spend ceiling for your current one—and you'll also receive a just-for-you token of our appreciation!"/>
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/mystery_money_icon"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/mysteryTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="MYSTERY MONEY"/>
+        <TextView
+            android:id="@+id/mysteryTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Receive surprise coupons throughout the year. But when exactly? And for how much? Well, that's for us to know and you to find out!"/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/invite_exc_icon"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/invitesTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="INVITES TO EXCLUSIVE EVENTS"/>
+        <TextView
+            android:id="@+id/invitesTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Be invited to our exclusive events."/>
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/exc_promo_icon"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/excPromoTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="EXCLUSIVE PROMOTIONS"/>
+        <TextView
+            android:id="@+id/excPromoTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Enjoy VIP-only exclusive discounts and promotions."/>
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:src="@drawable/bday_icon"
+            android:layout_marginTop="30dp"/>
+
+        <TextView
+            android:id="@+id/bdayTxtView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/black"
+            android:text="BIRTHDAY DISCOUNT"/>
+        <TextView
+            android:id="@+id/bdayTxtViewBelow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Let us celebrate your special day with a little extra something on us. We'll make sure you are celebrating in style."/>
+
+        <TextView
+            android:id="@+id/lookForwardTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="20dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            android:text="Look forward to these rewards when you shop"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:src="@drawable/poplook_main_3"
+            android:layout_marginTop="30dp"/>
+
+        <ImageView
+            android:id="@+id/circle_mainImage"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:layout_gravity="center"
+            android:src="@drawable/circle_myr"
+            android:layout_marginTop="30dp"/>
+
+
+        <Button
+            android:id="@+id/FAQBtn"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="QUESTIONS? See Our FAQ >"
+            android:textColor="@color/white"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:textSize="20dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginTop="30dp"
+            android:background="@color/black"
+            style="?android:attr/borderlessButtonStyle"/>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+
+        </View>
+
+
+
+    </LinearLayout>
+
+</ScrollView>

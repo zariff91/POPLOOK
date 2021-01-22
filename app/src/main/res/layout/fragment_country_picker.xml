@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.tiseno.poplook.CountryPickerFragment"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/tool_bar_address"
+        layout="@layout/tool_bar_address">
+    </include>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@android:id/list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="none"/>
+
+        <LinearLayout
+            android:id="@+id/sideIndex"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:layout_gravity="end|center"
+            android:gravity="center_horizontal"
+            android:orientation="vertical" >
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</LinearLayout>

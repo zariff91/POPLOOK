@@ -1,0 +1,461 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.tiseno.poplook.SignUpFragment"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="68dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/logo"
+                />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightgrey"/>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/signUp_nameTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:text="First Name*"
+            android:layout_weight="0.45"
+            android:gravity="start|center"
+            />
+
+
+
+        <EditText
+            android:layout_marginRight="10dp"
+            android:id="@+id/signUp_nameET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:background="@null"
+            android:layout_weight="0.55"
+            android:ems="10"
+            android:maxLength="32"
+            android:hint="Type your first name" />
+
+
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <TextView
+            android:id="@+id/signUp_surnameTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16sp"
+            android:gravity="start|center"
+            android:text="Surname*"
+            android:layout_weight="0.45"
+            />
+
+        <EditText
+            android:layout_marginRight="10dp"
+            android:id="@+id/signUp_surnameET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.55"
+            android:clickable="true"
+            android:textSize="16dp"
+            android:background="@null"
+            android:ems="10"
+            android:maxLength="32"
+            android:hint="Type your surname" />
+
+    </LinearLayout>
+
+
+    <!--      <LinearLayout
+             android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.1"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <DatePicker
+                 android:id="@+id/datePicker1"
+                 android:layout_width="wrap_content"
+                 android:visibility="gone"
+                 android:layout_height="wrap_content" />
+
+         </LinearLayout>  -->
+
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+
+        <TextView
+            android:id="@+id/signUp_DOBTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:gravity="start|center"
+            android:text="Date of Birth"
+            android:layout_weight="0.45"
+            />
+
+
+        <TextView
+            android:layout_marginRight="10dp"
+            android:id="@+id/signUp_DOBET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.45"
+            android:textSize="16dp"
+            android:text="dd/mm/yyyy"
+            android:gravity="left |center_vertical"
+             />
+        <ImageButton
+            android:id="@+id/signUp_dateButton"
+            android:layout_width="0dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="15dp"
+            android:layout_weight="0.05"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/btn_dropdown" />
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <TextView
+            android:id="@+id/signUp_emailTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:gravity="start|center"
+            android:text="Email*"
+            android:layout_weight="0.45"
+            />
+
+
+        <EditText
+            android:layout_marginRight="10dp"
+            android:id="@+id/signUp_emailET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.55"
+            android:textSize="16dp"
+            android:inputType="textEmailAddress"
+            android:background="@null"
+            android:ems="10"
+            android:maxLength="32"
+            android:hint="Type your email" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+        <TextView
+            android:id="@+id/signUp_reEmailTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:gravity="start|center"
+            android:text="Retype Email*"
+            android:layout_weight="0.45"
+            />
+
+
+        <EditText
+            android:layout_marginRight="10dp"
+            android:id="@+id/signUp_reEmailET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.55"
+            android:textSize="16dp"
+            android:inputType="textEmailAddress"
+            android:background="@null"
+            android:ems="10"
+            android:maxLength="32"
+            android:hint="Type your email" />
+
+    </LinearLayout>
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1">
+
+
+
+        <TextView
+            android:id="@+id/signUp_passTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="start|center"
+            android:textSize="16dp"
+            android:text="Password*"
+            android:layout_weight="0.45"
+            />
+
+        <EditText
+            android:layout_marginRight="10dp"
+            android:id="@+id/signUp_passET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:textSize="16dp"
+            android:layout_weight="0.55"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:maxLength="32"
+            android:hint="*****" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/signUp_rePassTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:gravity="start|center"
+            android:textSize="16dp"
+            android:text="Retype Password*"
+            android:layout_weight="0.45"
+            />
+
+
+        <EditText
+            android:id="@+id/signUp_rePassET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:paddingTop="10dp"
+            android:textSize="16dp"
+            android:layout_weight="0.55"
+            android:layout_marginRight="10dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            android:background="@null"
+            android:maxLength="32"
+            android:hint="*****" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.25"
+        android:layout_marginTop="5dp"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+        <CheckBox
+            android:id="@+id/signUp_checkAllowMailing"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:button="@drawable/checkbox_style"
+            android:layout_weight="0.25"
+            android:clickable="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:checked="true"
+            android:paddingLeft="10dp"
+            android:text="Yes, Sign me up for POPLOOK mailing list."
+            android:textColor="@color/primary_dark_material_dark"
+            android:textSize="14dp"
+            />
+
+
+        <CheckBox
+            android:id="@+id/signUp_checkAllowNotification"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.25"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:clickable="true"
+            android:button="@drawable/checkbox_style"
+            android:textColor="@color/primary_dark_material_dark"
+            android:checked="true"
+            android:paddingLeft="10dp"
+            android:text="Allow POPLOOK to send push notification."
+            android:textSize="14dp"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.5"
+            android:orientation="horizontal"
+            android:layout_marginTop="3dp">
+
+            <CheckBox
+                android:id="@+id/signUp_checkAcceptPP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="0dp"
+                android:layout_marginLeft="10dp"
+                android:button="@drawable/checkbox_style"
+                android:clickable="true"
+                android:textColor="@color/primary_dark_material_dark"
+                android:gravity="top"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:id="@+id/privacyPolicyTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="I am accepting and consenting to the practices described in the Privacy Policy &amp; "
+                    android:textColor="@color/black"
+                    android:layout_marginRight="50dp"
+                    android:textSize="14dp"
+                    />
+
+                <TextView
+                    android:id="@+id/personalDataProtectionNoticeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Personal Data Protection Notice."
+                    android:textSize="14dp"
+                    />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.11"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="bottom">
+        <Button
+            android:id="@+id/signUp_singUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@drawable/btn_clicked"
+            android:textColor="@color/white"
+            android:text="SIGN UP"
+            android:textSize="16dp"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+</LinearLayout>
+
+
+
+</ScrollView>
+</LinearLayout>
+    </FrameLayout>

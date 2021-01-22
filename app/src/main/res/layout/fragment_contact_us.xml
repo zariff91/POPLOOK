@@ -1,0 +1,411 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.tiseno.poplook.ContactUsFragment"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+<FrameLayout  android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:background="@color/white">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f5f5f5">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/contactUs_ByPhoneTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:text="By Phone"
+            android:layout_weight="0.4"
+
+            />
+
+
+        <TextView
+            android:id="@+id/contactUs_ByPhoneET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:text="+606-253 2750"
+            android:textColor="@color/black"
+            android:layout_weight="0.6"
+            android:textSize="16dp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/contactUs_ByWS"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:text="Whatsapp"
+            android:layout_weight="0.4"
+            />
+
+
+        <TextView
+            android:id="@+id/contactUs_ByWSET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.6"
+            android:text="+60 19-693 3958"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/contactUs_ByWS2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:text=""
+            android:layout_weight="0.4"
+            />
+
+
+        <TextView
+            android:id="@+id/contactUs_ByWSET2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="0.6"
+            android:text="Monday to Friday \n10am-6pm"
+            android:textColor="@color/black"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/lightgrey"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:weightSum="1">
+
+
+        <TextView
+            android:id="@+id/contactUs_ByEmailTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:textSize="16dp"
+            android:text="By Email"
+            android:layout_weight="0.4"
+            />
+
+        <TextView
+            android:id="@+id/contactUs_ByEmailET"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:textSize="16dp"
+            android:layout_weight="0.6"
+            android:layout_marginRight="10dp"
+            android:text=""
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</LinearLayout>
+
+
+
+        <!--      <LinearLayout
+                 android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.1"
+                android:layout_marginBottom="5dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+                <DatePicker
+                     android:id="@+id/datePicker1"
+                     android:layout_width="wrap_content"
+                     android:visibility="gone"
+                     android:layout_height="wrap_content" />
+
+             </LinearLayout>  -->
+
+    <TextView
+        android:id="@+id/contactUs_sendUsMessageTV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="12dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="8dp"
+        android:text="Send Us A Message"
+        android:textColor="@color/black"/>
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:weightSum="1">
+
+
+
+            <TextView
+                android:id="@+id/contactUs_subjectTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                android:text="Subject"
+                android:layout_weight="0.4"
+                />
+
+
+            <!--<TextView-->
+                <!--android:id="@+id/contactUs_subjectET"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:textSize="16sp"-->
+                <!--android:layout_weight="0.5"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:text="General Enquiry"-->
+                <!--android:textColor="@color/black" />-->
+            <Spinner
+                android:id="@+id/contactUs_Spinner"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="10dp"
+                android:layout_weight="0.6"
+                android:textSize="16dp"/>
+
+
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightgrey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/contactUs_userEmailTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:text="Email"
+                    android:layout_weight="0.4"
+                    />
+
+
+
+
+                <EditText
+                    android:id="@+id/contactUs_userEmailET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_weight="0.6"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/transparent"
+                    android:text=""
+                    android:hint="Type your Email"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"/>
+
+
+
+
+            <View
+                android:layout_below="@+id/SubjectLayout"
+                android:id="@+id/subjectDivider1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="visible"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:id="@+id/OrderRefLL"
+            android:visibility="gone">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <TextView
+                    android:id="@+id/contactUs_orderRefTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:text="Order Reference"
+                    android:layout_weight="0.4"
+                    />
+
+                <Spinner
+                    android:id="@+id/contactUs_orderRefSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="0dp"
+                    android:layout_weight="0.6"
+                    android:textSize="14dp"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"/>
+
+
+
+            <View
+                android:layout_below="@+id/SubjectLayout"
+                android:id="@+id/subjectDivider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp" />
+
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="7dp"
+            android:layout_weight="1"
+            android:paddingBottom="10dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16dp"
+                android:id="@+id/contactUsMessageTV"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:text="Message"/>
+            <EditText
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="2dp"
+                android:gravity="top"
+                android:inputType="textMultiLine"
+                android:background="@drawable/textlines"
+                android:paddingTop="7dp"
+                android:hint="Type your message here"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:paddingLeft="10dp"
+                android:textSize="15dp"
+                android:layout_below="@+id/contactUsMessageTV"
+                android:paddingRight="10dp"
+                android:id="@+id/contactUsMessageET" />
+
+            <Button
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="10dp"
+                android:layout_below="@+id/contactUsMessageET"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:id="@+id/contactUs_submitBtn"
+                android:background="@drawable/btn_clicked"
+                android:text="SEND"
+                android:textColor="@color/white"
+                android:layout_centerHorizontal="true"
+                android:textSize="16dp" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</FrameLayout>
+</ScrollView>

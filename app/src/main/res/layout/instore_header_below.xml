@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/above_TV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="*Availability is as of 10 am this morning, Please call store to reserve this item."
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:visibility="gone"
+        >
+    </TextView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="*Alternatively, you can"
+            android:id="@+id/firstTV"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/black"
+
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email to"
+            android:id="@+id/emailto"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/accent"
+
+            >
+        </TextView>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="or"
+            android:id="@+id/orTV"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/black"
+
+            >
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Email to"
+            android:id="@+id/whatsapp"
+            android:layout_marginRight="5dp"
+            android:textColor="@color/accent"
+
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/textTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="us to "
+            android:textColor="@color/black"
+
+            ></TextView>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textTv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:text="purchased and we will deliver this item to you."
+        android:textColor="@color/black"
+
+
+        ></TextView>
+
+    <TextView
+        android:id="@+id/below_TV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Please select size"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/black"
+        android:visibility="invisible"
+        >
+
+    </TextView>
+</LinearLayout>

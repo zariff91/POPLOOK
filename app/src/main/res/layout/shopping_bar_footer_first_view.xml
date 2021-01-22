@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:background="@color/transparent">
+
+<LinearLayout
+    android:id="@+id/subTotalLL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1"
+    android:orientation="horizontal"
+    >
+
+    <TextView
+        android:id="@+id/totalPriceRMTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:text="Subtotal"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:textStyle="bold"/>
+
+    <!--<TextView-->
+        <!--android:id="@+id/totalPriceRM1TV"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_weight="0.12"-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:layout_marginLeft="10dp"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="16dp"-->
+        <!--android:text=": RM"/>-->
+
+    <TextView
+        android:id="@+id/totalPriceTV"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:gravity="right"
+        android:paddingRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:text=""/>
+
+</LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/shippingMethodRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:layout_below="@+id/subTotalLL">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/shippingMethodTVlblCart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="@string/shipping"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/shippingMethodTVCart"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_weight="0.4"
+                android:layout_marginLeft="10dp"
+                android:paddingRight="20dp"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:text="Free Shipping"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

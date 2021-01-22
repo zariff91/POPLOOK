@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/shoppingBagItemLL"
+    android:foreground="?android:attr/selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_height="200dp"
+    android:background="@color/White"
+    android:orientation="horizontal"
+    android:weightSum="1">
+
+<LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="match_parent"
+    android:layout_weight="0.4"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:id="@+id/productIV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+       />
+    <ProgressBar
+        android:id="@+id/loadingImageLorh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+
+        android:visibility="visible" />
+</LinearLayout>
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6">
+
+        <TextView
+            android:id="@+id/productNameTV"
+            android:layout_width="match_parent"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:textSize="14dp"
+            android:text="Everly Princess Cut Chiffon Jubah Dress - Cream Flora"
+      />
+
+        <LinearLayout
+            android:id="@+id/productSizeLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productNameTV"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productSizeLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Size"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productSizeTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:text="S"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productRefLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productSizeLL"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productRefNoLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Ref No"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productRefNoTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:text="953FFEEW"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productUnitPriceLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productRefLL"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productUnitPriceLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Unit Price"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productUnitPriceTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:text="RM 129.00"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productQuantityLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productUnitPriceLL"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productQuantityLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.336"
+                android:text="Quantity"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.03"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productQuantityTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.52"
+                android:text="1"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="14dp"/>
+
+            <Spinner
+                android:id="@+id/productQuantitySpinner"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:entries="@array/quantity_array"
+                android:background="@drawable/btn_quantity"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:visibility="invisible"
+                android:textSize="14dp"></Spinner>
+
+            <!--<ImageView-->
+                <!--android:id="@+id/sb_dropDownIV"-->
+                <!--android:layout_width="20dp"-->
+                <!--android:layout_height="20dp"-->
+                <!--android:src="@drawable/btn_quantity"/>-->
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productTotalPriceLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productQuantityLL"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productTotalPriceLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Total Price"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productTotalPriceTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:paddingTop="2dp"
+                android:text="RM 129.00"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/productTimeLeftLL"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/productTotalPriceLL"
+            android:orientation="horizontal"
+            >
+
+                <!--<ImageView-->
+                    <!--android:id="@+id/timeLeftIV"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:src="@drawable/icon_timeleft"-->
+                    <!--android:layout_weight="0.05"/>-->
+                <TextView
+                    android:id="@+id/productTimeLeft1TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="Out of stock"
+                    android:textSize="14dp"
+                    android:paddingLeft="1dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/red"
+                    />
+
+
+
+            <!--<TextView-->
+            <!--android:layout_weight="0.3"-->
+                <!--android:id="@+id/productTimeLeftTV"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_weight="0.23"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:paddingLeft="2dp"-->
+                <!--android:text=""-->
+            <!--android:layout_weight="0.37"-->
+
+            <!--android:textSize="14dp"/>-->
+
+            <ImageView
+                android:id="@+id/productRemoveTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:src="@drawable/remove_cart_icon"
+                android:focusable="true"
+                android:layout_marginLeft="85dp"
+               />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+    </FrameLayout>

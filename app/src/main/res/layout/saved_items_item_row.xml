@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:id="@+id/SavedItemLL"
+    android:foreground="?android:attr/selectableItemBackground"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="8dp"
+    android:paddingBottom="8dp"
+    android:layout_height="200dp"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:background="@color/White">
+
+    <ImageView
+        android:id="@+id/productImageIV"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.4"/>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6">
+
+        <TextView
+            android:id="@+id/productNameTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxHeight="50dp"
+            android:textColor="@color/black"
+            android:ellipsize="end"
+            android:text="Everly Princess Cut Chiffon Jubah Dress - Cream Flora"
+            android:textSize="14dp"/>
+
+        <LinearLayout
+            android:id="@+id/productSizeLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productNameTV"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productSizeLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Size"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productSizeTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:text="S"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:id="@+id/productUnitPriceLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productSizeLL"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productUnitPriceLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Unit Price"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productUnitPriceTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:text="RM 129.00"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/soldOutInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/productExpiresLL"
+            android:text="This item is sold out."
+            android:textColor="@color/red"
+            android:textSize="14dp"
+            android:visibility="invisible" />
+
+        <LinearLayout
+            android:id="@+id/productExpiresLL"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="2dp"
+            android:layout_below="@+id/productUnitPriceLL"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/productExpiresLblTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:text="Expires in"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.05"
+                android:text=":"
+                android:gravity="center_horizontal"
+                android:textSize="14dp"/>
+
+            <TextView
+                android:id="@+id/productExpiresTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.65"
+                android:text="60 days"
+                android:textSize="14dp"/>
+
+        </LinearLayout>
+        <RelativeLayout
+            android:id="@+id/productAddToBagRL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:background="@color/accent"
+            android:padding="10dp">
+            <TextView
+                android:id="@+id/productAddToBagTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:text="@string/addtobag"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="?android:attr/selectableItemBackground"
+                android:textSize="15dp"/>
+        </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/productRemoveLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/black"
+        android:padding="10dp"
+        android:layout_marginEnd="15dp">
+        <TextView
+            android:id="@+id/productRemoveTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:text="@string/remove"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:textSize="15dp"/>
+    </RelativeLayout>
+
+
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>
+    </FrameLayout>

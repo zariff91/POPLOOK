@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/stepBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/step1TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_grey"
+            android:text="@string/myaccount"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/step2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orderhistory"
+            android:textAllCaps="true"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/light_grey"
+            android:layout_toRightOf="@+id/step1TV"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/step2toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/step2TV"
+            android:textColor="@color/light_grey"
+            android:textSize="14dp"
+            android:text=">"/>
+
+        <TextView
+            android:id="@+id/step3TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/orderdetails"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step2toTV"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            />
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/orderDetailsInfoLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/stepBarRL"
+        android:paddingTop="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/invoiceNoLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textColor="@color/dark_grey"
+                android:textStyle="bold"
+                android:text="@string/invoiceno"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/orderDetailsInvoiceNoTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/orderLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textColor="@color/dark_grey"
+                android:textStyle="bold"
+                android:text="@string/orderno"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/orderDetailsOrderNoTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/dateLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textColor="@color/light_grey"
+                android:textStyle="bold"
+                android:text="@string/date"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/orderDetailsDateTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/carrierLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textColor="@color/light_grey"
+                android:textStyle="bold"
+                android:text="@string/carrier"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/orderDetailsCarrierTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/paymentMethodLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.4"
+                android:textColor="@color/light_grey"
+                android:textStyle="bold"
+                android:text="@string/paymentmethod"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/orderDetailsPaymentMethodTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/orderDetailsDownloadReturnFormRL"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/orderDetailsInfoLL"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:id="@+id/orderDetailsDownloadReturnFormBtnIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_clicked"
+            android:background="@android:color/transparent"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/downloadReturnFormLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/downloadreturnform"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/shippingAddressLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/orderDetailsDownloadReturnFormRL"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/shippingAddressLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="@string/shippingaddress"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/shippingAddressDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/shippingAddressLL"/>
+
+    <TextView
+        android:id="@+id/shippingAddressTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shippingAddressDividerIV"
+        android:paddingLeft="10dp"
+        android:paddingRight="100dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text=""/>
+
+
+    <TextView
+        android:id="@+id/shippingAddressContactNoLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactnumber"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:layout_below="@+id/shippingAddressTV"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/shippingAddressContactNoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/shippingAddressContactNoLblTV"
+        android:layout_alignBaseline="@+id/shippingAddressContactNoLblTV"
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text=""/>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/billingAddressInfoLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shippingAddressContactNoLblTV"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/billingAddressLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="@string/billingaddress"/>
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/billingAddressDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/billingAddressInfoLL"/>
+
+    <TextView
+        android:id="@+id/billingAddressInfoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/billingAddressDividerIV"
+        android:paddingLeft="10dp"
+        android:paddingRight="100dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text=""/>
+
+
+    <TextView
+        android:id="@+id/billingAddressContactNoLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactnumber"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:layout_below="@+id/billingAddressInfoTV"
+        android:layout_marginTop="30dp"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/billingAddressContactNoTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/billingAddressContactNoLblTV"
+        android:layout_alignBaseline="@+id/billingAddressContactNoLblTV"
+        android:paddingLeft="5dp"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:text=""/>
+
+    <LinearLayout
+        android:id="@+id/orderDetailsDescriptionLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/billingAddressContactNoLblTV"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/descLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="@string/description"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/orderDetailsDescriptionDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/orderDetailsDescriptionLL"/>
+
+</RelativeLayout>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/title_nameTV"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:singleLine="true"
+            android:gravity="center"
+            android:textSize="17dp"
+            android:textColor="@color/dark_grey"/>
+        <ImageView
+            android:id="@+id/fbIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toLeftOf="@+id/twitIV"
+            android:paddingRight="20dp"
+            android:src="@drawable/ico_fb"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/dummy"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/twitIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_toLeftOf="@+id/igIV"
+            android:paddingRight="20dp"
+            android:src="@drawable/ico_twitter"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/igIV"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/ico_insta"
+            android:visibility="invisible"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:id="@+id/rayaIcon"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ketupat"
+            android:visibility="invisible"
+            android:layout_toRightOf="@id/title_nameTV"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="7dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/title_withDividerRL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/divider_1"
+            android:layout_alignParentTop="true"/>
+
+        <!--<ImageView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/divider_1"-->
+        <!--android:layout_alignParentBottom="true"/>-->
+
+    </RelativeLayout>
+
+</RelativeLayout>

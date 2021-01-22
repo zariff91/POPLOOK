@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+    <TextView
+        android:id="@+id/filter_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Filter"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="15dp"
+
+        >
+
+    </TextView>
+
+    <RelativeLayout
+        android:id="@+id/category_RL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        android:visibility="gone"
+        >
+
+
+        <TextView
+            android:id="@+id/category_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Category"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/category_selected_text"
+            android:layout_below="@+id/category_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/lightGrey"
+            android:textSize="15dp"
+            android:layout_marginTop="3dp"
+
+            >
+
+        </TextView>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/size_RL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        >
+
+        <TextView
+            android:id="@+id/size_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Size"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/size_selected_text"
+            android:layout_below="@+id/size_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/lightGrey"
+            android:textSize="15dp"
+            android:layout_marginTop="3dp"
+
+            >
+
+        </TextView>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/colour_RL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="30dp"
+        >
+
+        <TextView
+            android:id="@+id/colour_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Colour"
+            android:textColor="@color/black"
+            android:textSize="17dp"
+
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/colour_selected_text"
+            android:layout_below="@+id/colour_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/lightGrey"
+            android:textSize="15dp"
+            android:layout_marginTop="3dp"
+
+            >
+
+        </TextView>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/sort_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+
+        >
+
+    </TextView>
+
+        <com.adroitandroid.chipcloud.ChipCloud
+            android:id="@+id/sortingOption"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="30dp">
+
+        </com.adroitandroid.chipcloud.ChipCloud>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/applyButtonNew"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:text="APPLY"
+        android:textColor="@color/white"
+        android:background="@color/black"
+        >
+
+
+    </Button>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/applyButtonNew"
+        android:gravity="center"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/clearAllText"
+        android:text="Clear All"
+        android:textSize="15dp"
+        android:textColor="@color/black"
+        android:layout_marginBottom="50dp"
+        >
+
+    </TextView>
+
+
+
+</RelativeLayout>

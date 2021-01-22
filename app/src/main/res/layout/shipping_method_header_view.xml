@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/stepBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/step1TV"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step1text"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step2text"
+            android:singleLine="true"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step1TV"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step2toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/step2TV"
+            android:layout_marginLeft="3dp"
+            android:text=">"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step3TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step3text"
+            android:textColor="@color/black"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step2toTV"
+            android:singleLine="true"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step3toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step3TV"
+            android:text=">"
+            android:singleLine="true"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step4TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step4text"
+            android:singleLine="true"
+            android:layout_below="@+id/step1TV"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step4toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/step4TV"
+            android:layout_toRightOf="@+id/step4TV"
+            android:text=">"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step5TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step5text"
+            android:layout_marginLeft="3dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/step4toTV"
+            android:layout_toRightOf="@+id/step4toTV"
+            android:textSize="14dp"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/chooseDeliveryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stepBarRL"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/shippingmethod"
+        android:textColor="@color/black"
+        android:textSize="14dp"/>
+
+    <RadioGroup
+        android:id="@+id/shippingMethodRG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/chooseDeliveryTV"></RadioGroup>
+
+    <RelativeLayout
+        android:id="@+id/shippingMethodNextBtnRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shippingMethodRG"
+        android:layout_marginTop="15dp">
+
+        <ImageButton
+            android:id="@+id/shippingMethodNextBtnIV"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginRight="50dp"
+            android:layout_marginLeft="50dp"
+            android:background="@color/accent"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:id="@+id/nextTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/orderSummaryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shippingMethodNextBtnRL"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:text="@string/ordersummary"
+        android:textColor="@color/black"
+        android:textSize="14dp"/>
+
+    <ImageView
+        android:id="@+id/orderSummaryDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/orderSummaryTV"/>
+
+</RelativeLayout>

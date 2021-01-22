@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/subTotalDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        />
+
+    <RelativeLayout
+        android:id="@+id/subTotalRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/subTotalDividerIV"
+        android:background="@drawable/bar_steps">
+
+        <LinearLayout
+            android:id="@+id/subTotalLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/subTotalLblTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:text="@string/subtotal"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/subTotalLblTVRM"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:text="RM"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/subTotalTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:textColor="@color/black"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:text=""
+                android:textSize="15dp"/>
+
+        </LinearLayout>
+
+
+
+
+    </RelativeLayout>
+    </RelativeLayout>

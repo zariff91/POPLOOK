@@ -1,0 +1,4 @@
+# Referenced at /Users/poplook/Desktop/POPLOOK/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:41
+-keep class androidx.core.app.CoreComponentFactory { <init>(); }
+# Referenced at /Users/poplook/Desktop/POPLOOK/app/build/intermediates/merged_manifests/debug/AndroidManifest.xml:41
+-keep class com.tiseno.poplook.POPLOOK { <init>(); }

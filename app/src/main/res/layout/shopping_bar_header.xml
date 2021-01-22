@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/additionalTopViewTextheader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/topText"
+        android:gravity="center"
+        android:text="@string/additionalTopText"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/additionalTopViewText2header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/topText"
+        android:gravity="center"
+        android:text="@string/additionalTopText"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/additionalTopViewText3header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:background="@color/topText"
+        android:gravity="center"
+        android:text="@string/additionalTopText"
+        android:textColor="@color/black"
+        android:textSize="14dp"
+        android:visibility="gone"
+        />
+
+</LinearLayout>

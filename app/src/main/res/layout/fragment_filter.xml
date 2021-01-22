@@ -1,0 +1,446 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.tiseno.poplook.FilterFragment"
+    android:id="@+id/flfilter"
+    android:background="@drawable/bg_1">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/linear_layout_filtered"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.77"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/sizeFilteredTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size  "
+            android:layout_marginTop="40dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:drawableRight="@drawable/icon_arrow"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="5dp"
+            android:textSize="17dp"
+            android:id="@+id/filteredSizeTV"
+            android:textColor="@color/lightGrey"
+            android:textStyle="bold"
+            android:visibility="gone"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"/>
+        <TextView
+            android:id="@+id/colorFilteredTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Colour  "
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:drawableRight="@drawable/icon_arrow"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_marginTop="5dp"
+            android:textSize="17dp"
+            android:visibility="gone"
+            android:id="@+id/filteredColourTV"
+            android:textColor="@color/lightGrey"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_colour"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.77"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ColorCheckBoxLL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <!--<CheckBox-->
+        <!--android:id="@+id/BlueCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Blue"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/BlackCheckBox"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Black"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/PurpleCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Purple"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp" />-->
+    <!--<CheckBox-->
+        <!--android:id="@+id/GreenCheckBox"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Green"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/PinkCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Pink"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/GreyCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Grey"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+    <!--<CheckBox-->
+        <!--android:id="@+id/BrownCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Brown"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/RedCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:text="  Red"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    <!--<CheckBox-->
+        <!--android:id="@+id/NavyCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Navy"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+    <!--<CheckBox-->
+        <!--android:id="@+id/BeigeCheckBox"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_marginTop="15dp"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="  Beige"-->
+        <!--android:button="@drawable/checkbox_style"-->
+        <!--android:textSize="16sp"/>-->
+
+    </LinearLayout>
+        </ScrollView>
+        </LinearLayout>
+    <LinearLayout
+        android:id="@+id/linear_layout_size"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.77"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+         <LinearLayout
+             android:id="@+id/SizeCheckBoxLL"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+        <!--<CheckBox-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:id="@+id/XSCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  XS"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/SCheckBox"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  S"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/MCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  M"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp" />-->
+        <!--<CheckBox-->
+            <!--android:id="@+id/LCheckBox"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  L"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/XLCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  XL"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/DXLCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  2XL"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+        <!--<CheckBox-->
+            <!--android:id="@+id/TXLCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  3XL"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/FXLCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:text="  4XL"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+
+        <!--<CheckBox-->
+            <!--android:id="@+id/OneYearCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  1 YEAR"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+        <!--<CheckBox-->
+            <!--android:id="@+id/TwoYearCheckBox"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_marginTop="15dp"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="  2 YEAR"-->
+            <!--android:button="@drawable/checkbox_style"-->
+            <!--android:textSize="16sp"/>-->
+    </LinearLayout>
+
+        </ScrollView>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.87"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Size  "
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:layout_marginTop="40dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:id="@+id/SizeTV"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:drawableRight="@drawable/icon_arrow"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Colour  "
+            android:layout_marginTop="20dp"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:id="@+id/ColourTV"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:drawableRight="@drawable/icon_arrow"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_layout_btn_filtered"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.23"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        >
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+
+            />
+        <Button
+            android:id="@+id/btn_apply_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+
+            android:background="@drawable/btn_clicked"
+            android:text="APPLY"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            />
+        <Button
+            android:id="@+id/btn_clear_filter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+
+            android:background="@drawable/btn_clicked"
+            android:text="CLEAR"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear_layout_btn_color_size"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="0.23"
+        android:orientation="vertical"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        >
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey"
+
+            />
+            <Button
+                android:id="@+id/btn_done_size_colour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_gravity="center"
+                android:background="@drawable/btn_clicked"
+                android:text="DONE"
+                android:textSize="16dp"
+                android:textColor="@color/white"/>
+        <Button
+            android:id="@+id/btn_clear_size_colour"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:background="@drawable/btn_clicked"
+            android:text="CLEAR"
+            android:textSize="16dp"
+            android:textColor="@color/white"/>
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/linear_layout_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.13"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey"
+                />
+            <Button
+                android:id="@+id/btn_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/btn_clicked"
+                android:text="CLOSE"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:textColor="@color/white"/>
+            </LinearLayout>
+
+</LinearLayout>
+</FrameLayout>

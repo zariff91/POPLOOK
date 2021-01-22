@@ -1,0 +1,691 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+android:layout_height="match_parent" tools:context="com.tiseno.poplook.EditAddressFragment">
+<ScrollView
+    android:id="@+id/editAddressscrollviewBehind"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+    <FrameLayout  android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+                <TextView
+                    android:id="@+id/editAddress_emailTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:text="Email*"
+                    android:layout_weight="0.4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/editAddress_emailET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16dp"
+                    android:inputType="textEmailAddress"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Type your email" />
+
+            </LinearLayout>
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/editAddress_reEmailTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Retype Email*"
+                    android:layout_weight="0.4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/editAddress_reEmailET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:textSize="16dp"
+                    android:inputType="textEmailAddress"
+                    android:background="@null"
+                    android:ems="10"
+                    android:layout_marginRight="10dp"
+                    android:hint="Type your email" />
+
+            </LinearLayout>
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/editAddress_nameTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:text="First Name*"
+                    android:layout_weight="0.4"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/editAddress_nameET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:layout_weight="0.6"
+                    android:layout_marginRight="10dp"
+                    android:ems="10"
+                    android:hint="Type your first name" />
+
+
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/editAddress_surnameTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:text="Surname*"
+                    android:layout_weight="0.4"
+                    />
+
+                <EditText
+                    android:id="@+id/editAddress_surnameET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:clickable="true"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:layout_marginRight="10dp"
+                    android:ems="10"
+                    android:hint="Type your surname" />
+
+            </LinearLayout>
+
+
+            <!--      <LinearLayout
+                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <DatePicker
+                         android:id="@+id/datePicker1"
+                         android:layout_width="wrap_content"
+                         android:visibility="gone"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>  -->
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+
+                <TextView
+                    android:id="@+id/editAddress_DOBTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:text="Date of Birth"
+                    android:layout_weight="0.4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/editAddress_DOBET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:enabled="false"
+                    android:hint="dd/mm/yyyy" />
+                <Button
+                    android:id="@+id/editAddress_dateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.05"
+                    android:background="@drawable/btn_dropdown" />
+            </LinearLayout>
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/grey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:id="@+id/editAddress_companyTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Company"
+                        android:layout_weight="0.4"
+                        />
+
+
+
+
+                    <EditText
+                        android:id="@+id/editAddress_companyET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:textSize="16dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Company" />
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/editAddress_add1TV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Add (Line 1)*"
+                        android:layout_weight="0.4"
+                        />
+
+
+
+                    <EditText
+                        android:id="@+id/editAddress_add1ET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="16dp"
+                        android:layout_weight="0.6"
+                        android:gravity="top"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:ems="100"
+                        android:hint="Add (Line 1)*" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="10dp"
+                    android:text="if shipping to work address, please use company name"
+                    android:layout_marginBottom="3dp"/>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <TextView
+                        android:id="@+id/editAddress_add2TV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Add (Line 2)"
+                        android:layout_weight="0.4"
+                        />
+
+
+
+                    <EditText
+                        android:id="@+id/editAddress_add2ET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:textSize="16dp"
+                        android:layout_weight="0.6"
+                        android:gravity="top"
+                        android:layout_marginRight="10dp"
+                        android:background="@null"
+                        android:ems="100"
+                        android:hint="Add (Line 2)" />
+
+
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <TextView
+                        android:id="@+id/editAddress_countryTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Country*"
+                        android:layout_weight="0.4"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editAddress_countryET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:inputType="date"
+                        android:enabled="false"
+                        android:hint="Country*" />
+                    <Button
+                        android:id="@+id/editAddress_countryButton"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.05"
+                        android:background="@drawable/btn_dropdown" />
+
+                </LinearLayout>
+
+
+                <!--      <LinearLayout
+                         android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <DatePicker
+                             android:id="@+id/datePicker1"
+                             android:layout_width="wrap_content"
+                             android:visibility="gone"
+                             android:layout_height="wrap_content" />
+
+                     </LinearLayout>  -->
+
+
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/editAddress_stateTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="State*"
+                        android:layout_weight="0.4"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editAddress_stateET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.5"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:inputType="date"
+                        android:enabled="false"
+                        android:hint="State*" />
+
+                    <Button
+                        android:id="@+id/editAddress_stateButton"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.05"
+                        android:background="@drawable/btn_dropdown" />
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/editAddress_townTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Town / City*"
+                        android:layout_weight="0.4"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editAddress_townET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:layout_marginRight="10dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Town / City*" />
+
+
+
+                </LinearLayout>
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+                    <TextView
+                        android:id="@+id/editAddress_poscodeTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Postcode*"
+                        android:layout_weight="0.4"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editAddress_poscodeET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:layout_marginRight="10dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Postcode*" />
+
+
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+                    <TextView
+                        android:id="@+id/editAddress_telTV"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:text="Telephone*"
+                        android:layout_weight="0.4"
+                        />
+
+
+                    <EditText
+                        android:id="@+id/editAddress_telET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:layout_marginRight="10dp"
+                        android:textSize="16dp"
+                        android:inputType="number"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Telephone*" />
+
+
+                </LinearLayout>
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/grey" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.11"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:weightSum="1">
+                <Button
+                    android:id="@+id/editAddress_continueButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:background="@drawable/btn_clicked"
+                    android:textSize="16dp"
+                    android:textColor="@color/button_material_light"
+                    android:text="SAVE ADDRESS"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+
+
+
+
+    </FrameLayout>
+</ScrollView>
+<RelativeLayout
+    android:id="@+id/editAddressstateNumberPickerLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:visibility="gone">
+
+    <NumberPicker
+        android:id="@+id/editAddressstateNumberPicker"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_above="@+id/editAddressstateSelectButton"
+        android:background="@color/White"
+        android:visibility="visible"
+        android:textSize="15dp"
+        >
+    </NumberPicker>
+
+
+
+    <Button
+        android:visibility="visible"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/editAddressstateSelectButton"
+        android:textColor="@color/White"
+        android:background="@drawable/btn_clicked"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SELECT"
+        android:textSize="16dp"
+        />
+
+
+
+
+</RelativeLayout>
+
+</RelativeLayout>

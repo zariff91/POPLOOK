@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/stepBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/step1TV"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step1text"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step2text"
+            android:singleLine="true"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step1TV"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step2toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/step2TV"
+            android:layout_marginLeft="3dp"
+            android:text=">"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step3TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step3text"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step2toTV"
+            android:singleLine="true"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step3toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step3TV"
+            android:text=">"
+            android:singleLine="true"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step4TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step4text"
+            android:singleLine="true"
+            android:layout_below="@+id/step1TV"
+            android:textColor="@color/black"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step4toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/step4TV"
+            android:layout_toRightOf="@+id/step4TV"
+            android:text=">"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step5TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step5text"
+            android:layout_marginLeft="3dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/step4toTV"
+            android:layout_toRightOf="@+id/step4toTV"
+            android:textSize="14dp"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/paymentLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stepBarRL"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:text="@string/payment"
+        android:textSize="14dp"/>
+
+    <RadioGroup
+        android:id="@+id/paymentRG"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/paymentLblTV"
+        android:checkedButton="@+id/creditCardRB"
+        android:paddingLeft="10dp">
+
+        <RadioButton
+            android:id="@+id/creditCardRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/creditcard"
+            android:button="@drawable/checkbox_layout"
+            android:paddingLeft="10dp"
+            android:textSize="16dp"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"/>
+
+        <RadioButton
+            android:id="@+id/tngEWallet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="E-Wallet"
+            android:button="@drawable/checkbox_layout"
+            android:paddingLeft="10dp"
+            android:textSize="16dp"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/EWalletLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="19dp"
+            android:weightSum="1"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/EWalletTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.87"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:background="@drawable/placeholder_payment_inactive"
+                android:textSize="16dp"/>
+
+            <ImageView
+                android:id="@+id/EWalletIV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/btn_dropdown_address"
+                android:layout_toRightOf="@+id/EWalletTV"
+                android:layout_alignTop="@+id/EWalletTV"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"/>
+
+
+        </LinearLayout>
+
+        <RadioButton
+            android:id="@+id/onlineBankingRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/onlinebanking"
+            android:button="@drawable/checkbox_layout"
+            android:paddingLeft="10dp"
+            android:visibility="gone"
+            android:textSize="16dp"/>
+
+        <LinearLayout
+            android:id="@+id/onlineBankingLL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="19dp"
+            android:weightSum="1"
+            android:visibility="gone"
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:id="@+id/onlineBankingTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.87"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:paddingLeft="5dp"
+                android:background="@drawable/placeholder_payment_inactive"
+                android:textSize="16dp"/>
+
+            <ImageView
+                android:id="@+id/onlineBankingDropDownIV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.10"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:src="@drawable/btn_dropdown_address"
+                android:layout_toRightOf="@+id/onlineBankingTV"
+                android:layout_alignTop="@+id/onlineBankingTV"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"/>
+
+
+        </LinearLayout>
+
+        <RadioButton
+            android:id="@+id/paypalRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/paypal"
+            android:button="@drawable/checkbox_layout"
+            android:paddingLeft="10dp"
+            android:textSize="16dp"
+            android:layout_marginBottom="10dp"/>
+
+        <RadioButton
+            android:id="@+id/enetsRB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/enets"
+            android:button="@drawable/checkbox_layout"
+            android:paddingLeft="10dp"
+            android:textSize="16sp"/>
+
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/paymentTSLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/termsofservice"
+        android:layout_below="@+id/paymentRG"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"/>
+
+    <ImageView
+        android:id="@+id/paymentTSCheckIV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_check"
+        android:layout_below="@+id/paymentTSLblTV"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/paymentTSIV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/paymentTSCheckIV"
+        android:layout_alignTop="@+id/paymentTSCheckIV"
+        android:layout_marginLeft="10dp"
+        android:text="I agree with the Terms of Service and I adhere to them unconditionally."
+        android:textSize="15dp"/>
+
+    <RelativeLayout
+        android:id="@+id/paymentNextRL"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/paymentTSIV"
+        android:layout_marginTop="10dp">
+
+        <ImageButton
+            android:id="@+id/paymentNextBtnIV"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/accent"
+            android:layout_centerInParent="true"/>
+
+        <TextView
+            android:id="@+id/nextTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textColor="@android:color/white"
+            android:textSize="16dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/orderSummaryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/paymentNextRL"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"
+        android:text="@string/ordersummary"
+        android:textSize="14dp"
+     />
+
+    <ImageView
+        android:id="@+id/orderSummaryDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/orderSummaryTV"/>
+
+</RelativeLayout>

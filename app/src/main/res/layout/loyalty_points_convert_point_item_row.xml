@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="105dp"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:id="@+id/paymentNextRL"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/paymentTSIV"
+        android:layout_marginTop="25dp"
+        android:visibility="visible">
+
+        <!--<ImageButton-->
+            <!--android:id="@+id/paymentNextBtnIB"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/btn_my_points_click"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:layout_centerInParent="true"/>-->
+
+        <TextView
+            android:id="@+id/convertBtnTextTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-END-"
+            android:textColor="@android:color/black"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:textSize="18dp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            />
+
+    </RelativeLayout>
+
+</RelativeLayout>

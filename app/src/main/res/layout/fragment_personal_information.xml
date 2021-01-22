@@ -1,0 +1,735 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@android:color/white"
+    tools:context="com.tiseno.poplook.PersonalInformationFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:id="@+id/stepBarRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bar_steps"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp">
+
+
+                <TextView
+                    android:id="@+id/step1TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/myaccount"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:id="@+id/step2TV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_toRightOf="@+id/step1TV"
+                    android:text="@string/personalinformation2"
+                    android:textColor="@color/black"
+                    android:textSize="14dp"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/changeYourEmailLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/stepBarRL"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/personalInformationChangeEmailLBl"
+                        android:layout_width="wrap_content"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/changeyouremailaddress"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentEmailLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/currentemail"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentEmailTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationCurrentEmailLblTV"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/light_grey"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/personalInformationNewEmailLblET"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/newemail"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/personalInformationNewEmailET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationNewEmailLblET"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/personalInformationConfirmEmailLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/confirmemail"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/personalInformationConfirmEmailET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationConfirmEmailLblTV"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/changeYourEmailSaveChangesRL"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/changeYourEmailLL"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/changeYourEmailSaveChangesBtnIV"
+                    android:layout_width="280dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/accent"
+                     />
+
+                <TextView
+                    android:id="@+id/changeYourEmailSaveChangesTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/saveemailchanges"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:id="@+id/changeYourPasswordLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeYourEmailSaveChangesRL"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/personalInformationChangePasswordLblTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/changeyourpassword"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentPasswordLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/currentpasssword"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentPasswordTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationCurrentPasswordLblTV"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/light_grey"
+                        android:textSize="17sp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationNewPasswordLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/newpassword"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/personalInformationNewPasswordET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationNewPasswordLblTV"                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:maxLength="32"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationConfirmPasswordLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/confirmpassword"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/personalInformationConfirmPasswordET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationConfirmPasswordLblTV"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:maxLength="32"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="17sp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/changeYourPasswordSaveChangesRL"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/changeYourPasswordLL"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/changeYourPasswordSaveChangesBtnIV"
+                    android:layout_width="280dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/accent"
+                    />
+
+                <TextView
+                    android:id="@+id/changeYourPasswordSaveChangesTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/savePasswordchanges"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/changeYourNameLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeYourPasswordSaveChangesRL"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/changeYourNameLblTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/changeyourname"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentFirstNameLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/currentfirstname"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentFirstNameTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationCurrentFirstNameLblTV"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationNewFirstNameLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/newfirstname"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/personalInformationNewFirstNameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationNewFirstNameLblTV"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:maxLength="32"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentSurNameLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/currentsurname"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/personalInformationCurrentSurNameTV"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationCurrentSurNameLblTV"
+                        android:gravity="center_vertical"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:orientation="horizontal"
+                    >
+
+                    <TextView
+                        android:id="@+id/personalInformationNewSurNameLblTV"
+                        android:layout_width="150dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="10dp"
+                        android:text="@string/newsurname"
+                        android:textColor="@color/light_grey"
+                        android:textSize="16dp" />
+
+                    <EditText
+                        android:id="@+id/personalInformationNewSurNameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toRightOf="@+id/personalInformationNewSurNameLblTV"
+                        android:background="@android:color/transparent"
+                        android:gravity="center_vertical"
+                        android:maxLength="32"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@android:color/black"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </RelativeLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@color/lightgrey"
+                    android:scaleType="fitXY" />
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/changeYourNameSaveChangesRL"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/changeYourNameLL"
+                android:layout_marginTop="10dp">
+
+                <ImageButton
+                    android:id="@+id/changeYourNameSaveChangesBtnIV"
+                    android:layout_width="280dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/accent" />
+
+                <TextView
+                    android:id="@+id/changeYourNameSaveChangesTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/saveNamechanges"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/mailingListPreferencesLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/changeYourNameSaveChangesRL"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/personalInformationMailingLblTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/mailinglistpreferences"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:weightSum="1">
+
+                    <CheckBox
+                        android:id="@+id/personalInformationMailingSubscribedCB"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:button="@drawable/checkbox_layout"
+                        android:paddingLeft="5dp"
+                        android:text="@string/subscribed"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/mailingListPreferencesSaveChangesRL"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/mailingListPreferencesLL">
+
+                <ImageButton
+                    android:id="@+id/mailingListPreferencesSaveChangesBtnIV"
+                    android:layout_width="280dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:background="@color/accent" />
+
+                <TextView
+                    android:id="@+id/mailingListPreferencesSaveChangesTV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:text="@string/saveMailingchanges"
+                    android:textColor="@android:color/white"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/personalDataNoticeLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mailingListPreferencesSaveChangesRL"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/personalDataNoticeLblTV"
+                        android:layout_width="wrap_content"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/personaldataprotectionnotice"
+                        android:textColor="@color/dark_grey"
+                        android:textSize="14dp"
+                        android:textStyle="bold" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/grey"
+                        android:scaleType="fitXY" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_below="@+id/personalDataNoticeLL"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/personalDataNoticeCheckBoxIV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_check_active" />
+
+                <TextView
+                    android:id="@+id/personalDataNoticeAcceptedTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/personalDataNoticeCheckBoxIV"
+                    android:text="@string/accepted"
+                    android:textColor="@color/dark_grey"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</FrameLayout>

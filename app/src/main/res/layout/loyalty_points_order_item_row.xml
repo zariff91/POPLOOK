@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:weightSum="1">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8">
+
+            <TextView
+                android:id="@+id/loyaltyPointsOrderTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_grey"
+                android:textStyle="bold"
+                android:text=""
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/loyaltyPointsOrderDateTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_grey"
+                android:layout_below="@+id/loyaltyPointsOrderTV"
+                android:textStyle="bold"
+                android:text=""
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/loyaltyPointsOrderStatusTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/light_grey"
+                android:layout_below="@+id/loyaltyPointsOrderDateTV"
+                android:textStyle="bold"
+                android:text=""
+                android:textSize="15dp"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2">
+
+            <TextView
+                android:id="@+id/loyaltyPointsOrderPointsTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:gravity="center_horizontal"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="@color/dark_grey"/>
+
+            <TextView
+                android:id="@+id/loyaltyPointsOrderPointsLblTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/points"
+                android:textColor="@color/light_green"
+                android:textStyle="bold"
+                android:textSize="16dp"
+                android:gravity="center_horizontal"
+                android:layout_below="@+id/loyaltyPointsOrderPointsTV"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/loyaltyPointsBelowDivider2IV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

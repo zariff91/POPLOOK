@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingTop="10dp"
+        android:orientation="vertical"
+        android:id="@+id/expandHeaderView"
+        >
+
+        <TextView
+            android:id="@+id/header_name_collapseTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:textColor="@color/black"
+            android:textStyle=""
+            android:text="COLLECTION"
+            android:layout_marginLeft="20dp"/>
+        <ImageView
+            android:id="@+id/sideImagecollapseIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp"
+            android:src="@drawable/icon_arrow"
+            android:layout_centerVertical="true"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/divider_1"
+            android:layout_below="@+id/header_name_collapseTV"
+            android:layout_marginTop="2dp"/>
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:clickable="true"
+        android:focusable="true"
+        android:id="@+id/expandView"
+        android:visibility="gone"
+        android:background="?android:attr/selectableItemBackground">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/title_name_collapseTV"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="20dp"
+                android:textSize="17dp"
+                android:layout_toLeftOf="@+id/title_nameTV_collapseChange"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/dark_grey"/>
+
+            <TextView
+                android:id="@+id/title_nameTV_collapseChange"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:paddingRight="20dp"
+                android:textSize="17dp"
+                android:text="@string/changeSideMenu"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/light_green"
+                android:visibility="invisible"/>
+
+            <ImageView
+                android:id="@+id/sideImage_collapseIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:paddingRight="20dp"
+                android:src="@drawable/icon_arrow"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/title_withDivider_collapseRL"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="invisible">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/divider_1"
+                android:layout_alignParentTop="true"/>
+
+            <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/divider_1"-->
+            <!--android:layout_alignParentBottom="true"/>-->
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+</LinearLayout>

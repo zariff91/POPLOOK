@@ -1,0 +1,219 @@
+<resources>
+    <string name="app_name">POPLOOK</string>
+    <!--<string name="gcm_defaultSenderId">549922517099</string>-->
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="drawer_open">Open navigation drawer</string>
+    <string name="drawer_close">Close navigation drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!--<!—-REQUIRED  - FOR Facebook Event-->
+
+    <string name="facebook_app_id">532560864153381</string>
+    <string name="fb_login_protocol_scheme">fb532560864153381</string>
+
+    <!--<!—-REQUIRED  - FOR PUSH NOTIFICATIONS &ndash;&gt;-->
+    <!-- Your google app id for sending push notifications -->
+    <!-- This is not necessary to add if you have google-services.json  -->
+    <!-- <string name="google_app_id">109874</string> -->
+    <!--<string name="google_app_id">549922517099</string>  -->
+
+    <!--<!—-REQUIRED - FOR INSIDER IDENTIFICATION&ndash;&gt;-->
+    <!-- <string name="insider_partner_name">example_partner</string> -->
+    <string name="insider_partner_name">poplook</string>
+    <!-- write TRUE if you would like to get users' location -->
+    <!-- DON'T add this line if you don't want to get users' location -->
+    <bool name="insider_get_device_location">true</bool>
+    <!-- for of location check interval in seconds, lower value -> more battery usage faster location detection
+    higher value -> less battery usage slower location detection-->
+    <bool name="insider_device_location_enabled">true</bool>
+    <integer name="insider_geofence_interval">60</integer>
+    <!--<!—-REQUIRED - FOR COLLAPSING PUSH NOTIFICATIONS &ndash;&gt;-->
+    <!--<!—-true to enable notification collapsing, false to disable &ndash;&gt;-->
+    <bool name="insider_push_collapse">false</bool>
+    <!--<!—REQUIRED  - FOR LANDING ACTIVITY FOLLOWING THE PUSH OPEN&ndash;&gt;-->
+    <!-- Landing activity is where your user will land after opening push notification -->
+    <!-- add your landing activity like com.example.activities.LinkActivity -->
+    <!-- <string name="insider_landing_activity">example.company.myactivity</string> -->
+    <string name="insider_landing_activity">com.tiseno.poplook.MainActivity</string>
+
+    <!--<!— OPTIONAL - TO USE YOUR APP’S ICON ON NOTIFICATIONS &ndash;&gt;-->
+    <string name="insider_notification_icon">ic_launcher_noti</string>
+    <string name="insider_notification_large_icon">ic_launcher_noti</string>
+    <string name="insider_notification_circle_color">accent</string>
+
+    <string-array name="quantity_array">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+    </string-array>
+
+    <string name="picksizehint">Pick A Size</string>
+    <string name="pickquantityhint">Pick A Quantity</string>
+
+    <string name="title_activity_forgot_password">ForgotPassword</string>
+    <string-array name="size_array">
+        <item>Pick A Size</item>
+        <item>XS</item>
+        <item>S</item>
+        <item>M</item>
+        <item>L</item>
+        <item>XL</item>
+        <item>2XL</item>
+        <item>3XL</item>
+        <item>4XL</item>
+        <item>1 YEAR</item>
+        <item>2 YEAR</item>
+    </string-array>
+    <string-array name="language_array">
+        <item>English</item>
+        <item>Bahasa Melayu</item>
+
+    </string-array>
+
+
+    <string name="apply">APPLY</string>
+    <string name="no">NO</string>
+    <string name="yes">YES</string>
+    <string name="next">NEXT</string>
+    <string name="step1text">SHOPPING BAG > </string>
+    <string name="step2text">ADDRESS </string>
+    <string name="step3text">SHIPPING METHOD </string>
+    <string name="step4text">PAYMENT </string>
+    <string name="step5text">CONFIRMATION </string>
+
+    <string name="chooseadeliveryaddress">Choose a Delivery Address</string>
+    <string name="usesameaddressbilling">Use the same address for billing</string>
+    <string name="chooseabillingaddress">Choose a Billing Address</string>
+    <string name="shippingaddress">Shipping Address</string>
+    <string name="contactnumber">Contact Number:</string>
+    <string name="billingaddress">Billing Address</string>
+    <string name="addnewaddress">ADD NEW ADDRESS</string>
+    <string name="ordersummary">Order Summary</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="addgst">Add 6% GST</string>
+    <string name="totalincgst">Total Inc. GST</string>
+    <string name="shipping">Shipping</string>
+    <string name="totalpayable">TOTAL PAYABLE</string>
+    <string name="shippingmethod">Shipping Method</string>
+    <string name="payment">Payment</string>
+    <string name="creditcard">Credit Card</string>
+    <string name="onlinebanking">Online Banking</string>
+    <string name="tngEwallet">Touch N Go</string>
+    <string name="paypal">Paypal</string>
+    <string name="enets">eNets</string>
+    <string name="select">SELECT</string>
+    <string name="termsofservice">Terms of Service</string>
+
+    <string name="personalinformation">Personal Information</string>
+    <string name="myaddresses">My Addresses</string>
+    <string name="saveditems">Saved Items</string>
+    <string name="orderhistory">Order History</string>
+    <string name="loyaltypoints">My Vouchers</string>
+    <string name="storecredit">Store Credit</string>
+    <string name="loyalty">Loyalty</string>
+
+
+    <string name="myaccount">MY ACCOUNT > </string>
+    <string name="personalinformation2">PERSONAL INFORMATION</string>
+    <string name="changeyouremailaddress">Change Your Email Address</string>
+    <string name="currentemail">Current Email</string>
+    <string name="newemail">New Email*</string>
+    <string name="confirmemail">Confirm Email*</string>
+    <string name="saveemailchanges">Save Email Changes</string>
+    <string name="savePasswordchanges">Save Password Changes</string>
+    <string name="saveNamechanges">Save Name Changes</string>
+    <string name="saveMailingchanges">Save Mailing List Changes</string>
+    <string name="changeyourpassword">Change Your Password</string>
+    <string name="currentpasssword">Current Password</string>
+    <string name="newpassword">New Password*</string>
+    <string name="confirmpassword">Confirm Password*</string>
+    <string name="changeyourname">Change Your Name</string>
+    <string name="currentfirstname">Current First Name</string>
+    <string name="newfirstname">New First Name*</string>
+    <string name="currentsurname">Current Surname</string>
+    <string name="newsurname">New Surname*</string>
+    <string name="mailinglistpreferences">Mailing List Preferences</string>
+    <string name="subscribed">Subscribed</string>
+    <string name="personaldataprotectionnotice">Personal Data Protection Notice</string>
+    <string name="accepted">Accepted</string>
+
+    <string name="deleteaddress">DELETE ADDRESS</string>
+    <string name="myaddresses2">MY ADDRESSES</string>
+    <string name="noaddressesavailable">No addresses available</string>
+    <string name="addaddress">ADD ADDRESS</string>
+
+    <string name="addtobag">ADD TO BAG</string>
+    <string name="remove">REMOVE</string>
+    <string name="stocknotreserveduntiladdedtobag">Stock not reserved until added to bag</string>
+
+    <string name="orderno">Order No</string>
+    <string name="date">Date</string>
+    <string name="status">Status</string>
+    <string name="trackingno">Tracking No</string>
+    <string name="deliveryinfo">Delivery Info</string>
+    <string name="paynow">PAY NOW</string>
+    <string name="cancel">CANCEL</string>
+
+    <string name="orderdetails">ORDER DETAILS</string>
+    <string name="invoiceno">Invoice No</string>
+    <string name="carrier">Carrier</string>
+    <string name="paymentmethod">Payment Method</string>
+    <string name="downloadreturnform">DOWNLOAD RETURN FORM</string>
+    <string name="description">Description</string>
+    <string name="notesonorder">NOTES ON ORDER :</string>
+
+    <string name="order">Order: </string>
+    <string name="points">points</string>
+    <string name="convertmypoints">CONVERT MY POINTS INTO A VOUCHER WORTH RM 7.15</string>
+    <string name="noloyaltypointsyet">No loyalty points yet</string>
+    <string name="novouchersyet">No vouchers yet</string>
+    <string name="noSCsyet">No store credit yet</string>
+
+    <string name="myvoucherfromloyaltypoints">My voucher from Loyalty Points</string>
+    <string name="code">Code: </string>
+    <string name="sc">Store Credit Code: </string>
+    <string name="oriAmount">Original Amount: </string>
+    <string name="more">More...</string>
+    <string name="changeSideMenu"><u>Change</u></string>
+
+    <string name="yourshoppingbagisempty">Your shopping bag is empty</string>
+    <string name="additionalTopText">Message Here</string>
+    <string name="title_activity_paypal_payment">PaypalPaymentActivity</string>
+    <string name="title_activity_ipay88_payment">IPay88Payment</string>
+
+    <string name="aboutus">About Us</string>
+    <string name="cs">Customer Service</string>
+    <string name="mypreferences">My Preferences</string>
+    <string name="pushnotifications">Push Notifications</string>
+    <string name="shippinginformation">Shipping Information</string>
+    <string name="termsandcondition">Terms and Conditions</string>
+    <string name="privacypolicy">Privacy Policy</string>
+    <string name="visitOurStore">Visit Our Stores - Kuala Lumpur</string>
+
+    <string name="contactus">Contact Us</string>
+    <string name="registration">Registration</string>
+    <string name="makinganorder">Making An Order</string>
+    <string name="GST">Goods And Services Tax (GST)</string>
+    <string name="Backorder">Backorders/Restockable Items</string>
+    <string name="LPSC">Loyalty Points/Store Credit Codes</string>
+    <string name="Returns">Returns</string>
+    <string name="localDev">Local Delivery (Within Malaysia)</string>
+    <string name="interDev">International Delivery (Worldwide)</string>
+    <string name="gift">Gift</string>
+    <string name="rewards">POPLOOK Rewards</string>
+
+    <string name="title_activity_enets_payment">ENetsPaymentActivity</string>
+    <string name="title_activity_receive">receiveActivity</string>
+
+
+    <string name="hintBday"><i>Enter your birth date</i></string>
+
+
+</resources>
+

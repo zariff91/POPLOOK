@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tiseno.poplook.NewFilterFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="vertical"
+        android:id="@+id/linear_top_layout">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <Button
+                android:id="@+id/clearAll"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_gravity="end"
+                android:layout_marginTop="30dp"
+                android:text="Clear All"
+                android:background="@android:color/transparent"
+                android:textSize="12sp"
+                android:layout_marginLeft="20dp"
+                android:visibility="visible"
+
+                />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:text="FILTERS"
+                android:layout_marginVertical="34dp"
+                android:textColor="@color/black"
+                />
+
+            <Button
+                android:id="@+id/closeSearch"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/btn_close"
+                android:layout_gravity="end"
+                android:layout_marginTop="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="30dp"
+                android:layout_marginVertical="34dp"
+
+                />
+
+
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_apply_filter_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/btn_clicked"
+        android:text="APPLY FILTER"
+        android:textSize="16dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+        android:textColor="@color/white"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"/>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/linear_top_layout"
+        android:layout_above="@+id/btn_apply_filter_2"
+        android:layout_marginTop="25dp"
+        android:id="@+id/scroll_View">
+
+    <iammert.com.expandablelib.ExpandableLayout
+        android:id="@+id/expandable_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:parentLayout="@layout/layout_newfilter_parent"
+        app:childLayout="@layout/layout_newfilter_child"
+        />
+
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

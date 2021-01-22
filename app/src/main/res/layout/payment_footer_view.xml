@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <!--<ImageView-->
+        <!--android:id="@+id/subTotalDividerIV"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@drawable/divider_1"/>-->
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/subTotalRL"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_below="@+id/subTotalDividerIV"-->
+        <!--android:background="@drawable/bar_steps">-->
+
+        <!--<LinearLayout-->
+            <!--android:id="@+id/subTotalLL"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:weightSum="1"-->
+            <!--android:orientation="horizontal">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/subTotalLblTV"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.6"-->
+                <!--android:text="@string/subtotal"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:textStyle="bold"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.1"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:text="RM"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/subTotalTV"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.2"-->
+                <!--android:layout_marginTop="5dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:gravity="right"-->
+                <!--android:text="10000"/>-->
+
+        <!--</LinearLayout>-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:weightSum="1"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_below="@+id/subTotalLL">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/addGSTLblTV"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.6"-->
+                <!--android:text="Add 6% GST"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:textStyle="bold"/>-->
+
+            <!--<TextView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.1"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:text="RM"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/addGSTTV"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.2"-->
+                <!--android:layout_marginTop="2dp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:gravity="right"-->
+                <!--android:text="1.05"/>-->
+
+        <!--</LinearLayout>-->
+
+
+    <!--</RelativeLayout>-->
+
+    <RelativeLayout
+        android:id="@+id/totalInclGSTRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:layout_below="@+id/subTotalRL">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/totalInclGSTTVlbl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textColor="@color/black"
+                android:text="@string/totalincgst"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:textSize="15dp"/>
+
+            <TextView
+                android:id="@+id/totalInclGSTTVlblRM"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:text="RM"/>
+
+            <TextView
+                android:id="@+id/totalInclGSTTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="right"
+                android:text=""/>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/shippingMethodRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:layout_below="@+id/totalInclGSTRL">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:orientation="horizontal"
+            android:layout_centerInParent="true">
+
+            <TextView
+                android:id="@+id/shippingMethodTVlbl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:text="@string/shipping"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/shippingMethodTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.31"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:gravity="left"
+                android:text="Free Shipping"/>
+
+            <TextView
+                android:id="@+id/addressfooterRM1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.1"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textStyle="bold"
+                android:text="RM"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/shippingMethodTVbill1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:gravity="right"
+                android:text=""
+                android:visibility="gone"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

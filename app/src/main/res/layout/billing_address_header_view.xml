@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+
+    <RelativeLayout
+        android:id="@+id/stepBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bar_steps"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/step1TV"
+            android:singleLine="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step1text"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step2text"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step1TV"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step2toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/step2TV"
+            android:layout_marginLeft="3dp"
+            android:text=">"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step3TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step3text"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step2toTV"
+            android:singleLine="true"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step3toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_toRightOf="@+id/step3TV"
+            android:text=">"
+            android:singleLine="true"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step4TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step4text"
+            android:singleLine="true"
+            android:layout_below="@+id/step1TV"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step4toTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/step4TV"
+            android:layout_toRightOf="@+id/step4TV"
+            android:text=">"
+            android:textSize="14dp"/>
+
+        <TextView
+            android:id="@+id/step5TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step5text"
+            android:layout_marginLeft="3dp"
+            android:singleLine="true"
+            android:layout_alignBaseline="@+id/step4toTV"
+            android:layout_toRightOf="@+id/step4toTV"
+            android:textSize="14dp"/>
+
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/chooseDeliveryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/stepBarRL"
+        android:layout_marginLeft="10dp"
+        android:textSize="14dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/chooseadeliveryaddress"
+        android:textColor="@color/black"/>
+
+    <LinearLayout
+        android:id="@+id/deliveryAddressLL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/chooseDeliveryTV"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/deliveryAddressTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.87"
+            android:layout_below="@+id/chooseDeliveryTV"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:background="@drawable/placeholder_long"/>
+
+        <ImageView
+            android:id="@+id/deliveryAddressDropDownIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:src="@drawable/btn_dropdown_address"
+            android:layout_toRightOf="@+id/deliveryAddressTV"
+            android:layout_alignTop="@+id/deliveryAddressTV"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/deliveryAddressCB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/usesameaddressbilling"
+        android:textColor="@color/darkgrey"
+        android:layout_below="@+id/deliveryAddressLL"
+        android:button="@drawable/checkbox_layout"
+        android:checked="true"
+        android:textSize="15dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"/>
+
+    <ImageView
+        android:id="@+id/deliveryAddressDividerIV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/divider_3"
+        android:layout_below="@+id/deliveryAddressCB"
+        android:layout_marginTop="15dp"
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/chooseBillingTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deliveryAddressDividerIV"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:text="@string/chooseabillingaddress"
+        android:textColor="@color/black"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:id="@+id/billingAddressLL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/chooseBillingTV"
+        android:weightSum="1"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/billingAddressTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.87"
+            android:layout_below="@+id/chooseBillingTV"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:background="@drawable/placeholder_long"/>
+
+        <ImageView
+            android:id="@+id/billingAddressDropDownIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.10"
+            android:src="@drawable/btn_dropdown_address"
+            android:layout_toRightOf="@+id/billingAddressTV"
+            android:layout_alignTop="@+id/billingAddressTV"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/shippingAddressLL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/billingAddressLL"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/shippingAddressLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textColor="@color/black"
+            android:textSize="14dp"
+            android:text="@string/shippingaddress"/>
+
+        <ImageButton
+            android:id="@+id/shippingAddressEditBtnIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_edit_click"/>
+
+        <ImageButton
+            android:id="@+id/shippingAddressAddtBtnIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_add_2_click"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/shippingAddressDividerIV"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/shippingAddressLL"/>
+
+    <TextView
+        android:id="@+id/shippingAddressTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shippingAddressDividerIV"
+        android:paddingLeft="10dp"
+        android:textColor="@color/black"
+        android:paddingRight="100dp"
+        android:paddingTop="5dp"
+        android:textSize="16dp"
+        android:maxLines="10"
+        android:text=""/>
+
+
+    <TextView
+        android:id="@+id/shippingAddressContactNoLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactnumber"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        android:layout_below="@+id/shippingAddressTV"
+        android:layout_marginTop="27dp"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/shippingAddressContactNoTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/shippingAddressContactNoLblTV"
+        android:layout_alignBaseline="@+id/shippingAddressContactNoLblTV"
+        android:paddingLeft="5dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text=""/>
+
+
+
+
+
+    <LinearLayout
+        android:id="@+id/billingAddressInfoLL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/shippingAddressContactNoLblTV"
+        android:orientation="horizontal"
+        android:paddingLeft="10dp"
+        android:paddingTop="15dp"
+        android:paddingRight="10dp"
+        android:weightSum="1">
+
+        <TextView
+            android:id="@+id/billingAddLabel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.8"
+            android:textSize="14dp"
+            android:textColor="@color/black"
+            android:text="@string/billingaddress"/>
+
+        <ImageButton
+            android:id="@+id/billingAddressEditBtnIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_edit_click"/>
+
+        <ImageButton
+            android:id="@+id/billingAddressAddBtnIV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.1"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_add_2_click"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/billingAddressDividerIV"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_below="@+id/billingAddressInfoLL"/>
+
+    <TextView
+        android:id="@+id/billingAddressInfoTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/billingAddressDividerIV"
+        android:paddingLeft="10dp"
+        android:paddingRight="100dp"
+        android:paddingTop="5dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:maxLines="10"
+        android:text=""/>
+
+
+    <TextView
+        android:id="@+id/billingAddressContactNoLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/contactnumber"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:layout_below="@+id/billingAddressInfoTV"
+        android:layout_marginTop="27dp"
+        android:paddingLeft="10dp"/>
+
+    <TextView
+        android:id="@+id/billingAddressContactNoTV"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/billingAddressContactNoLblTV"
+        android:layout_alignBaseline="@+id/billingAddressContactNoLblTV"
+        android:paddingLeft="5dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text=""/>
+
+    <RelativeLayout
+        android:id="@+id/billingAddressNextBtnRL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/billingAddressContactNoLblTV"
+        android:layout_marginTop="15dp">
+
+        <ImageButton
+            android:id="@+id/billingAddressNextBtnIV"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/accent"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/next"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/addNewAddressBtnRL"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/billingAddressContactNoLblTV"
+        android:layout_marginTop="15dp"
+        android:visibility="invisible">
+
+        <ImageButton
+            android:id="@+id/addNewAddressBtnIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_clicked"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addnewaddress"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/orderSummaryTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/addNewAddressBtnRL"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="30dp"
+        android:textSize="14dp"
+        android:text="@string/ordersummary" />
+
+    <ImageView
+        android:id="@+id/orderSummaryDividerIV"
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/orderSummaryTV"/>
+
+    <RelativeLayout
+        android:id="@+id/addNewAddressBtnRL2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deliveryAddressLL"
+        android:layout_marginTop="40dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/addNewAddressBtnIV2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_clicked"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addnewaddress"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/addNewAddressBtnRL3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/deliveryAddressLL"
+        android:layout_marginTop="40dp"
+        android:visibility="gone">
+
+        <ImageButton
+            android:id="@+id/addNewAddressBtnIV3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_clicked"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/addnewaddress"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="NOW LET'S GET YOU ON THE VIP LIST"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/firstLabelBDay"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enjoy Exclusive Perks, like Early Sale Access, Birthday Treats, Mystery Money and more!"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:id="@+id/scdLabelBDay"/>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="10dp">
+
+        <Button
+            android:id="@+id/agreentBtn"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/button_border"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="I agree to the loyalty terms and conditions and to receive related emails"
+        android:gravity="center|top"
+        android:textColor="@color/black"
+        android:textSize="10dp"
+        android:layout_marginLeft="5dp"
+        android:id="@+id/thirdLabelBDay"/>
+
+</LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter your birthday for a discount on your big day."
+            android:textColor="@color/black"
+            android:textSize="13dp"
+            android:gravity="center"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginLeft="25dp"
+            android:id="@+id/fourLabelBDay"/>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/hintBday"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:gravity="center"
+        android:background="@drawable/border"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
+        android:id="@+id/birthDate"/>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:text="SUBMIT"
+            android:layout_marginTop="35dp"
+            android:layout_marginBottom="30dp"
+
+            android:layout_gravity="center_horizontal"
+
+            android:textColor="@color/white" />
+
+</LinearLayout>

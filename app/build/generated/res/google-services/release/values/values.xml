@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">549922517099-6r0r7ambokcf8nnoostaggjrou5j97qu.apps.googleusercontent.com</string>
+    <string name="firebase_database_url" translatable="false">https://poplook-1469764212998.firebaseio.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">549922517099</string>
+    <string name="google_api_key" translatable="false">AIzaSyA_ytj6jkuKi8tZB50zC5xghx1nrXg4_nA</string>
+    <string name="google_app_id" translatable="false">1:549922517099:android:6e7af9125a771b78</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA_ytj6jkuKi8tZB50zC5xghx1nrXg4_nA</string>
+    <string name="google_storage_bucket" translatable="false">poplook-1469764212998.appspot.com</string>
+    <string name="project_id" translatable="false">poplook-1469764212998</string>
+</resources>

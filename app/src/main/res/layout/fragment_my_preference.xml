@@ -1,0 +1,171 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.tiseno.poplook.MyPreferenceFragment"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/linearlayoutPreferenceBehind"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Text Label -->
+        <TextView
+            android:id="@+id/preferenceLangTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="Language"
+            android:textSize="14dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"
+            />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <EditText
+            android:id="@+id/languageSpinner"
+            android:layout_width="0dp"
+            android:layout_weight="0.85"
+            android:layout_height="50dp"
+            android:text="English"
+            android:editable="false"
+            android:focusable="false"
+            android:gravity="start|center"
+            style="@style/SpinnerAsEditText"
+            android:textSize="15dp"
+            />
+        <Button
+            android:id="@+id/languageSpinnerBtn"
+            android:layout_width="0dp"
+            android:layout_weight="0.15"
+        android:layout_height="45dp"
+            android:background="@drawable/btn_dropdown_address"/>
+
+    </LinearLayout>
+        <TextView
+            android:id="@+id/preferenceCurrTV"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:text="Currency"
+            android:textSize="14dp"
+            android:layout_marginBottom="5dp"
+            android:textColor="@color/black"/>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1">
+
+            <EditText
+                android:id="@+id/currencySpinner"
+                android:layout_width="0dp"
+                android:layout_weight="0.85"
+                android:text="Malaysian Ringgit (MYR)"
+                android:focusable="false"
+                android:gravity="start|center"
+                android:editable="false"
+                android:layout_height="50dp"
+                android:textSize="15dp"
+                style="@style/SpinnerAsEditText"
+                />
+            <Button
+                android:id="@+id/currencySpinnerBtn"
+                android:layout_width="0dp"
+                android:layout_weight="0.15"
+                android:layout_height="45dp"
+                android:background="@drawable/btn_dropdown_address"/>
+
+        </LinearLayout>
+        <Button
+            android:layout_marginTop="15dp"
+            android:id="@+id/currencySaveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:text="SAVE CHANGES"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_clicked"
+            android:textSize="16dp"
+            android:layout_gravity="center_horizontal"
+            />
+</LinearLayout>
+    <RelativeLayout
+        android:id="@+id/preferenceNumberPickerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <NumberPicker
+            android:id="@+id/preferenceNumberPicker"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_above="@+id/preferenceSelectButton"
+            android:background="@color/White"
+            android:visibility="visible"
+            android:textSize="15dp"
+            >
+        </NumberPicker>
+
+
+
+        <Button
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/preferenceSelectButton"
+            android:textColor="@color/White"
+            android:background="@drawable/btn_clicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SELECT"
+            android:textSize="16dp"
+            />
+
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/preferenceNumberPickerLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <NumberPicker
+            android:id="@+id/preferenceNumberPicker2"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_above="@+id/preferenceSelectButton2"
+            android:background="@color/White"
+            android:visibility="visible"
+            android:textSize="15dp"
+            >
+        </NumberPicker>
+
+
+
+        <Button
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/preferenceSelectButton2"
+            android:textColor="@color/White"
+            android:background="@drawable/btn_clicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SELECT"
+            android:textSize="16dp"
+            />
+
+
+
+
+    </RelativeLayout>
+</FrameLayout>

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.tiseno.poplook.MainActivity">
+
+<!--<com.tiseno.poplook.functions.HackyDrawerLayout-->
+    <!--android:id="@+id/DrawerLayout"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:elevation="7dp">-->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/homeCoordinator"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottom_navigation">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/tabanim_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+            <include
+                android:id="@+id/tool_bar"
+                layout="@layout/tool_bar2"
+                android:animateLayoutChanges="true">
+            </include>
+
+            <!--<include-->
+                <!--android:id="@+id/tool_bar1"-->
+                <!--layout="@layout/tool_bar1"-->
+                <!--android:animateLayoutChanges="true">-->
+            <!--</include>-->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+            <fragment
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:id="@+id/fragmentContainer"
+                android:name="com.tiseno.poplook.ShopFragment"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                />
+
+
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:theme="@style/Widget.BottomNavigationView"
+        app:itemBackground="@color/white"
+        app:itemIconTint="@color/black"
+        app:itemTextColor="@color/black"
+        app:menu="@menu/menu_bottom">
+
+
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="360dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_gravity="left"-->
+        <!--android:layout_marginTop="?android:attr/actionBarSize">-->
+
+
+    <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/RecyclerView"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#ffffff"-->
+        <!--android:scrollbars="none">-->
+
+    <!--</android.support.v7.widget.RecyclerView>-->
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/side_menu_user_rl"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="45dp"-->
+        <!--android:background="@drawable/base_id"-->
+        <!--android:layout_alignParentTop="true">-->
+
+        <!--<LinearLayout-->
+            <!--android:layout_width="fill_parent"-->
+            <!--android:layout_height="fill_parent"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:weightSum="1">-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/side_menu_userTV"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="fill_parent"-->
+                <!--android:layout_weight="0.85"-->
+                <!--android:text="Hello, Jessisca"-->
+                <!--android:layout_marginLeft="20dp"-->
+                <!--android:gravity="center_vertical"-->
+                <!--android:textColor="@color/white"-->
+                <!--android:textSize="16dp"/>-->
+
+            <!--<ImageView-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="0.15"-->
+                <!--android:src="@drawable/icon_user"-->
+                <!--android:layout_gravity="center"/>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</RelativeLayout>-->
+</RelativeLayout>
+
+
+<!--</com.tiseno.poplook.functions.HackyDrawerLayout>-->
+
+</FrameLayout>

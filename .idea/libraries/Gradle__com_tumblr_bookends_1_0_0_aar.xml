@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Gradle: com.tumblr:bookends:1.0.0@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/25f61b08862c7c0ae768a4f1ab15155b/jetified-bookends-1.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/25f61b08862c7c0ae768a4f1ab15155b/jetified-bookends-1.0.0/res" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tumblr/bookends/1.0.0/f8f04e2429b61c65a72ef19461bc04ddc2feddc4/bookends-1.0.0-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.tumblr/bookends/1.0.0/ba1598155addeaabf2e7c4ccf2c0a7634d84ff9f/bookends-1.0.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

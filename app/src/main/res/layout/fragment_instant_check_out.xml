@@ -1,0 +1,1121 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/white"
+    >
+<ScrollView
+    android:id="@+id/scrollviewBehind"
+    android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="#FFFFFF">
+<FrameLayout  android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+                <TextView
+                    android:id="@+id/instant_emailTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Email*"
+                    android:layout_weight="0.4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/instant_emailET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:textSize="16dp"
+                    android:inputType="textEmailAddress"
+                    android:background="@null"
+                    android:layout_marginRight="10dp"
+                    android:ems="10"
+                    android:hint="Type your email" />
+
+            </LinearLayout>
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/instant_reEmailTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Retype Email*"
+                    android:layout_weight="0.4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/instant_reEmailET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:textSize="16dp"
+                    android:layout_marginRight="10dp"
+                    android:inputType="textEmailAddress"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Type your email" />
+
+            </LinearLayout>
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp">
+
+
+            <TextView
+                android:id="@+id/instant_TitleTV"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="20dp"
+                android:textSize="16dp"
+                android:text="Title"
+                android:layout_weight="0.4"
+                />
+
+
+            <EditText
+                android:id="@+id/instant_TitleET"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:layout_marginRight="10dp"
+                android:textSize="16dp"
+                android:inputType="textEmailAddress"
+                android:background="@null"
+                android:ems="10"
+                android:enabled="false"
+                android:textColor="@color/black"
+                android:editable="false"
+                android:text="Ms" />
+
+            <Button
+                android:id="@+id/instant_TitleButton"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_weight="0.05"
+                android:background="@drawable/btn_dropdown" />
+
+        </LinearLayout>
+
+        <ImageView
+
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/instant_nameTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:text="First Name*"
+                    android:layout_weight="0.4"
+                    android:layout_marginLeft="20dp"
+                    />
+
+
+
+                <EditText
+                    android:id="@+id/instant_nameET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:layout_weight="0.6"
+                    android:ems="10"
+                    android:hint="Type your first name" />
+
+
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/instant_surnameTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Surname*"
+                    android:layout_weight="0.4"
+                    />
+
+                <EditText
+                    android:id="@+id/instant_surnameET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.6"
+                    android:clickable="true"
+                    android:textSize="16dp"
+                    android:layout_marginRight="10dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Type your surname" />
+
+            </LinearLayout>
+
+
+            <!--      <LinearLayout
+                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <DatePicker
+                         android:id="@+id/datePicker1"
+                         android:layout_width="wrap_content"
+                         android:visibility="gone"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>  -->
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+
+                <TextView
+                    android:id="@+id/instant_DOBTV"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:text="Date of Birth"
+                    android:layout_weight="0.4"
+                    />
+
+
+                <EditText
+                    android:id="@+id/instant_DOBET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:inputType="date"
+                    android:enabled="false"
+                    android:hint="dd/mm/yyyy" />
+                <Button
+                    android:id="@+id/instant_dateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.05"
+                    android:background="@drawable/btn_dropdown" />
+            </LinearLayout>
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/ins_TV1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Join POPLOOK's mailing list and be the first to know about new arrivals, sale and competitions:"
+                    android:textColor="@color/primary_dark_material_dark"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="14dp"
+                    />
+
+
+                <CheckBox
+                    android:id="@+id/ins_checkAllowNewsLetter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.25"
+                    android:button="@drawable/checkbox_style"
+                    android:clickable="true"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:text="Yes, Sign me up for POPLOOK newsletters."
+                    android:textColor="@color/primary_dark_material_dark"
+                    android:textSize="14dp"
+                    />
+
+
+
+
+
+                <CheckBox
+                    android:id="@+id/ins_checkAcceptPP"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.5"
+                    android:button="@drawable/checkbox_style"
+                    android:layout_marginTop="30dp"
+                    android:clickable="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textColor="@color/black"
+                    android:gravity="top"
+                    android:text="I am accepting and consenting to the practices described in the Privacy Policy &amp; Personal Data Protection Notice."
+                    android:textSize="14dp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/ins_TV2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Shipping Address"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="20dp"
+                    android:textSize="14dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"/>
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+
+
+
+
+                    <EditText
+                        android:id="@+id/instant_companyET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:textSize="16dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Company" />
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+
+
+
+
+
+                    <EditText
+                        android:id="@+id/instant_add1ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="16dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:gravity="top"
+                        android:background="@null"
+                        android:ems="100"
+                        android:hint="Add (Line 1)*" />
+
+                </LinearLayout>
+
+
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp">
+
+
+
+
+                    <EditText
+                        android:id="@+id/instant_add2ET"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:gravity="top"
+                        android:ems="100"
+                        android:hint="Add (Line 2)" />
+
+
+
+                </LinearLayout>
+
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <TextView
+                        android:id="@+id/instant_countryET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.90"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:text="Country*" />
+
+                    <Button
+                        android:id="@+id/instant_countryButton"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.05"
+                        android:background="@drawable/icon_go" />
+
+                </LinearLayout>
+
+
+                <!--      <LinearLayout
+                         android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:layout_marginBottom="5dp"
+                        android:orientation="horizontal"
+                        android:weightSum="1">
+
+                        <DatePicker
+                             android:id="@+id/datePicker1"
+                             android:layout_width="wrap_content"
+                             android:visibility="gone"
+                             android:layout_height="wrap_content" />
+
+                     </LinearLayout>  -->
+
+
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <TextView
+                        android:id="@+id/instant_stateET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.90"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:text="State*" />
+
+                    <Button
+                        android:id="@+id/instant_stateButton"
+                        android:layout_width="0dp"
+                        android:layout_height="20dp"
+                        android:layout_weight="0.05"
+                        android:background="@drawable/btn_dropdown" />
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <EditText
+                        android:id="@+id/instant_townET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="10"
+                        android:hint="Town / City*" />
+
+
+
+                </LinearLayout>
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <EditText
+                        android:id="@+id/instant_poscodeET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:layout_marginRight="10dp"
+                        android:ems="10"
+                        android:hint="Postcode*"
+                        android:inputType="number"/>
+
+
+
+                </LinearLayout>
+
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:weightSum="1">
+
+
+                    <EditText
+                        android:id="@+id/instant_telET"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="10dp"
+                        android:textSize="16dp"
+                        android:background="@null"
+                        android:ems="15"
+                        android:hint="Telephone*"
+                        android:inputType="phone"/>
+
+
+
+                </LinearLayout>
+                <ImageView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:background="@color/lightgrey"  />
+            </LinearLayout>
+        <CheckBox
+            android:id="@+id/deliveryAddressCB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/usesameaddressbilling"
+            android:textColor="@color/darkgrey"
+            android:button="@drawable/checkbox_layout"
+            android:checked="true"
+            android:textSize="15dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"/>
+        <LinearLayout
+            android:id="@+id/llbillingAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/billing_TV2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Billing Address"
+                android:textColor="@color/black"
+                android:layout_marginLeft="10dp"
+                android:textSize="14dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"/>
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="1"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+
+
+
+                <EditText
+                    android:id="@+id/billing_companyET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:textSize="16dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Company" />
+
+            </LinearLayout>
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:orientation="horizontal">
+
+
+
+
+
+                <EditText
+                    android:id="@+id/billing_add1ET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="top"
+                    android:background="@null"
+                    android:ems="100"
+                    android:hint="Add (Line 1)*" />
+
+            </LinearLayout>
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+
+
+
+                <EditText
+                    android:id="@+id/billing_add2ET"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="20dp"
+                    android:gravity="top"
+                    android:ems="100"
+                    android:hint="Add (Line 2)" />
+
+
+
+            </LinearLayout>
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/billing_countryET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.90"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:text="Country*" />
+
+                <Button
+                    android:id="@+id/billing_countryButton"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.05"
+                    android:background="@drawable/icon_go" />
+
+            </LinearLayout>
+
+
+            <!--      <LinearLayout
+                     android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="0.1"
+                    android:layout_marginBottom="5dp"
+                    android:orientation="horizontal"
+                    android:weightSum="1">
+
+                    <DatePicker
+                         android:id="@+id/datePicker1"
+                         android:layout_width="wrap_content"
+                         android:visibility="gone"
+                         android:layout_height="wrap_content" />
+
+                 </LinearLayout>  -->
+
+
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/billing_stateET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.90"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:text="State*" />
+
+                <Button
+                    android:id="@+id/billing_stateButton"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_weight="0.05"
+                    android:background="@drawable/btn_dropdown" />
+
+            </LinearLayout>
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <EditText
+                    android:id="@+id/billing_townET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:ems="10"
+                    android:hint="Town / City*" />
+
+
+
+            </LinearLayout>
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <EditText
+                    android:id="@+id/billing_poscodeET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:layout_marginRight="10dp"
+                    android:ems="10"
+                    android:hint="Postcode*"
+                    android:inputType="number"/>
+
+
+
+            </LinearLayout>
+
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:weightSum="1">
+
+
+                <EditText
+                    android:id="@+id/billing_telET"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16dp"
+                    android:background="@null"
+                    android:ems="15"
+                    android:hint="Telephone*"
+                    android:inputType="phone"/>
+
+
+
+            </LinearLayout>
+            <ImageView
+
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/lightgrey"  />
+        </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="0.11"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="vertical"
+                android:layout_gravity="bottom"
+                android:weightSum="1">
+                <Button
+                    android:id="@+id/instant_continueButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:background="@drawable/btn_clicked"
+                    android:textColor="@color/white"
+                    android:text="CONTINUE"
+                    android:textSize="16dp"
+                    android:layout_centerInParent="true"
+                    />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+
+
+
+</FrameLayout>
+</ScrollView>
+    <RelativeLayout
+        android:id="@+id/billingstateNumberPickerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <NumberPicker
+            android:id="@+id/billingstateNumberPicker"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_above="@+id/billingstateSelectButton_instant"
+            android:background="@color/White"
+            android:visibility="visible"
+            android:textSize="15dp"
+            >
+        </NumberPicker>
+
+
+
+        <Button
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/billingstateSelectButton_instant"
+            android:textColor="@color/White"
+            android:background="@drawable/btn_clicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SELECT"
+            android:textSize="16dp"
+            />
+
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/stateNumberPickerLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <NumberPicker
+            android:id="@+id/stateNumberPicker"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:layout_above="@+id/stateSelectButton_instant"
+            android:background="@color/White"
+            android:visibility="visible"
+            android:textSize="15dp"
+            >
+        </NumberPicker>
+
+
+
+        <Button
+            android:visibility="visible"
+            android:layout_alignParentBottom="true"
+            android:id="@+id/stateSelectButton_instant"
+            android:textColor="@color/White"
+            android:background="@drawable/btn_clicked"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="SELECT"
+            android:textSize="16dp"
+            />
+
+
+
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/titleSelectionRLShipping"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_popout"
+        android:gravity="bottom"
+        android:visibility="gone">
+
+        <NumberPicker
+            android:id="@+id/titleSelectionNPShipping"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:textSize="15dp"
+            ></NumberPicker>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/titleSelectionNPShipping">
+
+            <ImageButton
+                android:id="@+id/titleSelectionSelectIBShipping"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_long_click"
+                android:scaleType="fitXY"/>
+
+            <TextView
+                android:id="@+id/selectTVShipping"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:text="@string/select"
+                android:textSize="16dp"
+                />
+
+
+        </RelativeLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

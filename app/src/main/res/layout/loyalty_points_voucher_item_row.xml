@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/loyaltyPointsVoucherInfoLL"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.8"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:id="@+id/loyaltyPointsVoucherDateTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/dark_grey"
+                android:textStyle="bold"
+                android:text=""
+                android:textSize="15dp"
+                />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/loyaltyPointsVoucherDateTV"
+                android:id="@+id/layoutatas">
+                <TextView
+                    android:id="@+id/loyaltyPointsVoucherCodeLblTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/code"
+                    android:textColor="@color/dark_grey"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    />
+
+                <TextView
+                    android:id="@+id/loyaltyPointsVoucherCodeTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:textIsSelectable="true"
+                    android:textColor="@color/dark_grey"
+                    android:textStyle="bold"
+                    android:paddingLeft="5dp"
+                    android:layout_below="@+id/loyaltyPointsVoucherCodeLblTV"
+                    android:textSize="15dp"
+                    />
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/loyaltyPointsVoucherCommaTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=","
+                android:textColor="@color/dark_grey"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:layout_toRightOf="@+id/layoutatas"
+                android:layout_alignBottom="@+id/layoutatas"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/loyaltyPointsVoucherPriceTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:maxWidth="120dp"
+                android:textColor="@color/light_green"
+                android:textStyle="bold"
+                android:paddingLeft="5dp"
+                android:layout_toRightOf="@+id/loyaltyPointsVoucherCommaTV"
+                android:layout_alignBottom="@+id/loyaltyPointsVoucherCommaTV"
+                android:textSize="15dp"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/loyaltyPointsMoreTV"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.2"
+            android:text="@string/more"
+            android:gravity="center"
+            android:textSize="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@color/light_green"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/loyaltyPointsBelowDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:src="@color/grey"
+        android:layout_below="@+id/loyaltyPointsVoucherInfoLL"/>
+
+</RelativeLayout>

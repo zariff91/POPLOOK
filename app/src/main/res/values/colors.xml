@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="black" type="color">#000000</item>
+    <item name="white" type="color">#FFFFFF</item>
+    <item name="White" type="color">#FFFFFF</item>
+    <item name="dark_grey" type="color">#555555</item>
+    <item name="light_grey" type="color">#888888</item>
+    <item name="red" type="color">#FF0000</item>
+    <item name="light_green" type="color">#1CAE49</item>
+    <color name="darkgrey2">#5E5E5E</color>
+    <color name="grey">#959595</color>
+    <color name="powder_blue">#E5E4E2</color>
+
+    <color name="darkblue">#3960a1</color>
+    <color name="lightblack">#2E2E2E</color>
+    <color name="transparent">#00000000</color>
+    <color name="tab_highlight">#F58803</color>
+    <color name="darkgrey">#555555</color>
+    <color name="lightgrey">#C2C2C2</color>
+    <color name="lightGrey">#888888</color>
+    <color name="orange">#F37C20</color>
+    <color name="blue">#0000FF</color>
+    lightGrey
+    <color name="primary">#FFFFFF</color>
+    <color name="primaryDark">#C2C2C2</color>
+    <color name="accent">#1CAE49</color>
+    <color name="topText">#CBEAB1</color>
+    <color name="loyalty_green">#1CAE49</color>
+
+    <color name="bronze"> #CD7F32</color>
+    <color name="silver"> #C0C0C0</color>
+    <color name="gold"> #FFDF00</color>
+
+
+
+</resources>

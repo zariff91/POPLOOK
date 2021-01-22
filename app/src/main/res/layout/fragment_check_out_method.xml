@@ -1,0 +1,178 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" tools:context="com.tiseno.poplook.CheckOutMethodFragment"
+    android:background="@color/white">
+<FrameLayout  android:layout_width="match_parent" android:background="@color/white"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/checkOut_signUpTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SIGN UP / LOGIN"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:textSize="17dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"/>
+
+
+            <TextView
+
+                android:id="@+id/checkOut_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="New to POPLOOK?"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+               />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:src="@color/lightgrey"/>
+
+
+
+            <RadioGroup
+                android:id="@+id/checkOut_Radio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+            </RadioGroup>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+                <Button
+                    android:id="@+id/btn_cont_checkout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="60dp"
+                    android:layout_marginLeft="60dp"
+                    android:background="@color/accent"
+                    android:text="SIGN UP &amp; CONTINUE"
+                    android:textColor="@color/white"
+                    android:textSize="16dp"
+                    android:layout_centerInParent="true"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.6"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/checkOut_registeredTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Registered Customers"
+                android:textSize="16dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="8dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:src="@color/lightgrey"/>
+
+            <EditText
+                android:id="@+id/checkOut_emailET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:background="@null"
+                android:ems="10"
+                android:hint="Email"
+                android:singleLine="true"
+                android:inputType="textEmailAddress"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/lightgrey"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:src="@color/lightgrey"/>
+
+            <EditText
+                android:id="@+id/checkOut_passET"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="15dp"
+                android:background="@null"
+                android:ems="10"
+                android:hint="Password"
+                android:layout_marginLeft="20dp"
+                android:singleLine="true"
+                android:layout_marginTop="10dp"
+                android:textColorHint="@color/lightgrey"
+                android:inputType="textPassword"
+                android:layout_marginBottom="10dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:src="@color/lightgrey"/>
+
+            <TextView
+                android:id="@+id/checkOut_forgotPassTV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:gravity="center_horizontal"
+                android:textSize="16sp"
+                android:layout_marginTop="13dp"
+                android:layout_marginLeft="10dp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp">
+            <Button
+                android:id="@+id/btn_login_checkout"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_marginRight="60dp"
+                android:layout_marginLeft="60dp"
+                android:background="@color/accent"
+                android:layout_centerInParent="true"
+                android:text="LOG IN &amp; CONTINUE"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                />
+
+        </RelativeLayout>
+
+        </LinearLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+
+
+</FrameLayout>
+</ScrollView>

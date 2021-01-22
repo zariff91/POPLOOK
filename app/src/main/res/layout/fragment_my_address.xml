@@ -1,0 +1,87 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/white"
+    tools:context="com.tiseno.poplook.MyAddressFragment">
+
+    <LinearLayout
+        android:id="@+id/myaddressNoAddressLL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/stepBarRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bar_steps"
+            android:paddingTop="5dp"
+            android:paddingLeft="10dp">
+
+
+            <TextView
+                android:id="@+id/step1TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/myaccount"
+                android:textSize="15dp"
+                />
+
+            <TextView
+                android:id="@+id/step2TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/step2text"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/step1TV"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                />
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/noAddLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/noaddressesavailable"
+            android:textStyle="bold"
+            android:textColor="@color/dark_grey"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"/>
+
+        <RelativeLayout
+            android:id="@+id/myaddressAddAddressBtnRL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <ImageButton
+                android:id="@+id/myaddressAddAddressBtnIV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/btn_long_click"
+                android:background="@android:color/transparent"
+                android:layout_centerHorizontal="true"/>
+
+            <TextView
+                android:id="@+id/TV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/addaddress"
+                android:textColor="@android:color/white"
+                android:layout_centerInParent="true"
+                android:textSize="16dp"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/myAddressRV"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</FrameLayout>

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#ffffff">
+
+    <LinearLayout
+        android:id="@+id/myaddressAddressLblLL"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.9"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:text="@string/billingaddress"
+            android:textSize="14dp"
+            />
+
+        <ImageButton
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.1"
+            android:background="@android:color/white"
+            android:src="@drawable/btn_add_2_click"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/myaddressAddressDividerIV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myaddressAddressLblLL"
+        android:scaleType="fitXY"
+        android:src="@drawable/divider_3"/>
+
+    <TextView
+        android:id="@+id/myaddressAddressLblTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myaddressAddressDividerIV"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:text="My Address"
+        android:textSize="14dp"
+        />
+
+    <TextView
+        android:id="@+id/myaddressAddressTV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myaddressAddressLblTV"
+        android:paddingLeft="10dp"
+        android:paddingRight="100dp"
+        android:paddingTop="5dp"
+        android:textSize="16dp"
+        android:textColor="@color/black"
+        android:text="Fionne Tan Empire Condominium B-08-02 46160 Kuala Lumpur Selangor Darul Makmur Malaysia"/>
+
+    <LinearLayout
+        android:id="@+id/myaddressContactInfoLL"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_below="@+id/myaddressAddressTV"
+        android:layout_marginTop="30dp"
+        android:paddingRight="10dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/myaddressContactNoLblTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.47"
+            android:text="@string/contactnumber"
+            android:textSize="16dp"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:paddingLeft="10dp"/>
+
+        <TextView
+            android:id="@+id/myaddressContactNoTV"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.53"
+            android:paddingLeft="5dp"
+            android:textSize="16dp"
+            android:textColor="@color/black"
+            android:text="012- 345 6789"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:src="@drawable/btn_edit_click"/>
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/myaddressDeleteAddressBtnRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/myaddressContactInfoLL"
+        android:layout_marginTop="15dp">
+
+        <ImageButton
+            android:id="@+id/myaddressDeleteAddressBtnIV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_clicked"
+            android:background="@android:color/transparent"
+            android:layout_centerHorizontal="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/deleteaddress"
+            android:textColor="@android:color/white"
+            android:layout_centerInParent="true"
+            android:textSize="16dp"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/myaddressDeleteAddressBtnRL"/>
+
+
+</RelativeLayout>

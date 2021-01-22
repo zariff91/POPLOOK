@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:animateLayoutChanges="true"
+    android:background="@android:color/white">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bar_steps">
+    <RelativeLayout
+        android:id="@+id/stepBarRL"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="5dp"
+        android:paddingLeft="10dp">
+
+
+        <TextView
+            android:id="@+id/step1TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/light_grey"
+            android:text="@string/myaccount"
+            android:textSize="14dp"
+            />
+
+        <TextView
+            android:id="@+id/step2TV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/loyaltypoints"
+            android:textAllCaps="true"
+            android:layout_marginLeft="5dp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@+id/step1TV"
+            android:textSize="14dp"
+            />
+
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_gravity="center">
+        <Button
+            android:id="@+id/loyaltyPointIB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/btn_tab_loyaltypoints_active"
+            android:text="Loyalty Point"
+            android:textColor="@color/white"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            />
+        <Button
+            android:id="@+id/myVoucherIB"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:background="@drawable/btn_tab_myvouchers"
+            android:text="My Vouchers"
+            android:textAllCaps="false"
+            android:textSize="14dp"
+            />
+    </LinearLayout>
+</LinearLayout>
+    </RelativeLayout>
