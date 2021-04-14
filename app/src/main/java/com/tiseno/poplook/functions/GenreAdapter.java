@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -136,11 +137,24 @@ public class GenreAdapter extends ExpandableRecyclerViewAdapter<GenreViewHolder,
 
         final String test = group.getTitle();
 
+        if(test.equals("Raya 2021")){
 
-        holder.genreTitle.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_BLACK_FONT));
-        holder.genreTitle.setTextColor(Color.BLACK);
-        holder.genreTitle.setTextSize(20);
+            holder.genreTitle.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_BLACK_FONT));
+            holder.genreTitle.setTextColor(Color.parseColor("#9BCBCE"));
+            holder.genreTitle.setTextSize(20);
 
+            holder.rayaIcon.setVisibility(View.VISIBLE);
+
+        }
+
+        else {
+
+            holder.genreTitle.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_BLACK_FONT));
+            holder.genreTitle.setTextColor(Color.BLACK);
+            holder.genreTitle.setTextSize(20);
+            holder.rayaIcon.setVisibility(View.INVISIBLE);
+
+        }
 
         if(group.getItemCount() == 0)
         {

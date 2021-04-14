@@ -16,6 +16,7 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -140,19 +141,19 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         imageLoader.init(ImageLoaderConfiguration.createDefault(context.getApplicationContext()));
 
-        if(collection) {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row, parent, false); //Inflating the layout
-
-            //Creating ViewHolder and passing the object of type view
-
-            return new ViewHolder(v); // Returning the created object
-        }else {
+//        if(collection) {
+//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row, parent, false); //Inflating the layout
+//
+//            //Creating ViewHolder and passing the object of type view
+//
+//            return new ViewHolder(v); // Returning the created object
+//        }else {
             View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row1, parent, false); //Inflating the layout
 
             //Creating ViewHolder and passing the object of type view
 
             return new ViewHolder(v); // Returning the created object
-        }
+//        }
             //inflate your layout and pass it to view holder
 
     }
@@ -256,6 +257,16 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
                             holder.videoView.setVisibility(View.VISIBLE);
                             holder.homeImage.setVisibility(View.GONE);
                             holder.videoView.getLayoutParams().height = getScreenWidth(context) * 29 / 16;
+
+                            holder.frameL.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+
+                                    buttonListener.onMethodCallback(data.get(position).getcategoryID(), data.get(position).gethref(),data.get(position).getcatName(),data.get(position).getlink());
+
+                                }
+                            });
+
                         }
                     }
                 }

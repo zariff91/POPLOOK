@@ -5,6 +5,9 @@ package com.tiseno.poplook.functions;
  * Created by rahn on 9/1/15.
  */
 
+    import android.app.Fragment;
+    import android.app.FragmentManager;
+    import android.app.FragmentTransaction;
     import android.content.Context;
     import android.content.Intent;
     import android.graphics.Bitmap;
@@ -12,6 +15,8 @@ package com.tiseno.poplook.functions;
     import androidx.viewpager.widget.PagerAdapter;
     import androidx.viewpager.widget.ViewPager;
     import androidx.appcompat.app.AppCompatActivity;
+
+    import android.os.Bundle;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
@@ -25,6 +30,9 @@ package com.tiseno.poplook.functions;
     import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
     import com.nostra13.universalimageloader.core.assist.FailReason;
     import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+    import com.tiseno.poplook.LoginFragment;
+    import com.tiseno.poplook.MainActivity;
+    import com.tiseno.poplook.ProductInfoVideoFragment;
     import com.tiseno.poplook.R;
 
     import uk.co.senab.photoview.PhotoViewAttacher;
@@ -92,12 +100,27 @@ public class ViewPagerAdapter extends PagerAdapter {
                         @Override
                         public void onClick(View v) {
 
-                            AppCompatActivity activity = (AppCompatActivity) context;
+                            MainActivity activity = (MainActivity) context;
 
-                            Intent i = new Intent(activity, TestHTML5WebView.class);
-                            i.putExtra("video link", vidUrl);
-                            activity.startActivity(i);
-                            activity.overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
+
+                            ProductInfoVideoFragment fragment = new ProductInfoVideoFragment();
+
+                            Bundle bundle = new Bundle();
+                            bundle.putString("videoURL", vidUrl);
+                            fragment.setArguments(bundle);
+
+                            FragmentManager fragmentManager = activity.getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+//
+//                            Intent i = new Intent(activity, TestHTML5WebView.class);
+//                            i.putExtra("video link", vidUrl);
+//                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                            activity.startActivity(i);
+//                            activity.overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
 
                         }
 

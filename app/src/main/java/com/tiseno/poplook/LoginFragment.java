@@ -268,6 +268,9 @@ public class LoginFragment extends Fragment implements AsyncTaskCompleteListener
 
                             editor.putString("popup_show", "false");
 
+                            String getTier = String.valueOf(data.get("tier"));
+                            editor.putString("tier_level", getTier);
+
                         }
                         else
                         {

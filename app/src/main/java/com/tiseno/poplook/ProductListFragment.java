@@ -498,7 +498,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                                                @Override
                                                public void onClick(View v) {
 
-
 //                                                Fragment fragment = new FilterAndSortFragment();
 //
 //
@@ -594,13 +593,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
         System.out.println("numberPages  " + parsedcatID);
         System.out.println("Lalu");
 
-        if (centerBar == null) {
-
-        } else {
-
-            centerBar.setVisibility(View.VISIBLE);
-        }
-
         if (UserID.length() > 0) {
 
             getSavedItems();
@@ -612,7 +604,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
         //multishop
         SelectedShopID = pref.getString("SelectedShopID", "1");
         //
-        String action = "Products/category/id/" + catID + "/shop/" + SelectedShopID + "/num_page/" + numberPages + "/sort_options/" + sortType + "?api_version=apps&apikey=" + apikey;
+        String action = "Products/category/id/" + catID + "/shop/" + SelectedShopID + "/num_page/" + numberPages + "/sort_options/" + sortType + "?api_version=apps&apikey=" + apikey + "&tier=" + pref.getString("tier_level","") + "&user_id=" + UserID;
         if (firstLoad) {
             WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
             callws.execute(action);
@@ -646,13 +638,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
     }
 
     private void searchProduct() {
-
-        if (centerBar == null) {
-
-        } else {
-
-            centerBar.setVisibility(View.VISIBLE);
-        }
 
         System.out.println("searchProduct  " + parsedsearchID);
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
@@ -693,13 +678,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
     private void getFilteredProductList() {
 
         System.out.println("getNumberPages = " + numberPages);
-
-        if (centerBar == null) {
-
-        } else {
-
-            centerBar.setVisibility(View.VISIBLE);
-        }
 
         if (UserID.length() > 0) {
 
@@ -862,30 +840,30 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
 
                                 }
-
-                                if (jsonCategoryobj.isNull("tier")) {
-                                    mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, total_colours, id_product_attribute, related_colour_data, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
-
-                                } else {
-
-                                    if (UserID.length() > 0) {
-
-                                        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
-
-                                        JSONArray getArr = jsonCategoryobj.getJSONArray("tier");
-                                        JSONObject jsonObj = getArr.getJSONObject(0);
-                                        String getTierLevel = jsonObj.getString("tier");
-
-
-                                        if (getTierLevel.contains(pref.getString("popup_tier", ""))) {
+//
+//                                if (jsonCategoryobj.isNull("tier")) {
+//                                    mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, total_colours, id_product_attribute, related_colour_data, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
+//
+//                                } else {
+//
+//                                    if (UserID.length() > 0) {
+//
+//                                        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+//
+//                                        JSONArray getArr = jsonCategoryobj.getJSONArray("tier");
+//                                        JSONObject jsonObj = getArr.getJSONObject(0);
+//                                        String getTierLevel = jsonObj.getString("tier");
+//
+//
+//                                        if (getTierLevel.contains(pref.getString("tier_level", ""))) {
 
                                             mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, total_colours, id_product_attribute, related_colour_data, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
 
-                                        }
-
-                                    }
-
-                                }
+//                                        }
+//
+//                                    }
+//
+//                                }
 
                             }
 
@@ -1124,13 +1102,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
         footer = (LinearLayout) inflater1.inflate(R.layout.progressbar_footer, mRecyclerView, false);
         if (!finishLoad.equals("finishLoad")) {
 
-            if (centerBar == null) {
-
-            } else {
-                centerBar.setVisibility(View.INVISIBLE);
-
-            }
-
             if (mItems.size() > 10) {
                 System.out.println("PECAH OTAK LA WEI" + mItems.size());
                 mBookends.addFooter(footer);
@@ -1140,13 +1111,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
             }
         } else {
             mRecyclerView.setAdapter(mBookends);
-
-            if (centerBar == null) {
-
-            } else {
-                centerBar.setVisibility(View.INVISIBLE);
-
-            }
         }
         fromSearch = true;
 
@@ -1201,46 +1165,16 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
             if (mItems.size() > 50) {
                 mBookends.addFooter(footer);
                 mRecyclerView.setAdapter(mBookends);
-
-                if (centerBar == null) {
-
-                } else {
-                    centerBar.setVisibility(View.INVISIBLE);
-
-                }
-
             } else {
                 mRecyclerView.setAdapter(mBookends);
-
-                if (centerBar == null) {
-
-                } else {
-                    centerBar.setVisibility(View.INVISIBLE);
-
-                }
-
             }
         } else {
             if (mItems.size() > 50) {
                 mBookends.addFooter(footer);
                 mRecyclerView.setAdapter(mBookends);
 
-                if (centerBar == null) {
-
-                } else {
-                    centerBar.setVisibility(View.INVISIBLE);
-
-                }
-
             } else {
                 mRecyclerView.setAdapter(mBookends);
-
-                if (centerBar == null) {
-
-                } else {
-                    centerBar.setVisibility(View.INVISIBLE);
-
-                }
 
             }
         }

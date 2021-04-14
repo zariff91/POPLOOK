@@ -2,6 +2,7 @@ package com.tiseno.poplook;
 
 import android.app.DialogFragment;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -100,8 +101,11 @@ public class HomeBottomFragment extends DialogFragment  implements AsyncTaskComp
 
     public void getSideMenuList(){
 
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        SelectedShopID = pref.getString("SelectedShopID", "1");
+
 //        String action="Menus/mobile?apikey="+apikey+"&shop="+SelectedShopID+"&lang=1";
-        String action="Menus/webcategories/lang/1/shop/"+SelectedShopID+"?apikey="+apikey;
+        String action="Menus/webcategories/lang/1/shop/"+SelectedShopID+"?apikey="+apikey+"&tier="+pref.getString("tier_level","")+"&user_id="+pref.getString("UserID", "");
 
         WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
         callws.execute(action);

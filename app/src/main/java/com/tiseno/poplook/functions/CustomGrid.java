@@ -41,6 +41,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 import com.tiseno.poplook.LoginFragment;
 import com.tiseno.poplook.MainActivity;
 import com.tiseno.poplook.ProductListFragment;
