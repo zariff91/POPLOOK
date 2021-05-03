@@ -61,6 +61,7 @@ public class NewAddressBillingFragment extends Fragment implements AsyncTaskComp
 
     addressItem billingAddItem;
 
+    String carrierID_forAPI = "";
 
     String forBilling;
 
@@ -493,7 +494,7 @@ public class NewAddressBillingFragment extends Fragment implements AsyncTaskComp
                             jsonArr = result.getJSONObject("data").getJSONArray("carrier_list");
 
 
-                            String carrierID_forAPI = "";
+
 
                             for (int i = 0; i < jsonArr.length(); i++) {
                                 JSONObject jObj = jsonArr.getJSONObject(i);
@@ -562,6 +563,8 @@ public class NewAddressBillingFragment extends Fragment implements AsyncTaskComp
                         String cartResultJObjString = dataa.toString();
                         args.putString("fromOrderHistory","0");
                         args.putString("cartResultJObj", cartResultJObjString);
+                        args.putString("carrier_id_api",carrierID_forAPI);
+                        args.putString("delivery_address_id", deliveryAddItem.getaddressID());
                         args.putInt("SelectedDeliveryAddress", SelectedDeliveryAddress);
                         args.putInt("SelectedBillingAddress",SelectedBillingAddress);
                         args.putInt("SelectedCarrierPosition", 0);

@@ -2,6 +2,7 @@ package com.tiseno.poplook;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -10,6 +11,7 @@ import com.useinsider.insider.Insider;
 import com.useinsider.insider.InsiderCallback;
 import com.useinsider.insider.InsiderCallbackType;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 //import com.useinsider.insider.config.Geofence;
 //import com.useinsider.insider.config.Push;
@@ -29,13 +31,22 @@ POPLOOK extends Application {
 
         Insider.Instance.registerInsiderCallback(new InsiderCallback() {
             @Override
-            public void doAction(JSONObject data, InsiderCallbackType callbackType) {
-                switch (callbackType) {
+            public void doAction(JSONObject data, InsiderCallbackType insiderCallbackType) {
+
+                switch (insiderCallbackType) {
                     case NOTIFICATION_OPEN:
                         Log.d("[INSIDER]", "[NOTIFICATION_OPEN]: " + data);
                         break;
                     case INAPP_BUTTON_CLICK:
                         Log.d("[INSIDER]", "[INAPP_BUTTON_CLICK]: " + data);
+
+                        String cartResultJObjString=data.toString();
+                        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+                        SharedPreferences.Editor editor = pref.edit();
+                        System.out.println("ppppppppp = " + cartResultJObjString);
+                        editor.putString("signup_page_open", cartResultJObjString);
+                        editor.apply();
+
                         break;
                     case TEMP_STORE_PURCHASE:
                         Log.d("[INSIDER]", "[TEMP_STORE_PURCHASE]: " + data);

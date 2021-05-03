@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -23,6 +24,8 @@ import android.text.SpannableStringBuilder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -40,6 +43,7 @@ import com.tiseno.poplook.functions.shoppingBagAdapter;
 import com.tiseno.poplook.functions.shoppingBagItem;
 import com.tiseno.poplook.functions.voucherItem;
 import com.tiseno.poplook.webservice.AsyncTaskCompleteListener;
+import com.tiseno.poplook.webservice.WebServiceAccessDelete;
 import com.tiseno.poplook.webservice.WebServiceAccessGet;
 import com.tumblr.bookends.Bookends;
 import com.useinsider.insider.Insider;
@@ -52,6 +56,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import okhttp3.FormBody;
+import okhttp3.RequestBody;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -60,8 +67,10 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
     String UserID, CartID, LanguageID,noInBag,totalPriceWt,totalPriceWt_sc,totalPrice,taxAmount,shipping_price;
 
+    String bank_msg_enable,first_bank_message,second_bank_message;
+
     JSONObject cartResultJObj;
-    JSONObject addressResultJObj;
+    JSONObject refreshStep3Obj;
     JSONObject CarrierResultObj;
     String skipTimer="0",extra_cart="0";
     ArrayList<shoppingBagItem> listArray_shoppingBag = new ArrayList<shoppingBagItem>();
@@ -108,6 +117,9 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
     String billing_addressState;
     String billing_addressPhone;
 
+    String carrier_id_API;
+    String delivery_id_API;
+
     //////////////////////////////
 
     float totalAllProductPrice;
@@ -115,19 +127,21 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
     boolean TermCondChecked = false;
 
-    boolean isEWallet = false;
+    boolean isCCSelected = false;
 
     boolean eWalletExist = false;
     boolean creditCardExist = false;
     boolean onlineBankingExist = false;
 
-
+    boolean refreshVoucher = false;
 
 
     Bookends<RecyclerView.Adapter> mBookends;
     RecyclerView mRecyclerView;
     RecyclerView.LayoutManager mLayoutManager;
     RecyclerView.Adapter RVAdapter;
+
+    RelativeLayout codeVoucherRL;
 
     ImageView paymentTSCheckIV;
     ImageButton paymentNextBtnIV,paymentBottomNextBtnIV;
@@ -139,8 +153,16 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
     RadioButton paymentList3;
     RadioButton paymentList4;
 
+    ImageButton applyCodeBtn;
+
+    EditText codeInputET;
+
 
     TextView eWalletTxt,onlineBankTxt;
+
+    TextView bank_first_message,bank_second_message;
+
+    TextView code_textView,applyButton_textview;
 
     int selectedEWallet;
     int selectedBanking;
@@ -208,6 +230,10 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         SelectedDeliveryAddress = getArguments().getInt("SelectedDeliveryAddress");
         SelectedBillingAddress = getArguments().getInt("SelectedBillingAddress");
         SelectedCarrierPosition = getArguments().getInt("SelectedCarrierPosition");
+
+        carrier_id_API = getArguments().getString("carrier_id_api");
+        delivery_id_API = getArguments().getString("delivery_address_id");
+
         fromGuestCheckOut = getArguments().getInt("fromGuestCheckOut");
 
         //FROM USER HISTORY//
@@ -251,7 +277,13 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
     private void getCartDetailList1() {
         String cartResultJObjString = getArguments().getString("cartResultJObj");
         try {
-            cartResultJObj = new JSONObject(cartResultJObjString);
+
+            if(refreshVoucher){
+                cartResultJObj = refreshStep3Obj;
+            }
+            else {
+                cartResultJObj = new JSONObject(cartResultJObjString);
+            }
             listArray_shoppingBag.clear();
             totalAllProductPrice = 0;
             int totalquantity = 0;
@@ -596,6 +628,13 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                     totalPrice = data.getString("totalPrice");
                     taxAmount = data.getString("taxCost");
                     shipping_price = data.getString("shipping_price");
+
+                    bank_msg_enable = data.getString("enable_bank_msg");
+
+                    if(bank_msg_enable.equals("1")){
+                        first_bank_message = data.getString("bank_bsn_message");
+                        second_bank_message = data.getString("bank_cimb_message");
+                    }
 
                     for(int i = 0; i < jsonArr.length(); i++)
                     {
@@ -1206,6 +1245,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
         LinearLayout newHeader = (LinearLayout) inflater1.inflate(R.layout.new_checkout_page, mRecyclerView, false);
 
+        codeVoucherRL = (RelativeLayout)newHeader.findViewById(R.id.codeBarRLPayment);
+
         TextView shipping_text = (TextView) newHeader.findViewById(R.id.shippingText);
         shipping_text.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
 
@@ -1214,6 +1255,56 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
         TextView payment_text = (TextView) newHeader.findViewById(R.id.selectPaymentTxt);
         payment_text.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
+        bank_first_message = (TextView) newHeader.findViewById(R.id.bank_message_one);
+        bank_first_message.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
+        bank_second_message = (TextView) newHeader.findViewById(R.id.bank_message_two);
+        bank_second_message.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
+        code_textView = (TextView)newHeader.findViewById(R.id.codeTV);
+        code_textView.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
+        bank_first_message.setText(first_bank_message);
+        bank_second_message.setText(second_bank_message);
+
+        applyCodeBtn = (ImageButton) newHeader.findViewById(R.id.codeApplyIBPayment);
+        codeInputET = (EditText) newHeader.findViewById(R.id.codeFieldPayment);
+
+
+        applyCodeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (selectedBanking == 12 || selectedBanking == 2 || isCCSelected == true) {
+
+                    if (totalPrice.equals("0.00")) {
+                        Toast.makeText(getActivity(), "Your order has been fully paid", Toast.LENGTH_LONG).show();
+                    } else if (codeInputET.getText().toString().equals("")) {
+                        Toast.makeText(getActivity(), "You must enter a voucher code", Toast.LENGTH_LONG).show();
+                    } else {
+                        applyVoucherWS(codeInputET.getText().toString(), UserID, CartID);
+                    }
+
+
+                    InputMethodManager inputManager = (InputMethodManager)
+                            getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+
+                    inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                            InputMethodManager.HIDE_NOT_ALWAYS);
+//                refreshAll();
+
+//                oriGiftOptionsText = giftOptionsET.getText().toString();
+//                oriLeaveMessageText = leaveMsgET.getText().toString();
+//
+//                refreshRecyclerView();
+
+                }
+                else {
+                    Toast.makeText(getActivity(), "Voucher is not valid for selected bank", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         eWalletTxt = (TextView) newHeader.findViewById(R.id.EWalletTxtView);
         eWalletTxt.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
@@ -1228,6 +1319,9 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         paymentList4 = newHeader.findViewById(R.id.enetsorpaypal);
 
         shipping_text_choice.setText(carrier_selected);
+
+        System.out.println("step 4 data = " + carrier_selected);
+//        System.out.println("step 4 data 2 = " + deliveryAddItem.getaddressID());
 
         paymentList.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
         paymentList2.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
@@ -1288,6 +1382,10 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
                     selectedBanking = i;
                     PaymentIDForIPay88 = onlinebankingarrayValue[i];
+
+                    System.out.println("bank select 1 = " + selectedBanking);
+                    System.out.println("bank select 2 = " + PaymentIDForIPay88);
+
 
                 }
             });
@@ -1928,6 +2026,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         {
             RelativeLayout footerVoucherCode = (RelativeLayout) inflater1.inflate(R.layout.voucher_code_footer_view, mRecyclerView, false);
 
+            final voucherItem item=listArray_voucher.get(i);
+
             TextView voucherCodeNameTV = (TextView) footerVoucherCode.findViewById(R.id.voucherCodeNameTV);
             TextView voucherCodeNameTV1 = (TextView) footerVoucherCode.findViewById(R.id.voucherCodeNameTV1);
             TextView voucherCodePriceLblTV = (TextView) footerVoucherCode.findViewById(R.id.voucherCodePriceLblTV);
@@ -1939,12 +2039,36 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
             voucherCodeNameTV1.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
             voucherCodePriceLblTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
             voucherCodePriceTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
-            voucherCodeRemove.setVisibility(View.GONE);
+            voucherCodeRemove.setVisibility(View.VISIBLE);
 
             voucherCodePriceLblTV.setText(SelectedCountryCurrency);
             voucherCodeNameTV.setText("(-) " + listArray_voucher.get(i).getvoucherCode());
             voucherCodeNameTV1.setText(listArray_voucher.get(i).getvoucherName());
             voucherCodePriceTV.setText(listArray_voucher.get(i).getvoucherReduceAmount());
+
+
+            voucherCodeRemove.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(getActivity())
+                            .setTitle("Message")
+                            .setMessage("Remove Voucher Code?")
+                            .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    deleteVoucherFromCart(item.getvoucherID(), CartID);
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    dialog.cancel();
+                                }
+                            })
+                            .show();
+
+
+                }
+            });
+
 
             mBookends.addFooter(footerVoucherCode);
         }
@@ -2242,6 +2366,55 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                                 }).show();
                     }
                 }
+                else if(action.equals("Vouchers_validate"))
+                {
+                    if(result.getBoolean("status"))
+                    {
+                        String message=result.getString("message");
+
+                        if (!message.equals("This voucher does not exists")) {
+                            Toast.makeText(getActivity(), "Voucher Accepted", Toast.LENGTH_LONG).show();
+//                             Insider.Instance.tagEvent("coupon_used").addParameterWithString("coupon_code",couponCode).build();
+
+                            refreshAppliedVoucher();
+
+                        }
+                        else  {
+                            Toast.makeText(getActivity(), "Invalid Voucher Code", Toast.LENGTH_LONG).show();
+                        }
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                    }
+                    else
+                    {
+                        String message=result.getString("message");
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                    }
+
+                }
+
+                else if(action.equals("Carts_OrderStep3"))
+                {
+                    refreshVoucher = true;
+                    refreshStep3Obj = result;
+                    getCartDetailList1();
+                }
+
+                else if(action.equals("Carts_removeVoucher"))
+                {
+                    if(result.getBoolean("status"))
+                    {
+                        String message=result.getString("message");
+                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                        refreshAppliedVoucher();
+                    }
+                    else
+                    {
+
+                        Toast.makeText(getActivity(), "Unable to remove voucher please try again", Toast.LENGTH_LONG).show();
+
+                    }
+
+                }
 
             }
             catch (Exception e){
@@ -2298,7 +2471,6 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     fragmentTransaction.replace(R.id.fragmentContainer, fragment, "MyAccountFragment");
                     fragmentTransaction.commit();
-
                     editor.putString("CartID", "");
                     editor.putString("cartItem", "0");
                     editor.putString("PaymentDone", "1");
@@ -2342,26 +2514,130 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
             case R.id.CreditCardBtn:
 
+                isCCSelected = true;
+
                 onlineBankTxt.setVisibility(View.GONE);
                 eWalletTxt.setVisibility(View.GONE);
+
+                bank_first_message.setVisibility(View.VISIBLE);
+                bank_second_message.setVisibility(View.VISIBLE);
+
+                if(first_bank_message.equals("false")){
+                    bank_first_message.setVisibility(View.GONE);
+                }
+
+                if(second_bank_message.equals("false")){
+                    bank_second_message.setVisibility(View.GONE);
+                }
+
+                if(bank_msg_enable.equals("0")){
+                    bank_second_message.setVisibility(View.GONE);
+                    bank_first_message.setVisibility(View.GONE);
+                    codeVoucherRL.setVisibility(View.GONE);
+                }
+                else {
+
+                    if(listArray_voucher.size() == 0){
+                        codeVoucherRL.setVisibility(View.VISIBLE);
+                    }
+
+                    else {
+                        codeVoucherRL.setVisibility(View.GONE);
+                    }
+                }
 
                 break;
             case R.id.EWalletBtn:
 
+                isCCSelected = false;
+
                 onlineBankTxt.setVisibility(View.GONE);
                 eWalletTxt.setVisibility(View.VISIBLE);
+
+                bank_first_message.setVisibility(View.GONE);
+                bank_second_message.setVisibility(View.GONE);
+                codeVoucherRL.setVisibility(View.GONE);
+
 
                 break;
             case R.id.onlineBankingBtn:
 
+                isCCSelected = false;
+
                 onlineBankTxt.setVisibility(View.VISIBLE);
                 eWalletTxt.setVisibility(View.GONE);
+
+                bank_first_message.setVisibility(View.VISIBLE);
+                bank_second_message.setVisibility(View.VISIBLE);
+
+                if(first_bank_message.equals("false")){
+                    bank_first_message.setVisibility(View.GONE);
+                }
+
+                if(second_bank_message.equals("false")){
+                    bank_second_message.setVisibility(View.GONE);
+                }
+
+                if(bank_msg_enable.equals("0")){
+                    bank_second_message.setVisibility(View.GONE);
+                    bank_first_message.setVisibility(View.GONE);
+                    codeVoucherRL.setVisibility(View.GONE);
+                }
+                else {
+                    if(listArray_voucher.size() == 0){
+                        codeVoucherRL.setVisibility(View.VISIBLE);
+                    }
+
+                    else {
+                        codeVoucherRL.setVisibility(View.GONE);
+                    }
+                }
 
                 break;
 
 
         }
 
+
+    }
+
+    private void applyVoucherWS(String voucherCode, String userID, String cartID){
+
+//        couponCode = voucherCode;
+
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        String apikey =pref.getString("apikey","");
+        String action="Vouchers/validate?apikey="+apikey+"&cart="+cartID+"&code="+voucherCode+"&shop="+SelectedShopID+"&mobile=1";
+//        String action="Vouchers/validate?apikey="+apikey+"&cart="+cartID+"&code="+voucherCode+"&shop="+SelectedShopID;
+        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+        callws.execute(action);
+
+    }
+
+    private void refreshAppliedVoucher(){
+
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        String appVersion="1.0.0";
+        String apikey =pref.getString("apikey","");
+        String shippingAPI="Carts/OrderStep3?apikey="+apikey+"&id_cart="+CartID+"&id_address_delivery="+delivery_id_API+"&id_carrier="+carrier_id_API+"&device_type=android&app_version="+appVersion;
+
+        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+
+        callws.execute(shippingAPI);
+    }
+
+    private void deleteVoucherFromCart(String voucherID,String cartID){
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        String apikey =pref.getString("apikey","");
+        String action="Carts/removeVoucher";
+        RequestBody formBody = new FormBody.Builder()
+                .add("apikey",apikey)
+                .add("id_cart",cartID)
+                .add("id_cart_rule",voucherID)
+                .build();
+        WebServiceAccessDelete callws = new WebServiceAccessDelete(getActivity(), this);
+        callws.setAction(action);
+        callws.execute(formBody);
 
     }
 }

@@ -88,8 +88,7 @@ public class SignUpFragment extends Fragment implements AsyncTaskCompleteListene
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-//        Insider.Instance.tagEvent(getActivity(),"register_form_viewed");
-        Insider.Instance.tagEvent("register_form_viewed").build();
+        Insider.Instance.tagEvent("register_form_viewed").addParameterWithBoolean("needRegister",true).build();
 
         ((MainActivity) getActivity()).changeToolBarText("Sign Up Account");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
@@ -501,7 +500,7 @@ public class SignUpFragment extends Fragment implements AsyncTaskCompleteListene
                         toast.setGravity(Gravity.BOTTOM, 0, 50);
                         toast.show();
 
-                        Insider.Instance.tagEvent("register").build();
+                        Insider.Instance.tagEvent("register_form_viewed").addParameterWithBoolean("needRegister",false).build();
 
                         try{
                             if(getArguments().getString("fromGuestCheckOut").equals("1"))
@@ -565,10 +564,6 @@ public class SignUpFragment extends Fragment implements AsyncTaskCompleteListene
                                 }
                             });
                         }
-
-                        System.out.println("id customeeerrrr :" + id_customer);
-                        System.out.println("id caaaarrrttttt :" + id_cart);
-
                     }
 
                 }else{

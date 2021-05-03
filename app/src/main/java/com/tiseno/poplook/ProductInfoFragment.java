@@ -86,6 +86,8 @@ import com.viewpagerindicator.CirclePageIndicator;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -1047,6 +1049,21 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
     }
 
     private void getProductDetails(){
+
+        byte[] inputBytes;
+        try {
+            inputBytes = prodID.getBytes("iso-8859-1");
+            String newStr = new String(inputBytes, StandardCharsets.UTF_8);
+
+            prodID = newStr.replaceAll("[^0-9.]", "");
+
+            System.out.println("Byte Prod ID = " + inputBytes);
+            System.out.println("Converted Product ID = " + prodID);
+
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
         String apikey =pref.getString("apikey","");
         String action="Products/details/id/"+prodID+"/shop/"+SelectedShopID+"/lang/1/full/1?apikey="+apikey;
@@ -1116,9 +1133,6 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
                         id_product_attribute = data.getString("id_product_attribute");
 
-                        System.out.print("getdatahere" + data);
-
-                        prodname = data.getString("name");
                         String reference = data.getString("reference");
                         reference_presta = reference;
                         String desc = data.getString("description");
@@ -1207,12 +1221,17 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
                         double productPrice = Double.parseDouble(price_with_tax);
 
-                        String[] taxonomy = {catName};
-                        InsiderProduct product = Insider.Instance.createNewProduct(prodID,prodname,taxonomy,imageURLinsider,productPrice,currency_sign);
-                        Insider.Instance.visitProductDetailPage(product);
+//                        String[] taxonomy = {catName};
+//                        InsiderProduct product = Insider.Instance.createNewProduct(prodID,prodname,taxonomy,imageURLinsider,productPrice,currency_sign);
+//                        Insider.Instance.visitProductDetailPage(product);
 
-                        Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visited_product",prodname);
-                        Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visited_product_id",prodID);
+                        prodname = data.getString("name");
+
+                        InsiderEvent lastVisitEvent = Insider.Instance.tagEvent("last_product_viewed");
+                        lastVisitEvent.build();
+
+                        Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visit_product",prodname);
+                        Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visit_product_id",prodID);
 
                         try {
 //                            listSize.add("Pick A Size");
@@ -2288,7 +2307,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                             InsiderProduct product = Insider.Instance.createNewProduct(prodID,prodname,taxonomy,imageURL,productPrice,currency);
                             Insider.Instance.itemAddedToCart(product);
 
-                            Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_added_to_cart",prodID);
+//                            Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_added_to_cart",prodID);
 
 
 
@@ -2367,7 +2386,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                             toast.show();
 //                            Insider.Instance.tagEvent(getActivity(),"add_to_favorite");
                             Insider.Instance.tagEvent("add_to_favorite").build();
-                            Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_added_to_fav",prodID);
+//                            Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_added_to_fav",prodID);
 
                             InsiderEvent event = Insider.Instance.tagEvent("add_to_fav");
                             event.addParameterWithString("category_name",catName);

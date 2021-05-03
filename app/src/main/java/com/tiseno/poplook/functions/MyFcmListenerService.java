@@ -14,6 +14,7 @@ import android.util.Log;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.tiseno.poplook.MainActivity;
+import com.tiseno.poplook.SplashActivity;
 import com.useinsider.insider.Insider;
 
 import java.io.IOException;
@@ -49,7 +50,6 @@ public class MyFcmListenerService extends FirebaseMessagingService {
     @Override
     public void onMessageReceived(RemoteMessage message){
 
-
         super.onMessageReceived(message);
         if (message != null && message.getData().containsKey("source") && message.getData().get("source").equals("Insider")) {
             Insider.Instance.handleFCMNotification(getApplicationContext(),message);
@@ -58,7 +58,7 @@ public class MyFcmListenerService extends FirebaseMessagingService {
             Map data = message.getData();
             Log.d(TAG, "From: " + from);
             Log.d(TAG, "Message: " + message);
-            Log.d(TAG, "Category ID: " + data.get("categoryId"));
+            Log.d(TAG, "Data from Notification: " + data);
 
             if(data.containsKey("categoryId") && data.containsKey("categoryName")){
 
@@ -67,7 +67,6 @@ public class MyFcmListenerService extends FirebaseMessagingService {
 
                 sendNotification("",categoryID,categoryName,"productList");
             }
-
 
             if(data.containsKey("productId") && data.containsKey("productName")){
 
@@ -114,8 +113,12 @@ public class MyFcmListenerService extends FirebaseMessagingService {
                 sendNotification("",categoryID,"","orderHistoryNoti");
             }
 
-//            String imageURL = data.get("image_url").toString();
+            if(data.get("title").toString().contains("Just a reminder")){
 
+                String categoryID = data.get("title").toString();
+
+                sendNotification("",categoryID,"","shoppingBag");
+            }
 
             return;
         }
@@ -151,12 +154,6 @@ public class MyFcmListenerService extends FirebaseMessagingService {
      * @param message GCM message received.
      */
     private void sendNotification(String message, String categoryID, String categoryName,String notificationType) {
-//        Bitmap remote_picture = null;
-//
-//        Intent intent = new Intent(this, MainActivity.class);
-//        intent.putExtra("comeFromNotification", "1");
-//        intent.putExtra("categoryID", categoryID);
-//        intent.putExtra("categoryName", categoryName);
 
         if (notificationType.equals("productList")) {
 
@@ -223,11 +220,19 @@ public class MyFcmListenerService extends FirebaseMessagingService {
             editor.putString("orderHistoryPage", categoryID);
             editor.apply();
         }
+        if (notificationType.equals("shoppingBag")) {
+
+            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+            SharedPreferences.Editor editor = pref.edit();
+            editor.putString("comeFromNotification", "1");
+            editor.putString("goToCart", "1");
+            editor.apply();
+        }
 
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0 /* Request code */, intent,
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
 //                PendingIntent.FLAG_ONE_SHOT);
-//
+
 //        Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 //
 //        NotificationCompat.BigPictureStyle notiStyle = new NotificationCompat.BigPictureStyle();

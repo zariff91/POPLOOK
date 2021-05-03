@@ -103,6 +103,8 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 
     String bottomText = "";
 
+    int sale_notice_state;
+
     String shippingPrice;
 
     String couponCode;
@@ -131,6 +133,8 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         ((MainActivity) getActivity()).changeBtnWishlistView(true);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
         ((MainActivity) getActivity()).setDrawerState(true);
+        ((MainActivity) getActivity()).showBottomBar(false);
+
 
         shoppingBagEmptyTV = (TextView) contentView.findViewById(R.id.shoppingBagEmptyTV);
         shoppingBagEmptyTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
@@ -340,15 +344,14 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
             totalPayableTV.setText(": " +SelectedCountryCurrency+" "+ totalPrice);
         }
 
-        if(bottomText.equals("1"))
+        if(sale_notice_state == 1)
         {
-            bottomMessage.setVisibility(View.GONE);
+            bottomMessage.setText(bottomText);
+            bottomMessage.setVisibility(View.VISIBLE);
         }
 
         else {
-
-            bottomMessage.setText(bottomText);
-            bottomMessage.setVisibility(View.VISIBLE);
+            bottomMessage.setVisibility(View.GONE);
         }
 
         giftOptionsNoOfCharTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
@@ -878,15 +881,16 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                         jsonArr = data.getJSONArray("product_list");
                         CartID = data.getString("id_cart");
 
-                        if(data.has("bottom_message"))
-                        {
-                             bottomText = data.getString("bottom_message");
+                        sale_notice_state = data.getInt("sale_delay_notice");
+
+                        if(sale_notice_state == 1){
+                            if(data.has("bottom_message"))
+                            {
+                                bottomText = data.getString("bottom_message");
+                            }
                         }
 
-                        else
-                        {
-                            bottomText = "1";
-                        }
+
 
 
                         CartMessages = data.getString("message_type");

@@ -6,9 +6,11 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.ActivityNotFoundException;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -81,6 +83,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     String cartItem, apikey;
     ArrayList<sideMenuItem> itemArray = new ArrayList<sideMenuItem>();
     ArrayList<sideMenuItem> parentSideMenuArray = new ArrayList<sideMenuItem>();
+
+    JSONObject cartResultJObj;
 
     String selectedCategory = "";
 
@@ -359,117 +363,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         });
 
-
-        final GestureDetector mGestureDetector = new GestureDetector(MainActivity.this, new GestureDetector.SimpleOnGestureListener() {
-
-            @Override
-            public boolean onSingleTapUp(MotionEvent e) {
-                return true;
-            }
-
-        });
-
-
-//        mRecyclerView.addOnItemTouchListener(new RecyclerView.OnItemTouchListener() {
-//            @Override
-//            public boolean onInterceptTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-//                View child = recyclerView.findChildViewUnder(motionEvent.getX(),motionEvent.getY());
-//
-//
-//
-//                if(child!=null && mGestureDetector.onTouchEvent(motionEvent)){
-//                    onTouchDrawer(mRecyclerView.getChildPosition(child));
-//
-//                    return true;
-//
-//                }
-//
-//
-//                return false;
-//            }
-//
-//
-//
-//            @Override
-//            public void onTouchEvent(RecyclerView recyclerView, MotionEvent motionEvent) {
-//
-//            }
-//
-//            @Override
-//            public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
-//            }
-//        });
-
-
-//        mLayoutManager = new LinearLayoutManager(this);                 // Creating a layout Manager
-
-//        mRecyclerView.setLayoutManager(mLayoutManager);                 // Setting the layout Manager
-
-
-//        Drawer = (HackyDrawerLayout) findViewById(R.id.DrawerLayout);        // Drawer object Assigned to the view
-//        Drawer.setScrimColor(Color.TRANSPARENT);
-
-//        mDrawerToggle.setDrawerIndicatorEnabled(true);
-//
-//        toolbar.setNavigationIcon(R.drawable.ic_launcher);
-
-
-//        getSupportActionBar().setTitle("");
-////
-////
-////        mDrawerToggle = new ActionBarDrawerToggle(this,Drawer,toolbar,R.string.drawer_open,R.string.drawer_close){
-////
-////            @Override
-////            public void onDrawerOpened(View drawerView) {
-////                super.onDrawerOpened(drawerView);
-////
-////                System.out.println("laluuuuuuu");
-////
-////                // code here will execute once the drawer is opened( As I dont want anything happened whe drawer is
-////                // open I am not going to put anything here)
-////                toolbar.setVisibility(View.GONE);
-////                toolbar2.setVisibility(View.VISIBLE);
-////                toolbar2.setNavigationIcon(R.drawable.btn_menu_pressed);
-////
-////                SharedPreferences pref1 = getApplicationContext().getSharedPreferences("MyPref", 0);
-////                if(UserID.length() == 0)
-////                {
-////                    side_menu_user_rl.setVisibility(View.GONE);
-////                }
-////                else
-////                {
-////                    side_menu_user_rl.setVisibility(View.VISIBLE);
-////                    side_menu_userTV.setText("Hello, "+pref1.getString("Name", ""));
-////                }
-////                try{
-////                    InputMethodManager inputMethodManager = (InputMethodManager)  getSystemService(Activity.INPUT_METHOD_SERVICE);
-////                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);}catch (Exception e){}
-////            }
-////
-////            @Override
-////            public void onDrawerClosed(View drawerView) {
-////                super.onDrawerClosed(drawerView);
-////                // Code here will execute once drawer is closed
-////                toolbar.setVisibility(View.VISIBLE);
-////                toolbar2.setVisibility(View.GONE);
-////                toolbar.setNavigationIcon(R.drawable.btn_menu_pressed);
-////
-////                try{
-////                    InputMethodManager inputMethodManager = (InputMethodManager)  getSystemService(Activity.INPUT_METHOD_SERVICE);
-////                    inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);}catch (Exception e){}
-////
-////
-////            }
-////
-////
-////
-////        }; // Drawer Toggle Object Made
-////        Drawer.setDrawerListener(mDrawerToggle); // Drawer Listener set to the Drawer toggle
-////        mDrawerToggle.syncState();
-////        toolbar.setNavigationIcon(R.drawable.btn_menu_pressed);// Finally we set the drawer toggle sync State
-////
-//        getSideMenuList();
-
         SharedPreferences.Editor editor = pref.edit();
         //editor.putBoolean("atMyVoucher", false);
         editor.putBoolean("atMyVoucher", true);
@@ -485,159 +378,21 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     }
 
+    private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
 
-//    public void onTouchDrawer(String title , String cattId) {
-//
-//        System.out.println("sininiinii = " + cattId);
-//
-//        String categoryID = cattId;
-//        String categoryName = title;
-//
-//        selectedSide = title;
-//
-//
-//        if(categoryName.equals("Home"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new HomeFragment(), "HomeFragment");
-//        }
-//        if(categoryName.equals("Visit Our Store"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new VisitOurStoreFragment(), "VisitOurStoreFragment");
-//        }
-//        if(categoryName.equals("My Account"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new MyAccountFragment(), "MyAccountFragment");
-//        }
-//        if(categoryName.contains("Shipping To"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new ChangeCountryFragment(), "ChangeCountryFragment");
-//        }
-//        else if(categoryName.equals("Settings"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new SettingsFragment(), "SettingsFragment");
-//        }
-//        else if(categoryName.equals("Log In"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new LoginFragment(), "LoginFragment");
-//
-//        }
-//
-//        else if(categoryName.equals("POPLOOK Loyalty Rewards"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new LoyaltyMainPageFragment(), "LoyaltyMain");
-//
-//        }
-//
-//
-//        else if(categoryName.equals("My Member ID"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            openFragment(new MyMemberIDFragment(), "MemberIDFragment");
-//
-//        }
-//        else if(categoryName.equals("Log Out"))
-//        {
-//            Drawer.closeDrawers();
-//
-//            new AlertDialog.Builder(MainActivity.this)
-//                    .setTitle("Log Out")
-//                    .setMessage("Are you sure you want to log out?")
-//                    .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-//                    {
-//                        @Override
-//                        public void onClick(DialogInterface dialog, int which) {
-//
-//                            SharedPreferences pref = MainActivity.this.getSharedPreferences("MyPref", 0);
-//                            SharedPreferences.Editor editor = pref.edit();
-//
-//                            editor.putString("UserID", "");
-//                            editor.putString("CartID", "");
-//                            editor.putString("LanguageID", "1");
-//                            editor.putString("Name", "");
-//                            editor.putString("LastName", "");
-//                            editor.putString("Email", "");
-//                            editor.putString("WishlistID", "");
-//                            editor.putString("cartItem", "0");
-//                            editor.putString("wishlistItem", "0");
-//                            editor.putString("loyalty_id", "");
-//                            editor.putString("popup_show", "");
-//                            editor.putString("tier_level","");
-//                            editor.putString("entity_id", "");
-//
-//                            editor.apply();
-//
-//                            Insider.Instance.tagEvent(MainActivity.this,"logout");
-//
-//                            new Handler().post(new Runnable() {
-//
-//                                @Override
-//                                public void run() {
-//                                    Intent intent = MainActivity.this.getIntent();
-//                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-//                                    MainActivity.this.overridePendingTransition(0, 0);
-//                                    MainActivity.this.finish();
-//
-//                                    MainActivity.this.overridePendingTransition(0, 0);
-//                                    startActivity(intent);
-//                                }
-//                            });
-//
-//                        }
-//
-//                    })
-//                    .setNegativeButton("Cancel", null)
-//                    .show();
-//        }
-//        else
-//        {
-//
-//            for(int i=0; i < parentSideMenuArray.size(); i++)
-//            {if(parentSideMenuArray.get(i).gettitle() == categoryName)
-//
-//
-//            categoryID = parentSideMenuArray.get(i).getcategoryID();
-//
-//            }
-//
-//
-//            if(categoryID.length() > 0)
-//            {
-//                Drawer.closeDrawers();
-//
-//
-//
-//                Fragment fragment = new ProductListFragment();
-//                Bundle bundle = new Bundle();
-//                bundle.putString("prodID", categoryID);
-//                bundle.putString("catName",categoryName);
-//                bundle.putString("fromHome", "Home");
-//                fragment.setArguments(bundle);
-//
-//                openFragment(fragment, "ProductListFragment");
-//            }
-//        }
-//
-//
-//
-//
-//
-//
-//    }
+            // Extract data included in the Intent
+            String message = intent.getStringExtra("message");
+            String title = intent.getStringExtra("title");
+            final String orderId = intent.getStringExtra("Id");
+
+            Log.e("Main Activity cibai",title+" : "+message);
+
+            //AnyIntent or Query
+
+        }
+    };
 
     private void openFragment(final Fragment fragment, final String fragmentTag) {
 
@@ -713,16 +468,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
                         | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
 
-                Fragment fragment = new ShoppingBagFragment();
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("forWishlist", "0");
-//                    fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
-                fragmentTransaction.commit();
+                fm.popBackStack();
+
             } else {
                 fm.popBackStack();
             }
@@ -1239,6 +986,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 String prodName = tokens.nextToken();
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
 
+
+
 //                SharedPreferences.Editor editor = pref.edit();
 //                editor.putString("comeFromNotification", "1");
 //                editor.putString("categoryID", prodID);
@@ -1267,6 +1016,222 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     public void onResume() {
         super.onResume();
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        String comeFromNotification = pref.getString("comeFromNotification", "0");
+        String categoryID = pref.getString("categoryID", "");
+        String categoryName = pref.getString("categoryName", "");
+        String searchKeyword = pref.getString("searchKeyword","");
+        String productID = pref.getString("productID","");
+        String productName = pref.getString("productName","");
+        String lastVisitProductPageID = pref.getString("lastVisitPage_ID","");
+        String lastVisitProductPageName = pref.getString("lastVisitedPage","");
+        String lastVisitProductDetailID = pref.getString("lastVisitProductID","");
+        String lastVisitProductDetailName = pref.getString("lastVisitProductName","");
+
+        String signup_inapp = "0";
+
+        try {
+            cartResultJObj = new JSONObject(pref.getString("signup_page_open","0"));
+            JSONObject data= cartResultJObj.getJSONObject("data");
+
+            signup_inapp = data.getString("test");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        String cartNotification = pref.getString("cartPage","");
+        String wishlistNotification = pref.getString("wishlistPage","");
+        String orderHistoryPage = pref.getString("orderHistoryPage","");
+        String cartReminder = pref.getString("goToCart","");
+
+
+        if(!categoryID.equals("") && !categoryName.equals("")){
+
+                    Fragment fragment = new ProductListFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("prodID", categoryID);
+                    bundle.putString("catName",categoryName);
+                    bundle.putString("fromHome", "Home");
+                    fragment.setArguments(bundle);
+
+                    pref.edit().remove("categoryID").commit();
+                    pref.edit().remove("categoryName").commit();
+
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.replace(R.id.fragmentContainer, fragment, "ProductListFragment");
+//                ft.addToBackStack(null);
+                    ft.commit();
+
+                }
+
+        else if(!lastVisitProductPageID.equals("") && !lastVisitProductPageName.equals("")){
+
+                    Fragment fragment = new ProductListFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("prodID", lastVisitProductPageID);
+                    bundle.putString("catName",lastVisitProductPageName);
+                    bundle.putString("fromHome", "Home");
+                    fragment.setArguments(bundle);
+
+                    pref.edit().remove("lastVisitPage_ID").commit();
+                    pref.edit().remove("lastVisitedPage").commit();
+
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.replace(R.id.fragmentContainer, fragment, "ProductListFragment");
+//                ft.addToBackStack(null);
+                    ft.commit();
+                }else if(!searchKeyword.equals(""))
+                {
+                    Fragment fragment = new ProductListFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("fromHome","Search");
+                    bundle.putString("search", searchKeyword.toString());
+                    fragment.setArguments(bundle);
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    SearchFragment searchFragment = (SearchFragment)fragmentManager.findFragmentByTag("SearchFragment");
+
+                    if (searchFragment != null && searchFragment.isVisible()) {
+                        // add your code here
+                        FragmentTransaction trans1 = fragmentManager.beginTransaction();
+                        trans1.remove(searchFragment);
+                        trans1.commit();
+                        fragmentManager.popBackStack();
+                    }
+                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentTransaction ft = fragmentManager.beginTransaction();
+//                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    ft.replace(R.id.fragmentContainer, fragment, "SearchFragment");
+//                ft.addToBackStack(null);
+                    ft.commit();
+
+                }else if(!productID.equals("") && !productName.equals("")){
+                    Fragment fragment = new ProductInfoFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("prodID", productID);
+                    bundle.putString("catName", productName);
+                    fragment.setArguments(bundle);
+
+                    pref.edit().remove("productID").commit();
+                    pref.edit().remove("productName").commit();
+
+                    FragmentManager fm = getFragmentManager();
+                    fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentTransaction ft = fm.beginTransaction();
+//                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
+//                ft.addToBackStack(null);
+                    ft.commit();
+                }
+                else if(!lastVisitProductDetailID.equals("") && !lastVisitProductDetailName.equals("")){
+                    Fragment fragment = new ProductInfoFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("prodID", lastVisitProductDetailID);
+                    bundle.putString("catName", lastVisitProductDetailName);
+                    fragment.setArguments(bundle);
+
+            System.out.println("lalalalal = " + lastVisitProductDetailID);
+
+
+            pref.edit().remove("lastVisitProductID").commit();
+                    pref.edit().remove("lastVisitProductName").commit();
+
+                    FragmentManager fm = getFragmentManager();
+                    fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentTransaction ft = fm.beginTransaction();
+//                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
+//                ft.addToBackStack(null);
+                    ft.commit();
+                }
+                else if(cartNotification.equals("1")){
+
+                    pref.edit().remove("cartPage").commit();
+
+                    Fragment fragment = new ShoppingBagFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
+                else if(wishlistNotification.equals("1")){
+
+                    pref.edit().remove("wishlistPage").commit();
+
+                    Fragment fragment = new SavedItemsFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "SavedItemsFragment");
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
+                else if(orderHistoryPage.equals("1")){
+
+                    pref.edit().remove("orderHistoryPage").commit();
+
+                    Fragment fragment = new OrderHistoryFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "OrderHistoryFragment");
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+
+                }
+        else if (cartReminder.equals("1")){
+
+            pref.edit().remove("goToCart").commit();
+
+            Fragment fragment = new ShoppingBagFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
+//                    fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
+        else if (signup_inapp.equals("1")){
+
+            pref.edit().remove("signup_page_open").commit();
+
+            Insider.Instance.tagEvent("register_form_viewed").addParameterWithBoolean("needRegister",false).build();
+
+            Fragment fragment = new SignUpFragment();
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            ft.replace(R.id.fragmentContainer, fragment);
+
+            ft.commit();
+
+        }
+                else{
+                    FragmentManager fm = getFragmentManager();
+                    FragmentTransaction ft = fm.beginTransaction();
+                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                    ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
+//                ft.addToBackStack(null);
+                    ft.commit();
+                }
 
     }
 

@@ -262,6 +262,7 @@ public class LoginFragment extends Fragment implements AsyncTaskCompleteListener
                         Insider.Instance.getCurrentUser().setCustomAttributeWithString("surname",lastname);
                         Insider.Instance.getCurrentUser().setSurname(lastname);
 
+                        Insider.Instance.tagEvent("register_form_viewed").addParameterWithBoolean("needRegister",false).build();
 
                         if(data.isNull("popup_tier"))
                         {
