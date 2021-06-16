@@ -1220,7 +1220,6 @@ public class shippingMethodFragment extends Fragment implements AsyncTaskComplet
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
         String apikey =pref.getString("apikey","");
         String action="Carts/OrderStep3?apikey="+apikey+"&id_cart="+CartID+"&id_address_delivery="+deliveryAddItem.getaddressID()+"&id_carrier="+carrierID+"&device_type=android&app_version="+appVersion;
-
         WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
 
         callws.execute(action);

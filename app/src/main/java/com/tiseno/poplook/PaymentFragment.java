@@ -303,6 +303,23 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                     taxAmount = data.getString("taxCost");
                     shipping_price = data.getString("shipping_price");
 
+                    if(data.has("enable_bank_msg"))
+                    {
+                        bank_msg_enable = data.getString("enable_bank_msg");
+
+                        if(bank_msg_enable.equals("1")){
+                            first_bank_message = data.getString("bank_bsn_message");
+                            second_bank_message = data.getString("bank_cimb_message");
+                        }
+                    }
+
+                    else {
+                        bank_msg_enable = "0";
+                        first_bank_message = "false";
+                        second_bank_message = "false";
+                    }
+
+
                     for(int i = 0; i < jsonArr.length(); i++)
                     {
                         JSONObject jObj = jsonArr.getJSONObject(i);
