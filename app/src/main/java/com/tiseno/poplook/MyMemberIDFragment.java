@@ -1,6 +1,8 @@
 package com.tiseno.poplook;
 
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.ContentResolver;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -79,8 +81,25 @@ public class MyMemberIDFragment extends Fragment implements AsyncTaskCompleteLis
         bottomTV = (TextView)view.findViewById(R.id.bottomLayoutTV);
         bottomTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
 
+        bottomTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Fragment fragment = new LoyaltyDashboardFragment();
+                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+
+        });
+
         refreshBarcodeTV = (TextView)view.findViewById(R.id.refreshBarcode);
         refreshBarcodeTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
 
 
         barcodeImg = (ImageView)view.findViewById(R.id.barcodeImage);
