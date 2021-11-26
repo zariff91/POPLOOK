@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.FailReason;
@@ -27,8 +28,6 @@ public class coloursAdapter extends RecyclerView.Adapter<coloursAdapter.ViewHold
     ArrayList<coloursItem> data ;
 
     Context context;
-    ImageLoader imageLoader= ImageLoader.getInstance();
-    Boolean imageLoaded=false;
     String SelectedCountryCurrency;
     // Creating a ViewHolder which extends the RecyclerView View Holder
     // ViewHolder are used to to store the inflated views in order to recycle them
@@ -81,7 +80,6 @@ public class coloursAdapter extends RecyclerView.Adapter<coloursAdapter.ViewHold
         SharedPreferences pref = context.getSharedPreferences("MyPref", 0);
         SelectedCountryCurrency = pref.getString("SelectedCountryCurrency", "");
         //Creating ViewHolder and passing the object of type view
-        imageLoader.init(ImageLoaderConfiguration.createDefault(parent.getContext()));
         return new ViewHolder(v); // Returning the created object
 
         //inflate your layout and pass it to view holder
@@ -109,39 +107,41 @@ public class coloursAdapter extends RecyclerView.Adapter<coloursAdapter.ViewHold
 //                    }
 //                });
         String imageUri= data.get(position).getColorImg();
-        display(holder.coloursIV, imageUri);
+
+        Glide.with(context).load(imageUri).into(holder.coloursIV);
+//        display(holder.coloursIV, imageUri);
         // Similarly we set the resources for header view
 
     }
-    public void display(final ImageView img, String url)
-    {
-        imageLoader.displayImage(url, img, new ImageLoadingListener() {
-            @Override
-            public void onLoadingStarted(String imageUri, View view) {
-                if(!imageLoaded)
-                {
-                    img.setVisibility(View.GONE);
-                    System.out.println("HASHSAHSAKDSAHDKSAHDKSAHKDSAKHDSADKDASH");
-                }
-
-            }
-            @Override
-            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-                img.setVisibility(View.VISIBLE);
-
-
-            }
-            @Override
-            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-                img.setVisibility(View.VISIBLE);
-                imageLoaded=true;
-            }
-            @Override
-            public void onLoadingCancelled(String imageUri, View view) {
-
-            }
-
-        });
-    }
+//    public void display(final ImageView img, String url)
+//    {
+//        imageLoader.displayImage(url, img, new ImageLoadingListener() {
+//            @Override
+//            public void onLoadingStarted(String imageUri, View view) {
+//                if(!imageLoaded)
+//                {
+//                    img.setVisibility(View.GONE);
+//                    System.out.println("HASHSAHSAKDSAHDKSAHDKSAHKDSAKHDSADKDASH");
+//                }
+//
+//            }
+//            @Override
+//            public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+//                img.setVisibility(View.VISIBLE);
+//
+//
+//            }
+//            @Override
+//            public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+//                img.setVisibility(View.VISIBLE);
+//                imageLoaded=true;
+//            }
+//            @Override
+//            public void onLoadingCancelled(String imageUri, View view) {
+//
+//            }
+//
+//        });
+//    }
 }
 

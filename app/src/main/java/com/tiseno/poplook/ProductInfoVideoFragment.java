@@ -13,11 +13,13 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.ClientCertRequest;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -30,6 +32,7 @@ public class ProductInfoVideoFragment extends Fragment {
 
     TextView close;
 
+    ProgressBar centerBar;
 
     @Override
     public View onCreateView(LayoutInflater inflater,
@@ -38,6 +41,7 @@ public class ProductInfoVideoFragment extends Fragment {
         View view = inflater.inflate(R.layout.product_info_video_view, container, false);
         videoView = (WebView) view.findViewById(R.id.videoProduct);
         close = (TextView) view.findViewById(R.id.closeTxt);
+        centerBar = (ProgressBar)view.findViewById(R.id.progressBarVideo);
 
         close.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,12 +63,20 @@ public class ProductInfoVideoFragment extends Fragment {
 
         videoView.loadUrl(urlVideo);
 
-        if(videoView.getProgress() != 100){
-            Toast toast = Toast.makeText(getActivity(),
-                    "Loading...Video may take a few seconds to show", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.BOTTOM, 0, 50);
-            toast.show();
-        }
+        videoView.setWebViewClient(new WebViewClient(){
+            @Override
+            public void onPageFinished(WebView view, String url) {
+                super.onPageFinished(view, url);
+                centerBar.setVisibility(View.GONE);
+            }
+        });
+
+//        if(videoView.getProgress() != 100){
+//            Toast toast = Toast.makeText(getActivity(),
+//                    "Loading...Video may take a few seconds to show", Toast.LENGTH_LONG);
+//            toast.setGravity(Gravity.BOTTOM, 0, 50);
+//            toast.show();
+//        }
 
 
         return view;

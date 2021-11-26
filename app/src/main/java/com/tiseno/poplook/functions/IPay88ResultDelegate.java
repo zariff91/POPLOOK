@@ -17,6 +17,14 @@ public class IPay88ResultDelegate implements IPayIHResultDelegate, Serializable 
     private static final String TAG = IPay88ResultDelegate.class.getSimpleName();
 
     @Override
+    public void onConnectionError(String s, String s1, String s2, String s3, String s4, String s5) {
+
+        IPay88PaymentActivity.resultTitle = "CONNECTION ERROR";
+        IPay88PaymentActivity.resultInfo = "The transaction has been cancelled.";
+
+    }
+
+    @Override
     public void onPaymentSucceeded(String TransId, String RefNo, String Amount,
                                    String Remark, String AuthCode) {
 
@@ -68,13 +76,6 @@ public class IPay88ResultDelegate implements IPayIHResultDelegate, Serializable 
         IPay88PaymentActivity.resultTitle	= "Requery Result";
         IPay88PaymentActivity.resultInfo 	= "";
 
-
-    }
-    @Override
-    public void onConnectionError(String merchantCode, String merchantKey,
-                                  String RefNo, String Amount, String Remark, String lang, String country) {
-        IPay88PaymentActivity.resultTitle = "CONNECTION ERROR";
-        IPay88PaymentActivity.resultInfo = "The transaction has been cancelled.";
 
     }
 

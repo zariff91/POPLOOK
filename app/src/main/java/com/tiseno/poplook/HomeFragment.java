@@ -149,7 +149,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
 
             AlertDialog.Builder privacyAlert = new AlertDialog.Builder(getActivity());
             privacyAlert.setTitle("Privacy Policy");
-            privacyAlert.setMessage("Poplook collects your personal information such as phone number, email address, credit/debit card or other payment options for purchasing our products. This information required by third parties chosen by you in the payment page as part of the purchasing process. Other information such as address details may be given to our courier for delivery services. These details allow us to process your order and to let you know the status of your order. For more information you can read our Privacy Policy by clicking Read or go to My Account > Privacy Policy. By choosing Agree, you are accepting and consenting to the practices described in Privacy Policy. ");
+            privacyAlert.setMessage("Poplook collects your personal information such as phone number, email address, credit/debit card or other payment options for purchasing our products. This information required as part of the purchasing process. Other information such as address details may be given to our courier for delivery services. These details allow us to process your order and to let you know the status of your order. For more information you can read our Privacy Policy by clicking Read or go to My Account > Privacy Policy. By choosing Agree, you are accepting and consenting to the practices described in Privacy Policy. ");
             privacyAlert.setCancelable(false);
             privacyAlert.setPositiveButton("Read",
                     new DialogInterface.OnClickListener()
@@ -167,7 +167,6 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
                 public void onClick(DialogInterface dialog, int which) {
                 }
             });
-            privacyAlert.show();
 
             final AlertDialog dialog = privacyAlert.create();
             dialog.show();
@@ -779,7 +778,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
 
 
                                         } else{
-                                            Fragment fragment = new ProductListFragment();
+                                            Fragment fragment = new ListOfProductFragment();
 
                                             if(bannerID.equals("null") || categoryName.equals("null"))
                                             {

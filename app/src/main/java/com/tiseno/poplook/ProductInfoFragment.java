@@ -61,10 +61,14 @@ import com.cunoraz.tagview.TagView;
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
+import com.smarteist.autoimageslider.SliderAnimations;
+import com.smarteist.autoimageslider.SliderView;
 import com.tiseno.poplook.functions.FontUtil;
 import com.tiseno.poplook.functions.HackyViewPager;
 import com.tiseno.poplook.functions.RecyclerItemClickListener;
 import com.tiseno.poplook.functions.SimpleDividerItemDecoration;
+import com.tiseno.poplook.functions.SliderImageAdapter;
 import com.tiseno.poplook.functions.StyleWithAdapter;
 import com.tiseno.poplook.functions.StyleWithItem;
 import com.tiseno.poplook.functions.URLSpanNoUnderline;
@@ -103,7 +107,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
     int saveBtnClick=0;
     String UserID, CartID="0", LanguageID,link_rewrite;
     String id_product_attribute = "";
-    TextView colorTV,productInfoTitleTV,productInfoPriceTV,productInfoRefNoTV,sizeTV,quantityTV,detailsTV,measurementsTV,careTV,DeliveryTV,soldOutInfo,productInfoDiscountPriceTV,shownHereLabel,matchItemLabel,motherDaughterLabel, categoryLabel, onlineExLabel;
+    TextView categoryTopTitle,colorTV,productInfoTitleTV,productInfoPriceTV,productInfoRefNoTV,sizeTV,quantityTV,detailsTV,measurementsTV,careTV,DeliveryTV,soldOutInfo,productInfoDiscountPriceTV,shownHereLabel,matchItemLabel,motherDaughterLabel, categoryLabel, onlineExLabel;
     TextView sizeSelectTv, noSizeTv;
     Spinner spinner2;
     Spinner spinner;
@@ -171,6 +175,8 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
     String[] itemSizeAvailableArray;
 
     ChipCloud chipCloud;
+
+    SliderView imageSlider;
 
     ImageButton backButton, shoppingBagBtn_prodInfo;
 
@@ -277,6 +283,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
         deliveryImageBtn = (ImageButton)view.findViewById(R.id.deliveryImageBtn);
         addToCartBottomView = (RelativeLayout) view.findViewById(R.id.addToCartBelowView);
 
+//        imageSlider = (SliderView)view.findViewById(R.id.imageSlider);
 
 
         layoutAdd = (RelativeLayout)view.findViewById(R.id.rl3);
@@ -291,6 +298,10 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
         saleButton = (Button)view.findViewById(R.id.saleBar);
         saleButton.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
 
+        categoryTopTitle = (TextView)view.findViewById(R.id.categoryTitle);
+        categoryTopTitle.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
+
+        categoryTopTitle.setText(catName);
 
         productInfoTitleTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
         productInfoPriceTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
@@ -372,7 +383,8 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 //                Fragment fragment = new NewCartAndWishlistFragment();
 //                FragmentManager fragmentManager = getFragmentManager();
 //                Bundle bundle = new Bundle();
-//                bundle.putString("forWishlist", "0");
+//                bundl
+//                e.putString("forWishlist", "0");
 //                fragment.setArguments(bundle);
 //                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 ////                fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
@@ -1867,6 +1879,14 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
 
                         imageIndicator.setViewPager(productViewVP);
+
+//                        SliderImageAdapter adapter = new SliderImageAdapter(getActivity(),imgList);
+//
+//                        imageSlider.setSliderAdapter(adapter);
+//
+//                        imageSlider.setIndicatorAnimation(IndicatorAnimationType.SLIDE); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
+//                        imageSlider.setIndicatorSelectedColor(Color.WHITE);
+//                        imageSlider.setIndicatorUnselectedColor(Color.GRAY);
 
                         mAdapter = new StyleWithAdapter(getActivity(),mItems);
                         mRecyclerView.setAdapter(mAdapter);

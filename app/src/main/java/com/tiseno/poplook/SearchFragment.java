@@ -69,7 +69,7 @@ public class SearchFragment extends Fragment {
                 ((MainActivity) getActivity()).changeToolBarText("Search ''" + search + "''");
                 ((MainActivity) getActivity()).changeToolBarTextView(true);
                 ((MainActivity) getActivity()).changeToolBarImageView(false);
-                Fragment fragment = new ProductListFragment();
+                Fragment fragment = new ListOfProductFragment();
                 Bundle bundle = new Bundle();
                 bundle.putString("fromHome","Search");
                 bundle.putString("search", search);
@@ -130,9 +130,9 @@ public class SearchFragment extends Fragment {
             ((MainActivity) getActivity()).changeToolBarTextView(true);
             ((MainActivity) getActivity()).changeToolBarImageView(false);
 
-            Fragment fragment = new ProductListFragment();
+            Fragment fragment = new ListOfProductFragment();
             Bundle bundle = new Bundle();
-            bundle.putString("fromHome","Search");
+            bundle.putString("fromSearch","Search");
             bundle.putString("search",search);
             fragment.setArguments(bundle);
             FragmentManager fragmentManager = getActivity().getFragmentManager();
@@ -147,7 +147,7 @@ public class SearchFragment extends Fragment {
             }
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductListFragment");
+            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ListOfProductFragment");
                 fragmentTransaction.addToBackStack(null);
             fragmentTransaction.commit();
             ((MainActivity) getActivity()).getSupportActionBar().show();

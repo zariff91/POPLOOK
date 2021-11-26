@@ -113,7 +113,7 @@ public class IPay88PaymentActivity extends Activity implements AsyncTaskComplete
 
             if (CREDITCARD_PAYMENT.equals("1")) {
                 method = IPayIH.PAY_METHOD_CREDIT_CARD;
-                payment.setMerchantKey("s8EXcXnvqK");
+//                payment.setMerchantKey("s8EXcXnvqK");
                 payment.setMerchantCode("M01333_S0001");
                 if (SelectedCountryCurrency.equals("RM")) {
                     PAYMENT_ID = "2";
@@ -123,14 +123,14 @@ public class IPay88PaymentActivity extends Activity implements AsyncTaskComplete
             } else if (CREDITCARD_PAYMENT.equals("0")) {
                 method = IPayIH.PAY_METHOD_CREDIT_CARD;
 //                method = IPayIH.PAY_METHOD_EWALLET; ipay88SDK error
-                payment.setMerchantKey("s8EXcXnvqK");
+//                payment.setMerchantKey("s8EXcXnvqK");
                 payment.setMerchantCode("M01333_S0001");
                 PAYMENT_ID = extras.getString("PAYMENT_ID");
             } else if (CREDITCARD_PAYMENT.equals("4")) {
 
                 method = IPayIH.PAY_METHOD_CREDIT_CARD;
 //                method = IPayIH.PAY_METHOD_EWALLET; ipay88SDK error
-                payment.setMerchantKey("s8EXcXnvqK");
+//                payment.setMerchantKey("s8EXcXnvqK");
                 payment.setMerchantCode("M01333_S0001");
                 PAYMENT_ID = eWalletPayment;
 
@@ -157,7 +157,7 @@ public class IPay88PaymentActivity extends Activity implements AsyncTaskComplete
             payment.setProdDesc("Poplook Purchases");
             payment.setUserName(USER_NAME);
             payment.setUserEmail(USER_EMAIL);
-            payment.setUserContact(USER_CONTACT);
+//            payment.setUserContact(USER_CONTACT);
             payment.setRemark("Modest Fashion");
             payment.setLang("ISO-8859-1");
             payment.setCountry("MY");

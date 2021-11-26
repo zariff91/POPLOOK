@@ -14,6 +14,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -31,9 +32,13 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.text.SpannableString;
+import android.text.style.UnderlineSpan;
 import android.transition.Explode;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -50,11 +55,15 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.tiseno.poplook.functions.Artist;
+import com.tiseno.poplook.functions.BottomMenuAdapter;
+import com.tiseno.poplook.functions.ChildSideMenuItem;
 import com.tiseno.poplook.functions.Genre;
 import com.tiseno.poplook.functions.GenreAdapter;
 import com.tiseno.poplook.functions.FontUtil;
+import com.tiseno.poplook.functions.GridViewProductAdapter;
 import com.tiseno.poplook.functions.HackyDrawerLayout;
 import com.tiseno.poplook.functions.RegistrationIntentService;
 import com.tiseno.poplook.functions.sideMenuItem;
@@ -76,13 +85,15 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 
-public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<JSONObject>, ChangeEditAddressList.selectAddress, AddtoCartFragment.addToCartMethod, BottomNavCollectionFragment.selectedBottomCategoryMenu, HomeBottomFragment.selectBottomCollectionMenu, BottomNavMyAccFragment.selectBottomMyAcc {
-    String backOrderID, backOrderName;
+public class MainActivity extends AppCompatActivity implements AsyncTaskCompleteListener<JSONObject>, ChangeEditAddressList.selectAddress, AddtoCartFragment.addToCartMethod, BottomNavCollectionFragment.selectedBottomCategoryMenu, HomeBottomFragment.selectBottomCollectionMenu, BottomNavMyAccFragment.selectBottomMyAcc,BottomMenuAdapter.onClickItem{
     public FirebaseAnalytics mFirebaseAnalytics;
-    String UserID, CartID, LanguageID, selectedSide;
+    String UserID, CartID, LanguageID;
     String cartItem, apikey;
-    ArrayList<sideMenuItem> itemArray = new ArrayList<sideMenuItem>();
-    ArrayList<sideMenuItem> parentSideMenuArray = new ArrayList<sideMenuItem>();
+    ArrayList<sideMenuItem> parentSideMenuArray = new ArrayList<>();
+    ArrayList<sideMenuItem>sideMenuArray= new ArrayList<>();
+    ArrayList<sideMenuItem>childSideMenu= new ArrayList<>();
+
+//    ArrayList<ChildSideMenuItem> childMenuArray = new ArrayList<ChildSideMenuItem>();
 
     JSONObject cartResultJObj;
 
@@ -98,35 +109,26 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     private Toolbar toolbar, toolbar2;                              // Declaring the Toolbar Object
 
-    RecyclerView mRecyclerView;                           // Declaring RecyclerView
-    RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
-    RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
-    HackyDrawerLayout Drawer;
+    RecyclerView sideMenuRV;
+    RecyclerView.LayoutManager mLayoutManager;
 
-    private GenreAdapter mmAdapter;
-    private List<Genre> genres;// Declaring DrawerLayout
+    BottomMenuAdapter mmAdapter;
+// Declaring RecyclerView
 
-    ActionBarDrawerToggle mDrawerToggle;                  // Declaring Action Bar Drawer Toggle
-
-    TextView top, bagNoti, wishlistNoti;
+    TextView top, bagNoti, wishlistNoti,shippingToText,sideMenuUserNameText,sideMenuText,homeMenuBtn,changeLabelText;
     ImageButton backBtn, shoppingBagBtn, wishlistBtn, searchBtn, xCloseBtn, homeButton;
-    ImageView logo;
+    ImageView logo,backSideMenuBtn;
 
-    RelativeLayout side_menu_user_rl;
-    LinearLayout topBarLL;
-
-    TextView side_menu_userTV;
+    RelativeLayout sideMenuTopText;
     private String numberInBag = "0";
     private String numberInWishlist = "0";
     String tickTock = "", tickTockID = "", SelectedCountryName = "";
     boolean isAppInstalled = false;
     String SelectedShopID = "1";
-    ProductInfoFragment productFrag;
-
-    BottomNavigationView bottomView;
 
     AppBarLayout appBar;
-
+    DrawerLayout mDrawer;
+    boolean childOpened =  false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,34 +136,29 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        Runtime rt = Runtime.getRuntime();
+        long maxMemory = rt.maxMemory();
+        Log.v("onCreate Here", "maxMemory:" + Long.toString(maxMemory));
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             // Call some material design APIs here
 
             Window window = this.getWindow();
-
 // clear FLAG_TRANSLUCENT_STATUS flag:
             window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-
 // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-
 // finally change the color
             window.setStatusBarColor(this.getResources().getColor(R.color.lightgrey));
-
-
             window.requestFeature(Window.FEATURE_CONTENT_TRANSITIONS);
-
 // set an exit transition
             window.setExitTransition(new Explode());
             window.setEnterTransition(new Explode());
 
         }
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_app);
-        onNewIntent(getIntent());
-        //**************************** PUSH NOTIFICATION CONFIGURATIONS
 
         try {
             if (checkPlayServices()) {
@@ -190,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         apikey = pref.getString("apikey", "");
 //        if(!isAppInstalled){
 //            // add shortcutIcon code here
-//            System.out.println("COME SHORTCUT");
+//            System.out.println("COME SHORTCUT");268435456
 //            Intent intent = this.getIntent();
 //            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
 //            this.overridePendingTransition(0, 0);
@@ -204,6 +201,81 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     and setting the the Action bar to our toolbar
      */
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        mDrawer = findViewById(R.id.sideDrawer);
+        sideMenuRV = findViewById(R.id.sideMenuRecyclerView);
+        sideMenuTopText = findViewById(R.id.mainMenuTextLayout);
+        backSideMenuBtn = findViewById(R.id.back_menu_btn);
+        sideMenuText = findViewById(R.id.main_menu_text_label);
+        sideMenuUserNameText = findViewById(R.id.userName);
+        shippingToText = findViewById(R.id.shipping_change_label);
+        homeMenuBtn = findViewById(R.id.homeMenuBtn);
+        changeLabelText = findViewById(R.id.change_shippinglabel);
+
+        mLayoutManager = new LinearLayoutManager(this); // Creating a layout Manager
+        sideMenuRV.setLayoutManager(mLayoutManager);
+
+        changeLabelText.setTypeface(FontUtil.getTypeface(this, FontUtil.FontType.AVENIR_MEDIUM_FONT));
+        SpannableString content = new SpannableString("Change");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        changeLabelText.setText(content);
+
+        changeLabelText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDrawer.closeDrawer(GravityCompat.START,true);
+                openFragment(new ChangeCountryFragment(), "ChangeCountryFragment");
+
+            }
+        });
+
+        shippingToText.setTypeface(FontUtil.getTypeface(this, FontUtil.FontType.AVENIR_MEDIUM_FONT));
+        shippingToText.setTextColor(Color.BLACK);
+
+        shippingToText.setText("Ship to "+SelectedCountryName);
+
+        sideMenuText.setTypeface(FontUtil.getTypeface(this, FontUtil.FontType.AVENIR_BLACK_FONT));
+        sideMenuText.setTextColor(Color.WHITE);
+        sideMenuUserNameText.setTypeface(FontUtil.getTypeface(this, FontUtil.FontType.AVENIR_BLACK_FONT));
+        sideMenuUserNameText.setTextColor(Color.BLACK);
+        homeMenuBtn.setTypeface(FontUtil.getTypeface(this, FontUtil.FontType.AVENIR_BLACK_FONT));
+        homeMenuBtn.setTextColor(Color.BLACK);
+
+        SpannableString homeText = new SpannableString("Home");
+        homeText.setSpan(new UnderlineSpan(), 0, homeText.length(), 0);
+        homeMenuBtn.setText(homeText);
+
+        homeMenuBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mDrawer.closeDrawer(GravityCompat.START,true);
+                openFragment(new HomeFragment(), "HomeFragment");
+
+            }
+        });
+
+        if (UserID.length() > 0) {
+            sideMenuUserNameText.setText("Hello, " + pref.getString("Name", ""));
+        }
+
+        else {
+            sideMenuUserNameText.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    mDrawer.closeDrawer(GravityCompat.START, false);
+
+                    Fragment fragment = new LoginFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                    fragmentTransaction.commit();
+                }
+
+            });
+        }
+
+
 //        toolbar2= (Toolbar) findViewById(R.id.tool_bar1);
 //        toolbar2.setVisibility(View.GONE);
 
@@ -236,50 +308,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 //        mRecyclerView.setHasFixedSize(true);
 
-
-        bottomView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
-
         appBar = (AppBarLayout) findViewById(R.id.tabanim_appbar);
-
-        bottomView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.bottom_home:
-
-                        FragmentManager fm3 = getFragmentManager();
-                        HomeBottomFragment alertDialog3 = HomeBottomFragment.newInstance(selectedCategory);
-                        alertDialog3.show(fm3, "fragment_alert3");
-
-                        return true;
-
-                    case R.id.bottom_product:
-
-                        FragmentManager fm = getFragmentManager();
-                        BottomNavCollectionFragment alertDialog = BottomNavCollectionFragment.newInstance(selectedCategory);
-                        alertDialog.show(fm, "fragment_alert");
-                        return true;
-
-                    case R.id.bottom_account:
-
-                        FragmentManager fm2 = getFragmentManager();
-                        BottomNavMyAccFragment alertDialog2 = BottomNavMyAccFragment.newInstance("Testing2");
-                        alertDialog2.show(fm2, "fragment_alert2");
-//                        Fragment fragment = new LoginFragment();
-//
-//                        FragmentManager fragmentManager = getFragmentManager();
-//                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-//                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-//                        fragmentTransaction.addToBackStack(null);
-//                        fragmentTransaction.commit();
-                        return true;
-                }
-                return false;
-            }
-        });
-
 
         backBtnControl("");
         wishlistBtn.setOnClickListener(new View.OnClickListener() {
@@ -340,12 +369,11 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
             @Override
             public void onClick(View v) {
-
-                openFragment(new HomeFragment(), "HomeFragment");
-
+//                openFragment(new NewProductListFragment(), "NewProductListFragment");
+//                hideTopBar(true);
+                mDrawer.openDrawer(GravityCompat.START);
 
             }
-
         });
 
         xCloseBtn.setOnClickListener(new View.OnClickListener() {
@@ -376,6 +404,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         }
 
+        getSideMenuList();
     }
 
     private BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
@@ -387,7 +416,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             String title = intent.getStringExtra("title");
             final String orderId = intent.getStringExtra("Id");
 
-            Log.e("Main Activity cibai",title+" : "+message);
+            Log.e("Main Activity",title+" : "+message);
 
             //AnyIntent or Query
 
@@ -437,45 +466,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 //        } else {
         FragmentManager fm = getFragmentManager();
         if (fm.getBackStackEntryCount() > 0) {
-            Log.i("MainActivity", "popping backstack");
-            ProductListFragment productListFragment = (ProductListFragment) fm.findFragmentByTag("ProductListFragment");
-
-            PaymentFragment paymentFragment = (PaymentFragment) fm.findFragmentByTag("PaymentFragment");
-
-
-            NewAddressBillingFragment addressFragment = (NewAddressBillingFragment) fm.findFragmentByTag("NewAddressBillingFragment");
-
-            if (productListFragment != null && productListFragment.isVisible()) {
-                // add your code here
-//                    FragmentTransaction trans = fm.beginTransaction();
-//                    trans.remove(productListFragment);
-//                    trans.commit();
-//                    fm.popBackStack();
-                FragmentManager fmHome = getFragmentManager();
-                fmHome.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                FragmentTransaction ft = fm.beginTransaction();
-//                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
-//                ft.addToBackStack(null);
-                ft.commit();
-            } else if (addressFragment != null && addressFragment.isVisible()) {
-                // add your code here
-
-                toolbar = (Toolbar) findViewById(R.id.tool_bar);
-
-                AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-                params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                        | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
-
-                fm.popBackStack();
-
-            } else {
-                fm.popBackStack();
-            }
-
-            showBottomBar(true);
-
+            fm.popBackStack();
         } else {
             Log.i("MainActivity", "nothing on backstack, calling super");
             HomeFragment homeFragment = (HomeFragment) fm.findFragmentByTag("HomeFragment");
@@ -507,6 +498,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         getSupportActionBar().show();
+//        hideTopBar(true);
      }
 
 //    }
@@ -540,182 +532,84 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void getSideMenuList() {
 
 //        String action="Menus/mobile?apikey="+apikey+"&shop="+SelectedShopID+"&lang=1";
-        String action = "Menus/webcategories/lang/1/shop/" + SelectedShopID + "?apikey=" + apikey;
+        String action = "Menus/mobilecategories/lang/1/shop/"+SelectedShopID+"?apikey=" + apikey;
 
         WebServiceAccessGet callws = new WebServiceAccessGet(this, this);
         callws.execute(action);
-
-        genres = new ArrayList<>(1000);
 
     }
 
     @Override
     public void onTaskComplete(JSONObject result) {
-
         if (result != null) {
 
             try {
 
-                if (result.getString("action").equals("Menus_webcategories")) {
+                if (result.getString("action").equals("Menus_mobilecategories")) {
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-                    UserID = pref.getString("UserID", "");
-                    SelectedCountryName = pref.getString("SelectedCountryName", "");
-                    itemArray.clear();
-                    parentSideMenuArray.clear();
+//                    UserID = pref.getString("UserID", "");
+//                    SelectedCountryName = pref.getString("SelectedCountryName", "");
+//                    itemArray.clear();
+//                    parentSideMenuArray.clear();
 
-//                    JSONArray dta = result.ge;
+                    parentSideMenuArray.clear();
+                    sideMenuArray.clear();
 
                     JSONObject test = result.getJSONObject("data");
+                    JSONArray parentMenuArray = test.getJSONArray("children");
 
-                    JSONArray Titles = test.getJSONArray("children");
+                    for (int i = 0; i < parentMenuArray.length(); i++) {
 
-                    if (genres.size() == 0) {
+                        JSONObject obj = parentMenuArray.getJSONObject(i);
 
+                        String parentSideMenuTitle = obj.getString("name");
+                        String parentSideMenuCatID = obj.getString("id");
 
-//                        artists.add(new Artist("Paramore" , "Scarves"));
-//                        artists.add(new Artist("Flyleaf" , "Tops"));
-//                        artists.add(new Artist("The Script", "Shoes"));
+                        Object aObj = obj.get("children");
+                        if (aObj instanceof JSONObject) {
 
+                            JSONObject children = obj.getJSONObject("children");
 
-                        genres.add(new Genre("Shipping To " + SelectedCountryName + "", null));
-
-
-                        if (UserID.length() == 0) {
-
-                        } else {
-                            genres.add(new Genre("Shipping To " + SelectedCountryName + "", null));
-
-                        }
-
-                        genres.add(new Genre("Home", null));
-
-                        for (int i = 0; i < Titles.length(); i++) {
-
-                            String sideMenuTitle = Titles.getJSONObject(i).getString("name");
-                            String sideMenuCatID = Titles.getJSONObject(i).getString("id");
-
-                            JSONArray subSideMenuArray = Titles.getJSONObject(i).getJSONArray("children");
-
-                            parentSideMenuArray.add(new sideMenuItem(sideMenuCatID, sideMenuTitle, "", false, false, false));
-
-                            List<Artist> artists = new ArrayList<>(subSideMenuArray.length());
-
-                            System.out.println("SideArray" + subSideMenuArray);
-
-                            if (subSideMenuArray.length() > 0) {
-
-                                for (int j = 0; j < subSideMenuArray.length(); j++) {
-                                    String catID = subSideMenuArray.getJSONObject(j).getString("id");
-                                    String catName = subSideMenuArray.getJSONObject(j).getString("name");
-                                    itemArray.add(new sideMenuItem(catID, catName, "", false, false, false));
-
-                                    artists.add(new Artist(catID, catName));
-
-
-                                }
-
-                                genres.add(new Genre(sideMenuTitle, artists));
-
-                            } else {
-                                String catID = Titles.getJSONObject(i).getString("id");
-                                String catName = Titles.getJSONObject(i).getString("name");
-                                itemArray.add(new sideMenuItem(catID, catName, "", false, false, false));
-
-
-                                genres.add(new Genre(catName, null));
-
-
+                            if(children.has("Discover")){
+                                JSONArray discoverList = children.getJSONArray("Discover");
+                                JSONArray shopByList = children.getJSONArray("Shop By");
+                                parentSideMenuArray.add(new sideMenuItem(parentSideMenuCatID,parentSideMenuTitle,shopByList,discoverList));
+                            }
+                            else {
+                                JSONArray shopByList = children.getJSONArray("Shop By");
+                                parentSideMenuArray.add(new sideMenuItem(parentSideMenuCatID,parentSideMenuTitle,shopByList,null));
                             }
 
-
+                            // do what you want
                         }
 
-                        genres.add(new Genre("Visit Our Store", null));
-                        genres.add(new Genre("Follow Us", null));
-
-                        if (UserID.length() > 0) {
-                            genres.add(new Genre("My Account", null));
-
-                            side_menu_user_rl.setVisibility(View.VISIBLE);
-                            side_menu_userTV.setText("Hello, " + pref.getString("Name", ""));
-                        }
-
-
-                        genres.add(new Genre("Settings", null));
-
-                        genres.add(new Genre("POPLOOK Loyalty Rewards", null));
-
-
-                        if (UserID.length() == 0) {
-                            genres.add(new Genre("Log In", null));
-
-                        } else {
-
-                            if (SelectedShopID.equals("1")) {
-                                genres.add(new Genre("My Member ID", null));
-                            }
-
-                            genres.add(new Genre("Log Out", null));
+                        else {
+                            parentSideMenuArray.add(new sideMenuItem(parentSideMenuCatID,parentSideMenuTitle,null,null));
 
                         }
                     }
 
-////                    getGenres();
-//                    mmAdapter = new GenreAdapter(genres,new OnItemClickListener()
-//                    {
-//                        @Override
-//                        public void onItemClick(View v, int position) {
-//                            if(UserID.length()!=0){
-//                                onTouchDrawer(position);
-//                            }else{
-//                                onTouchDrawer(position);
-//                            }
-//                        }
-//                    });
+                    parentSideMenuArray.add(new sideMenuItem("1000","Follow Us",null,null));
+                    parentSideMenuArray.add(new sideMenuItem("1001","Visit Our Store",null,null));
+                    parentSideMenuArray.add(new sideMenuItem("1002","Settings",null,null));
+                    parentSideMenuArray.add(new sideMenuItem("1003","POPLOOK Loyalty",null,null));
 
-//                    mmAdapter = new GenreAdapter( this,selectedSide,genres, new OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(String title, String catId) {
-//
-//                            System.out.println("getMainTitle" + title);
-////
-//                            if(UserID.length()!=0){
-//                                onTouchDrawer(title , catId);
-//                            }else{
-//                                onTouchDrawer(title , catId);
-//                            }
-//                        }
-//                    });
+                    if(UserID.length() != 0){
 
-
-//                    mAdapter = new MyAdapter(this, itemArray);
-//                    mAdapter= new MyAdapter(this, itemArray, new OnItemClickListener() {
-//                        @Override
-//                        public void onItemClick(View v, int position) {
-//                            if(UserID.length()!=0){
-//                                onTouchDrawer(position);
-//                            }else{
-//                                onTouc
-//                             hDrawer(position);
-//                            }
-//                        }
-//                    });
-                    // Make Bookends
-//                    Bookends<RecyclerView.Adapter> mBookends = new Bookends<>(mAdapter);
+                        if(SelectedShopID.equals("1")){
+                            parentSideMenuArray.add(new sideMenuItem("1004","My Member ID",null,null));
+                            parentSideMenuArray.add(new sideMenuItem("1005","My Account",null,null));
+                            parentSideMenuArray.add(new sideMenuItem("1006","Log Out",null,null));
+                        }
+                        else {
+                            parentSideMenuArray.add(new sideMenuItem("1005","My Account",null,null));
+                            parentSideMenuArray.add(new sideMenuItem("1006","Log Out",null,null));
+                        }
+                    }
 //
+                    mmAdapter = new BottomMenuAdapter(parentSideMenuArray,this,this);
+                    sideMenuRV.setAdapter(mmAdapter);
 //
-//                    if (UserID.length() > 0) {
-//                        // Inflate footer view
-//                        LayoutInflater inflater1 = LayoutInflater.from(this);
-//
-//                        RelativeLayout header = (RelativeLayout) inflater1.inflate(R.layout.side_menu_header_layout, mRecyclerView, false);
-//
-//                        mBookends.addHeader(header);
-//                    }
-
-                    mRecyclerView.setAdapter(mmAdapter);
-
-                    System.out.println("sizeeeee is " + itemArray.size());
                 }
 
             } catch (Exception e) {
@@ -723,23 +617,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             }
 
         } else {
-
-//            new AlertDialog.Builder(this)
-//                    .setTitle("Internet Connection Problem")
-//                    .setMessage("We are unable to connect to the server due to connection problem. Please check your connectivity and try again")
-//                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            dialog.cancel();
-//                        }
-//                    }).show();
-
         }
-    }
-
-    public void pressShoppingBag() {
-        shoppingBagBtn.performClick();
-
-
     }
 
     public void changeToolBarText(String txt) {
@@ -825,13 +703,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     }
 
     public void showBottomBar(Boolean view) {
-        if (view) {
-            bottomView.setVisibility(View.VISIBLE);
-        } else {
-            bottomView.setVisibility(View.GONE);
-        }
-
-
     }
 
     public void disableExpandToolbar(Boolean view) {
@@ -865,6 +736,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
             wishlistNoti.setVisibility(View.VISIBLE);
             wishlistNoti.setText(numberInWishlist);
+        }
+    }
+
+    public void hideTopBar(Boolean view) {
+        if (view) {
+            toolbar.setVisibility(View.GONE);
+        } else {
+            toolbar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -967,57 +846,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
     }
 
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-        setIntent(intent);//must store the new intent unless getIntent() will return the old one
-        processExtraData();
-    }
-
-    private void processExtraData() {
-        try {
-            Intent intent = getIntent();
-            String action = intent.getAction();
-            String data = intent.getDataString();
-
-            if (Intent.ACTION_VIEW.equals(action) && data != null) {
-                String dataStr = data.substring(data.lastIndexOf("/") + 1);
-                StringTokenizer tokens = new StringTokenizer(dataStr, "-");
-                String prodID = tokens.nextToken();
-                String prodName = tokens.nextToken();
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-
-
-
-//                SharedPreferences.Editor editor = pref.edit();
-//                editor.putString("comeFromNotification", "1");
-//                editor.putString("categoryID", prodID);
-//                editor.putString("categoryName", prodName);
-//                editor.apply();
-//                System.out.println("COME FROM INSIDER INAPPS");
-
-                Fragment fragment = new ProductInfoFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("prodID", prodID);
-                bundle.putString("catName", "Home");
-                fragment.setArguments(bundle);
-                FragmentManager fm = getFragmentManager();
-                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                FragmentTransaction ft = fm.beginTransaction();
-//                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
-                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
-//                ft.addToBackStack(null);
-                ft.commit();
-
-            }
-        } catch (Exception e) {
-        }
-    }
-
     public void onResume() {
         super.onResume();
 
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
+        //**************************** PUSH NOTIFICATION CONFIGURATIONS
+
+        SharedPreferences pref = getSharedPreferences("MyPref", 0);
+
         String comeFromNotification = pref.getString("comeFromNotification", "0");
         String categoryID = pref.getString("categoryID", "");
         String categoryName = pref.getString("categoryName", "");
@@ -1029,210 +864,199 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         String lastVisitProductDetailID = pref.getString("lastVisitProductID","");
         String lastVisitProductDetailName = pref.getString("lastVisitProductName","");
 
-        String signup_inapp = "0";
+        if(comeFromNotification.equals("1")) {
 
-        try {
-            cartResultJObj = new JSONObject(pref.getString("signup_page_open","0"));
-            JSONObject data= cartResultJObj.getJSONObject("data");
+            String signup_inapp = "0";
 
-            signup_inapp = data.getString("test");
+            try {
+                cartResultJObj = new JSONObject(pref.getString("signup_page_open", "0"));
+                JSONObject data = cartResultJObj.getJSONObject("data");
 
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+                signup_inapp = data.getString("test");
 
-        String cartNotification = pref.getString("cartPage","");
-        String wishlistNotification = pref.getString("wishlistPage","");
-        String orderHistoryPage = pref.getString("orderHistoryPage","");
-        String cartReminder = pref.getString("goToCart","");
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            String cartNotification = pref.getString("cartPage", "");
+            String wishlistNotification = pref.getString("wishlistPage", "");
+            String orderHistoryPage = pref.getString("orderHistoryPage", "");
+            String cartReminder = pref.getString("goToCart", "");
 
 
-        if(!categoryID.equals("") && !categoryName.equals("")){
+            if (!categoryID.equals("") && !categoryName.equals("")) {
 
-                    Fragment fragment = new ProductListFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("prodID", categoryID);
-                    bundle.putString("catName",categoryName);
-                    bundle.putString("fromHome", "Home");
-                    fragment.setArguments(bundle);
+                Fragment fragment = new ListOfProductFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("prodID", categoryID);
+                bundle.putString("catName", categoryName);
+                bundle.putString("fromHome", "Home");
+                fragment.setArguments(bundle);
 
-                    pref.edit().remove("categoryID").commit();
-                    pref.edit().remove("categoryName").commit();
+                pref.edit().remove("categoryID").commit();
+                pref.edit().remove("categoryName").commit();
 
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                    ft.replace(R.id.fragmentContainer, fragment, "ProductListFragment");
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.replace(R.id.fragmentContainer, fragment, "ListOfProductFragment");
 //                ft.addToBackStack(null);
-                    ft.commit();
+                ft.commit();
 
+            } else if (!lastVisitProductPageID.equals("") && !lastVisitProductPageName.equals("")) {
+
+                Fragment fragment = new ListOfProductFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("prodID", lastVisitProductPageID);
+                bundle.putString("catName", lastVisitProductPageName);
+                bundle.putString("fromHome", "Home");
+                fragment.setArguments(bundle);
+
+                pref.edit().remove("lastVisitPage_ID").commit();
+                pref.edit().remove("lastVisitedPage").commit();
+
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.replace(R.id.fragmentContainer, fragment, "ListOfProductFragment");
+//                ft.addToBackStack(null);
+                ft.commit();
+            } else if (!searchKeyword.equals("")) {
+                Fragment fragment = new ProductListFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("fromHome", "Search");
+                bundle.putString("search", searchKeyword.toString());
+                fragment.setArguments(bundle);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                SearchFragment searchFragment = (SearchFragment) fragmentManager.findFragmentByTag("SearchFragment");
+
+                if (searchFragment != null && searchFragment.isVisible()) {
+                    // add your code here
+                    FragmentTransaction trans1 = fragmentManager.beginTransaction();
+                    trans1.remove(searchFragment);
+                    trans1.commit();
+                    fragmentManager.popBackStack();
                 }
-
-        else if(!lastVisitProductPageID.equals("") && !lastVisitProductPageName.equals("")){
-
-                    Fragment fragment = new ProductListFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("prodID", lastVisitProductPageID);
-                    bundle.putString("catName",lastVisitProductPageName);
-                    bundle.putString("fromHome", "Home");
-                    fragment.setArguments(bundle);
-
-                    pref.edit().remove("lastVisitPage_ID").commit();
-                    pref.edit().remove("lastVisitedPage").commit();
-
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                    ft.replace(R.id.fragmentContainer, fragment, "ProductListFragment");
-//                ft.addToBackStack(null);
-                    ft.commit();
-                }else if(!searchKeyword.equals(""))
-                {
-                    Fragment fragment = new ProductListFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("fromHome","Search");
-                    bundle.putString("search", searchKeyword.toString());
-                    fragment.setArguments(bundle);
-
-                    FragmentManager fragmentManager = getFragmentManager();
-                    SearchFragment searchFragment = (SearchFragment)fragmentManager.findFragmentByTag("SearchFragment");
-
-                    if (searchFragment != null && searchFragment.isVisible()) {
-                        // add your code here
-                        FragmentTransaction trans1 = fragmentManager.beginTransaction();
-                        trans1.remove(searchFragment);
-                        trans1.commit();
-                        fragmentManager.popBackStack();
-                    }
-                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    FragmentTransaction ft = fragmentManager.beginTransaction();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction ft = fragmentManager.beginTransaction();
 //                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    ft.replace(R.id.fragmentContainer, fragment, "SearchFragment");
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.replace(R.id.fragmentContainer, fragment, "SearchFragment");
 //                ft.addToBackStack(null);
-                    ft.commit();
+                ft.commit();
 
-                }else if(!productID.equals("") && !productName.equals("")){
-                    Fragment fragment = new ProductInfoFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("prodID", productID);
-                    bundle.putString("catName", productName);
-                    fragment.setArguments(bundle);
+            } else if (!productID.equals("") && !productName.equals("")) {
+                Fragment fragment = new ProductInfoFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("prodID", productID);
+                bundle.putString("catName", productName);
+                fragment.setArguments(bundle);
 
-                    pref.edit().remove("productID").commit();
-                    pref.edit().remove("productName").commit();
+                pref.edit().remove("productID").commit();
+                pref.edit().remove("productName").commit();
 
-                    FragmentManager fm = getFragmentManager();
-                    fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    FragmentTransaction ft = fm.beginTransaction();
+                FragmentManager fm = getFragmentManager();
+                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction ft = fm.beginTransaction();
 //                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
 //                ft.addToBackStack(null);
-                    ft.commit();
-                }
-                else if(!lastVisitProductDetailID.equals("") && !lastVisitProductDetailName.equals("")){
-                    Fragment fragment = new ProductInfoFragment();
-                    Bundle bundle = new Bundle();
-                    bundle.putString("prodID", lastVisitProductDetailID);
-                    bundle.putString("catName", lastVisitProductDetailName);
-                    fragment.setArguments(bundle);
+                ft.commit();
+            } else if (!lastVisitProductDetailID.equals("") && !lastVisitProductDetailName.equals("")) {
+                Fragment fragment = new ProductInfoFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("prodID", lastVisitProductDetailID);
+                bundle.putString("catName", lastVisitProductDetailName);
+                fragment.setArguments(bundle);
 
-            System.out.println("lalalalal = " + lastVisitProductDetailID);
+                pref.edit().remove("lastVisitProductID").commit();
+                pref.edit().remove("lastVisitProductName").commit();
 
-
-            pref.edit().remove("lastVisitProductID").commit();
-                    pref.edit().remove("lastVisitProductName").commit();
-
-                    FragmentManager fm = getFragmentManager();
-                    fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    FragmentTransaction ft = fm.beginTransaction();
+                FragmentManager fm = getFragmentManager();
+                fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction ft = fm.beginTransaction();
 //                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
 //                ft.addToBackStack(null);
-                    ft.commit();
-                }
-                else if(cartNotification.equals("1")){
+                ft.commit();
+            } else if (cartNotification.equals("1")) {
 
-                    pref.edit().remove("cartPage").commit();
+                pref.edit().remove("cartPage").commit();
 
-                    Fragment fragment = new ShoppingBagFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                Fragment fragment = new ShoppingBagFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
-                }
-                else if(wishlistNotification.equals("1")){
+            } else if (wishlistNotification.equals("1")) {
 
-                    pref.edit().remove("wishlistPage").commit();
+                pref.edit().remove("wishlistPage").commit();
 
-                    Fragment fragment = new SavedItemsFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment fragment = new SavedItemsFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
-                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "SavedItemsFragment");
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "SavedItemsFragment");
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
-                }
-                else if(orderHistoryPage.equals("1")){
+            } else if (orderHistoryPage.equals("1")) {
 
-                    pref.edit().remove("orderHistoryPage").commit();
+                pref.edit().remove("orderHistoryPage").commit();
 
-                    Fragment fragment = new OrderHistoryFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "OrderHistoryFragment");
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                Fragment fragment = new OrderHistoryFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "OrderHistoryFragment");
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
-                }
-        else if (cartReminder.equals("1")){
+            } else if (cartReminder.equals("1")) {
 
-            pref.edit().remove("goToCart").commit();
+                pref.edit().remove("goToCart").commit();
 
-            Fragment fragment = new ShoppingBagFragment();
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
+                Fragment fragment = new ShoppingBagFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
 //                    fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
-        }
-        else if (signup_inapp.equals("1")){
+                fragmentTransaction.commit();
+            } else if (signup_inapp.equals("1")) {
 
-            pref.edit().remove("signup_page_open").commit();
+                pref.edit().remove("signup_page_open").commit();
 
-            Insider.Instance.tagEvent("register_form_viewed").addParameterWithBoolean("needRegister",false).build();
+                Insider.Instance.tagEvent("register_form_viewed").addParameterWithBoolean("needRegister", false).build();
 
-            Fragment fragment = new SignUpFragment();
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-            ft.replace(R.id.fragmentContainer, fragment);
+                Fragment fragment = new SignUpFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                ft.replace(R.id.fragmentContainer, fragment);
 
-            ft.commit();
+                ft.commit();
 
-        }
-                else{
-                    FragmentManager fm = getFragmentManager();
-                    FragmentTransaction ft = fm.beginTransaction();
-                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                    ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
+            } else {
+                FragmentManager fm = getFragmentManager();
+                FragmentTransaction ft = fm.beginTransaction();
+                ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+                ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
 //                ft.addToBackStack(null);
-                    ft.commit();
-                }
-
+                ft.commit();
+            }
+        }
     }
 
     @Override
@@ -1272,14 +1096,14 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         selectedCategory = data2;
 
-        Fragment fragment = new ProductListFragment();
+        Fragment fragment = new ListOfProductFragment();
         Bundle bundle = new Bundle();
         bundle.putString("prodID", data2);
         bundle.putString("catName", data);
         bundle.putString("fromHome", "Home");
         fragment.setArguments(bundle);
 
-        openFragment(fragment, "ProductListFragment");
+        openFragment(fragment, "ListOfProductFragment");
 
 
     }
@@ -1304,25 +1128,17 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         if (data.contains("Shipping To")) {
             openFragment(new ChangeCountryFragment(), "ChangeCountryFragment");
         }
-
-
         if (data.equals("Visit Our Store")) {
             openFragment(new VisitOurStoreFragment(), "VisitOurStoreFragment");
         }
         if (data.equals("My Account")) {
             openFragment(new MyAccountFragment(), "MyAccountFragment");
         }
-
         if (data.equals("Login")) {
-
             openFragment(new LoginFragment(), "LoginFragment");
-
         }
-
         if (data.equals("Poplook Loyalty Rewards")) {
-
             openFragment(new LoyaltyMainPageFragment(), "LoyaltyMain");
-
         }
 
         if (data.equals("Privacy Policy")) {
@@ -1341,15 +1157,10 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         }
 
         if (data.equals("Settings")) {
-
             openFragment(new SettingsFragment(), "SettingsFragment");
-
         }
-
         if (data.equals("My Member ID")) {
-
             openFragment(new MyMemberIDFragment(), "MemberIDFragment");
-
         }
 
         if (data.equals("Facebook")) {
@@ -1389,8 +1200,6 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 this.startActivity(new Intent(Intent.ACTION_VIEW,
                         Uri.parse("http://instagram.com/poplook")));
             }
-
-
         }
 
         if (data.equals("Log Out")) {
@@ -1468,7 +1277,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void selectedDeliveryAdd(Integer deliveryAdd, Integer billingAdd) {
 
         FragmentManager fm = getFragmentManager();
-        NewAddressBillingFragment addressFragment = (NewAddressBillingFragment) fm.findFragmentByTag("NewAddressBillingFragment");
+        NewOrderConfirmationFragment addressFragment = (NewOrderConfirmationFragment) fm.findFragmentByTag("NewOrderConfirmationFragment");
 
         if (addressFragment == null) {
 
@@ -1476,7 +1285,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         } else {
 
-            addressFragment.updateAddressDelivery(deliveryAdd, billingAdd);
+            addressFragment.updateAddressConfirmationPage(deliveryAdd, billingAdd);
 
         }
 
@@ -1498,6 +1307,277 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         }
 
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
+        if (childOpened) {
+
+            String catName = sideMenuArray.get(position).gettitle();
+
+            if(catName.equals("Shop By") || catName.equals("Discover")) {
+
+
+            }
+
+            else {
+                String catID = sideMenuArray.get(position).getcategoryID();
+                if (catID.equals("fb")) {
+
+                    Intent facebookIntent = new Intent(Intent.ACTION_VIEW);
+                    String facebookUrl = getFacebookPageURL(this);
+                    facebookIntent.setData(Uri.parse(facebookUrl));
+                    this.startActivity(facebookIntent);
+
+                } else if (catID.equals("twit")) {
+
+                    Intent intent = null;
+                    try {
+                        // get the Twitter app if possible
+                        this.getPackageManager().getPackageInfo("com.twitter.android", 0);
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?user_id=50962757"));
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    } catch (Exception e) {
+                        // no Twitter app, revert to browser
+                        intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/poplookshop"));
+                    }
+                    this.startActivity(intent);
+
+                } else if (catID.equals("insta")) {
+
+                    Uri uri = Uri.parse("http://instagram.com/_u/poplook");
+                    Intent likeIng = new Intent(Intent.ACTION_VIEW, uri);
+
+                    likeIng.setPackage("com.instagram.android");
+
+                    try {
+                        this.startActivity(likeIng);
+                    } catch (ActivityNotFoundException e) {
+                        this.startActivity(new Intent(Intent.ACTION_VIEW,
+                                Uri.parse("http://instagram.com/poplook")));
+                    }
+
+                } else {
+
+                    Fragment fragment = new ListOfProductFragment();
+
+                    Bundle bundle = new Bundle();
+                    bundle.putString("prodID", sideMenuArray.get(position).getcategoryID());
+                    bundle.putString("catName", sideMenuArray.get(position).gettitle());
+                    bundle.putString("fromHome", "Home");
+                    fragment.setArguments(bundle);
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+
+                mDrawer.closeDrawer(GravityCompat.START, false);
+
+            }
+
+    }
+                        else {
+
+                            String cat = parentSideMenuArray.get(position).getcategoryID();
+
+                            if (cat.equals("1000")) {
+                                homeMenuBtn.setVisibility(View.GONE);
+                                sideMenuText.setText("Follow us on");
+
+                                sideMenuArray.add(new sideMenuItem("fb","Facebook",null,null));
+                                sideMenuArray.add(new sideMenuItem("twit","Twitter",null,null));
+                                sideMenuArray.add(new sideMenuItem("insta","Instagram",null,null));
+
+                                childOpened = true;
+                                mmAdapter = new BottomMenuAdapter(sideMenuArray, this, this);
+                                mmAdapter.notifyDataSetChanged();
+                                sideMenuRV.setAdapter(mmAdapter);
+                                sideMenuTopText.setVisibility(View.VISIBLE);
+                                sideMenuTopText.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        backPressed();
+                                    }
+                                });
+
+                            }
+
+                           else if (cat.equals("1001")) {
+                                mDrawer.closeDrawer(GravityCompat.START, false);
+                                openFragment(new VisitOurStoreFragment(), "VisitOurStoreFragment");
+                            }
+                            else if (cat.equals("1002")) {
+                                mDrawer.closeDrawer(GravityCompat.START, false);
+                                openFragment(new SettingsFragment(), "SettingsFragment");
+                            }
+                            else if (cat.equals("1003")) {
+                                mDrawer.closeDrawer(GravityCompat.START, false);
+                                openFragment(new LoyaltyMainPageFragment(), "LoyaltyMain");
+                            }
+                            else if (cat.equals("1004")) {
+                                mDrawer.closeDrawer(GravityCompat.START, false);
+                                openFragment(new MyMemberIDFragment(), "MemberIDFragment");
+                            }
+
+                            else if (cat.equals("1005")) {
+                                mDrawer.closeDrawer(GravityCompat.START, false);
+                                openFragment(new MyAccountFragment(), "MyAccountFragment");
+                            }
+
+                            else if (cat.equals("1006")) {
+                                mDrawer.closeDrawer(GravityCompat.START, false);
+                                new AlertDialog.Builder(MainActivity.this)
+                                        .setTitle("Log Out")
+                                        .setMessage("Are you sure you want to log out?")
+                                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+
+                                                SharedPreferences pref = MainActivity.this.getSharedPreferences("MyPref", 0);
+                                                SharedPreferences.Editor editor = pref.edit();
+
+                                                editor.putString("UserID", "");
+                                                editor.putString("CartID", "");
+                                                editor.putString("LanguageID", "1");
+                                                editor.putString("Name", "");
+                                                editor.putString("LastName", "");
+                                                editor.putString("Email", "");
+                                                editor.putString("WishlistID", "");
+                                                editor.putString("cartItem", "0");
+                                                editor.putString("wishlistItem", "0");
+                                                editor.putString("loyalty_id", "");
+                                                editor.putString("popup_show", "");
+                                                editor.putString("tier_level", "");
+                                                editor.putString("entity_id", "");
+
+                                                editor.apply();
+
+                                                Insider.Instance.tagEvent("logout").build();
+
+                                                new Handler().post(new Runnable() {
+
+                                                    @Override
+                                                    public void run() {
+                                                        Intent intent = MainActivity.this.getIntent();
+                                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                                        MainActivity.this.overridePendingTransition(0, 0);
+                                                        MainActivity.this.finish();
+
+                                                        MainActivity.this.overridePendingTransition(0, 0);
+                                                        startActivity(intent);
+                                                    }
+                                                });
+
+                                            }
+
+                                        })
+                                        .setNegativeButton("Cancel", null)
+                                        .show();
+                            }
+
+
+                           else if(parentSideMenuArray.get(position).getShopByArray() != null) {
+                                homeMenuBtn.setVisibility(View.GONE);
+                                sideMenuText.setText(parentSideMenuArray.get(position).gettitle());
+                                JSONArray childArr1 = parentSideMenuArray.get(position).getShopByArray();
+
+                                sideMenuArray.add(new sideMenuItem("","Shop By",null,null));
+
+                                for(int i=0;i<childArr1.length();i++){
+
+                                    try {
+                                        JSONObject childObject = childArr1.getJSONObject(i);
+
+                                        String catID = childObject.getString("id");
+                                        String catName = childObject.getString("name");
+
+                                        sideMenuArray.add(new sideMenuItem(catID,catName,null,null));
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+
+                                JSONArray childArr2 = parentSideMenuArray.get(position).getDiscoverArray();
+
+                                System.out.println("data menu = " + parentSideMenuArray.get(position).gettitle());
+
+                                System.out.println("data menu discover = " + childArr2);
+
+
+                                if(childArr2 != null){
+
+                                    sideMenuArray.add(new sideMenuItem("","Discover",null,null));
+
+                                    for(int i=0;i<childArr2.length();i++){
+
+                                        try {
+                                            JSONObject childObject = childArr2.getJSONObject(i);
+
+                                            String catID = childObject.getString("id");
+                                            String catName = childObject.getString("name");
+
+                                            sideMenuArray.add(new sideMenuItem(catID,catName,null,null));
+
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                    }
+
+                                }
+
+                                childOpened = true;
+                                mmAdapter = new BottomMenuAdapter(sideMenuArray, this, this);
+                                mmAdapter.notifyDataSetChanged();
+                                sideMenuRV.setAdapter(mmAdapter);
+                                sideMenuTopText.setVisibility(View.VISIBLE);
+                                sideMenuTopText.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        backPressed();
+                                    }
+                                });
+                            }
+
+                            else {
+
+                                    mDrawer.closeDrawer(GravityCompat.START, false);
+
+                                    Fragment fragment = new ListOfProductFragment();
+
+                                    Bundle bundle = new Bundle();
+                                    bundle.putString("prodID", parentSideMenuArray.get(position).getcategoryID());
+                                    bundle.putString("catName", parentSideMenuArray.get(position).gettitle());
+                                    bundle.putString("fromHome", "Home");
+                                    fragment.setArguments(bundle);
+                                    FragmentManager fragmentManager = getFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                                    fragmentTransaction.addToBackStack(null);
+                                    fragmentTransaction.commit();
+
+                                }
+
+                        }
+
+        }
+
+    void backPressed(){
+        homeMenuBtn.setVisibility(View.VISIBLE);
+        sideMenuArray.clear();
+        mmAdapter = new BottomMenuAdapter(parentSideMenuArray,this,this);
+        mmAdapter.notifyDataSetChanged();
+        sideMenuRV.setAdapter(mmAdapter);
+        sideMenuTopText.setVisibility(View.GONE);
+        childOpened = false;
+        homeMenuBtn.setVisibility(View.VISIBLE);
     }
 }
 
