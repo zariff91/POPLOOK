@@ -11,25 +11,32 @@ package com.tiseno.poplook.functions;
     import android.content.Context;
     import android.content.Intent;
     import android.graphics.Bitmap;
+    import android.graphics.Color;
     import android.net.Uri;
     import androidx.viewpager.widget.PagerAdapter;
     import androidx.viewpager.widget.ViewPager;
     import androidx.appcompat.app.AppCompatActivity;
 
     import android.os.Bundle;
+    import android.util.Log;
     import android.view.LayoutInflater;
     import android.view.View;
     import android.view.ViewGroup;
+    import android.webkit.WebSettings;
     import android.webkit.WebView;
+    import android.webkit.WebViewClient;
     import android.widget.ImageButton;
     import android.widget.ImageView;
     import android.widget.ProgressBar;
 
 
+    import com.bumptech.glide.Glide;
+    import com.nostra13.universalimageloader.core.DisplayImageOptions;
     import com.nostra13.universalimageloader.core.ImageLoader;
     import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
     import com.nostra13.universalimageloader.core.assist.FailReason;
     import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+    import com.squareup.picasso.Picasso;
     import com.tiseno.poplook.LoginFragment;
     import com.tiseno.poplook.MainActivity;
     import com.tiseno.poplook.ProductInfoVideoFragment;
@@ -42,7 +49,8 @@ public class ViewPagerAdapter extends PagerAdapter {
         ImageLoader imageLoader= ImageLoader.getInstance();
         Context context;
         Uri imagesList[];
-        ImageView imageView,whitebg;
+        WebView imageView;
+        ImageView videoIcon;
         WebView vidView;
         ProgressBar ImageProgressBar;
         ImageButton playButton;
@@ -76,27 +84,33 @@ public class ViewPagerAdapter extends PagerAdapter {
 
             LayoutInflater inflater = (LayoutInflater) container.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View page1 = inflater.inflate(R.layout.view_pager_image, null);
-            imageView = (ImageView)page1.findViewById(R.id.imageViewProductPager);
+            imageView = (WebView) page1.findViewById(R.id.imageViewProductPager);
+            imageView.setBackgroundColor(Color.WHITE);
+
+            imageView.getSettings().setSupportZoom(true);
+
+
             ImageProgressBar = (ProgressBar) page1.findViewById(R.id.loadingImagePager);
             vidView = (WebView) page1.findViewById(R.id.videoView1);
-            imageLoader.init(ImageLoaderConfiguration.createDefault(context.getApplicationContext()));
-            whitebg= (ImageView)page1.findViewById(R.id.whitebg);
+            videoIcon = (ImageView)page1.findViewById(R.id.video_image_icon);
+//            imageLoader.init(ImageLoaderConfiguration.createDefault(context.getApplicationContext()));
+//            whitebg= (ImageView)page1.findViewById(R.id.whitebg);
             vidUrl = container.getTag().toString();
 
 
+//            whitebg.setVisibility(View.VISIBLE);
+            vidView.setVisibility(View.GONE);
             if(position==(imagesList.length-1)){
-
-                whitebg.setVisibility(View.GONE);
-                vidView.setVisibility(View.GONE);
 
 
                 if(IsVideoAvailable)
                 {
                     ImageProgressBar.setVisibility(View.GONE);
-                    imageView.setVisibility(View.VISIBLE);
-                    imageView.setImageResource(R.drawable.default_video_2);
+                    videoIcon.setVisibility(View.VISIBLE);
+                    imageView.setVisibility(View.GONE);
+                    videoIcon.setImageResource(R.drawable.default_video_2);
 
-                    imageView.setOnClickListener(new View.OnClickListener() {
+                    videoIcon.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
 
@@ -128,22 +142,45 @@ public class ViewPagerAdapter extends PagerAdapter {
 
                 }else {
 
-                    String imageUri = imagesList[position].toString();
+                    String imageUri= imagesList[position].toString();
 
-                    display(imageView, imageUri, ImageProgressBar);
-                    mAttacher = new PhotoViewAttacher(imageView);
+                    if(imageUri.contains("drawable")){
+
+                        imageView.setVisibility(View.GONE);
+                        videoIcon.setVisibility(View.VISIBLE);
+
+                        display(videoIcon,imageUri,ImageProgressBar);
+
+                    }
+                    else {
+                        imageView.setVisibility(View.VISIBLE);
+                        videoIcon.setVisibility(View.GONE);
+                        String html = "<html><body><img src=\"" + imageUri + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+                        imageView.loadData(html, "text/html", null);
+//                        imageView.loadUrl(imageUri);
+
+                    }
                 }
 
             }
             else {
-                whitebg.setVisibility(View.GONE);
-                vidView.setVisibility(View.GONE);
 
+                String imageUri= imagesList[position].toString();
 
-               String imageUri= imagesList[position].toString();
+                if(imageUri.contains("drawable")){
+                    imageView.setVisibility(View.GONE);
+                    videoIcon.setVisibility(View.VISIBLE);
 
-                display(imageView, imageUri, ImageProgressBar);
-                mAttacher = new PhotoViewAttacher(imageView);
+                    display(videoIcon,imageUri,ImageProgressBar);
+                }
+                else {
+                    imageView.setVisibility(View.VISIBLE);
+                    videoIcon.setVisibility(View.GONE);
+//                    imageView.loadUrl(imageUri);
+
+                    String html = "<html><body><img src=\"" + imageUri + "\" width=\"100%\" height=\"100%\"\"/></body></html>";
+                    imageView.loadData(html, "text/html", null);
+                }
 
             }
             ((ViewPager) container).addView(page1, 0);
@@ -153,12 +190,9 @@ public class ViewPagerAdapter extends PagerAdapter {
         @Override
         public void destroyItem(ViewGroup container, int position, Object object) {
 
-            if (position == (imagesList.length - 1)) {
-
-            } else {
-                ((ViewPager) container).removeView((View) object);
-            }
-
+            Log.d("main", "garbaging imageview at: " + position);
+            View view = (View) object;
+            ((ViewPager) container).removeView(view);
         }
 
     public void display(final ImageView img, String url, final ProgressBar spinner)
@@ -186,12 +220,18 @@ public class ViewPagerAdapter extends PagerAdapter {
 
             @Override
             public void onLoadingCancelled(String imageUri, View view) {
+                spinner.setVisibility(View.GONE); //  loading completed set the spinenr visibility to gone
+
 
             }
 
         });
     }
 
+    private String getHtmlData(String bodyHTML) {
+        String head = "<head><style>img{max-width: 100%; width:auto; height: auto;}</style></head>";
+        return "<html>" + head + "<body>" + bodyHTML + "</body></html>";
+    }
 
     }
 

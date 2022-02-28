@@ -151,6 +151,11 @@ public class ListOfProductFragment extends Fragment implements AsyncTaskComplete
         if (_rootView != null) {
 
             ((MainActivity) getActivity()).changeToolBarText(catName);
+            ((MainActivity) getActivity()).changeBtnBackView(true);
+            ((MainActivity) getActivity()).changeBtnSearchView(true);
+            ((MainActivity) getActivity()).changeBtnBagView(true);
+            ((MainActivity) getActivity()).changeBtnWishlistView(true);
+
             if(fromSearch.equals("Search")){
                 ((MainActivity) getActivity()).changeToolBarText("Search ''" + search + "''");
             }
@@ -164,7 +169,7 @@ public class ListOfProductFragment extends Fragment implements AsyncTaskComplete
 
             ((MainActivity) getActivity()).changeToolBarText(catName);
             ((MainActivity) getActivity()).changeToolBarTextView(true);
-            ((MainActivity) getActivity()).changeBtnBackView(false);
+            ((MainActivity) getActivity()).changeBtnBackView(true);
             ((MainActivity) getActivity()).changeToolBarImageView(false);
             ((MainActivity) getActivity()).changeBtnSearchView(true);
             ((MainActivity) getActivity()).changeBtnBagView(true);
@@ -278,7 +283,7 @@ public class ListOfProductFragment extends Fragment implements AsyncTaskComplete
 
 
                                                        String[] title = {
-                                                               "Date",
+                                                               "Popularity",
                                                                "Price lowest to highest",
                                                                "Price highest to lowest",
                                                        };
@@ -313,10 +318,10 @@ public class ListOfProductFragment extends Fragment implements AsyncTaskComplete
 
                                                    else {
                                                        String[] title = {
-                                                               "Date",
+                                                               "Popularity",
                                                                "Price lowest to highest",
                                                                "Price highest to lowest",
-                                                               "Popularity"
+                                                               "Date"
                                                        };
 
                                                        sortChip.setMode(ChipCloud.Mode.SINGLE);

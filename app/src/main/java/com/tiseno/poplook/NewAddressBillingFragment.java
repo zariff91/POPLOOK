@@ -5,7 +5,9 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.Html;
 import android.text.SpannableString;
@@ -552,25 +554,27 @@ public class NewAddressBillingFragment extends Fragment implements AsyncTaskComp
 
                     if(nextPage.equals("paymentSelectionPage")){
 
-                        Fragment fragment = new PaymentFragment();
-                        FragmentManager fragmentManager = getActivity().getFragmentManager();
-                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                        fragmentTransaction.replace(R.id.fragmentContainer, fragment,"PaymentFragment");
-                        fragmentTransaction.addToBackStack(null);
 
-                        Bundle args = new Bundle();
-                        String cartResultJObjString = dataa.toString();
-                        args.putString("fromOrderHistory","0");
-                        args.putString("cartResultJObj", cartResultJObjString);
-                        args.putString("carrier_id_api",carrierID_forAPI);
-                        args.putString("delivery_address_id", deliveryAddItem.getaddressID());
-                        args.putInt("SelectedDeliveryAddress", SelectedDeliveryAddress);
-                        args.putInt("SelectedBillingAddress",SelectedBillingAddress);
-                        args.putInt("SelectedCarrierPosition", 0);
-                        fragment.setArguments(args);
 
-                        fragmentTransaction.commit();
+                                    Fragment fragment = new PaymentFragment();
+                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment,"PaymentFragment");
+                                    fragmentTransaction.addToBackStack(null);
+
+                                    Bundle args = new Bundle();
+                                    String cartResultJObjString = dataa.toString();
+                                    args.putString("fromOrderHistory","0");
+                                    args.putString("cartResultJObj", cartResultJObjString);
+                                    args.putString("carrier_id_api",carrierID_forAPI);
+                                    args.putString("delivery_address_id", deliveryAddItem.getaddressID());
+                                    args.putInt("SelectedDeliveryAddress", SelectedDeliveryAddress);
+                                    args.putInt("SelectedBillingAddress",SelectedBillingAddress);
+                                    args.putInt("SelectedCarrierPosition", 0);
+                                    fragment.setArguments(args);
+
+                                    fragmentTransaction.commit();
 
                     }
                 }

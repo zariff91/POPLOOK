@@ -46,9 +46,9 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Vi
         if(menuArray.get(position).getShopByArray() != null){
             holder.next.setVisibility(View.VISIBLE);
 
-            if(menuArray.get(position).title.equals("Birthday Sale")){
+            if(menuArray.get(position).title.equals("Raya 2022")){
 
-                holder.textView.setTextColor(context.getResources().getColor(R.color.birtday_orange));
+                holder.textView.setTextColor(context.getResources().getColor(R.color.raya_22));
                 holder.textView.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_MEDIUM_FONT));
             }
 
@@ -67,7 +67,7 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Vi
                holder.line.setVisibility(View.VISIBLE);
                 }
            else {
-               holder.line.setVisibility(View.GONE);
+                    holder.line.setVisibility(View.GONE);
                }
 
             }

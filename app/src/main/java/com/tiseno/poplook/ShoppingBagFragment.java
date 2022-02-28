@@ -82,7 +82,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
     ArrayList<addressItem> listArray_address = new ArrayList<addressItem>();
     RelativeLayout giftBarRL, leaveMsgBarRL, giftOptionsPopOutRL;
     ImageView giftOptionsNOIV,giftOptionsYESIV, leaveMsgNOIV,leaveMsgYESIV, giftOptionsPopOutCloseIV, giftOptionsIV;
-    TextView giftOptionsNOTV, giftOptionsYESTV, giftOptionsNoOfCharTV, leaveMsgNOTV, leaveMsgYESTV;
+    TextView giftOptionsNOTV,bottomNext, giftOptionsYESTV, giftOptionsNoOfCharTV, leaveMsgNOTV, leaveMsgYESTV;
     EditText giftOptionsET, leaveMsgET;
 
     TextView codeTV,codeApplyTV,giftOptionsTV,leaveMsgTV,shoppingBarNextBtnTV;
@@ -128,18 +128,42 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         ((MainActivity) getActivity()).changeToolBarTextView(true);
         ((MainActivity) getActivity()).changeBtnBackView(false);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
-        ((MainActivity) getActivity()).changeBtnSearchView(true);
-        ((MainActivity) getActivity()).changeBtnBagView(true);
-        ((MainActivity) getActivity()).changeBtnWishlistView(true);
+        ((MainActivity) getActivity()).changeBtnSearchView(false);
+        ((MainActivity) getActivity()).changeBtnBagView(false);
+        ((MainActivity) getActivity()).changeBtnWishlistView(false);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
         ((MainActivity) getActivity()).setDrawerState(true);
         ((MainActivity) getActivity()).showBottomBar(false);
+
 
 
         shoppingBagEmptyTV = (TextView) contentView.findViewById(R.id.shoppingBagEmptyTV);
         shoppingBagEmptyTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
 
         mRecyclerView = (RecyclerView) contentView.findViewById(R.id.shoppingBagRV);
+        bottomNext = (TextView) contentView.findViewById(R.id.cartBottomView);
+        bottomNext.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
+
+
+
+        bottomNext.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if(totalItemInBag.equals("0"))
+                {
+
+                }
+                else
+                {
+                    goToNextStepWS(giftOptionsET.getText().toString(),leaveMsgET.getText().toString());
+
+                }
+
+
+            }
+        });
+
         mLayoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -203,8 +227,8 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         shippingRMTVCart = (TextView)footerEarlyView.findViewById(R.id.shippingMethodTVlblCart);
         shippingTVCart = (TextView)footerEarlyView.findViewById(R.id.shippingMethodTVCart);
 
-        totalPayableTV = (TextView)footer.findViewById(R.id.totalPayableTVCart);
-        totalPayableRMTV = (TextView)footer.findViewById(R.id.totalPayableRMTVCart);
+        totalPayableTV = (TextView)footerEarlyView.findViewById(R.id.totalPayableTVCart);
+        totalPayableRMTV = (TextView)footerEarlyView.findViewById(R.id.totalPayableRMTVCart);
 
         totalPayableTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
         totalPayableRMTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
@@ -230,7 +254,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         giftOptionsPopOutRL = (RelativeLayout) footer.findViewById(R.id.giftOptionsPopOutRL);
         giftOptionsPopOutCloseIV = (ImageView) footer.findViewById(R.id.giftOptionsPopOutCloseIV);
 
-        shoppingBarNextBtnIB = (ImageButton) footer.findViewById(R.id.shoppingBarNextBtnIB);
+//        shoppingBarNextBtnIB = (ImageButton) footer.findViewById(R.id.shoppingBarNextBtnIB);
 
         codeApplyIB = (ImageButton) footer.findViewById(R.id.codeApplyIB);
 
@@ -511,15 +535,6 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         });
         String NeedToGoBackToCart = pref.getString("NeedToGoBackToCart","0");
 
-        shoppingBarNextBtnIB.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                goToNextStepWS(giftOptionsET.getText().toString(),leaveMsgET.getText().toString());
-
-            }
-        });
-
         // Attach footer view
         mBookends.addFooter(footerEarlyView);
 
@@ -566,7 +581,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 
                 }
             });
-            mBookends.addFooter(footerVoucherCode);
+//            mBookends.addFooter(footerVoucherCode);
         }
 
 
@@ -636,10 +651,10 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
             });
 
 
-            mBookends.addFooter(footerVoucherCode1);
+//            mBookends.addFooter(footerVoucherCode1);
         }
 
-        mBookends.addFooter(footer);
+//        mBookends.addFooter(footer);
 
         if(oriGiftOptionsText.length() > 0)
         {
@@ -939,7 +954,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                             String item_total = jObj.getString("total");
                             Integer quantity_available = jObj.getInt("quantity_available");
 //
-                            if(quantity_available < 1)
+                            if(quantity_available == 0 || quantity_available < 1)
                             {
                                 haveOutOfStock = true;
                                 listArray_outofstockitem.add(jObj);
@@ -982,7 +997,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 
 
                         }
-                        ((MainActivity) getActivity()).changeToolBarBagNotiText(String.valueOf(totalquantity));
+//                        ((MainActivity) getActivity()).changeToolBarBagNotiText(String.valueOf(totalquantity));
 
                         editor.putString("cartItem", String.valueOf(totalquantity));
                         editor.apply();
@@ -1038,7 +1053,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                     }
                     else
                     {
-                        ((MainActivity) getActivity()).changeToolBarBagNotiText("0");
+//                        ((MainActivity) getActivity()).changeToolBarBagNotiText("0");
 
 
                         totalItemInBag = "0";
@@ -1054,7 +1069,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 
                 else if(result.getString("action").equals("Carts_removeProduct"))
                 {
-
+                    listArray_outofstockitem.clear();
                 }
 
 
@@ -1159,25 +1174,45 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 //                            editor.putString("NeedToGoBackToCart", "0");
 //                            editor.apply();
 
-                            Fragment fragment = new NewAddressBillingFragment();
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                            fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewAddressBillingFragment");
-                            fragmentTransaction.addToBackStack(null);
+                            if (UserID.length() == 0) {
+                                Fragment fragment = new CheckOutMethodFragment();
 
-                            Bundle args=new Bundle();
-                            String cartResultJObjString=cartResultJObj1.toString();
-                            System.out.println("cartResultObj" + cartResultJObjString);
-                            args.putString("cartResultJObj", cartResultJObjString);
-                            args.putString("FOR_BILLING","0");
-                            fragment.setArguments(args);
+                                Bundle args = new Bundle();
+                                String cartResultJObjString1 = cartResultJObj1.toString();
 
-                            fragmentTransaction.commit();
+                                args.putString("cartResultJObj", cartResultJObjString1);
+                                fragment.setArguments(args);
 
-                            editor = pref.edit();
-                            editor.putString("NeedToGoBackToCart", "0");
-                            editor.apply();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                                fragmentTransaction.addToBackStack(null);
+                                fragmentTransaction.commit();
+                            }
+
+                            else {
+
+                                Fragment fragment = new NewOrderConfirmationFragment();
+                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "NewOrderConfirmationFragment");
+                                fragmentTransaction.addToBackStack(null);
+
+                                Bundle args = new Bundle();
+                                String cartResultJObjString = cartResultJObj1.toString();
+                                System.out.println("cartResultObj" + cartResultJObjString);
+                                args.putString("cartResultJObj", cartResultJObjString);
+                                args.putString("FOR_BILLING", "0");
+                                fragment.setArguments(args);
+
+                                fragmentTransaction.commit();
+
+                                editor = pref.edit();
+                                editor.putString("NeedToGoBackToCart", "0");
+                                editor.apply();
+                            }
 
                         }
                         else if(nextPage.equals("addAddressPage"))
@@ -1213,7 +1248,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                         String message = result.getString("message");
                         new AlertDialog.Builder(getActivity())
                                 .setTitle("Message")
-                                .setMessage("An item in your cart is no longer available in this quantity. You cannot proceed with your order until the quantity is adjusted")
+                                .setMessage(message)
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
@@ -1236,6 +1271,10 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
             }
             catch (Exception e){
 
+                e.printStackTrace();
+
+                // Prints what exception has been thrown
+                System.out.println("error here"+e);
             }
 
         }
@@ -1343,6 +1382,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
             additionalTopViewText.setVisibility(View.GONE);
             additionalTopViewText2.setVisibility(View.GONE);
             additionalTopViewText3.setVisibility(View.GONE);
+            bottomNext.setVisibility(View.GONE);
 
 
             refreshRecyclerView();
@@ -1352,6 +1392,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         else
         {
             shoppingBagEmptyTV.setVisibility(View.INVISIBLE);
+            bottomNext.setVisibility(View.VISIBLE);
             mRecyclerView.setVisibility(View.VISIBLE);
             refreshRecyclerView();
 

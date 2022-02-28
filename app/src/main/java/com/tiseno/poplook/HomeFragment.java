@@ -124,7 +124,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
         rootView.setTag(TAG);
 
         ((MainActivity) getActivity()).changeToolBarTextView(false);
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
         ((MainActivity) getActivity()).changeToolBarImageView(true);
         ((MainActivity) getActivity()).changeBtnSearchView(true);
         ((MainActivity) getActivity()).changeBtnBagView(true);
@@ -777,32 +777,29 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
                                             startActivity(browserIntent);
 
 
-                                        } else{
-                                            Fragment fragment = new ListOfProductFragment();
+                                        } else {
+                                             Fragment fragment = new ListOfProductFragment();
 
-                                            if(bannerID.equals("null") || categoryName.equals("null"))
-                                            {
+                                             if (bannerID.equals("null") || categoryName.equals("null")) {
 
-                                            }
+                                             } else {
+                                                 Bundle bundle = new Bundle();
+                                                 bundle.putString("prodID", bannerID);
+                                                 bundle.putString("catName", categoryName);
+                                                 bundle.putString("fromHome", "Home");
+                                                 fragment.setArguments(bundle);
+                                                 FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                                                 fragmentTransaction.addToBackStack(null);
+                                                 fragmentTransaction.commit();
+                                                 mImagesCategory.clear();
+                                             }
+                                         }
 
-                                            else {
-                                                Bundle bundle = new Bundle();
-                                                bundle.putString("prodID", bannerID);
-                                                bundle.putString("catName", categoryName);
-                                                bundle.putString("fromHome","Home");
-                                                fragment.setArguments(bundle);
-                                                FragmentManager fragmentManager = getActivity().getFragmentManager();
-                                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                                                fragmentTransaction.addToBackStack(null);
-                                                fragmentTransaction.commit();
-                                                mImagesCategory.clear();
-                                            }
-
-                                        }
                                     }catch (Exception e){
-                                        Fragment fragment = new ProductListFragment();
+                                        Fragment fragment = new ListOfProductFragment();
                                         Bundle bundle = new Bundle();
                                         bundle.putString("prodID", bannerID);
                                         bundle.putString("catName", categoryName);

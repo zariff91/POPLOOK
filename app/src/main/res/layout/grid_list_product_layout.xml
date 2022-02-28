@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+   >
+
+    <ProgressBar
+        android:id="@+id/productLoadingIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:indeterminate="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="visible" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            >
+
+            <ImageView
+                android:id="@+id/product_img"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
+            </ImageView>
+
+            <TextView
+                android:id="@+id/product_sale_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:textColor="@color/white"
+                android:background="@color/black"
+                android:gravity="center"
+                android:text="20% Sale App"
+                android:layout_alignParentBottom="true"
+                android:visibility="gone"
+                >
+
+            </TextView>
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/category_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="3dp"
+            android:textColor="@color/dark_grey"
+            android:gravity="left"
+            android:visibility="gone"
+            >
+
+        </TextView>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            >
+
+            <TextView
+                android:id="@+id/product_label"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="3dp"
+                android:layout_marginTop="2dp"
+                android:textColor="@color/black"
+                android:layout_toLeftOf="@+id/wishlist_button"
+                android:gravity="left"
+                >
+
+            </TextView>
+
+
+            <Button
+                android:id="@+id/wishlist_button"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="5dp"
+                android:background="@drawable/ic_love_18dp"/>
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/product_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="3dp"
+            android:gravity="left"
+            android:textColor="@color/black"
+            >
+
+        </TextView>
+        <TextView
+            android:id="@+id/product_discounted_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:maxLines="2"
+            android:visibility="gone">
+        </TextView>
+
+    </LinearLayout>
+
+</RelativeLayout>

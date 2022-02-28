@@ -2,6 +2,7 @@ package com.tiseno.poplook.webservice;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -35,7 +36,7 @@ public class WebServiceAccessGet extends AsyncTask<String, Void, JSONObject> {
     public void onPreExecute() {
         progressDialog = ProgressDialog.show(curContext, null, null, true, false);
         progressDialog.setContentView(R.layout.progress_layout);
-        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        progressDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         progressDialog.getWindow().setDimAmount(0);
     }
 

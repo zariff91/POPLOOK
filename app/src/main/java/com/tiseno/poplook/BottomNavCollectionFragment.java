@@ -174,7 +174,7 @@ public class BottomNavCollectionFragment extends DialogFragment implements Async
 
                                 genres.add(new Genre(catName, null));
 
-                                parentSideMenuArray.add(new sideMenuItem(sideMenuCatID, sideMenuTitle, "",false,false,false));
+//                                parentSideMenuArray.add(new sideMenuItem(sideMenuCatID, sideMenuTitle, "",false,false,false));
 
 
 

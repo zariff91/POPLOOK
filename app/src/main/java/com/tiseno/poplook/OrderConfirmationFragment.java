@@ -133,7 +133,7 @@ public class OrderConfirmationFragment extends Fragment  implements AsyncTaskCom
                                 String id_product_attribute = jObj.getString("id_product_attribute");
                                 String totalPrice = jObj.getString("total_wt");
 
-                                listArray_shoppingBag.add(new shoppingBagItem(id_cart, id_product_attribute, prodID, image, productName, size, productRef, price, totalPrice, quantity, "", 1));
+//                                listArray_shoppingBag.add(new shoppingBagItem(id_cart, id_product_attribute, prodID, image, productName, size, productRef, price, totalPrice, quantity, "", 1));
 
                                 logPurchasedEvent(Integer.valueOf(quantity),"",prodID,SelectedCountryCurrency,Double.parseDouble(price));
 
@@ -219,7 +219,7 @@ public class OrderConfirmationFragment extends Fragment  implements AsyncTaskCom
                         secondLbl.setText("Your order #"+Order_id+" has been confirmed.");
 
                         mBookends.addHeader(header);
-                        mBookends.addFooter(footer);
+//                        mBookends.addFooter(footer);
 
                         orderSummaryRecyclerView.setAdapter(mBookends);
 

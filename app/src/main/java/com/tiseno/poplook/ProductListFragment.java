@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -63,33 +64,23 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
     RecyclerView mRecyclerView;
     GridLayoutManager mLayoutManager;
     RecyclerView.Adapter mAdapter;
-    TextView productListSortByTV, productListSortByTV1;
-    Button productListSelectButton;
     ImageButton filerSrtBtn;
-    ImageView spinner, filteredIV;
-    NumberPicker productListNumberPicker;
-    RelativeLayout productListNumberPickerLayout;
+//    ImageView spinner, filteredIV;
     LinearLayout llyBehindProdList;
-    String sortProduct = "View all";
-    float dimBack = (float) 0.1;
     ArrayList<ProductListItem> mItems = new ArrayList<ProductListItem>();
     int numberPages = 1;
     protected int scrollPosition = 0;
     private boolean loading = true;
-    int pastVisiblesItems, visibleItemCount, totalItemCount;
     int parsedcatID, parsedsearchID;
     String catID, search, catName;
-    String fromHome, filtering, UserID, LanguageID, apiKey;
+    String fromHome, UserID, LanguageID, apiKey;
     boolean filtered, isSorted, btnFilterClicked = false;
-    RelativeLayout filterRL;
-    TextView filterTV, shoppingBagEmptyTV;
+//    RelativeLayout filterRL;
+    TextView shoppingBagEmptyTV;
     LinearLayout footer;
     String sortType = "0";
     String sizesSelected = "", colourSelected = "";
     String getTierLevel;
-
-    ProgressBar centerBar;
-
     Toolbar toolbar;
 
     ArrayList<String> listArray_attribute = new ArrayList<String>();
@@ -107,10 +98,19 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
     int currentPage;
     int lastPage;
+    int lastPageFiltered;
+
     int category_selected = 11;
     String catID_API;
 
-    String wishListID;
+    String[] allSizes;
+    String[] allSizesID;
+    String[] allColours;
+    String[] allColoursID;
+    String[] category;
+    String[] categoryID;
+
+    int NoOfCBSizes = 0, NoOfCBColor = 0, NoOfCBCategory = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -128,16 +128,9 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
         LanguageID = pref.getString("LanguageID", "");
         apiKey = pref.getString("apikey", "");
 
-        System.out.println("ApiKeysini" + apiKey);
-
-        if (!pref.getString("comeFromNotification", "0").equals("0")) {
-            SharedPreferences.Editor editor = pref.edit();
-            editor.putString("comeFromNotification", "0");
-            editor.putString("categoryID", "");
-            editor.putString("categoryName", "");
-            editor.putString("searchKeyword", "");
-            editor.apply();
-        }
+        getSizeList();
+        getColorsList();
+        getCategoryList();
 
         mItems.clear();
 
@@ -148,13 +141,17 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
             try {
                 ((MainActivity) getActivity()).changeToolBarText(catName);
-                Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visited_main_category", catName);
-                Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visited_main_category_id", catID);
+//                Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visited_main_category", catName);
+//                Insider.Instance.getCurrentUser().setCustomAttributeWithString("last_visited_main_category_id", catID);
 
                 InsiderEvent event = Insider.Instance.tagEvent("category_visited");
                 event.addParameterWithString("category_name", catName);
                 event.addParameterWithString("category_id", catID);
                 event.build();
+
+                InsiderEvent pushOptInEvent = Insider.Instance.tagEvent("push_opt_in_on");
+                pushOptInEvent.addParameterWithBoolean("opt_in_on",false);
+                pushOptInEvent.build();
 
             } catch (Exception e) {
                 ((MainActivity) getActivity()).changeToolBarText("");
@@ -201,7 +198,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
 
         }
-
     }
 
     View _rootView;
@@ -235,7 +231,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                 catName = bundle.getString("catName");
                 ((MainActivity) getActivity()).changeToolBarText(catName);
                 ((MainActivity) getActivity()).changeToolBarTextView(true);
-                ((MainActivity) getActivity()).changeBtnBackView(false);
+                ((MainActivity) getActivity()).changeBtnBackView(true);
                 ((MainActivity) getActivity()).changeToolBarImageView(false);
                 ((MainActivity) getActivity()).changeBtnSearchView(true);
                 ((MainActivity) getActivity()).changeBtnBagView(true);
@@ -251,7 +247,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                 ((MainActivity) getActivity()).changeToolBarText("Search ''" + search + "''");
 
                 ((MainActivity) getActivity()).changeToolBarTextView(true);
-                ((MainActivity) getActivity()).changeBtnBackView(false);
+                ((MainActivity) getActivity()).changeBtnBackView(true);
                 ((MainActivity) getActivity()).changeToolBarImageView(false);
                 ((MainActivity) getActivity()).changeBtnSearchView(true);
                 ((MainActivity) getActivity()).changeBtnBagView(true);
@@ -270,7 +266,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
             filtered = bundle.getBoolean("filtered");
 
             ((MainActivity) getActivity()).changeToolBarTextView(true);
-            ((MainActivity) getActivity()).changeBtnBackView(false);
+            ((MainActivity) getActivity()).changeBtnBackView(true);
             ((MainActivity) getActivity()).changeToolBarImageView(false);
             ((MainActivity) getActivity()).changeBtnSearchView(true);
             ((MainActivity) getActivity()).changeBtnBagView(true);
@@ -278,24 +274,10 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
             ((MainActivity) getActivity()).changeBtnCloseXView(false);
             ((MainActivity) getActivity()).setDrawerState(true);
 
-
-            spinner = (ImageView) _rootView.findViewById(R.id.spinner_sort_by);
             toTop = (ImageButton) _rootView.findViewById(R.id.toTop);
-            filteredIV = (ImageView) _rootView.findViewById(R.id.filteredIV);
-            filterRL = (RelativeLayout) _rootView.findViewById(R.id.filterRL);
-            filterTV = (TextView) _rootView.findViewById(R.id.filterTV);
-
             shoppingBagEmptyTV = (TextView) _rootView.findViewById(R.id.shoppingBagEmptyTV);
-            productListSortByTV = (TextView) _rootView.findViewById(R.id.productListSortByTV);
-            productListSortByTV1 = (TextView) _rootView.findViewById(R.id.productListSortByTV1);
-            productListNumberPicker = (NumberPicker) _rootView.findViewById(R.id.productListNumberPicker);
-            productListNumberPickerLayout = (RelativeLayout) _rootView.findViewById(R.id.productListNumberPickerLayout);
             llyBehindProdList = (LinearLayout) _rootView.findViewById(R.id.llyBehindProdList);
-            productListSelectButton = (Button) _rootView.findViewById(R.id.productListSelectButton);
             filerSrtBtn = (ImageButton) _rootView.findViewById(R.id.filterAndSortButton);
-
-
-            centerBar = (ProgressBar) _rootView.findViewById(R.id.progressBarCenter);
 
             if (filtered) {
 
@@ -319,92 +301,23 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
             }
 
-            if (listArray_colour.size() == 0 && listArray_attribute.size() == 0) {
-
-                filteredIV.setVisibility(View.INVISIBLE);
-
-            } else {
-                filteredIV.setVisibility(View.VISIBLE);
-            }
-
-
-            setDividerColor(productListNumberPicker, Color.LTGRAY);
-            productListSortByTV.setTransformationMethod(null);
-            productListSortByTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
-
-            filterTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
-            productListSortByTV1.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
-            productListSortByTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
-            productListSortByTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
             shoppingBagEmptyTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
-            productListSelectButton.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
-
-            spinner.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    productListNumberPickerLayout.setVisibility(View.VISIBLE);
-                    llyBehindProdList.setAlpha(dimBack);
-                    productListNumberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-                    productListNumberPicker.setMaxValue(2);
-                    productListNumberPicker.setDisplayedValues(new String[]{"View all", "Price: Highest First", "Price: Lowest First"});
-
-                    productListNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-
-                        @Override
-                        public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                            // TODO Auto-generated method stub
-
-                            String[] values = picker.getDisplayedValues();
-
-                            sortProduct = values[newVal];
-                            productListSortByTV.setText(sortProduct);
-                        }
-                    });
-                }
-            });
-
-            productListSortByTV.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    productListNumberPickerLayout.setVisibility(View.VISIBLE);
-                    llyBehindProdList.setAlpha(dimBack);
-
-                    productListNumberPicker.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-                    productListNumberPicker.setMaxValue(2);
-                    productListNumberPicker.setDisplayedValues(new String[]{"View all", "Price: Lowest First", "Price: Highest First"});
-
-                    productListNumberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
-
-                        @Override
-                        public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                            // TODO Auto-generated method stub
-
-                            String[] values = picker.getDisplayedValues();
-
-                            sortProduct = values[newVal];
-                            productListSortByTV.setText(sortProduct);
-                        }
-                    });
-                }
-            });
-            toTop.setOnTouchListener(new View.OnTouchListener() {
-
-                public boolean onTouch(View v, MotionEvent event) {
-                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                        mLayoutManager.smoothScrollToPosition(mRecyclerView, null, 0);
-                        toTop.setImageResource(R.drawable.ic_scrolltotop2_36dp);
-
-                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
-                        toTop.setImageResource(R.drawable.ic_scrolltotop1_36dp);
-
-                    }
-
-
-                    return false;
-                }
-            });
+//            toTop.setOnTouchListener(new View.OnTouchListener() {
+//
+//                public boolean onTouch(View v, MotionEvent event) {
+//                    if (event.getAction() == MotionEvent.ACTION_DOWN) {
+//                        mLayoutManager.smoothScrollToPosition(mRecyclerView, null, 0);
+//                        toTop.setImageResource(R.drawable.ic_scrolltotop2_36dp);
+//
+//                    } else if (event.getAction() == MotionEvent.ACTION_UP) {
+//                        toTop.setImageResource(R.drawable.ic_scrolltotop1_36dp);
+//
+//                    }
+//
+//
+//                    return false;
+//                }
+//            });
 
 
             if (fromHome.equals("Home")) {
@@ -419,7 +332,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
                 // Calling the RecyclerView
                 mRecyclerView = (RecyclerView) _rootView.findViewById(R.id.recycler_view);
-//            mRecyclerView.setHasFixedSize(true);
+//                mRecyclerView.setHasFixedSize(true);
 
                 // The number of Columns
                 mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -430,7 +343,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                     mRecyclerView.addOnScrollListener(new EndlessScrollListener(mLayoutManager) {
                         @Override
                         public void onLoadMore(int current_page) {
-                            System.out.println("Heloooaskdoskd" + current_page);
+                            System.out.println("current page is =" + current_page);
                             if (!filtered) {
                                 getProductList();
                             } else {
@@ -446,7 +359,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                     mRecyclerView.addOnScrollListener(new EndlessScrollListener(mLayoutManager) {
                         @Override
                         public void onLoadMore(int current_page) {
-                            System.out.println("Heloooaskdoskd" + current_page);
+                            System.out.println("current page is =" + current_page);
                             if (!filtered) {
                                 getProductList();
                             } else {
@@ -466,8 +379,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
 
                 search = bundle.getString("search");
-                filterRL.setVisibility(View.INVISIBLE);
-
                 ((MainActivity) getActivity()).changeToolBarText("Search ''" + search + "''");
 
 
@@ -515,6 +426,13 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
                                                    bundle.putInt("category_id", category_selected);
                                                    bundle.putString("sortType", sortType);
+
+                                                   bundle.putStringArray("sizesFilterData",allSizes);
+                                                   bundle.putStringArray("sizesIDFilterData",allSizesID);
+                                                   bundle.putStringArray("coloursFilterData",allColours);
+                                                   bundle.putStringArray("coloursIDFilterData",allColoursID);
+                                                   bundle.putStringArray("categoryFilterData",category);
+                                                   bundle.putStringArray("categoryIDFilterData",categoryID);
 //
 //
 //                                                fragment.setArguments(bundle);
@@ -568,30 +486,8 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
         params.setScrollFlags(0);
     }
 
-    private void setDividerColor(NumberPicker picker, int color) {
-
-        java.lang.reflect.Field[] pickerFields = NumberPicker.class.getDeclaredFields();
-        for (java.lang.reflect.Field pf : pickerFields) {
-            if (pf.getName().equals("mSelectionDivider")) {
-                pf.setAccessible(true);
-                try {
-                    ColorDrawable colorDrawable = new ColorDrawable(color);
-                    pf.set(picker, colorDrawable);
-                } catch (IllegalArgumentException e) {
-                    e.printStackTrace();
-                } catch (Resources.NotFoundException e) {
-                    e.printStackTrace();
-                } catch (IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                break;
-            }
-        }
-    }
-
     private void getProductList() {
         System.out.println("numberPages  " + parsedcatID);
-        System.out.println("Lalu");
 
         if (UserID.length() > 0) {
 
@@ -838,7 +734,6 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 
                                     System.out.println("false");
 
-
                                 }
 //
 //                                if (jsonCategoryobj.isNull("tier")) {
@@ -857,7 +752,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 //
 //                                        if (getTierLevel.contains(pref.getString("tier_level", ""))) {
 
-                                            mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, total_colours, id_product_attribute, related_colour_data, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
+//                                            mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, total_colours, id_product_attribute, related_colour_data, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
 
 //                                        }
 //
@@ -905,6 +800,8 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                         System.out.println("hahaaaaaaac " + result);
                         JSONObject jsonObject = result.getJSONObject("data");
                         String stop = jsonObject.getString("stop");
+//                        currentPage = jsonObject.getInt("current_page");
+                        lastPageFiltered = Integer.parseInt(stop);
                         if (numberPages > Integer.parseInt(stop) + 1) {
                             if (mItems.size() != 0) {
                                 refreshRecyclerView("finishLoad");
@@ -942,7 +839,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                                     String get_discount_text = jsonArr.getJSONObject(j).getString("discount_text");
 
 
-                                    mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, "0", id_product_attribute, null, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
+//                                    mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, "0", id_product_attribute, null, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
 
                                     System.out.println("hahaaaaaaa");
 
@@ -1011,7 +908,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                                     String get_discount_text = jsonArr.getJSONObject(j).getString("discount_text");
 
 
-                                    mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, "0", id_product_attribute, null, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
+//                                    mItems.add(new ProductListItem(id_product, name, reference, image_url.getString(0), tax_rate, price_with_tax, reduction, out_of_stock, "0", id_product_attribute, null, get_coll_name, get_online_exclusive, get_discount, get_Price_withOut_Reduction, get_discount_text));
 
                                 }
                                 System.out.println("dataaaa" + mItems.size());
@@ -1036,9 +933,83 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                         logSearchedEvent("", search, true);
 
                     }
+                    else if(result.getString("action").equals("Products_filterType_size")){
+                        if (result.getBoolean("status")) {
+
+                            JSONArray jsonArr = new JSONArray();
+                            jsonArr = result.getJSONArray("data");
+
+                            allSizes = new String[jsonArr.length()];
+                            allSizesID = new String[jsonArr.length()];
 
 
-                } else {
+                            for (int i = 0; i < jsonArr.length(); i++) {
+                                NoOfCBSizes++;
+                                JSONObject jObj = jsonArr.getJSONObject(i);
+
+                                final String attributeID = jObj.getString("id_combination");
+                                final String attributeName = jObj.getString("name");
+
+                                String attribute = attributeName;
+                                String attID = attributeID;
+
+                                allSizes[i] = attribute;
+                                allSizesID[i] = attID;
+                            }
+                        }
+                        }
+                    else if(result.getString("action").equals("Products_filterType_color")){
+                        if (result.getBoolean("status")) {
+
+                            JSONArray jsonArr = new JSONArray();
+                            jsonArr = result.getJSONArray("data");
+
+                            allColours = new String[jsonArr.length()];
+                            allColoursID = new String[jsonArr.length()];
+
+
+                            for (int i = 0; i < jsonArr.length(); i++) {
+                                NoOfCBColor++;
+                                JSONObject jObj = jsonArr.getJSONObject(i);
+
+                                final String colorID = jObj.getString("id_combination");
+                                final String colorName = jObj.getString("name");
+
+                                String color = colorName;
+                                String clrID = colorID;
+
+                                allColours[i] = color;
+                                allColoursID[i] = colorID;
+                            }
+                        }
+                    }
+                    else if(result.getString("action").equals("Menus_filterCategory")){
+                        if (result.getBoolean("status")) {
+
+                            JSONArray jsonArr = new JSONArray();
+                            jsonArr = result.getJSONArray("data");
+
+                            category = new String[jsonArr.length()];
+                            categoryID = new String[jsonArr.length()];
+
+
+                            for (int i = 0; i < jsonArr.length(); i++) {
+                                NoOfCBCategory++;
+                                JSONObject jObj = jsonArr.getJSONObject(i);
+
+                                final String catID = jObj.getString("id_combination");
+                                final String categoryName = jObj.getString("name");
+
+                                String cat_Name = categoryName;
+                                String cat_ID = catID;
+
+                                category[i] = cat_Name;
+                                categoryID[i] = cat_ID;
+                            }
+                        }
+                    }
+                }
+                else {
                     try {
                         if (result.getString("action").equals("Products_search")) {
                             if (mItems.size() != 0) {
@@ -1157,13 +1128,42 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
 //            mRecyclerView.scrollToPosition(index);
         mLayoutManager.scrollToPositionWithOffset(index, top);
 
+        System.out.println("pagelah now is = " + currentPage);
+        System.out.println("last pagelah is = " + lastPageFiltered);
+
+        Runtime runtime = Runtime.getRuntime();
+        long usedMemory=runtime.totalMemory() - runtime.freeMemory();
+        long maxMemory=runtime.maxMemory();
+
+
+        Log.v("Product List", "Used Memory:" + Long.toString(usedMemory));
+
+        long availableMemory=maxMemory-usedMemory;
+
+        Log.v("Product List", "Available Memory:" + Long.toString(availableMemory));
+
+
         LayoutInflater inflater1 = LayoutInflater.from(getActivity());
         footer = (LinearLayout) inflater1.inflate(R.layout.progressbar_footer, mRecyclerView, false);
+
+//        if (filtered) {
+//            if(numberPages <= lastPageFiltered){
+//                mBookends.addFooter(footer);
+//            }
+//        }
+//        else {
+//            if(numberPages <= lastPage){
+//                mBookends.addFooter(footer);
+//            }
+//        }
+//
+//        mRecyclerView.setAdapter(mBookends);
+
 
         if (!finishLoad.equals("finishLoad")) {
 
             if (mItems.size() > 50) {
-                mBookends.addFooter(footer);
+//                mBookends.addFooter(footer);
                 mRecyclerView.setAdapter(mBookends);
             } else {
                 mRecyclerView.setAdapter(mBookends);
@@ -1194,6 +1194,40 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
         params.putString(AppEventsConstants.EVENT_PARAM_SEARCH_STRING, searchString);
         params.putInt(AppEventsConstants.EVENT_PARAM_SUCCESS, success ? 1 : 0);
         logger.logEvent(AppEventsConstants.EVENT_NAME_SEARCHED, params);
+    }
+
+    private void getSizeList() {
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        //multishop
+        String apikey = pref.getString("apikey", "");
+        String action = "Products/filterType/name/size?apikey=" + apikey;
+
+        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+
+        callws.execute(action);
+
+    }
+    private void getColorsList() {
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        //multishop
+        String apikey = pref.getString("apikey", "");
+        String action = "Products/filterType/name/color?apikey=" + apikey;
+
+        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+
+        callws.execute(action);
+
+    }
+    private void getCategoryList() {
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+        //multishop
+        String apikey = pref.getString("apikey", "");
+        String action = "Menus/filterCategory?apikey=" + apikey + "&shop=1&category=" + catID + "&num_page=0&sort_options=1&category_filter=2";
+
+        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+
+        callws.execute(action);
+
     }
 }
 

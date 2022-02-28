@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/new_filter_bottom_sheet"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    app:behavior_hideable="true"
+    app:behavior_peekHeight="50dp"
+    app:layout_behavior="android.support.design.widget.BottomSheetBehavior">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:id="@+id/sort_by_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SORT BY :"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                >
+
+            </TextView>
+
+            <com.adroitandroid.chipcloud.ChipCloud
+                android:id="@+id/sort_by_chip"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+
+            </com.adroitandroid.chipcloud.ChipCloud>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/lightGrey"
+                >
+
+            </View>
+
+            <TextView
+                android:id="@+id/category_filter_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CATEGORY FILTER :"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                >
+
+            </TextView>
+
+            <com.adroitandroid.chipcloud.ChipCloud
+                android:id="@+id/filter_by_category"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                >
+
+            </com.adroitandroid.chipcloud.ChipCloud>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/lightGrey"
+                >
+
+            </View>
+
+            <TextView
+                android:id="@+id/size_filter_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SIZE FILTER :"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                >
+
+            </TextView>
+
+            <com.adroitandroid.chipcloud.ChipCloud
+                android:id="@+id/filter_by_size"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+
+            </com.adroitandroid.chipcloud.ChipCloud>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/lightGrey"
+                >
+
+            </View>
+
+            <TextView
+                android:id="@+id/colour_filter_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="COLOUR FILTER :"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                >
+
+            </TextView>
+
+            <com.adroitandroid.chipcloud.ChipCloud
+                android:id="@+id/filter_by_colour"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp">
+
+            </com.adroitandroid.chipcloud.ChipCloud>
+
+<!--            <TextView-->
+<!--                android:id="@+id/clear_text"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:text="CLEAR ALL"-->
+<!--                android:gravity="center"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:background="@color/black"-->
+<!--                android:textColor="@color/white"-->
+<!--                >-->
+
+<!--            </TextView>-->
+
+            <TextView
+                android:id="@+id/apply_text"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="APPLY"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                >
+
+            </TextView>
+
+
+        </LinearLayout>
+
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</LinearLayout>

@@ -207,11 +207,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             }else
             holder.title_nameTV.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_MEDIUM_FONT));
             holder.title_nameTV.setText(data.get(position).gettitle());
-                if(!data.get(position).getTextColor().equalsIgnoreCase("")){
-                    holder.title_nameTV.setTextColor(Color.parseColor(data.get(position).getTextColor()));
-                }else{
-                    holder.title_nameTV.setTextColor(Color.parseColor("#555555"));
-                }
+//                if(!data.get(position).getTextColor().equalsIgnoreCase("")){
+//                    holder.title_nameTV.setTextColor(Color.parseColor(data.get(position).getTextColor()));
+//                }else{
+//                    holder.title_nameTV.setTextColor(Color.parseColor("#555555"));
+//                }
 
 
         }
@@ -308,27 +308,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     @Override
     public int getItemViewType(int position) {
 
-        if(data.get(position).getFollow())
-        {
-            return TYPE_FOLLOW;
-        }
-        else
-        {   if(data.get(position).getCollection()){
-
-                    return TYPE_COLLECTION;
-
-            }else{
-                if(data.get(position).getisHeader())
-                {
-                    return TYPE_HEADER;
-                }
-                else
-                {
-                    return TYPE_ITEM;
-                }
-            }
-
-        }
+       return 0;
 
     }
 

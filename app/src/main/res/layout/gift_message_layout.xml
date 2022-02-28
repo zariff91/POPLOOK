@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageButton
+        android:id="@+id/backButtonCustomOrder"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:background="@drawable/back_icon"
+        android:scaleType="fitCenter"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="10dp"
+
+        />
+
+
+    <TextView
+        android:id="@+id/pageTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="Gift Option"
+        android:gravity="left"
+        android:textSize="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_toRightOf="@id/backButtonCustomOrder"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="20dp"
+        >
+
+    </TextView>
+
+    <EditText
+        android:id="@+id/giftOptionsEditText"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:layout_below="@id/pageTitle"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="15dp"
+        android:gravity="top"
+        android:maxLength="350"
+        android:textSize="15dp"/>
+
+    <TextView
+        android:id="@+id/giftDoneButton"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/giftOptionsEditText"
+        android:background="@color/accent"
+        android:text="DONE"
+        android:textColor="@android:color/white"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+
+        android:textSize="16dp"
+        android:gravity="center"
+        />
+
+
+</RelativeLayout>

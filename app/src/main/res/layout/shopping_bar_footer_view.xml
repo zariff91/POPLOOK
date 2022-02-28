@@ -75,6 +75,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/totalPayableRL"
+        android:visibility="gone"
         android:background="@drawable/base_extra_plain_1">
 
         <TextView
@@ -130,6 +131,7 @@
         android:id="@+id/giftBarRL"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         android:background="@drawable/base_extra_plain_1"
         android:layout_below="@+id/codeBarRL">
 
@@ -228,6 +230,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/base_extra_plain_1"
+        android:visibility="gone"
         android:layout_below="@+id/giftBarRL">
 
         <TextView
@@ -326,6 +329,7 @@
         android:layout_height="50dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
+        android:visibility="gone"
         android:layout_below="@+id/bottomMessage">
 
         <ImageButton

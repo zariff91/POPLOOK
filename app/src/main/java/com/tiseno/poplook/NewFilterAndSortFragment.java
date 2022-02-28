@@ -23,6 +23,7 @@ import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
 import com.adroitandroid.chipcloud.FlowLayout;
 import com.tiseno.poplook.functions.FontUtil;
+import com.tiseno.poplook.functions.attributeItem;
 import com.tiseno.poplook.webservice.AsyncTaskCompleteListener;
 import com.tiseno.poplook.webservice.WebServiceAccessGet;
 
@@ -47,14 +48,14 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
 
     int selected;
 
-    ArrayList<Integer> selected_item_size = new ArrayList<Integer>();
-    ArrayList<Integer> selected_item_colour = new ArrayList<Integer>();
-
-    ArrayList<String> selected_item_size_text = new ArrayList<String>();
-    ArrayList<String> selected_item_colour_text = new ArrayList<String>();
-
-    ArrayList<String> forApiCallSizeSelected = new ArrayList<>();
-    ArrayList<String> forApiCallColourSelected = new ArrayList<>();
+//    ArrayList<Integer> selected_item_size = new ArrayList<Integer>();
+//    ArrayList<Integer> selected_item_colour = new ArrayList<Integer>();
+//
+//    ArrayList<String> selected_item_size_text = new ArrayList<String>();
+//    ArrayList<String> selected_item_colour_text = new ArrayList<String>();
+//
+//    ArrayList<String> forApiCallSizeSelected = new ArrayList<>();
+//    ArrayList<String> forApiCallColourSelected = new ArrayList<>();
 
 
     String[] allSizes;
@@ -81,11 +82,15 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
         catName = bundle.getString("catName");
         selected = bundle.getInt("category_id");
         sortType = bundle.getString("sortType", "0");
+        allSizes = bundle.getStringArray("sizesFilterData");
+        allSizesID = bundle.getStringArray("sizesIDFilterData");
+        allColours = bundle.getStringArray("coloursFilterData");
+        allColoursID = bundle.getStringArray("coloursIDFilterData");
 
-        selected_item_size = bundle.getIntegerArrayList("sizeList_Selected");
-        selected_item_colour = bundle.getIntegerArrayList("colourList_Selected");
-        forApiCallColourSelected = bundle.getStringArrayList("colourList");
-        forApiCallSizeSelected = bundle.getStringArrayList("sizeList");
+//        selected_item_size = bundle.getIntegerArrayList("sizeList_Selected");
+//        selected_item_colour = bundle.getIntegerArrayList("colourList_Selected");
+//        forApiCallColourSelected = bundle.getStringArrayList("colourList");
+//        forApiCallSizeSelected = bundle.getStringArrayList("sizeList");
 
         filterText = contentView.findViewById(R.id.filter_text);
         filterText.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
@@ -126,6 +131,8 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
 
         if (catID.equals("45") || catID.equals("310")) {
             categoryRL.setVisibility(View.VISIBLE);
+            getCategoryList();
+
         }
 
 
@@ -139,12 +146,12 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
             @Override
             public void onClick(View v) {
 
-                selected_item_colour.clear();
-                selected_item_size.clear();
-                selected_item_size_text.clear();
-                selected_item_colour_text.clear();
-                forApiCallColourSelected.clear();
-                forApiCallSizeSelected.clear();
+//                selected_item_colour.clear();
+//                selected_item_size.clear();
+//                selected_item_size_text.clear();
+//                selected_item_colour_text.clear();
+//                forApiCallColourSelected.clear();
+//                forApiCallSizeSelected.clear();
 
                 if (catID.equals("45")) {
                     sortType = "6";
@@ -180,29 +187,26 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
                 bundle.putString("catName", catName);
                 bundle.putInt("selectedCategory_ID", selected);
                 bundle.putString("selectedCategory_ID_API", catIDforAPI);
-
                 bundle.putBoolean("isSorted", true);
                 bundle.putString("sortType", sortType);
+//                bundle.putStringArrayList("sizeList", forApiCallSizeSelected);
+//                bundle.putStringArrayList("colourList", forApiCallColourSelected);
+//                bundle.putIntegerArrayList("sizeList_Selected", selected_item_size);
+//                bundle.putIntegerArrayList("colourList_Selected", selected_item_colour);
+                bundle.putInt("number",1);
 
 
-                System.out.println("sinininila 1 = " + sortType);
-
-                bundle.putStringArrayList("sizeList", forApiCallSizeSelected);
-                bundle.putStringArrayList("colourList", forApiCallColourSelected);
-                bundle.putIntegerArrayList("sizeList_Selected", selected_item_size);
-                bundle.putIntegerArrayList("colourList_Selected", selected_item_colour);
-
-                if (forApiCallSizeSelected.size() == 0 && forApiCallColourSelected.size() == 0 && sortType == "0" && selected == 11) {
-                    bundle.putBoolean("filtered", false);
-                }
-
-               else if (forApiCallSizeSelected.size() == 0 && forApiCallColourSelected.size() == 0 && sortType == "6" && selected == 11) {
-                    bundle.putBoolean("filtered", false);
-                }
-
-                else {
-                    bundle.putBoolean("filtered", true);
-                }
+//                if (forApiCallSizeSelected.size() == 0 && forApiCallColourSelected.size() == 0 && sortType == "0" && selected == 11) {
+//                    bundle.putBoolean("filtered", false);
+//                }
+//
+//               else if (forApiCallSizeSelected.size() == 0 && forApiCallColourSelected.size() == 0 && sortType == "6" && selected == 11) {
+//                    bundle.putBoolean("filtered", false);
+//                }
+//
+//                else {
+//                    bundle.putBoolean("filtered", true);
+//                }
 
 
                 Fragment fragment = new ProductListFragment();
@@ -239,40 +243,40 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
             sortText[2] = "Newest";
 
 
-            new ChipCloud.Configure()
-                    .chipCloud(chipSort)
-                    .selectedColor(Color.parseColor("#000000"))
-                    .selectedFontColor(Color.parseColor("#ffffff"))
-                    .deselectedColor(Color.parseColor("#e1e1e1"))
-                    .deselectedFontColor(Color.parseColor("#333333"))
-                    .labels(sortText)
-                    .gravity(ChipCloud.Gravity.CENTER)
-                    .verticalSpacing(getResources().getDimensionPixelSize(R.dimen.vertical_spacing))
-                    .minHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.min_horizontal_spacing))
-                    .chipListener(new ChipListener() {
-                        @Override
-                        public void chipSelected(int index) {
-
-                            sortType = String.valueOf(index);
-
-                            if (sortText[index].equals("Newest")) {
-                                sortType = "6";
-                            }
-                            if (sortText[index].equals("Price lowest to highest")) {
-                                sortType = "1";
-                            }
-                            if (sortText[index].equals("Price highest to lowest")) {
-                                sortType = "2";
-                            }
-
-                        }
-
-                        @Override
-                        public void chipDeselected(int index) {
-                            //...
-                        }
-                    })
-                    .build();
+//            new ChipCloud.Configure()
+//                    .chipCloud(chipSort)
+//                    .selectedColor(Color.parseColor("#000000"))
+//                    .selectedFontColor(Color.parseColor("#ffffff"))
+//                    .deselectedColor(Color.parseColor("#e1e1e1"))
+//                    .deselectedFontColor(Color.parseColor("#333333"))
+//                    .labels(sortText)
+//                    .gravity(ChipCloud.Gravity.CENTER)
+//                    .verticalSpacing(getResources().getDimensionPixelSize(R.dimen.vertical_spacing))
+//                    .minHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.min_horizontal_spacing))
+//                    .chipListener(new ChipListener() {
+//                        @Override
+//                        public void chipSelected(int index) {
+//
+//                            sortType = String.valueOf(index);
+//
+//                            if (sortText[index].equals("Newest")) {
+//                                sortType = "6";
+//                            }
+//                            if (sortText[index].equals("Price lowest to highest")) {
+//                                sortType = "1";
+//                            }
+//                            if (sortText[index].equals("Price highest to lowest")) {
+//                                sortType = "2";
+//                            }
+//
+//                        }
+//
+//                        @Override
+//                        public void chipDeselected(int index) {
+//                            //...
+//                        }
+//                    })
+//                    .build();
 
             if (sortType.equals("6")) {
                 chipSort.setSelectedChip(2);
@@ -294,33 +298,33 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
             sortText[3] = "Newest";
 
 
-            new ChipCloud.Configure()
-                    .chipCloud(chipSort)
-                    .selectedColor(Color.parseColor("#000000"))
-                    .selectedFontColor(Color.parseColor("#ffffff"))
-                    .deselectedColor(Color.parseColor("#e1e1e1"))
-                    .deselectedFontColor(Color.parseColor("#333333"))
-                    .labels(sortText)
-                    .gravity(ChipCloud.Gravity.CENTER)
-                    .verticalSpacing(getResources().getDimensionPixelSize(R.dimen.vertical_spacing))
-                    .minHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.min_horizontal_spacing))
-                    .chipListener(new ChipListener() {
-                        @Override
-                        public void chipSelected(int index) {
-
-                            sortType = String.valueOf(index);
-
-                            if (sortText[index].equals("Newest")) {
-                                sortType = "6";
-                            }
-                        }
-
-                        @Override
-                        public void chipDeselected(int index) {
-                            //...
-                        }
-                    })
-                    .build();
+//            new ChipCloud.Configure()
+//                    .chipCloud(chipSort)
+//                    .selectedColor(Color.parseColor("#000000"))
+//                    .selectedFontColor(Color.parseColor("#ffffff"))
+//                    .deselectedColor(Color.parseColor("#e1e1e1"))
+//                    .deselectedFontColor(Color.parseColor("#333333"))
+//                    .labels(sortText)
+//                    .gravity(ChipCloud.Gravity.CENTER)
+//                    .verticalSpacing(getResources().getDimensionPixelSize(R.dimen.vertical_spacing))
+//                    .minHorizontalSpacing(getResources().getDimensionPixelSize(R.dimen.min_horizontal_spacing))
+//                    .chipListener(new ChipListener() {
+//                        @Override
+//                        public void chipSelected(int index) {
+//
+//                            sortType = String.valueOf(index);
+//
+//                            if (sortText[index].equals("Newest")) {
+//                                sortType = "6";
+//                            }
+//                        }
+//
+//                        @Override
+//                        public void chipDeselected(int index) {
+//                            //...
+//                        }
+//                    })
+//                    .build();
 
             if (sortType.equals("6")) {
                 chipSort.setSelectedChip(3);
@@ -331,10 +335,10 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
             }
         }
 
-        getSizeList();
-        getColorsList();
-        getCategoryList();
+        loadSizesFilter();
+        loadColoursFilter();
 
+//        getColorsList();
 
         return contentView;
     }
@@ -382,263 +386,7 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
             try {
                 String action = result.getString("action");
 
-                if (action.equals("Products_filterType_size")) {
-                    if (result.getBoolean("status")) {
-
-
-                        JSONArray jsonArr = new JSONArray();
-                        jsonArr = result.getJSONArray("data");
-
-                        allSizes = new String[jsonArr.length()];
-                        allSizesID = new String[jsonArr.length()];
-
-
-                        for (int i = 0; i < jsonArr.length(); i++) {
-                            NoOfCBSizes++;
-                            JSONObject jObj = jsonArr.getJSONObject(i);
-
-                            final String attributeID = jObj.getString("id_combination");
-                            final String attributeName = jObj.getString("name");
-
-                            String attribute = attributeName;
-                            String attID = attributeID;
-
-                            allSizes[i] = attribute;
-                            allSizesID[i] = attID;
-
-                        }
-
-                        sizeRL.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-
-//                                selected_item_size.clear();
-                                selected_item_size_text.clear();
-
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setTitle("Pick a Size");
-
-                                boolean[] checkedItems = new boolean[allSizes.length];
-
-                                for (int i = 0; i < allSizes.length; i++) {
-                                    if (selected_item_size.contains(i)) {
-                                        checkedItems[i] = true;
-                                    } else {
-                                        checkedItems[i] = false;
-                                    }
-                                }
-
-                                builder.setMultiChoiceItems(allSizes, checkedItems,
-                                        new DialogInterface.OnMultiChoiceClickListener() {
-                                            public void onClick(DialogInterface dialog, int item, boolean isChecked) {
-
-                                                String selected = allSizesID[item];
-
-
-                                                if (isChecked) {
-                                                    selected_item_size.add(item);
-                                                    forApiCallSizeSelected.add(selected);
-
-                                                } else {
-
-                                                    for (int y = 0; y < selected_item_size.size(); y++) {
-
-                                                        int ss = selected_item_size.get(y);
-
-                                                        if (ss == item) {
-                                                            selected_item_size.remove(y);
-                                                            forApiCallSizeSelected.remove(y);
-                                                        }
-
-                                                    }
-
-
-                                                }
-
-
-                                            }
-                                        });
-                                builder.setPositiveButton("Done",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                                selected_item_size_text.clear();
-
-                                                for (int x = 0; x < selected_item_size.size(); x++) {
-                                                    String selectedSize = allSizes[selected_item_size.get(x)];
-                                                    selected_item_size_text.add(selectedSize);
-                                                }
-
-                                                sizeSelectedText.setText(selected_item_size_text.toString());
-
-                                                if (selected_item_size.size() == 0) {
-
-                                                    sizeSelectedText.setText("All");
-
-                                                } else {
-
-                                                    sizeSelectedText.setText(selected_item_size_text.toString());
-                                                }
-
-                                            }
-                                        });
-
-                                builder.show();
-
-                            }
-                        });
-
-                        for (int x = 0; x < selected_item_size.size(); x++) {
-                            String selectedColour = allSizes[selected_item_size.get(x)];
-
-                            selected_item_size_text.add(selectedColour);
-                        }
-
-                        sizeSelectedText.setText(selected_item_size_text.toString());
-
-                        if (selected_item_size.size() == 0) {
-
-                            sizeSelectedText.setText("All");
-
-                        } else {
-
-                            sizeSelectedText.setText(selected_item_size_text.toString());
-                        }
-
-                    }
-
-                } else if (action.equals("Products_filterType_color")) {
-                    if (result.getBoolean("status")) {
-//
-                        JSONArray jsonArr = new JSONArray();
-                        jsonArr = result.getJSONArray("data");
-
-                        allColours = new String[jsonArr.length()];
-                        allColoursID = new String[jsonArr.length()];
-
-                        for (int i = 0; i < jsonArr.length(); i++) {
-                            NoOfCBColor++;
-                            JSONObject jObj = jsonArr.getJSONObject(i);
-
-                            final String colorID = jObj.getString("id_combination");
-                            final String colorName = jObj.getString("name");
-
-                            String color = colorName;
-                            String clrID = colorID;
-
-                            allColours[i] = color;
-                            allColoursID[i] = clrID;
-
-                        }
-
-                        colourRL.setOnClickListener(new View.OnClickListener() {
-
-                            @Override
-                            public void onClick(View v) {
-
-//                                selected_item_colour.clear();
-                                selected_item_colour_text.clear();
-
-                                boolean[] checkedItems = new boolean[allColours.length];
-
-                                for (int i = 0; i < allColours.length; i++) {
-                                    if (selected_item_colour.contains(i)) {
-                                        checkedItems[i] = true;
-                                    } else {
-                                        checkedItems[i] = false;
-                                    }
-                                }
-
-                                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-                                builder.setTitle("Pick a Colour");
-                                builder.setMultiChoiceItems(allColours, checkedItems,
-                                        new DialogInterface.OnMultiChoiceClickListener() {
-                                            public void onClick(DialogInterface dialog, int item, boolean isChecked) {
-
-                                                String selected = allColoursID[item];
-
-
-                                                if (isChecked) {
-
-                                                    forApiCallColourSelected.add(selected);
-                                                    selected_item_colour.add(item);
-                                                } else {
-                                                    for (int y = 0; y < selected_item_colour.size(); y++) {
-
-                                                        int ss = selected_item_colour.get(y);
-
-                                                        if (ss == item) {
-                                                            selected_item_colour.remove(y);
-                                                            forApiCallColourSelected.remove(y);
-
-
-                                                        }
-
-                                                    }
-                                                }
-
-
-                                            }
-                                        });
-                                builder.setPositiveButton("Done",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-
-                                                for (int x = 0; x < selected_item_colour.size(); x++) {
-                                                    String selectedColour = allColours[selected_item_colour.get(x)];
-
-                                                    selected_item_colour_text.add(selectedColour);
-                                                }
-
-                                                colourSelectedText.setText(selected_item_colour_text.toString());
-
-                                                if (selected_item_colour.size() == 0) {
-
-                                                    colourSelectedText.setText("All");
-
-                                                } else {
-
-                                                    colourSelectedText.setText(selected_item_colour_text.toString());
-                                                }
-
-                                            }
-                                        });
-
-                                builder.setNegativeButton("Cancel",
-                                        new DialogInterface.OnClickListener() {
-                                            @Override
-                                            public void onClick(DialogInterface dialog, int which) {
-                                            }
-                                        });
-
-                                builder.show();
-
-                            }
-                        });
-
-                        for (int x = 0; x < selected_item_colour.size(); x++) {
-                            String selectedColour = allColours[selected_item_colour.get(x)];
-
-                            selected_item_colour_text.add(selectedColour);
-                        }
-
-                        colourSelectedText.setText(selected_item_colour_text.toString());
-
-                        if (selected_item_colour.size() == 0) {
-
-                            colourSelectedText.setText("All");
-
-                        } else {
-
-                            colourSelectedText.setText(selected_item_colour_text.toString());
-                        }
-                    }
-
-                } else if (action.equals("Menus_filterCategory")) {
+                if (action.equals("Menus_filterCategory")) {
                     if (result.getBoolean("status")) {
 
                         JSONArray jsonArr = new JSONArray();
@@ -717,5 +465,218 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
         }
 
 
+    }
+
+    private void loadSizesFilter(){
+
+        sizeRL.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+//                                selected_item_size.clear();
+//                selected_item_size_text.clear();
+
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Pick a Size");
+
+                boolean[] checkedItems = new boolean[allSizes.length];
+
+                for (int i = 0; i < allSizes.length; i++) {
+//                    if (selected_item_size.contains(i)) {
+//                        checkedItems[i] = true;
+//                    } else {
+//                        checkedItems[i] = false;
+//                    }
+                }
+
+                System.out.println("check filter array =  " + allSizes);
+
+                builder.setMultiChoiceItems(allSizes, checkedItems,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            public void onClick(DialogInterface dialog, int item, boolean isChecked) {
+
+                                String selected = allSizesID[item];
+
+
+//                                if (isChecked) {
+//                                    selected_item_size.add(item);
+//                                    forApiCallSizeSelected.add(selected);
+//
+//                                } else {
+//
+//                                    for (int y = 0; y < selected_item_size.size(); y++) {
+//
+//                                        int ss = selected_item_size.get(y);
+//
+//                                        if (ss == item) {
+//                                            selected_item_size.remove(y);
+//                                            forApiCallSizeSelected.remove(y);
+//                                        }
+//
+//                                    }
+//
+//
+//                                }
+
+
+                            }
+                        });
+                builder.setPositiveButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+//                                selected_item_size_text.clear();
+//
+//                                for (int x = 0; x < selected_item_size.size(); x++) {
+//                                    String selectedSize = allSizes[selected_item_size.get(x)];
+//                                    selected_item_size_text.add(selectedSize);
+//                                }
+//
+//                                sizeSelectedText.setText(selected_item_size_text.toString());
+//
+//                                if (selected_item_size.size() == 0) {
+//
+//                                    sizeSelectedText.setText("All");
+//
+//                                } else {
+//
+//                                    sizeSelectedText.setText(selected_item_size_text.toString());
+//                                }
+
+                            }
+                        });
+
+                builder.show();
+
+            }
+        });
+
+//        for (int x = 0; x < selected_item_size.size(); x++) {
+//            String selectedColour = allSizes[selected_item_size.get(x)];
+//
+//            selected_item_size_text.add(selectedColour);
+//        }
+//
+//        sizeSelectedText.setText(selected_item_size_text.toString());
+//
+//        if (selected_item_size.size() == 0) {
+//
+//            sizeSelectedText.setText("All");
+//
+//        } else {
+//
+//            sizeSelectedText.setText(selected_item_size_text.toString());
+//        }
+
+
+    }
+
+    private void loadColoursFilter(){
+
+        colourRL.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+//                                selected_item_colour.clear();
+//                selected_item_colour_text.clear();
+
+                boolean[] checkedItems = new boolean[allColours.length];
+
+//                for (int i = 0; i < allColours.length; i++) {
+//                    if (selected_item_colour.contains(i)) {
+//                        checkedItems[i] = true;
+//                    } else {
+//                        checkedItems[i] = false;
+//                    }
+//                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+                builder.setTitle("Pick a Colour");
+                builder.setMultiChoiceItems(allColours, checkedItems,
+                        new DialogInterface.OnMultiChoiceClickListener() {
+                            public void onClick(DialogInterface dialog, int item, boolean isChecked) {
+
+                                String selected = allColoursID[item];
+
+//
+//                                if (isChecked) {
+//
+//                                    forApiCallColourSelected.add(selected);
+//                                    selected_item_colour.add(item);
+//                                } else {
+//                                    for (int y = 0; y < selected_item_colour.size(); y++) {
+//
+//                                        int ss = selected_item_colour.get(y);
+//
+//                                        if (ss == item) {
+//                                            selected_item_colour.remove(y);
+//                                            forApiCallColourSelected.remove(y);
+//
+//
+//                                        }
+//
+//                                    }
+//                                }
+
+
+                            }
+                        });
+                builder.setPositiveButton("Done",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+//                                for (int x = 0; x < selected_item_colour.size(); x++) {
+//                                    String selectedColour = allColours[selected_item_colour.get(x)];
+//
+//                                    selected_item_colour_text.add(selectedColour);
+//                                }
+//
+//                                colourSelectedText.setText(selected_item_colour_text.toString());
+//
+//                                if (selected_item_colour.size() == 0) {
+//
+//                                    colourSelectedText.setText("All");
+//
+//                                } else {
+//
+//                                    colourSelectedText.setText(selected_item_colour_text.toString());
+//                                }
+
+                            }
+                        });
+
+                builder.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                            }
+                        });
+
+                builder.show();
+
+            }
+        });
+
+//        for (int x = 0; x < selected_item_colour.size(); x++) {
+//            String selectedColour = allColours[selected_item_colour.get(x)];
+//
+//            selected_item_colour_text.add(selectedColour);
+//        }
+//
+//        colourSelectedText.setText(selected_item_colour_text.toString());
+//
+//        if (selected_item_colour.size() == 0) {
+//
+//            colourSelectedText.setText("All");
+//
+//        } else {
+//
+//            colourSelectedText.setText(selected_item_colour_text.toString());
+//        }
     }
 }

@@ -109,7 +109,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
             android:layout_weight="0.6"
-            android:text="Monday to Friday \n10am-6pm"
+            android:text="Monday to Friday \n9.00AM - 5.00PM GMT +8"
             android:textColor="@color/black"
             android:textSize="16dp" />
 

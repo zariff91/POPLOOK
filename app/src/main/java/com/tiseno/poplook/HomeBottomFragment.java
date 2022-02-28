@@ -151,7 +151,7 @@ public class HomeBottomFragment extends DialogFragment  implements AsyncTaskComp
                                         String catID = subSideMenuArray.getJSONObject(j).getString("id");
                                         String catName = subSideMenuArray.getJSONObject(j).getString("name");
 
-                                        parentSideMenuArray.add(new sideMenuItem(catID, catName, "",false,false,false));
+//                                        parentSideMenuArray.add(new sideMenuItem(catID, catName, "",false,false,false));
                                         genres.add(new Genre(catName, null));
 
                                     }

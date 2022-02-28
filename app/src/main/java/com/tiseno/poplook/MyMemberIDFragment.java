@@ -65,7 +65,7 @@ public class MyMemberIDFragment extends Fragment implements AsyncTaskCompleteLis
         View view = inflater.inflate(R.layout.my_member_id_layout, container, false);
 
         ((MainActivity) getActivity()).changeToolBarText("My Member ID");
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
 
 
         topTextView = (TextView)view.findViewById(R.id.topTV);

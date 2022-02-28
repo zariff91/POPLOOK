@@ -1086,11 +1086,11 @@ public class AddAdressFragment extends Fragment implements AsyncTaskCompleteList
                             {
                                 if(actionIn.equals("Addresses_addAddress")) {
                                     Toast.makeText(getActivity(), "Added New Address", Toast.LENGTH_LONG).show();
-                                    Fragment fragment = new NewAddressBillingFragment();
+                                    Fragment fragment = new NewOrderConfirmationFragment();
                                     FragmentManager fragmentManager = getActivity().getFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewAddressBillingFragment");
+                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewOrderConfirmationFragment");
                                     fragmentTransaction.addToBackStack(null);
 
                                     Bundle args = new Bundle();
@@ -1105,11 +1105,11 @@ public class AddAdressFragment extends Fragment implements AsyncTaskCompleteList
                                     fragmentTransaction.commit();
                                 }else {
                                     Toast.makeText(getActivity(), "Address Edited", Toast.LENGTH_LONG).show();
-                                    Fragment fragment = new NewAddressBillingFragment();
+                                    Fragment fragment = new NewOrderConfirmationFragment();
                                     FragmentManager fragmentManager = getActivity().getFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewAddressBillingFragment");
+                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewOrderConfirmationFragment");
                                     fragmentTransaction.addToBackStack(null);
 
                                     Bundle args = new Bundle();

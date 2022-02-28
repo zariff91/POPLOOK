@@ -1,0 +1,860 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/silver"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/totalBottomView"
+        >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <TextView
+            android:id="@+id/topSaleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Get 20% sale when you buy 2 or 3 items."
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:background="@color/accent"
+            android:visibility="gone"
+            >
+
+        </TextView>
+
+        <RelativeLayout
+            android:id="@+id/addressRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/addressLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipping Address"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/address_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/addressLabel"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address_name"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/address_phoneNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/address_text"
+                android:textSize="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                >
+            </TextView>
+
+            <ImageView
+                android:id="@+id/listAddressBtn"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/icon_go"
+                android:layout_marginRight="5dp"
+                >
+
+            </ImageView>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/shippingRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/shippingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipping Method"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/shippingLabel"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/tickShipping"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentLeft="true"
+                    android:src="@drawable/filter_active"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:visibility="gone"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/shippingMthd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:textColor="@color/black"
+                    android:layout_toRightOf="@+id/tickShipping"
+
+                    >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/expectedOrderTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/shippingMthd"
+                    android:layout_toRightOf="@+id/tickShipping"
+                    android:layout_marginRight="20dp"
+                    android:textSize="13dp"
+                    android:layout_marginBottom="10dp"
+
+                    >
+                </TextView>
+
+
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/paymentRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+
+            <TextView
+                android:id="@+id/paymentLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Payment Method"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <RadioGroup
+                android:id="@+id/NewPaymentGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="13dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@id/paymentLabel"
+                android:layout_marginBottom="10dp"
+                >
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/CreditCardBtnNew"
+                    android:text="Debit/Credit Card"
+                    ></RadioButton>
+
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/enetspaypal"
+                    ></RadioButton>
+
+                <RadioButton
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/EWalletBtnNew"
+                    android:text="E-Wallet"
+                    ></RadioButton>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/text_frame"
+                    android:id="@+id/EWalletTxtViewNew"
+                    android:text="Select payment type"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    >
+
+                </TextView>
+
+                <RadioButton
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/onlineBankingBtnNew"
+                    android:text="Online Banking"
+                    ></RadioButton>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginRight="30dp"
+                    android:background="@drawable/text_frame"
+                    android:id="@+id/OnlineBankingTxtViewNew"
+                    android:text="Select payment type"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    >
+
+                </TextView>
+
+            </RadioGroup>
+
+            <LinearLayout
+                android:id="@+id/termsLL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@+id/NewPaymentGroup"
+                android:layout_marginTop="10dp"
+                >
+
+                <ImageView
+                    android:id="@+id/paymentTSCheckIVNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/btn_check"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="10dp"/>
+
+                <TextView
+                    android:id="@+id/paymentTSIVNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text="I agree with the"
+                    android:textSize="12dp"/>
+                <TextView
+                    android:id="@+id/termsServiceNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Terms of Service"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"/>
+                <TextView
+                    android:id="@+id/andTVNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="and"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"/>
+                <TextView
+                    android:id="@+id/privacyPolicyNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Privacy Policy"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textAfterNew"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="and I adhere to them unconditionally."
+                android:layout_marginLeft="35dp"
+                android:layout_below="@+id/termsLL"
+                android:layout_marginBottom="10dp"
+                android:textSize="12dp"/>
+
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/voucherRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+
+            <RelativeLayout
+                android:id="@+id/applyVoucherView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/applyVoucherLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voucher"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+                <EditText
+                    android:id="@+id/codeInputText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/box_code"
+                    android:layout_centerVertical="true"
+                    android:hint="Enter code"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:singleLine="true"
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"
+                    android:layout_toLeftOf="@+id/addVoucher"
+                    android:layout_toRightOf="@+id/applyVoucherLabel"/>
+
+                <TextView
+                    android:id="@+id/addVoucher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:text="APPLY"
+                    android:textColor="@color/white"
+                    android:background="@color/accent"
+
+                    android:padding="6dp"
+
+                    >
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/appliedVoucherView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/voucherAppliedTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Voucher :"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+                <TextView
+                    android:id="@+id/addedVooucherLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginLeft="50dp"
+                    android:paddingLeft="5dp"
+                    android:textSize="15dp"
+                    android:layout_toLeftOf="@+id/removeAppliedVoucher"
+                    android:layout_toRightOf="@+id/voucherAppliedTitle"/>
+
+                <ImageView
+                    android:id="@+id/removeAppliedVoucher"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/btn_clear"
+
+                    >
+
+                </ImageView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/storeCreditView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                >
+
+                <TextView
+                    android:id="@+id/storeCreditLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Store Credit :"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/removeStoreCredit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:src="@drawable/btn_clear"
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/totalStoreCreditLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/removeStoreCredit"
+                    android:textColor="@color/lightGrey"
+                    >
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/giftVoucherView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <TextView
+                    android:id="@+id/giftOptionTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Gift Option"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/nextIcon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/btn_add_2"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+
+                    >
+
+                </ImageView>
+
+                <TextView
+                    android:id="@+id/giftOptionText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_toLeftOf="@+id/nextIcon"
+                    android:textColor="@color/lightGrey"
+                    >
+                </TextView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/editTextGiftView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:visibility="gone"
+                >
+
+                <EditText
+                    android:id="@+id/editTextGift"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="2dp"
+                    android:gravity="top"
+                    android:layout_marginBottom="2dp"
+                    android:background="@android:color/white"
+                    android:maxLength="350"
+                    android:imeOptions="actionDone"
+                    android:padding="5dp"
+                    >
+
+                </EditText>
+
+
+            </RelativeLayout>
+            
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/leaveMessageView"
+                >
+
+                <TextView
+                    android:id="@+id/leaveMessageTV"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Leave Message"
+                    android:layout_marginLeft="10dp"
+                    android:textSize="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginTop="15dp"
+                    android:textColor="@color/black"
+                    >
+                </TextView>
+
+                <ImageView
+                    android:id="@+id/nextIconMessage"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/btn_add_2"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+
+                    >
+
+                </ImageView>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/editTextLeaveView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/grey"
+                android:visibility="gone"
+                >
+
+                <EditText
+                    android:id="@+id/editTextLeaveMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:background="@android:color/white"
+                    android:maxLength="350"
+                    android:gravity="top"
+                    android:imeOptions="actionDone"
+                    android:padding="5dp"
+                    >
+
+                </EditText>
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/cartRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+
+        <TextView
+            android:id="@+id/cartLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Shopping Bag"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            >
+        </TextView>
+
+            <TextView
+                android:id="@+id/totalItemCartTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="8 Items"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/totalItemRV"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/cartLabel"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:scrollbars="none">
+            </androidx.recyclerview.widget.RecyclerView>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/bottomSummaryRV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:background="@color/white"
+            >
+
+        <TextView
+            android:id="@+id/retailTextTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Retail Price:"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="20dp"
+            android:textSize="15dp"
+            android:textColor="@color/black"
+            >
+        </TextView>
+
+            <TextView
+                android:id="@+id/retailTotalTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RM 320.00"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/subTotalTextTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Discount:"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:layout_below="@+id/retailTextTV"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/subTotalTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RM 220.00"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="15dp"
+                android:layout_below="@+id/retailTotalTV"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/storeCreditBottom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Store Credit:"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:layout_below="@+id/subTotalTextTV"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/storeCreditBottomTotalTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RM 0.00"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="15dp"
+                android:layout_below="@+id/subTotalTV"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/shipFeeTextTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Shipping fee:"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="20dp"
+                android:textSize="15dp"
+                android:layout_below="@+id/storeCreditBottom"
+                android:textColor="@color/black"
+                >
+            </TextView>
+
+            <TextView
+                android:id="@+id/shipFeeTotalTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="FREE"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_alignParentRight="true"
+                android:textSize="15dp"
+                android:layout_below="@+id/storeCreditBottomTotalTV"
+                android:textColor="@color/black"
+                android:layout_marginBottom="10dp"
+                >
+            </TextView>
+        </RelativeLayout>
+    </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/totalBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_alignParentBottom="true"
+        >
+
+        <TextView
+            android:id="@+id/totalBottomViewText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            android:text="Total:"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/totalBottomViewPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/black"
+            android:textSize="18dp"
+            >
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/placeOrderTV"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/totalBottomViewPrice"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/white"
+            android:textSize="15dp"
+            android:text="PLACE ORDER"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/accent"
+            android:gravity="center"
+            >
+
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

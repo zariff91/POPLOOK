@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 // Declaring RecyclerView
 
     TextView top, bagNoti, wishlistNoti,shippingToText,sideMenuUserNameText,sideMenuText,homeMenuBtn,changeLabelText;
-    ImageButton backBtn, shoppingBagBtn, wishlistBtn, searchBtn, xCloseBtn, homeButton;
+    ImageButton shoppingBagBtn, wishlistBtn, searchBtn, xCloseBtn, homeButton,backBtn;
     ImageView logo,backSideMenuBtn;
 
     RelativeLayout sideMenuTopText;
@@ -376,6 +376,39 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             }
         });
 
+        backBtn.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+
+                    FragmentManager fm = getFragmentManager();
+                    if (fm.getBackStackEntryCount() > 0) {
+                        Log.i("MainActivity", "popping backstack");
+                        ProductListFragment productListFragment = (ProductListFragment) fm.findFragmentByTag("ProductListFragment");
+
+                        if (productListFragment != null && productListFragment.isVisible()) {
+                            // add your code here
+                            FragmentTransaction trans = fm.beginTransaction();
+                            trans.remove(productListFragment);
+                            trans.commit();
+
+                            fm.popBackStack();
+                        } else {
+                            fm.popBackStack();
+
+                        }
+
+                        SharedPreferences pref = getSharedPreferences("MyPref", 0);
+                        SharedPreferences.Editor editor = pref.edit();
+                        //editor.putBoolean("atMyVoucher", false);
+                        editor.putBoolean("atMyVoucher", true);
+                        editor.apply();
+                    }
+
+                }
+
+            });
+
         xCloseBtn.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -547,10 +580,13 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
                 if (result.getString("action").equals("Menus_mobilecategories")) {
                     SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
-//                    UserID = pref.getString("UserID", "");
-//                    SelectedCountryName = pref.getString("SelectedCountryName", "");
-//                    itemArray.clear();
-//                    parentSideMenuArray.clear();
+                    UserID = pref.getString("UserID", "");
+                    SelectedCountryName = pref.getString("SelectedCountryName", "");
+                    parentSideMenuArray.clear();
+
+                    if (UserID.length() > 0) {
+                        sideMenuUserNameText.setText("Hello, " + pref.getString("Name", ""));
+                    }
 
                     parentSideMenuArray.clear();
                     sideMenuArray.clear();
@@ -642,9 +678,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
     public void changeBtnBackView(Boolean view) {
         if (view) {
-            backBtn.setVisibility(View.INVISIBLE);
+            backBtn.setVisibility(View.GONE);
+            homeButton.setVisibility(View.VISIBLE);
         } else {
-            backBtn.setVisibility(View.INVISIBLE);
+            backBtn.setVisibility(View.VISIBLE);
+            homeButton.setVisibility(View.GONE);
+
         }
     }
 
@@ -701,6 +740,21 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
 
     }
+//
+//    public void hideSideMenu(Boolean view) {
+//        if (view) {
+//            homeButton.setVisibility(View.GONE);
+//            backBtn.setVisibility(View.VISIBLE);
+//            mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+//        } else {
+//            homeButton.setVisibility(View.VISIBLE);
+//            backBtn.setVisibility(View.GONE);
+//            mDrawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+//
+//        }
+//
+//
+//    }
 
     public void showBottomBar(Boolean view) {
     }
@@ -730,7 +784,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
     public void changeToolBarWishNotiText(String txt) {
         numberInWishlist = txt;
         if (numberInWishlist.equals("-1") || numberInWishlist.equals("-2") || numberInWishlist.equals("0") || numberInWishlist.isEmpty() || numberInWishlist.equalsIgnoreCase("") || numberInWishlist.equals(null) || numberInWishlist.equals("null")) {
-            wishlistNoti.setVisibility(View.INVISIBLE);
+            wishlistNoti.setVisibility(View.GONE);
             wishlistNoti.setText("");
         } else {
 
@@ -800,49 +854,19 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         if (change.equalsIgnoreCase("CHANGE")) {
             System.out.println("LALU SINI ATAU");
-            backBtn.setOnClickListener(new View.OnClickListener() {
-
-                @Override
-                public void onClick(View v) {
-
-                    filterFragment.backBtn();
-
-                }
-
-            });
+//            backBtn.setOnClickListener(new View.OnClickListener() {
+//
+//                @Override
+//                public void onClick(View v) {
+//
+//                    filterFragment.backBtn();
+//
+//                }
+//
+//            });
         } else {
             System.out.println("LALU SINI SANA");
-            backBtn.setOnClickListener(new View.OnClickListener() {
 
-                @Override
-                public void onClick(View v) {
-
-                    FragmentManager fm = getFragmentManager();
-                    if (fm.getBackStackEntryCount() > 0) {
-                        Log.i("MainActivity", "popping backstack");
-                        ProductListFragment productListFragment = (ProductListFragment) fm.findFragmentByTag("ProductListFragment");
-
-                        if (productListFragment != null && productListFragment.isVisible()) {
-                            // add your code here
-                            FragmentTransaction trans = fm.beginTransaction();
-                            trans.remove(productListFragment);
-                            trans.commit();
-
-                            fm.popBackStack();
-                        } else {
-                            fm.popBackStack();
-                        }
-
-                        SharedPreferences pref = getSharedPreferences("MyPref", 0);
-                        SharedPreferences.Editor editor = pref.edit();
-                        //editor.putBoolean("atMyVoucher", false);
-                        editor.putBoolean("atMyVoucher", true);
-                        editor.apply();
-                    }
-
-                }
-
-            });
         }
     }
 

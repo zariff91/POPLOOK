@@ -226,7 +226,6 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
         ((MainActivity) getActivity()).changeBtnBagView(true);
         ((MainActivity) getActivity()).changeBtnWishlistView(true);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
-        ((MainActivity) getActivity()).showBottomBar(false);
         ((MainActivity) getActivity()).setDrawerState(true);
         ((MainActivity) getActivity()).disableExpandToolbar(true);
 
@@ -282,6 +281,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
         careImageBtn = (ImageButton)view.findViewById(R.id.careImageBtn);
         deliveryImageBtn = (ImageButton)view.findViewById(R.id.deliveryImageBtn);
         addToCartBottomView = (RelativeLayout) view.findViewById(R.id.addToCartBelowView);
+        addToCartBottomView.setVisibility(View.VISIBLE);
 
 //        imageSlider = (SliderView)view.findViewById(R.id.imageSlider);
 
@@ -378,7 +378,6 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
 
                 ((MainActivity) getActivity()).getSupportActionBar().show();
-                ((MainActivity) getActivity()).showBottomBar(true);
 //
 //                Fragment fragment = new NewCartAndWishlistFragment();
 //                FragmentManager fragmentManager = getFragmentManager();
@@ -444,7 +443,6 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 //
 
                     ((MainActivity) getActivity()).getSupportActionBar().show();
-                    ((MainActivity) getActivity()).showBottomBar(true);
 
 //                    Fragment fragment = new NewCartAndWishlistFragment();
 //                Bundle bundle = new Bundle();
@@ -2566,8 +2564,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
         addBtn.setBackgroundColor(Color.parseColor("#1CAE49"));
 
         ((MainActivity) getActivity()).getSupportActionBar().hide();
-        ((MainActivity) getActivity()).showBottomBar(false);
-
+        addToCartBottomView.setVisibility(View.VISIBLE);
     }
 
     public void changeToolBarBagNotiText(String txt){

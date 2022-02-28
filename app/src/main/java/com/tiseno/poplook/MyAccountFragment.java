@@ -36,7 +36,7 @@ public class MyAccountFragment extends Fragment {
 
         ((MainActivity) getActivity()).changeToolBarText("My Account");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
         ((MainActivity) getActivity()).changeBtnSearchView(true);
         ((MainActivity) getActivity()).changeBtnBagView(true);

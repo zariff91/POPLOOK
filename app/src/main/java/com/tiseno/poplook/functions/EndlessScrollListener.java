@@ -41,15 +41,20 @@ public abstract class  EndlessScrollListener extends RecyclerView.OnScrollListen
     @Override
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
         super.onScrolled(recyclerView, dx, dy);
-
         firstVisibleLine = dy;
 
         visibleItemCount = recyclerView.getChildCount();
         totalItemCount = mLinearLayoutManager.getItemCount();
         firstVisibleItem = mLinearLayoutManager.findFirstVisibleItemPosition();
 
+        System.out.println("loading mat = " + totalItemCount);
+        System.out.println("loading mat 2 = " + previousTotal);
+        System.out.println("loading mat 3 = " + loading);
+
+
         if (loading) {
             if (totalItemCount > previousTotal+2) {
+                System.out.println("loading mat 4 = " + loading);
                 loading = false;
                 previousTotal = totalItemCount;
             }
@@ -57,16 +62,20 @@ public abstract class  EndlessScrollListener extends RecyclerView.OnScrollListen
         if (!loading && (totalItemCount - visibleItemCount)
                 <= (firstVisibleItem + visibleThreshold)) {
             // End has been reached
+            System.out.println("loading mat 5  = " + current_page);
 
             // Do something
             current_page++;
-
             onLoadMore(current_page);
-
             loading = true;
         }
         int visibility = (mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() != 0) ? View.VISIBLE : View.GONE;
 //        buttonVisibility(visibility);
+    }
+
+    public void reset(){
+        previousTotal = 0;
+        current_page = 1;
     }
 
     public abstract void onLoadMore(int current_page);

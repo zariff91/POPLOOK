@@ -8,6 +8,8 @@
     <item name="light_grey" type="color">#888888</item>
     <item name="red" type="color">#FF0000</item>
     <item name="light_green" type="color">#1CAE49</item>
+    <item name="birtday_orange" type="color">#E65E1C</item>
+    <item name="raya_22" type="color">#AFAACB</item>
     <color name="darkgrey2">#5E5E5E</color>
     <color name="grey">#959595</color>
     <color name="powder_blue">#E5E4E2</color>

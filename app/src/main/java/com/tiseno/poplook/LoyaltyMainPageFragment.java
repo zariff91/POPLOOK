@@ -47,7 +47,7 @@ public class LoyaltyMainPageFragment extends Fragment implements AsyncTaskComple
         View view = inflater.inflate(R.layout.loyalty_mainpage, container, false);
 
         ((MainActivity) getActivity()).changeToolBarText("POPLOOK Rewards");
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
 
 
         joinInBtn = (Button)view.findViewById(R.id.joinBtn);

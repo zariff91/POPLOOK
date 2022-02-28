@@ -266,11 +266,11 @@ public class CheckOutMethodFragment extends Fragment implements AsyncTaskComplet
 
                             if(nextPage.equals("addressPage"))
                             {
-                                Fragment fragment = new NewAddressBillingFragment();
+                                Fragment fragment = new NewOrderConfirmationFragment();
                                 FragmentManager fragmentManager = getActivity().getFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewAddressBillingFragment");
+                                fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewOrderConfirmationFragment");
                                 fragmentTransaction.addToBackStack(null);
 
                                 Bundle args=new Bundle();

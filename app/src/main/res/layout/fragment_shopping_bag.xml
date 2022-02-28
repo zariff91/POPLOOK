@@ -1,4 +1,4 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.tiseno.poplook.ShoppingBagFragment"
     android:background="@android:color/white">
@@ -17,6 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_above="@+id/cartBottomView"
         android:orientation="vertical">
 
         <androidx.recyclerview.widget.RecyclerView
@@ -29,5 +30,28 @@
     </LinearLayout>
 
 
+    <TextView
+        android:id="@+id/cartBottomView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:background="@color/accent"
+        android:text="NEXT"
+        android:textSize="15dp"
+        android:gravity="center"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
 
-</FrameLayout>
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
+
+    </TextView>
+
+
+
+
+</RelativeLayout>

@@ -210,6 +210,13 @@ public class ENetsPaymentActivity extends Activity implements AsyncTaskCompleteL
                             bundle.putString(FirebaseAnalytics.Param.TRANSACTION_ID, TransID);
                             mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.ECOMMERCE_PURCHASE, bundle);
 
+                            String[] taxonomy = {"POPLOOKSALES"};
+
+                            InsiderProduct insiderProduct = Insider.Instance.createNewProduct("POPLOOKSALES","POPLOOKSALES",taxonomy,"POPLOOKSALES",Double.parseDouble(ITEM_PRICE),"SGD");
+                            Insider.Instance.itemPurchased(TransID,insiderProduct);
+//                            Insider.Instance.trackSales(this, TransID, Integer.parseInt(ITEM_PRICE), "SGD");
+                            Insider.Instance.tagEvent("purchase_made").build();
+
 //                            Insider.Instance.trackPurchasedItems(this, "POPLOOKSALES", TransID, "POPLOOK SALES", "POPLOOK SALES", "POPLOOK SALES", Double.parseDouble(ITEM_PRICE), "SGD");
 
                         }
@@ -218,24 +225,13 @@ public class ENetsPaymentActivity extends Activity implements AsyncTaskCompleteL
                         editor.putString("TransactionID", "");
                         editor.putString("TransactionStatus", "");
                         editor.putString("FromPaypalSuccess", "1");
+                        editor.putString("order_success_id",ORDER_ID);
                         editor.apply();
                         System.out.println("LALUSINISDKGH3L");
                         Intent returnIntent = new Intent();
                         setResult(RESULT_OK, returnIntent);
                         passStep5=true;
                         finish();
-                        if(TransactionStatus.equals("1")) {
-
-                            String[] taxonomy = {"POPLOOKSALES"};
-
-                            InsiderProduct insiderProduct = Insider.Instance.createNewProduct("POPLOOKSALES","POPLOOKSALES",taxonomy,"POPLOOKSALES",Double.parseDouble(ITEM_PRICE),"SGD");
-                            Insider.Instance.itemPurchased(TransID,insiderProduct);
-//                            Insider.Instance.trackSales(this, TransID, Integer.parseInt(ITEM_PRICE), "SGD");
-                            Insider.Instance.tagEvent("purchase_made").build();
-
-                        }
-
-
                     }
                     else
                     {

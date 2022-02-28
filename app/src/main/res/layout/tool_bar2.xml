@@ -9,11 +9,12 @@
     >
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_marginRight="15dp"
         android:layout_height="?android:attr/actionBarSize">
         <ImageButton
             android:layout_width="27dp"
             android:layout_height="27dp"
-            android:src="@drawable/home_ic_new"
+            android:src="@drawable/btn_menu"
             android:scaleType="centerInside"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:id="@+id/btnHome"
@@ -26,14 +27,26 @@
                 android:src="@drawable/btn_back_pressed"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:id="@+id/backBtn"
-                android:visibility="invisible"
-                android:layout_toRightOf="@+id/btnHome"
+                android:visibility="gone"
+                android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"/>
+
+        <ImageButton
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:src="@drawable/new_search_ic"
+            android:layout_centerVertical="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/searchBtn"
+            android:scaleType="fitXY"
+            android:layout_toRightOf="@+id/btnHome"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="15dp"/>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/backBtn"
-                android:layout_toLeftOf="@+id/searchBtn"
+
                 android:background="@android:color/transparent">
                 <TextView
                     android:layout_width="wrap_content"
@@ -50,36 +63,25 @@
 
                 <ImageView
                     android:id="@+id/toolbar_title_image"
-                    android:layout_width="match_parent"
+                    android:layout_width="200dp"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/logo_new_raya_21"
+                    android:layout_centerInParent="true"
+                    android:src="@drawable/logo_new"
                     android:visibility="visible" />
             </RelativeLayout>
 
-            <ImageButton
-                android:layout_marginTop="2dp"
-                android:layout_width="22dp"
-                android:layout_height="22dp"
-                android:src="@drawable/new_search_ic"
-                android:layout_centerVertical="true"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:id="@+id/searchBtn"
-                android:scaleType="centerInside"
-                android:layout_toLeftOf="@+id/centerRL"
-                android:layout_marginRight="5dp"/>
-
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp"
+                android:layout_height="25dp"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="5dp"
                 android:layout_toLeftOf="@+id/rightRL"
+                android:layout_marginRight="15dp"
                 android:id="@+id/centerRL">
                 <ImageButton
                     android:layout_marginTop="2dp"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
                     android:scaleType="fitEnd"
                     android:src="@drawable/love_wishlist_icon"
                     android:background="?attr/selectableItemBackgroundBorderless"
@@ -87,15 +89,15 @@
                     />
                 <TextView
                     android:id="@+id/wishlistNoti"
-                    android:layout_width="30dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/wishlistBtn"
-                    android:paddingBottom="5dp"
-                    android:gravity="center"
+                    android:layout_toRightOf="@id/wishlistBtn"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="3dp"
+                    android:visibility="gone"
                     android:text=""
-                    android:visibility="invisible"
-                    android:textColor="#FFF"
-                    android:textSize="14dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="15dp"/>
             </RelativeLayout>
 
             <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -103,7 +105,6 @@
                 android:layout_height="25dp"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
                 android:id="@+id/rightRL">
                 <ImageButton
                     android:layout_width="25dp"
@@ -123,14 +124,15 @@
                     />
                 <TextView
                     android:id="@+id/bagNoti"
-                    android:layout_width="25dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@id/shoppingBagBtn"
-                    android:gravity="center"
+                    android:layout_toRightOf="@id/shoppingBagBtn"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="3dp"
                     android:text=""
                     android:visibility="invisible"
-                    android:textColor="#FFF"
-                    android:textSize="14dp"/>
+                    android:textColor="@color/black"
+                    android:textSize="15dp"/>
             </RelativeLayout>
 
 

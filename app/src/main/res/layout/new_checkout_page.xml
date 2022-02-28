@@ -62,7 +62,46 @@
 
     </TextView>
 
-        <RadioGroup
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bank_message_one"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/white"
+        android:background="@color/accent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="15dp"
+        android:visibility="gone"
+        >
+
+    </TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bank_message_two"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="@color/white"
+        android:background="@color/accent"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:textSize="15dp"
+        android:visibility="gone"
+        >
+
+    </TextView>
+
+
+    <RadioGroup
             android:id="@+id/PaymentGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,6 +168,63 @@
 
         </RadioGroup>
 
+    <RelativeLayout
+        android:id="@+id/codeBarRLPayment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/totalPayableRL"
+        android:layout_margin="10dp"
+        android:visibility="gone"
+        >
+
+        <TextView
+            android:id="@+id/codeTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:textColor="@color/black"
+            android:layout_marginLeft="7dp"
+            android:text="CODE :"
+            android:textSize="15dp"/>
+
+        <EditText
+            android:id="@+id/codeFieldPayment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/box_code"
+            android:layout_toRightOf="@+id/codeTV"
+            android:layout_marginLeft="7dp"
+            android:singleLine="true"
+            android:paddingLeft="5dp"
+            android:textSize="15dp"
+            android:layout_toLeftOf="@+id/codeApplyIBPayment"/>
+
+        <ImageButton
+            android:id="@+id/codeApplyIBPayment"
+            android:layout_width="120dp"
+            android:layout_height="30dp"
+            android:background="@color/accent"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="11dp"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"/>
+
+        <TextView
+            android:id="@+id/codeApplyTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="45dp"
+            android:layout_centerVertical="true"
+            android:textColor="@android:color/white"
+            android:text="@string/apply"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:textSize="16dp"
+            />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -145,15 +241,44 @@
             android:layout_marginLeft="10dp"/>
 
         <TextView
-            android:id="@+id/paymentTSIV"
-            android:layout_width="match_parent"
+            android:id="@+id/paymentTSIVNew"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
-            android:text="I agree with the Terms of Service and I adhere to them unconditionally."
+            android:text="I agree with the"
+            android:textSize="12dp"/>
+        <TextView
+            android:id="@+id/termsService"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terms of Service"
+            android:layout_marginLeft="5dp"
+            android:textSize="12dp"/>
+        <TextView
+            android:id="@+id/andTV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="and"
+            android:layout_marginLeft="5dp"
+            android:textSize="12dp"/>
+        <TextView
+            android:id="@+id/privacyPolicy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Privacy Policy"
+            android:layout_marginLeft="5dp"
             android:textSize="12dp"/>
 
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/textAfter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="and I adhere to them unconditionally."
+        android:layout_marginLeft="35dp"
+        android:textSize="12dp"/>
 
     <View
         android:layout_width="match_parent"
@@ -165,8 +290,6 @@
         >
 
     </View>
-
-
 
     <TextView
         android:id="@+id/orderSummaryText"

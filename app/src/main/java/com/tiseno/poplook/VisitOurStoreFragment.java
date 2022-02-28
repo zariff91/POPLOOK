@@ -50,7 +50,7 @@ public class VisitOurStoreFragment extends Fragment {
 
         ((MainActivity) getActivity()).changeToolBarText("Visit Our Store");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
         ((MainActivity) getActivity()).changeBtnSearchView(true);
         ((MainActivity) getActivity()).changeBtnBagView(true);
@@ -69,19 +69,21 @@ public class VisitOurStoreFragment extends Fragment {
 //        imageIndicator.setStrokeColor(Color.parseColor("#000000"));
         imageIndicator.setStrokeWidth((float) (0.3 * density));
         imageIndicator.setCentered(true);
-        Uri introURI,introURI1,introURI2,introURI3,introURI4;
-        introURI = Uri.parse("drawable://" + R.drawable.setia_city_mall);
-        introURI1 = Uri.parse("drawable://" + R.drawable.the_curve);
-        introURI2 = Uri.parse("drawable://" + R.drawable.sogo);
-        introURI3 = Uri.parse("drawable://" + R.drawable.pl_ioi_v2);
-        introURI4 = Uri.parse("drawable://" + R.drawable.pl_kleast);
-
+        Uri introURI,introURI1,introURI2,introURI3,introURI4,introURI5;
+        introURI = Uri.parse("drawable://" + R.drawable.aeon_jusco);
+        introURI1 = Uri.parse("drawable://" + R.drawable.pl_ioi_v2);
+        introURI2 = Uri.parse("drawable://" + R.drawable.pl_kleast);
+        introURI3 = Uri.parse("drawable://" + R.drawable.setia_city_mall);
+        introURI4 = Uri.parse("drawable://" + R.drawable.sogo);
+        introURI5 = Uri.parse("drawable://" + R.drawable.the_curve);
 
         imgList.add(introURI);
         imgList.add(introURI1);
         imgList.add(introURI2);
         imgList.add(introURI3);
         imgList.add(introURI4);
+        imgList.add(introURI5);
+
         imageListProduct = new Uri[imgList.size()];
         Arrays.fill(imageListProduct, null);
 

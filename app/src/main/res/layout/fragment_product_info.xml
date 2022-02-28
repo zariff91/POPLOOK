@@ -1,6 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="com.tiseno.poplook.ProductInfoFragment"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:id="@+id/main_1">
 
@@ -10,7 +11,7 @@
         android:layout_height="match_parent"
         android:id="@+id/sv"
         android:background="@color/white"
-        android:layout_above="@id/addToCartBelowView"
+        android:layout_above="@+id/addToCartBelowView"
         >
 
 
@@ -46,6 +47,21 @@
 
                 />
 
+            <TextView
+                android:id="@+id/categoryTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_toRightOf="@+id/backButtonCustom"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:layout_toLeftOf="@+id/shoppingBagBtn_productInfo"
+                android:gravity="left"
+                >
+
+            </TextView>
+
             <ImageButton
                 android:layout_width="25dp"
                 android:layout_height="25dp"
@@ -54,6 +70,7 @@
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:id="@+id/shoppingBagBtn_productInfo"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:layout_marginRight="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="3dp"
@@ -64,29 +81,28 @@
                 android:id="@+id/bagNoti_prodInfo"
                 android:layout_width="25dp"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/shoppingBagBtn_productInfo"
                 android:layout_alignParentRight="true"
-                android:layout_marginRight="20dp"
+                android:layout_centerVertical="true"
                 android:gravity="center"
                 android:text=""
                 android:visibility="invisible"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="14dp"/>
 
         </RelativeLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="450dp"
             android:orientation="vertical"
             android:layout_weight="0.7"
             android:weightSum="1">
 
             <com.tiseno.poplook.functions.HackyViewPager
                 android:id="@+id/productViewVP"
-                android:layout_width="fill_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.9"/>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.9" />
 
             <com.viewpagerindicator.CirclePageIndicator
                 android:id="@+id/welcomePageIndicator"
@@ -99,6 +115,19 @@
         </LinearLayout>
 
 
+<!--            <com.smarteist.autoimageslider.SliderView-->
+<!--                android:id="@+id/imageSlider"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="450dp"-->
+<!--                app:sliderAutoCycleEnabled="false"-->
+<!--                app:sliderIndicatorGravity="center_horizontal|bottom"-->
+<!--                app:sliderIndicatorMargin="15dp"-->
+<!--                app:sliderIndicatorOrientation="horizontal"-->
+<!--                app:sliderIndicatorPadding="3dp"-->
+<!--                app:sliderIndicatorRadius="2dp"-->
+<!--                app:sliderIndicatorSelectedColor="#5A5A5A"-->
+<!--                app:sliderIndicatorUnselectedColor="#FFF"-->
+<!--                />-->
 
         <LinearLayout
         android:layout_width="match_parent"
@@ -343,7 +372,7 @@
         </RelativeLayout>
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_below="@+id/ly2"
             android:textColor="@color/white"
@@ -351,7 +380,7 @@
             android:paddingRight="15dp"
             android:paddingLeft="15dp"
             android:layout_marginLeft="10dp"
-
+            android:layout_marginRight="10dp"
             android:id="@+id/saleBar"
             />
         <ImageView
@@ -404,6 +433,7 @@
 
         </com.adroitandroid.chipcloud.ChipCloud>
 
+
         <TextView
             android:id="@+id/inStoreText"
             android:layout_width="match_parent"
@@ -411,7 +441,7 @@
             android:text="Check in-store availability"
             android:textColor="@color/accent"
             android:layout_below="@+id/select_size_tv_view"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="10dp"
             >
@@ -859,6 +889,7 @@
                 android:weightSum="1"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="20dp"
+                android:layout_marginBottom="15dp"
                 android:orientation="vertical">
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -884,6 +915,7 @@
         android:id="@+id/addToCartBelowView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         >
 
@@ -900,12 +932,14 @@
                 android:layout_height="40dp"
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
                 android:layout_marginLeft="25dp">
                 <Button
                     android:id="@+id/btn_save_prodinfo2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/love_wishlist_icon_small"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/love_wishlist_icon"
                     />
 
             </RelativeLayout>
@@ -919,8 +953,9 @@
                 android:layout_toRightOf="@+id/btn_save_touch_lay2">
                 <Button
                     android:id="@+id/btn_share_prodinfo2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="33dp"
+                    android:layout_height="33dp"
+                    android:layout_centerInParent="true"
                     android:background="@drawable/share_button_icon_small"
                     />
 
@@ -961,7 +996,6 @@
 
 
     </RelativeLayout>
-
 
 
 </RelativeLayout>

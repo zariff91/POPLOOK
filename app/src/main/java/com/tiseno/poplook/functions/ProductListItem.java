@@ -2,17 +2,21 @@ package com.tiseno.poplook.functions;
 
 import org.json.JSONArray;
 
+import java.util.ArrayList;
+
 /**
  * Created by rahn on 9/17/15.
  */
 public class ProductListItem {
 
+    ArrayList<attributeItem>sizeArray;
+    Boolean isWishlist;
     String productID,out_of_stock;
     String name,reference,image_url;
     String tax_rate,price_with_tax,price_with_discount,total_colours,id_product_attribute,price_Without_reduction,discount_text;
     JSONArray related_colour_data;
     String get_collection_name,online_exclusive,discount_label;
-    public ProductListItem(String productID, String name, String reference, String image_url, String tax_rate,String price_with_tax,String price_with_discount, String out_of_stock, String total_colours,String id_product_attribute, JSONArray related_colour_data, String get_collection_name, String online_exclusive , String discount_label, String price_Without_reduction, String discount_text) {
+    public ProductListItem(String productID, String name, String reference, String image_url, String tax_rate,String price_with_tax,String price_with_discount, String out_of_stock, String total_colours,String id_product_attribute, JSONArray related_colour_data, String get_collection_name, String online_exclusive , String discount_label, String price_Without_reduction, String discount_text,ArrayList<attributeItem>sizeArray, Boolean isWishlist) {
         super();
         this.productID = productID;
         this.name = name;
@@ -30,6 +34,8 @@ public class ProductListItem {
         this.discount_label=discount_label;
         this.price_Without_reduction = price_Without_reduction;
         this.discount_text = discount_text;
+        this.sizeArray = sizeArray;
+        this.isWishlist = isWishlist;
 
     }
 
@@ -139,7 +145,12 @@ public class ProductListItem {
     public String getDiscount_text() {
         return discount_text;
     }
-
+    public ArrayList<attributeItem> getSizeArray(){
+        return sizeArray;
+    }
+    public Boolean getIsWishlist(){
+        return isWishlist;
+    }
 
 }
 

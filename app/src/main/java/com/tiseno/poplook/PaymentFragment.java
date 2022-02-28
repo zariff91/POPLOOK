@@ -20,7 +20,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
+import android.text.style.UnderlineSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -178,7 +180,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
     ImageButton onlineBankingSelectIB;
 
-    TextView paymentTSIV,subTotalLblTV,subTotalLblTVRM,addGSTLblTV,addGSTLblTVRM,shippingMethodTV,addressfooterRM1,shippingMethodTVbill1,totalPayableRMTV,totalPayableRM1TV;
+    TextView paymentTSIV,termsTV,privacyTV,andTV,belowTermsTV,subTotalLblTV,subTotalLblTVRM,addGSTLblTV,addGSTLblTVRM,shippingMethodTV,addressfooterRM1,shippingMethodTVbill1,totalPayableRMTV,totalPayableRM1TV;
 
     String PaymentIDForIPay88 = "",SelectedShopID,SelectedCountryCurrency;
 
@@ -1282,11 +1284,73 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         code_textView = (TextView)newHeader.findViewById(R.id.codeTV);
         code_textView.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
 
+        paymentTSIV = (TextView) newHeader.findViewById(R.id.paymentTSIVNew);
+        paymentTSIV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
+        termsTV = (TextView) newHeader.findViewById(R.id.termsService);
+        termsTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
+
+        privacyTV = (TextView) newHeader.findViewById(R.id.privacyPolicy);
+        privacyTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
+
+        andTV = (TextView) newHeader.findViewById(R.id.andTV);
+        andTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
+        belowTermsTV = (TextView) newHeader.findViewById(R.id.textAfter);
+        belowTermsTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
         bank_first_message.setText(first_bank_message);
         bank_second_message.setText(second_bank_message);
 
         applyCodeBtn = (ImageButton) newHeader.findViewById(R.id.codeApplyIBPayment);
         codeInputET = (EditText) newHeader.findViewById(R.id.codeFieldPayment);
+
+        SpannableString content = new SpannableString("Terms Of Service");
+        content.setSpan(new UnderlineSpan(), 0, content.length(), 0);
+        termsTV.setText(content);
+
+        SpannableString content2 = new SpannableString("Privacy Policy");
+        content2.setSpan(new UnderlineSpan(), 0, content2.length(), 0);
+        privacyTV.setText(content2);
+
+//        final SpannableStringBuilder str2 = new SpannableStringBuilder(paymentTSIV.getText().toString());
+//        str2.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 37, 45, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+//        paymentTSIV.setText(str2);
+
+
+        termsTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new TermsCondFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("fromPayment", "Yeah");
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        privacyTV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment fragment = new PrivacyPolicyFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("fromSignUp", "Nope");
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
 
 
         applyCodeBtn.setOnClickListener(new View.OnClickListener() {
@@ -1484,8 +1548,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         billingAddressInfoTV = (TextView) footer1.findViewById(R.id.billingAddressInfoTV);
         shippingAddressContactNoTV = (TextView) footer1.findViewById(R.id.shippingAddressContactNoTV);
         billingAddressContactNoTV = (TextView) footer1.findViewById(R.id.billingAddressContactNoTV);
-        paymentTSIV = (TextView) header.findViewById(R.id.paymentTSIV);
-        paymentTSIV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+//        paymentTSIV = (TextView) header.findViewById(R.id.paymentTSIV);
+//        paymentTSIV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
 
 
 
@@ -1493,27 +1557,27 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         billingAddressInfoTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
         shippingAddressContactNoTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
         billingAddressContactNoTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
-        paymentTSIV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
-
-        final SpannableStringBuilder str = new SpannableStringBuilder(paymentTSIV.getText().toString());
-        str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 17, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        paymentTSIV.setText(str);
-
-        paymentTSIV.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Fragment fragment = new TermsCondFragment();
-                Bundle bundle = new Bundle();
-                bundle.putString("fromPayment", "Yeah");
-                fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                fragmentTransaction.addToBackStack(null);
-                fragmentTransaction.commit();
-            }
-        });
+//        paymentTSIV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+//
+//        final SpannableStringBuilder str = new SpannableStringBuilder(paymentTSIV.getText().toString());
+//        str.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), 17, 33, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        paymentTSIV.setText(str);
+//
+//        paymentTSIV.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Fragment fragment = new TermsCondFragment();
+//                Bundle bundle = new Bundle();
+//                bundle.putString("fromPayment", "Yeah");
+//                fragment.setArguments(bundle);
+//                FragmentManager fragmentManager = getActivity().getFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//            }
+//        });
 
         subTotalTV = (TextView)footer2.findViewById(R.id.subTotalTV);
         addGSTTV = (TextView)footer3.findViewById(R.id.addGSTTV);
@@ -1931,7 +1995,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                     } else {
                         new androidx.appcompat.app.AlertDialog.Builder(getActivity())
                                 .setTitle("Message")
-                                .setMessage("You must agree to the Terms of Service before continuing")
+                                .setMessage("You must agree to the Terms of Service and Privacy Policy before continuing")
                                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
@@ -2024,7 +2088,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 } else {
                     new androidx.appcompat.app.AlertDialog.Builder(getActivity())
                             .setTitle("Message")
-                            .setMessage("You must agree to the Terms of Service before continuing")
+                            .setMessage("You must agree to the Terms of Service and Privacy Policy before continuing")
                             .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     dialog.cancel();
@@ -2536,8 +2600,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 onlineBankTxt.setVisibility(View.GONE);
                 eWalletTxt.setVisibility(View.GONE);
 
-                bank_first_message.setVisibility(View.VISIBLE);
-                bank_second_message.setVisibility(View.VISIBLE);
+                bank_first_message.setVisibility(View.GONE);
+                bank_second_message.setVisibility(View.GONE);
 
                 if(first_bank_message.equals("false")){
                     bank_first_message.setVisibility(View.GONE);
@@ -2555,7 +2619,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 else {
 
                     if(listArray_voucher.size() == 0){
-                        codeVoucherRL.setVisibility(View.VISIBLE);
+                        codeVoucherRL.setVisibility(View.GONE);
                     }
 
                     else {
@@ -2584,8 +2648,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 onlineBankTxt.setVisibility(View.VISIBLE);
                 eWalletTxt.setVisibility(View.GONE);
 
-                bank_first_message.setVisibility(View.VISIBLE);
-                bank_second_message.setVisibility(View.VISIBLE);
+                bank_first_message.setVisibility(View.GONE);
+                bank_second_message.setVisibility(View.GONE);
 
                 if(first_bank_message.equals("false")){
                     bank_first_message.setVisibility(View.GONE);
@@ -2602,7 +2666,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 }
                 else {
                     if(listArray_voucher.size() == 0){
-                        codeVoucherRL.setVisibility(View.VISIBLE);
+                        codeVoucherRL.setVisibility(View.GONE);
                     }
 
                     else {

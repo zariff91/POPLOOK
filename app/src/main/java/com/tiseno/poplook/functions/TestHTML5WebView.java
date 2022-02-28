@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import android.transition.Explode;
 import android.view.KeyEvent;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -53,6 +54,7 @@ public class TestHTML5WebView extends AppCompatActivity {
         mWebView.setScrollBarStyle(View.SCROLLBARS_OUTSIDE_OVERLAY);
         mWebView.setWebChromeClient(new WebChromeClient());
 
+
         mWebView.getSettings().setDisplayZoomControls(false);
         mWebView.getSettings().setSupportZoom(false);
 
@@ -96,9 +98,13 @@ public class TestHTML5WebView extends AppCompatActivity {
     public void onConfigurationChanged(Configuration newConfig) {
          super.onConfigurationChanged(newConfig);
     }
+
     @Override
-    public void finish() {
-        super.finish();
-        overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

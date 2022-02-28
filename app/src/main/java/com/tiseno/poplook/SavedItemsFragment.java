@@ -76,6 +76,7 @@ public class SavedItemsFragment extends Fragment implements AsyncTaskCompleteLis
         ((MainActivity) getActivity()).changeBtnWishlistView(true);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
         ((MainActivity) getActivity()).setDrawerState(true);
+//        ((MainActivity) getActivity()).hideSideMenu(true);
 
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
         UserID = pref.getString("UserID", "");

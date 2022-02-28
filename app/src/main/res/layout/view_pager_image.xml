@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
 
-    <ImageView
+    <WebView
         android:id="@+id/imageViewProductPager"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:visibility="gone"
+        android:layout_width="300dp"
+        android:layout_height="500dp"
+        android:layout_centerHorizontal="true"
         />
+
+    <ImageView
+        android:id="@+id/video_image_icon"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+
+    </ImageView>
 
     <WebView
         android:id="@+id/videoView1"
@@ -17,7 +26,7 @@
         android:layout_height="fill_parent"
         android:layout_gravity="center"
         android:visibility="gone"
-        android:background="#0000"
+        android:background="@color/White"
         />
 
     <!--<ImageButton-->
@@ -29,16 +38,17 @@
         <!--android:background="?attr/selectableItemBackgroundBorderless"-->
         <!--android:visibility="gone"-->
         <!--/>-->
-    <ImageView
-        android:id="@+id/whitebg"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/white"
-        android:visibility="gone"/>
+<!--    <ImageView-->
+<!--        android:id="@+id/whitebg"-->
+<!--        android:layout_width="fill_parent"-->
+<!--        android:layout_height="fill_parent"-->
+<!--        android:background="@color/white"-->
+<!--        android:visibility="gone"/>-->
     <ProgressBar
         android:id="@+id/loadingImagePager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true"
+        android:visibility="gone"
         android:layout_gravity="center"/>
-</FrameLayout>
+</RelativeLayout>
