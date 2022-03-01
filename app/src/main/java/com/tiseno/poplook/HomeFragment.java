@@ -123,6 +123,8 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
         View rootView = inflater.inflate(R.layout.fragment_home, container, false);
         rootView.setTag(TAG);
 
+        //Test branch
+
         ((MainActivity) getActivity()).changeToolBarTextView(false);
         ((MainActivity) getActivity()).changeBtnBackView(false);
         ((MainActivity) getActivity()).changeToolBarImageView(true);
