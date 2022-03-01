@@ -2,12 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.tiseno.poplook"
     android:targetSandboxVersion="2"
-    android:versionCode="122"
-    android:versionName="6.5.6" >
+    android:versionCode="139"
+    android:versionName="6.6.9" >
 
     <uses-sdk
         android:minSdkVersion="19"
-        android:targetSdkVersion="29" />
+        android:targetSdkVersion="30" />
 
     <!-- <uses-feature -->
     <!-- android:glEsVersion="0x00020000" -->
@@ -21,15 +21,13 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
 
     <!-- Required by older versions of Google Play services to create GCM registration tokens -->
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
@@ -43,10 +41,8 @@
         android:name="com.tiseno.poplook.POPLOOK"
         android:allowBackup="false"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-        android:hardwareAccelerated="false"
         android:icon="@drawable/ic_launcher_new"
         android:label="@string/app_name"
-        android:largeHeap="true"
         android:resizeableActivity="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
@@ -216,13 +212,6 @@
             android:name="com.eghl.sdk.masterpass.MasterPassActivity"
             android:configChanges="orientation|screenSize" />
         <activity android:name="com.eghl.sdk.popup.PopupActivity" />
-
-        <provider
-            android:name="com.crashlytics.android.CrashlyticsInitProvider"
-            android:authorities="com.tiseno.poplook.crashlyticsinitprovider"
-            android:exported="false"
-            android:initOrder="90" />
-
         <activity
             android:name="com.karumi.dexter.DexterActivity"
             android:launchMode="singleTask"
@@ -365,14 +354,13 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <service android:name="com.useinsider.insider.InsiderHuaweiMessagingService" >
-            <intent-filter>
-                <action android:name="com.huawei.push.action.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
         <service
             android:name="com.useinsider.insider.IntegrationWizard"
             android:stopWithTask="false" />
+        <service
+            android:name="com.useinsider.insider.InsiderAmplificationService"
+            android:permission="android.permission.BIND_JOB_SERVICE" >
+        </service>
 
         <activity
             android:name="com.useinsider.insider.InsiderLoginActivity"
@@ -388,14 +376,6 @@
                 <data android:scheme="insiderpoplook" />
             </intent-filter>
         </activity>
-
-        <service
-            android:name="com.useinsider.insider.OpenUDID_service"
-            android:exported="false" >
-            <intent-filter>
-                <action android:name="org.OpenUDID.GETUDID" />
-            </intent-filter>
-        </service>
 
         <receiver
             android:name="com.google.android.gms.analytics.AnalyticsReceiver"

@@ -1,7 +1,7 @@
-#Mon Jan 11 14:34:22 MYT 2021
-base.0=/Users/poplook/Desktop/Workspace/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
+#Fri Jan 21 16:42:57 MYT 2022
+base.0=/Users/poplook/Desktop/POPLOOK/app/build/intermediates/dex/release/mergeDexRelease/out/classes.dex
 path.1=classes2.dex
 renamed.1=classes2.dex
 path.0=classes.dex
 renamed.0=classes.dex
-base.1=/Users/poplook/Desktop/Workspace/app/build/intermediates/dex/release/mergeDexRelease/out/classes2.dex
+base.1=/Users/poplook/Desktop/POPLOOK/app/build/intermediates/dex/release/mergeDexRelease/out/classes2.dex

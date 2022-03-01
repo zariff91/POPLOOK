@@ -4,40 +4,6 @@
             "outputFile": "/Users/poplook/Desktop/POPLOOK/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-te/values-te.xml",
             "map": [
                 {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/37b97ffadc9a50eb075b2c5b7442ce7f/jetified-facebook-login-5.15.3/res/values-te/values-te.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,218,363,505,616,704,790,872,965,1054,1167,1279,1380,1481,1591,1719,1801,1894,2086,2182,2283,2395,2508",
-                        "endColumns": "162,144,141,110,87,85,81,92,88,112,111,100,100,109,127,81,92,191,95,100,111,112,165",
-                        "endOffsets": "213,358,500,611,699,785,867,960,1049,1162,1274,1375,1476,1586,1714,1796,1889,2081,2177,2278,2390,2503,2669"
-                    },
-                    "to": {
-                        "startLines": "29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51",
-                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
-                        "startOffsets": "2845,3008,3153,3295,3406,3494,3580,3662,3755,3844,3957,4069,4170,4271,4381,4509,4591,4684,4876,4972,5073,5185,5298",
-                        "endColumns": "162,144,141,110,87,85,81,92,88,112,111,100,100,109,127,81,92,191,95,100,111,112,165",
-                        "endOffsets": "3003,3148,3290,3401,3489,3575,3657,3750,3839,3952,4064,4165,4266,4376,4504,4586,4679,4871,4967,5068,5180,5293,5459"
-                    }
-                },
-                {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/e2a0b71f4f1d607a33fcb56fa0560ca5/core-1.1.0/res/values-te/values-te.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "84",
-                        "startColumns": "4",
-                        "startOffsets": "9507",
-                        "endColumns": "100",
-                        "endOffsets": "9603"
-                    }
-                },
-                {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/55b654d0f3f92928ec782096302150ca/play-services-base-17.1.0/res/values-te/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -106,6 +72,23 @@
                     }
                 },
                 {
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/b096a2013b38429d8062658637e827ae/facebook-login-9.0.0/res/values-te/values-te.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,218,363,505,616,704,790,872,965,1054,1167,1279,1380,1481,1591,1719,1801,1894,2086,2182,2283,2395,2508",
+                        "endColumns": "162,144,141,110,87,85,81,92,88,112,111,100,100,109,127,81,92,191,95,100,111,112,165",
+                        "endOffsets": "213,358,500,611,699,785,867,960,1049,1162,1274,1375,1476,1586,1714,1796,1889,2081,2177,2278,2390,2503,2669"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "2845,3008,3153,3295,3406,3494,3580,3662,3755,3844,3957,4069,4170,4271,4381,4509,4591,4684,4876,4972,5073,5185,5298",
+                        "endColumns": "162,144,141,110,87,85,81,92,88,112,111,100,100,109,127,81,92,191,95,100,111,112,165",
+                        "endOffsets": "3003,3148,3290,3401,3489,3575,3657,3750,3839,3952,4064,4165,4266,4376,4504,4586,4679,4871,4967,5068,5180,5293,5459"
+                    }
+                },
+                {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/61a2e4c4e6e14dc93025d0e0faa88efd/browser-1.2.0/res/values-te/values-te.xml",
                     "from": {
                         "startLines": "2,3,4,5",
@@ -154,6 +137,23 @@
                         "startOffsets": "8575",
                         "endColumns": "104",
                         "endOffsets": "8675"
+                    }
+                },
+                {
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/78ac98b9e53fee45815235686f905f10/core-1.2.0/res/values-te/values-te.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "84",
+                        "startColumns": "4",
+                        "startOffsets": "9507",
+                        "endColumns": "100",
+                        "endOffsets": "9603"
                     }
                 }
             ]

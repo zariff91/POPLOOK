@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/poplook/Desktop/Workspace/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-lo/values-lo.xml",
+            "outputFile": "/Users/poplook/Desktop/POPLOOK/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-lo/values-lo.xml",
             "map": [
                 {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/61a2e4c4e6e14dc93025d0e0faa88efd/browser-1.2.0/res/values-lo/values-lo.xml",
@@ -72,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/e2a0b71f4f1d607a33fcb56fa0560ca5/core-1.1.0/res/values-lo/values-lo.xml",
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/78ac98b9e53fee45815235686f905f10/core-1.2.0/res/values-lo/values-lo.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

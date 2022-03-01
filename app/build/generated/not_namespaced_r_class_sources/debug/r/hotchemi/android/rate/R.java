@@ -12,17 +12,17 @@ public final class R {
     public static final class string {
         private string() {}
 
-        public static final int rate_dialog_cancel = 0x7f11012c;
-        public static final int rate_dialog_message = 0x7f11012d;
-        public static final int rate_dialog_no = 0x7f11012e;
-        public static final int rate_dialog_ok = 0x7f11012f;
-        public static final int rate_dialog_title = 0x7f110130;
+        public static final int rate_dialog_cancel = 0x7f120172;
+        public static final int rate_dialog_message = 0x7f120173;
+        public static final int rate_dialog_no = 0x7f120174;
+        public static final int rate_dialog_ok = 0x7f120175;
+        public static final int rate_dialog_title = 0x7f120176;
     }
     public static final class style {
         private style() {}
 
-        public static final int CustomButtonBarButtonStyle = 0x7f1200df;
-        public static final int CustomButtonBarStyle = 0x7f1200e0;
-        public static final int CustomLollipopDialogStyle = 0x7f1200e1;
+        public static final int CustomButtonBarButtonStyle = 0x7f1300e1;
+        public static final int CustomButtonBarStyle = 0x7f1300e2;
+        public static final int CustomLollipopDialogStyle = 0x7f1300e3;
     }
 }

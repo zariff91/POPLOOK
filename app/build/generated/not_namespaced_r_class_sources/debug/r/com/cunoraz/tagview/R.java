@@ -13,32 +13,32 @@ public final class R {
         private attr() {}
 
         public static final int lineMargin = 0x7f0401c6;
-        public static final int tagMargin = 0x7f0402a3;
-        public static final int textPaddingBottom = 0x7f0402c0;
-        public static final int textPaddingLeft = 0x7f0402c1;
-        public static final int textPaddingRight = 0x7f0402c2;
-        public static final int textPaddingTop = 0x7f0402c3;
+        public static final int tagMargin = 0x7f0402c6;
+        public static final int textPaddingBottom = 0x7f0402e3;
+        public static final int textPaddingLeft = 0x7f0402e4;
+        public static final int textPaddingRight = 0x7f0402e5;
+        public static final int textPaddingTop = 0x7f0402e6;
     }
     public static final class id {
         private id() {}
 
-        public static final int tv_tag_item_contain = 0x7f0a05b1;
-        public static final int tv_tag_item_delete = 0x7f0a05b2;
+        public static final int tv_tag_item_contain = 0x7f0a0687;
+        public static final int tv_tag_item_delete = 0x7f0a0688;
     }
     public static final class layout {
         private layout() {}
 
-        public static final int tagview_item = 0x7f0d010c;
+        public static final int tagview_item = 0x7f0d012b;
     }
     public static final class string {
         private string() {}
 
-        public static final int app_name = 0x7f11002d;
+        public static final int app_name = 0x7f12002c;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] TagView = { 0x7f0401c6, 0x7f0402a2, 0x7f0402a3, 0x7f0402c0, 0x7f0402c1, 0x7f0402c2, 0x7f0402c3 };
+        public static final int[] TagView = { 0x7f0401c6, 0x7f0402c5, 0x7f0402c6, 0x7f0402e3, 0x7f0402e4, 0x7f0402e5, 0x7f0402e6 };
         public static final int TagView_lineMargin = 0;
         public static final int TagView_tagCornerRadius = 1;
         public static final int TagView_tagMargin = 2;

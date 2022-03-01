@@ -89,6 +89,23 @@
                     }
                 },
                 {
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/78ac98b9e53fee45815235686f905f10/core-1.2.0/res/values-pt-rBR/values-pt-rBR.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "6935",
+                        "endColumns": "100",
+                        "endOffsets": "7031"
+                    }
+                },
+                {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/c818df4ccbff605dd407f191433c92b7/jetified-play-services-basement-17.0.0/res/values-pt-rBR/values.xml",
                     "from": {
                         "startLines": "4",
@@ -103,23 +120,6 @@
                         "startOffsets": "4013",
                         "endColumns": "203",
                         "endOffsets": "4212"
-                    }
-                },
-                {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/e2a0b71f4f1d607a33fcb56fa0560ca5/core-1.1.0/res/values-pt-rBR/values-pt-rBR.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "61",
-                        "startColumns": "4",
-                        "startOffsets": "6935",
-                        "endColumns": "100",
-                        "endOffsets": "7031"
                     }
                 },
                 {

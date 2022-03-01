@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/poplook/Desktop/Workspace/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-be/values-be.xml",
+            "outputFile": "/Users/poplook/Desktop/POPLOOK/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-be/values-be.xml",
             "map": [
                 {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/55b654d0f3f92928ec782096302150ca/play-services-base-17.1.0/res/values-be/values.xml",
@@ -52,6 +52,23 @@
                         "startOffsets": "5991",
                         "endColumns": "104",
                         "endOffsets": "6091"
+                    }
+                },
+                {
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/78ac98b9e53fee45815235686f905f10/core-1.2.0/res/values-be/values-be.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "6884",
+                        "endColumns": "100",
+                        "endOffsets": "6980"
                     }
                 },
                 {
@@ -120,23 +137,6 @@
                         "startOffsets": "6096",
                         "endColumns": "101",
                         "endOffsets": "6193"
-                    }
-                },
-                {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/e2a0b71f4f1d607a33fcb56fa0560ca5/core-1.1.0/res/values-be/values-be.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "61",
-                        "startColumns": "4",
-                        "startOffsets": "6884",
-                        "endColumns": "100",
-                        "endOffsets": "6980"
                     }
                 }
             ]

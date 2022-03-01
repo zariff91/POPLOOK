@@ -1,25 +1,8 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/poplook/Desktop/Workspace/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-or/values-or.xml",
+            "outputFile": "/Users/poplook/Desktop/POPLOOK/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-or/values-or.xml",
             "map": [
-                {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/e2a0b71f4f1d607a33fcb56fa0560ca5/core-1.1.0/res/values-or/values-or.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "61",
-                        "startColumns": "4",
-                        "startOffsets": "7045",
-                        "endColumns": "100",
-                        "endOffsets": "7141"
-                    }
-                },
                 {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/be3f4542f26995cf83162b1652c85a98/appcompat-1.1.0/res/values-or/values-or.xml",
                     "from": {
@@ -120,6 +103,23 @@
                         "startOffsets": "6177",
                         "endColumns": "103",
                         "endOffsets": "6276"
+                    }
+                },
+                {
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/78ac98b9e53fee45815235686f905f10/core-1.2.0/res/values-or/values-or.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "7045",
+                        "endColumns": "100",
+                        "endOffsets": "7141"
                     }
                 },
                 {

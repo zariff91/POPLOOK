@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/poplook/Desktop/Workspace/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-port/values-port.xml",
+            "outputFile": "/Users/poplook/Desktop/POPLOOK/app/build/intermediates/incremental/mergeReleaseResources/merged.dir/values-port/values-port.xml",
             "map": [
                 {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/be3f4542f26995cf83162b1652c85a98/appcompat-1.1.0/res/values-port/values-port.xml",

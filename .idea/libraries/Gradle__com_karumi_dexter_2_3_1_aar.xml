@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/140dbff87acef612c5420b4a87c74cef/jetified-dexter-2.3.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/140dbff87acef612c5420b4a87c74cef/jetified-dexter-2.3.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/140dbff87acef612c5420b4a87c74cef/jetified-dexter-2.3.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.karumi/dexter/2.3.1/bddc8c32c93d8d5bc1c0a1de59717d42e3e38f57/dexter-2.3.1-javadoc.jar!/" />

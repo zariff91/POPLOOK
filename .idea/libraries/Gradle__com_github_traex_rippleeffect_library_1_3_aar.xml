@@ -6,6 +6,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/70ce282e5e7730aa651e63c95d143c6a/jetified-library-1.3/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/70ce282e5e7730aa651e63c95d143c6a/jetified-library-1.3/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/70ce282e5e7730aa651e63c95d143c6a/jetified-library-1.3/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.traex.rippleeffect/library/1.3/b5523f1db330c592e2cf056da5081d8e7d94bc6a/library-1.3-javadoc.jar!/" />

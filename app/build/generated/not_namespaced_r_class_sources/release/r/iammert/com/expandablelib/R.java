@@ -13,17 +13,17 @@ public final class R {
         private attr() {}
 
         public static final int childLayout = 0x7f040084;
-        public static final int parentLayout = 0x7f04020b;
+        public static final int parentLayout = 0x7f04020a;
     }
     public static final class string {
         private string() {}
 
-        public static final int app_name = 0x7f11002d;
+        public static final int app_name = 0x7f11002c;
     }
     public static final class styleable {
         private styleable() {}
 
-        public static final int[] ExpandableLayout = { 0x7f040084, 0x7f04020b };
+        public static final int[] ExpandableLayout = { 0x7f040084, 0x7f04020a };
         public static final int ExpandableLayout_childLayout = 0;
         public static final int ExpandableLayout_parentLayout = 1;
     }

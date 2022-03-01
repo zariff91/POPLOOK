@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fd1161158fd95f72338b6e9a61df07c/android-rate-1.0.1/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fd1161158fd95f72338b6e9a61df07c/android-rate-1.0.1/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4fd1161158fd95f72338b6e9a61df07c/android-rate-1.0.1/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.hotchemi/android-rate/1.0.1/5d97ba3484ff95cefdb32afbfa9d091a077db14f/android-rate-1.0.1-javadoc.jar!/" />

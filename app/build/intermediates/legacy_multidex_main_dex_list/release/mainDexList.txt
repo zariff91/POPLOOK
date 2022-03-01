@@ -14,6 +14,9 @@ android/support/v4/media/session/PlaybackStateCompat$ShuffleMode.class
 android/support/v4/media/session/PlaybackStateCompat$State.class
 androidx/activity/ComponentActivity.class
 androidx/activity/OnBackPressedDispatcherOwner.class
+androidx/activity/contextaware/ContextAware.class
+androidx/activity/result/ActivityResultCaller.class
+androidx/activity/result/ActivityResultRegistryOwner.class
 androidx/annotation/AnimRes.class
 androidx/annotation/AnimatorRes.class
 androidx/annotation/AnyRes.class
@@ -73,6 +76,9 @@ androidx/annotation/UiThread.class
 androidx/annotation/VisibleForTesting.class
 androidx/annotation/WorkerThread.class
 androidx/annotation/XmlRes.class
+androidx/annotation/experimental/Experimental$Level.class
+androidx/annotation/experimental/Experimental.class
+androidx/annotation/experimental/UseExperimental.class
 androidx/appcompat/app/ActionBar$DisplayOptions.class
 androidx/appcompat/app/ActionBar$NavigationMode.class
 androidx/appcompat/app/ActionBarDrawerToggle$DelegateProvider.class
@@ -104,6 +110,7 @@ androidx/core/app/NotificationCompat$BadgeIconType.class
 androidx/core/app/NotificationCompat$GroupAlertBehavior.class
 androidx/core/app/NotificationCompat$NotificationVisibility.class
 androidx/core/app/NotificationCompat$StreamType.class
+androidx/core/app/RemoteInput$EditChoicesBeforeSending.class
 androidx/core/app/RemoteInput$Source.class
 androidx/core/app/ServiceCompat$StopForegroundFlags.class
 androidx/core/app/TaskStackBuilder$SupportParentable.class
@@ -123,9 +130,14 @@ androidx/core/view/ViewCompat$NestedScrollType.class
 androidx/core/view/ViewCompat$ScrollAxis.class
 androidx/core/view/ViewCompat$ScrollIndicators.class
 androidx/core/widget/TextViewCompat$AutoSizeTextType.class
+androidx/exifinterface/media/ExifInterface$ExifStreamType.class
+androidx/exifinterface/media/ExifInterface$IfdType.class
 androidx/fragment/app/FragmentActivity.class
+androidx/fragment/app/FragmentStateManagerControl.class
 androidx/lifecycle/HasDefaultViewModelProviderFactory.class
+androidx/lifecycle/Lifecycle$1.class
 androidx/lifecycle/Lifecycle$Event.class
+androidx/lifecycle/Lifecycle$State.class
 androidx/lifecycle/LifecycleObserver.class
 androidx/lifecycle/LifecycleOwner.class
 androidx/lifecycle/OnLifecycleEvent.class
@@ -173,8 +185,10 @@ com/bumptech/glide/annotation/GlideType.class
 com/bumptech/glide/annotation/compiler/Index.class
 com/bumptech/glide/gifdecoder/GifDecoder$GifDecodeStatus.class
 com/bumptech/glide/util/Synthetic.class
-com/facebook/internal/instrument/crashreport/AutoHandleExceptions.class
-com/facebook/internal/instrument/crashreport/NoAutoExceptionHandling.class
+com/facebook/internal/instrument/crashshield/AutoHandleExceptions.class
+com/facebook/internal/instrument/crashshield/NoAutoExceptionHandling.class
+com/facebook/internal/qualityvalidation/Excuse.class
+com/facebook/internal/qualityvalidation/ExcusesForDesignViolations.class
 com/google/ads/mediation/MediationServerParameters$Parameter.class
 com/google/android/datatransport/runtime/time/Monotonic.class
 com/google/android/datatransport/runtime/time/WallTime.class
@@ -362,6 +376,7 @@ com/karumi/dexter/Dexter.class
 com/pierfrancescosoffritti/androidyoutubeplayer/core/player/views/LegacyYouTubePlayerView.class
 com/pierfrancescosoffritti/androidyoutubeplayer/core/player/views/SixteenByNineFrameLayout.class
 com/pierfrancescosoffritti/androidyoutubeplayer/core/player/views/YouTubePlayerView.class
+com/smarteist/autoimageslider/SliderPager$DecorView.class
 com/tiseno/poplook/Insider.class
 com/tiseno/poplook/POPLOOK$1.class
 com/tiseno/poplook/POPLOOK.class
@@ -369,6 +384,7 @@ com/tiseno/poplook/SplashActivity.class
 com/tiseno/poplook/webservice/AsyncTaskCompleteListener.class
 com/useinsider/insider/Insider.class
 com/useinsider/insider/InsiderCallback.class
+com/useinsider/insider/InsiderCallbackType.class
 com/useinsider/insider/InsiderCore.class
 dagger/Binds.class
 dagger/BindsInstance.class
@@ -394,7 +410,6 @@ dagger/multibindings/IntoSet.class
 dagger/multibindings/LongKey.class
 dagger/multibindings/Multibinds.class
 dagger/multibindings/StringKey.class
-io/fabric/sdk/android/services/concurrency/DependsOn.class
 javax/annotation/CheckForNull.class
 javax/annotation/CheckForSigned.class
 javax/annotation/CheckReturnValue.class

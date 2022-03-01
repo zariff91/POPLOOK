@@ -72,23 +72,6 @@
                     }
                 },
                 {
-                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/e2a0b71f4f1d607a33fcb56fa0560ca5/core-1.1.0/res/values-lv/values-lv.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "61",
-                        "startColumns": "4",
-                        "startOffsets": "7089",
-                        "endColumns": "100",
-                        "endOffsets": "7185"
-                    }
-                },
-                {
                     "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/d36c69186d76bccfb018f7caec5603d5/jetified-firebase-messaging-20.1.0/res/values-lv/values.xml",
                     "from": {
                         "startLines": "4",
@@ -137,6 +120,23 @@
                         "startOffsets": "5782,5885,5984,6100",
                         "endColumns": "102,98,115,100",
                         "endOffsets": "5880,5979,6095,6196"
+                    }
+                },
+                {
+                    "source": "/Users/poplook/.gradle/caches/transforms-2/files-2.1/78ac98b9e53fee45815235686f905f10/core-1.2.0/res/values-lv/values-lv.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "61",
+                        "startColumns": "4",
+                        "startOffsets": "7089",
+                        "endColumns": "100",
+                        "endOffsets": "7185"
                     }
                 }
             ]

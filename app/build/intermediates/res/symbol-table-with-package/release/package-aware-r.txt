@@ -29,13 +29,7 @@ anim design_snackbar_in
 anim design_snackbar_out
 anim fadeinanim
 anim fadeoutanim
-anim fragment_close_enter
-anim fragment_close_exit
-anim fragment_fade_enter
-anim fragment_fade_exit
 anim fragment_fast_out_extra_slow_in
-anim fragment_open_enter
-anim fragment_open_exit
 anim ins_anim_xcv_fadein
 anim ins_anim_xcv_fadeout
 anim ins_anim_xcv_slidedown
@@ -43,11 +37,21 @@ anim ins_anim_xcv_slideup
 anim mtrl_bottom_sheet_slide_in
 anim mtrl_bottom_sheet_slide_out
 anim mtrl_card_lowers_interpolator
+anim slide_in_bottom
+anim slide_in_top
+anim slide_out_bottom
+anim slide_out_top
 anim view_hide
 anim view_show
 animator design_appbar_state_list_animator
 animator design_fab_hide_motion_spec
 animator design_fab_show_motion_spec
+animator fragment_close_enter
+animator fragment_close_exit
+animator fragment_fade_enter
+animator fragment_fade_exit
+animator fragment_open_enter
+animator fragment_open_exit
 animator mtrl_btn_state_list_anim
 animator mtrl_btn_unelevated_state_list_anim
 animator mtrl_card_state_list_anim
@@ -222,7 +226,6 @@ attr civ_border_color
 attr civ_border_overlay
 attr civ_border_width
 attr civ_circle_background_color
-attr civ_fill_color
 attr clipPadding
 attr closeIcon
 attr closeIconEnabled
@@ -594,6 +597,22 @@ attr passwordToggleEnabled
 attr passwordToggleTint
 attr passwordToggleTintMode
 attr perAccountTemplate
+attr piv_animationDuration
+attr piv_animationType
+attr piv_autoVisibility
+attr piv_count
+attr piv_dynamicCount
+attr piv_interactiveAnimation
+attr piv_orientation
+attr piv_padding
+attr piv_radius
+attr piv_rtl_mode
+attr piv_scaleFactor
+attr piv_select
+attr piv_selectedColor
+attr piv_strokeWidth
+attr piv_unselectedColor
+attr piv_viewPager
 attr popupMenuBackground
 attr popupMenuStyle
 attr popupTheme
@@ -671,6 +690,25 @@ attr shrinkMotionSpec
 attr singleChoiceItemLayout
 attr singleLine
 attr singleSelection
+attr sliderAnimationDuration
+attr sliderAutoCycleDirection
+attr sliderAutoCycleEnabled
+attr sliderIndicatorAnimationDuration
+attr sliderIndicatorEnabled
+attr sliderIndicatorGravity
+attr sliderIndicatorMargin
+attr sliderIndicatorMarginBottom
+attr sliderIndicatorMarginLeft
+attr sliderIndicatorMarginRight
+attr sliderIndicatorMarginTop
+attr sliderIndicatorOrientation
+attr sliderIndicatorPadding
+attr sliderIndicatorRadius
+attr sliderIndicatorRtlMode
+attr sliderIndicatorSelectedColor
+attr sliderIndicatorUnselectedColor
+attr sliderScrollTimeInSec
+attr sliderStartAutoCycle
 attr snackbarButtonStyle
 attr snackbarStyle
 attr snap
@@ -891,6 +929,7 @@ color background_floating_material_light
 color background_material_dark
 color background_material_light
 color bg_notice_color
+color birtday_orange
 color black
 color blue
 color bright_foreground_disabled_material_dark
@@ -1101,6 +1140,7 @@ color primary_text_default_material_dark
 color primary_text_default_material_light
 color primary_text_disabled_material_dark
 color primary_text_disabled_material_light
+color raya_22
 color red
 color rippelColor
 color ripple_material_dark
@@ -1604,6 +1644,8 @@ drawable abc_textfield_search_activated_mtrl_alpha
 drawable abc_textfield_search_default_mtrl_alpha
 drawable abc_textfield_search_material
 drawable abc_vector_test
+drawable aeon_jusco
+drawable aeon_sa
 drawable avd_hide_password
 drawable avd_show_password
 drawable ayp_background_item_selected
@@ -1728,6 +1770,7 @@ drawable chip
 drawable chip_selected
 drawable circle_myr
 drawable circle_sgd
+drawable circle_text
 drawable circle_usd
 drawable com_facebook_auth_dialog_background
 drawable com_facebook_auth_dialog_cancel_background
@@ -1822,8 +1865,10 @@ drawable ic_ipay
 drawable ic_keyboard_arrow_left_black_24dp
 drawable ic_keyboard_arrow_right_black_24dp
 drawable ic_launcher
+drawable ic_launcher_bday
 drawable ic_launcher_new
 drawable ic_launcher_noti
+drawable ic_launcher_raya_21
 drawable ic_launcher_trans
 drawable ic_love2_18dp
 drawable ic_love_18dp
@@ -1845,6 +1890,7 @@ drawable icon_go
 drawable icon_nextstep
 drawable icon_timeleft
 drawable icon_user
+drawable icon_user_2
 drawable ins_xcv_play
 drawable invite_exc_icon
 drawable ketupat
@@ -1859,6 +1905,9 @@ drawable level_up_silver_text
 drawable line_divider
 drawable logo
 drawable logo_new
+drawable logo_new_birthday
+drawable logo_new_raya_21
+drawable logo_raya_21
 drawable love_wishlist_icon
 drawable love_wishlist_icon_small
 drawable mcpp_wllt_btn_chk_147x034px
@@ -1888,11 +1937,13 @@ drawable my_button
 drawable myr_graph
 drawable mystery_money_icon
 drawable navigation_empty_icon
+drawable new_btn_menu
 drawable new_filter_ic
 drawable new_filter_icon
 drawable new_home_ic_1
 drawable new_remove_icon
 drawable new_search_ic
+drawable new_user_ic
 drawable notification_action_background
 drawable notification_badge
 drawable notification_bg
@@ -1919,6 +1970,7 @@ drawable poplook_main_circle
 drawable poplook_main_table
 drawable poplook_maintable_2
 drawable poplook_reward_icon
+drawable raya_2021
 drawable remove_cart_icon
 drawable right
 drawable salebanner
@@ -1930,6 +1982,7 @@ drawable shopbycollectionbanner
 drawable sogo
 drawable splash
 drawable test_custom_background
+drawable testing_poplook
 drawable text_available
 drawable text_canceled
 drawable text_converted
@@ -1953,6 +2006,8 @@ drawable vpi__tab_selected_pressed_holo
 drawable vpi__tab_unselected_focused_holo
 drawable vpi__tab_unselected_holo
 drawable vpi__tab_unselected_pressed_holo
+drawable wishlist_logo_black
+font avenir_black
 font avenir_roman
 id ALT
 id AUTV
@@ -1989,23 +2044,31 @@ id ColourLL
 id ColourTV
 id ColoursRecyclerView
 id CreditCardBtn
+id CreditCardBtnNew
 id DateLabel
 id DeliveryLabel
 id DeliveryTVPI
+id DeliveryTextView
 id DetailLayout
 id EWalletBtn
+id EWalletBtnNew
 id EWalletIV
 id EWalletLL
 id EWalletTV
 id EWalletTxtView
+id EWalletTxtViewNew
 id FAQBtn
 id FUNCTION
 id GSTRL
+id HomeBannerHorizontalRecyclerView
+id HomeBannerRecyclerView
 id HomeCategoryRecyclerView
 id LAY
 id LL1
 id META
+id NewPaymentGroup
 id OnlineBankingTxtView
+id OnlineBankingTxtViewNew
 id OrderNoLabel
 id OrderRefLL
 id PDPTV
@@ -2133,38 +2196,59 @@ id addNewAddressBtnRL2
 id addNewAddressBtnRL3
 id addToCartBelowView
 id addToCartButton
+id addToCartView
+id addVoucher
+id addedVooucherLabel
 id additionalTopViewText2header
 id additionalTopViewText3header
 id additionalTopViewTextheader
 id addressBillingRV
 id addressLISTRV
+id addressLabel
 id addressPickerNP
 id addressPickerRL
 id addressPickerSelectIB
 id addressRM
 id addressRM1
+id addressRV
 id addressText
 id addressTitleTV
+id address_name
+id address_phoneNum
+id address_text
 id addressfooterRM
 id addressfooterRM1
 id addressfooterShipping
 id addressfooterTotalInc
+id addtoCartTextView
 id adjust_height
 id adjust_width
 id agreentBtn
 id alertTitle
 id all
 id always
+id andTV
+id andTVNew
+id appliedVoucherView
 id applyButtonNew
 id applySortFilterBtn
+id applyVoucherLabel
+id applyVoucherView
+id apply_text
 id arrow
 id async
 id auto
 id automatic
 id backBtn
 id backButtonCustom
+id backButtonCustomOrder
+id back_and_forth
+id back_btn
+id back_menu_btn
 id bagNoti
 id bagNoti_prodInfo
+id bank_message_one
+id bank_message_two
 id barcodeImage
 id barcodeLayout
 id barcodeTextView
@@ -2221,9 +2305,9 @@ id bottomContentSv
 id bottomLayout
 id bottomLayoutTV
 id bottomMessage
+id bottomSummaryRV
 id bottom_account
 id bottom_home
-id bottom_navigation
 id bottom_product
 id box_count
 id browser_actions_header_text
@@ -2264,13 +2348,30 @@ id cancelTV
 id cancel_action
 id cancel_button
 id careImageBtn
+id careImageButton
 id careLayout
 id careOpenLayout
 id careTV
+id careTextView
+id care_loading_webview
+id care_parent_layout
+id care_webview
+id care_webview_layout
 id carouselIconIv
 id carrierLabel
+id cartBottomView
+id cartBtnTop
 id cartButton
+id cartImage
+id cartItemNumber
+id cartLabel
+id cartRV
+id categoryTextSideMenu
+id categoryTextView
+id categoryTitle
 id category_RL
+id category_filter_text
+id category_label
 id category_selected_text
 id category_text
 id center
@@ -2292,6 +2393,7 @@ id changeYourPasswordLL
 id changeYourPasswordSaveChangesBtnIV
 id changeYourPasswordSaveChangesRL
 id changeYourPasswordSaveChangesTV
+id change_shippinglabel
 id checkOut_Radio
 id checkOut_emailET
 id checkOut_forgotPassTV
@@ -2324,15 +2426,21 @@ id closeBt
 id closeSearch
 id closeSearchBtn
 id closeText
+id closeTxt
 id closeView
 id close_instore
 id codeApplyIB
+id codeApplyIBPayment
 id codeApplyTV
 id codeBarRL
+id codeBarRLPayment
 id codeET
+id codeFieldPayment
+id codeInputText
 id codeTV
 id collapseActionView
 id collection_text
+id color
 id colorFilteredTV
 id colorGroupingIV1
 id colorGroupingIV1BG
@@ -2344,11 +2452,14 @@ id colorGroupingIV5
 id colorGroupingRL
 id colorGroupingTV
 id colorTV
+id colorsTextView
 id colourDividerIV
 id colour_RL
+id colour_filter_text
 id colour_selected_text
 id colour_text
 id coloursIV
+id coloursOptionRecyclerView
 id column
 id column_reverse
 id com_facebook_body_frame
@@ -2436,9 +2547,14 @@ id deliveryAddressDropDownIV
 id deliveryAddressLL
 id deliveryAddressTV
 id deliveryImageBtn
+id deliveryImageButton
 id deliveryLayout
 id deliveryMethodOne
 id deliveryOpenLayout
+id delivery_parent_layout
+id delivery_webview
+id delivery_webview_layout
+id delivery_webview_loading
 id demote_common_words
 id demote_rfc822_hostnames
 id descLabel
@@ -2449,6 +2565,8 @@ id design_menu_item_text
 id design_navigation_view
 id detailBtn
 id detailsTV
+id detailsTextView
+id details_webview
 id dialog_button
 id disableHome
 id discoveryIconIv
@@ -2456,6 +2574,7 @@ id display_always
 id donBtnn
 id doubleRipple
 id downloadReturnFormLabel
+id drop
 id drop_shadow_bottom
 id drop_shadow_top
 id dropdown_menu
@@ -2501,6 +2620,10 @@ id editAddressscrollviewBehind
 id editAddressstateNumberPicker
 id editAddressstateNumberPickerLayout
 id editAddressstateSelectButton
+id editTextGift
+id editTextGiftView
+id editTextLeaveMessage
+id editTextLeaveView
 id edit_query
 id editaddressTV
 id email
@@ -2511,6 +2634,7 @@ id end
 id end_padder
 id enetsRB
 id enetsorpaypal
+id enetspaypal
 id enterAlways
 id enterAlwaysCollapsed
 id error_console
@@ -2522,6 +2646,7 @@ id expandView
 id expand_activities_button
 id expandable_layout
 id expanded_menu
+id expectedOrderTV
 id extra_views_container
 id fade
 id fbIV
@@ -2531,12 +2656,13 @@ id fill_vertical
 id filled
 id filterAndSortButton
 id filterBelowTV
-id filterRL
-id filterTV
+id filterButton
+id filter_by_category
+id filter_by_colour
+id filter_by_size
 id filter_chip
 id filter_text
 id filteredColourTV
-id filteredIV
 id filteredSizeTV
 id filtersortBtnRV
 id firstLabel
@@ -2562,7 +2688,11 @@ id ghost_view
 id ghost_view_holder
 id gifIv
 id giftBarRL
+id giftDoneButton
+id giftOptionText
+id giftOptionTitle
 id giftOptionsET
+id giftOptionsEditText
 id giftOptionsIV
 id giftOptionsNOIV
 id giftOptionsNOTV
@@ -2574,6 +2704,8 @@ id giftOptionsYESIV
 id giftOptionsYESTV
 id giftTxtView
 id giftTxtViewBelow
+id giftVoucherView
+id glide_custom_view_target_tag
 id gridLayoutLL
 id grid_image
 id grid_image_wishlist
@@ -2590,6 +2722,10 @@ id home
 id homeAsUp
 id homeCoordinator
 id homeImage
+id homeMenuBtn
+id horizontal
+id horizontalIconImageView
+id horizontalIconTextView
 id html
 id htmlView
 id iV
@@ -2602,6 +2738,8 @@ id icon_uri
 id ifRoom
 id igIV
 id image
+id imageSlider
+id imageSliderNew
 id imageView
 id imageView1
 id imageViewProductPager
@@ -2665,6 +2803,7 @@ id instant_surnameET
 id instant_surnameTV
 id instant_telET
 id instant_townET
+id instoreTextView
 id intent_action
 id intent_activity
 id intent_data
@@ -2678,6 +2817,7 @@ id invoiceNoLabel
 id isTermsOkCb
 id isTermsOkTv
 id italic
+id itemLeftTextView
 id itemListRV
 id itemListcartRV
 id item_addCart
@@ -2685,7 +2825,9 @@ id item_price
 id item_size
 id item_title
 id item_touch_helper_previous_elevation
+id iv_auto_image_slider
 id iv_back
+id iv_gif_container
 id joinBtn
 id labelOne
 id labelOne1
@@ -2718,6 +2860,8 @@ id layout_3
 id layout_4
 id layout_5
 id layoutatas
+id leaveMessageTV
+id leaveMessageView
 id leaveMsgET
 id leaveMsgNOIV
 id leaveMsgNOTV
@@ -2746,6 +2890,7 @@ id linear_layout_filtered
 id linear_layout_size
 id linear_top_layout
 id linearlayoutPreferenceBehind
+id listAddressBtn
 id listMode
 id listView1
 id list_item
@@ -2755,11 +2900,14 @@ id llsearch
 id lltry
 id llyBehindProdList
 id loadingImageHome
+id loadingImageHorizontal
+id loadingImageIcon
 id loadingImageLorh
 id loadingImagePager
 id loadingImageProductList
 id loadingImageStyleWith
 id loadingVid
+id loading_details_webview
 id loading_webview_care
 id loading_webview_delivery
 id loading_webview_details
@@ -2804,14 +2952,22 @@ id mailingListPreferencesLL
 id mailingListPreferencesSaveChangesBtnIV
 id mailingListPreferencesSaveChangesRL
 id mailingListPreferencesSaveChangesTV
+id mainMenuTextLayout
 id main_1
 id main_content
+id main_menu_text_label
 id masked
 id matchItemWithTV
+id matchItemWithTextView
 id match_global_nicknames
+id match_item_tagView
 id match_item_tag_view
+id measurement_webview
+id measurement_webview_loading
 id measurementsTV
+id measurementsTextView
 id media_actions
+id menu_bottom
 id menu_button
 id menu_root
 id message
@@ -2827,6 +2983,8 @@ id month_navigation_next
 id month_navigation_previous
 id month_title
 id motherAndDaughterTV
+id motherAndDaughterTextView
+id motherDaughter_tagView
 id motherDaughter_tag_view
 id mtrl_calendar_day_selector_frame
 id mtrl_calendar_days_of_week
@@ -2888,9 +3046,14 @@ id nameTV
 id navigation_header_container
 id never
 id never_display
+id new_filter_bottom_sheet
 id newdeliveryAddressCB
+id nextBtn
+id nextIcon
+id nextIconMessage
 id nextTV
 id noAddLabel
+id noProductLabel
 id noScroll
 id noSizeTV
 id none
@@ -2907,6 +3070,7 @@ id omnibox_title_section
 id omnibox_url_section
 id on
 id onlineBankingBtn
+id onlineBankingBtnNew
 id onlineBankingDropDownIV
 id onlineBankingLL
 id onlineBankingNP
@@ -2916,6 +3080,11 @@ id onlineBankingSelectIB
 id onlineBankingTV
 id oosRL
 id open_graph
+id option_1
+id option_2
+id option_3
+id option_33
+id option_44
 id orTV
 id orderConfirmationRV
 id orderDetailsCarrierTV
@@ -2958,6 +3127,7 @@ id originalAmountLabel
 id outOFstockTV
 id outline
 id page
+id pageTitle
 id panel
 id parallax
 id parentOfInapp
@@ -2967,6 +3137,7 @@ id password_toggle
 id payNowTV
 id paymentBottomNextBtnIV
 id paymentBottomNextBtnRL
+id paymentLabel
 id paymentLblTV
 id paymentMethodLabel
 id paymentNextBtnIB
@@ -2975,7 +3146,9 @@ id paymentNextRL
 id paymentRG
 id paymentRV
 id paymentTSCheckIV
+id paymentTSCheckIVNew
 id paymentTSIV
+id paymentTSIVNew
 id paymentTSLblTV
 id paypalRB
 id pbFooterLoading
@@ -3010,6 +3183,7 @@ id personalInformationNewPasswordLblTV
 id personalInformationNewSurNameET
 id personalInformationNewSurNameLblTV
 id pin
+id placeOrderTV
 id plain
 id playGifBt
 id play_pause_button
@@ -3023,10 +3197,13 @@ id preferenceNumberPickerLayout
 id preferenceNumberPickerLayout2
 id preferenceSelectButton
 id preferenceSelectButton2
+id privacyPolicy
+id privacyPolicyNew
 id privacyPolicyTV
 id proceedFromAdd
 id productAddToBagRL
 id productAddToBagTV
+id productDiscountPriceTV
 id productExpiresLL
 id productExpiresLblTV
 id productExpiresTV
@@ -3037,15 +3214,16 @@ id productInfoDiscountPriceTV
 id productInfoOnlineExTV
 id productInfoPriceTV
 id productInfoRefNoTV
+id productInfoRefNoTextView
 id productInfoSizeTV
 id productInfoTitleTV
-id productListNumberPicker
-id productListNumberPickerLayout
 id productListSelectButton
-id productListSortByTV
 id productListSortByTV1
+id productLoadingIcon
 id productNameTV
+id productOnlineExclusiveTV
 id productPrice
+id productPriceTextView
 id productQuantityLL
 id productQuantityLblTV
 id productQuantitySpinner
@@ -3062,6 +3240,8 @@ id productSizeTV
 id productTimeLeft1TV
 id productTimeLeftLL
 id productTitle
+id productTitleConfirmPage
+id productTitleTextView
 id productTotalPriceLL
 id productTotalPriceLblTV
 id productTotalPriceTV
@@ -3070,14 +3250,20 @@ id productUnitPriceLblTV
 id productUnitPriceTV
 id productViewVP
 id product_Image
+id product_discounted_price
+id product_img
+id product_label
+id product_list_table
+id product_price
+id product_sale_label
 id programmatic_transition_drawable
 id progress
 id progressBar
 id progressBar1
 id progressBar2
-id progressBarCenter
 id progressBarCenterHome
 id progressBarLayout
+id progressBarVideo
 id progressBarr
 id progressText
 id progress_bar
@@ -3091,6 +3277,7 @@ id pushNoti_radio
 id pushNoti_radioNO
 id pushNoti_radioYES
 id quantityDividerIV
+id quantityProduct
 id quantityTV
 id quantityText
 id radio
@@ -3099,7 +3286,11 @@ id rayaIcon
 id rectangle
 id recycler_view
 id refreshBarcode
+id removeAppliedVoucher
+id removeStoreCredit
 id required
+id retailTextTV
+id retailTotalTV
 id rfc822
 id right
 id rightBt
@@ -3123,6 +3314,7 @@ id savedItemSortBySelectIB
 id savedItemSortByTV
 id savedItemsRV
 id scale
+id scale_down
 id scdLabelBDay
 id screen
 id scroll
@@ -3149,10 +3341,12 @@ id selectAddressTV
 id selectColourTV
 id selectPaymentTxt
 id selectSizeTV
+id selectSizeTextView
 id selectSortBtn
 id selectTV
 id selectTVShipping
 id select_dialog_listview
+id select_size_chip
 id select_size_tv_view
 id select_size_tv_view_instore
 id selected
@@ -3175,6 +3369,8 @@ id settingsTermCondLL
 id settingsTermCondTV
 id settingsVisitOurStoreLL
 id settingsVisitOurStoreTV
+id shipFeeTextTV
+id shipFeeTotalTV
 id shippingAddressAddtBtnIV
 id shippingAddressContactNoLblTV
 id shippingAddressContactNoTV
@@ -3185,6 +3381,7 @@ id shippingAddressLabel
 id shippingAddressTV
 id shippingBottomNextBtnIV
 id shippingBottomNextBtnRL
+id shippingLabel
 id shippingMethodDividerIV
 id shippingMethodInfoLL
 id shippingMethodInfoTV
@@ -3200,8 +3397,11 @@ id shippingMethodTVbill
 id shippingMethodTVbill1
 id shippingMethodTVlbl
 id shippingMethodTVlblCart
+id shippingMthd
+id shippingRV
 id shippingTOTV
 id shippingText
+id shipping_change_label
 id shoppingBagBtn
 id shoppingBagBtn_productInfo
 id shoppingBagEmptyTV
@@ -3213,10 +3413,14 @@ id shortcut
 id showCustom
 id showHome
 id showTitle
+id shownHereWithTextView
+id shown_here_tagView
 id shown_here_tag_view
+id sideDrawer
 id sideImage_collapseIV
 id sideImagecollapseIV
 id sideIndex
+id sideMenuRecyclerView
 id side_menu_userTV
 id signInBtnn
 id signUp_DOBET
@@ -3246,6 +3450,7 @@ id sizeRVTV
 id sizeTV
 id sizeText
 id size_RL
+id size_filter_text
 id size_selected_text
 id size_text
 id skipCollapsed
@@ -3259,6 +3464,8 @@ id snapMargins
 id soldOutInfo
 id sortByBarRL
 id sortByList
+id sort_by_chip
+id sort_by_text
 id sort_text
 id sortbyTV
 id sortingOption
@@ -3266,10 +3473,10 @@ id space_around
 id space_between
 id space_evenly
 id spacer
+id special_effects_controller_view_tag
 id spendLabel
 id spinner_quantity
 id spinner_size
-id spinner_sort_by
 id split_action_bar
 id src_atop
 id src_in
@@ -3291,7 +3498,11 @@ id step4TV
 id step4toTV
 id step5TV
 id stepBarRL
+id storeCreditBottom
+id storeCreditBottomTotalTV
+id storeCreditLabel
 id storeCreditRV
+id storeCreditView
 id storeListRV
 id store_Address
 id store_Title
@@ -3308,6 +3519,7 @@ id subTotalLblTVRM
 id subTotalLblTVbill
 id subTotalRL
 id subTotalTV
+id subTotalTextTV
 id subjectDivider1
 id subjectDivider2
 id submenuarrow
@@ -3315,6 +3527,7 @@ id submit
 id submitBtnn
 id submit_area
 id sv
+id swap
 id tabMode
 id tabanim_appbar
 id tag_accessibility_actions
@@ -3325,6 +3538,9 @@ id tag_screen_reader_focusable
 id tag_transition_group
 id tag_unhandled_key_event_manager
 id tag_unhandled_key_listeners
+id termsLL
+id termsService
+id termsServiceNew
 id termsView
 id termsViewLayout
 id terms_view
@@ -3333,6 +3549,8 @@ id test_checkbox_app_button_tint
 id text
 id text1
 id text2
+id textAfter
+id textAfterNew
 id textBottom
 id textEnd
 id textSpacerNoButtons
@@ -3351,8 +3569,10 @@ id textinput_counter
 id textinput_error
 id textinput_helper_text
 id textview1
+id thinWorm
 id thing_proto
 id thirdLabelBDay
+id tickShipping
 id time
 id title
 id titleDividerNoCustom
@@ -3386,11 +3606,18 @@ id top
 id topAddressLL
 id topLabel
 id topPanel
+id topSaleLabel
 id topTV
+id topView
+id totalBottomView
+id totalBottomViewPrice
+id totalBottomViewText
 id totalInclGSTRL
 id totalInclGSTTV
 id totalInclGSTTVlbl
 id totalInclGSTTVlblRM
+id totalItemCartTV
+id totalItemRV
 id totalOriginalAmountLabel
 id totalPayableRL
 id totalPayableRM1TV
@@ -3400,6 +3627,7 @@ id totalPayableTV
 id totalPayableTVCart
 id totalPriceRMTV
 id totalPriceTV
+id totalStoreCreditLabel
 id touch_outside
 id towardsLabel
 id transition_current_scene
@@ -3424,15 +3652,25 @@ id unlabeled
 id up
 id url
 id useLogo
+id userName
+id vertical
+id videoProduct
 id videoView
 id videoView1
 id videoViewPlayer
+id video_image_icon
 id video_title
 id view
 id viewTOP
+id view_1
+id view_line
 id view_offset_helper
+id view_tree_lifecycle_owner
+id view_tree_saved_state_registry_owner
+id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
+id voucherAppliedTitle
 id voucherCodeNameTV
 id voucherCodeNameTV1
 id voucherCodePriceLblTV
@@ -3443,6 +3681,7 @@ id voucherGeneratedFromRL1
 id voucherGeneratedFromRV
 id voucherGeneratedFromTV
 id voucherGeneratedFromTV1
+id voucherRV
 id voucherView
 id webView
 id webView2
@@ -3452,11 +3691,12 @@ id webview_details
 id webview_measurements
 id welcomePageIndicator
 id whatsapp
-id whitebg
 id wide
 id wishlistBtn
 id wishlistNoti
+id wishlist_button
 id withText
+id worm
 id wrap
 id wrap_content
 id wrap_reverse
@@ -3555,12 +3795,15 @@ layout billing_address_footer_view
 layout billing_address_footer_view1
 layout billing_address_header_view
 layout birthday_popup
+layout bottom_dialog_menu
+layout bottom_menu_row_adapter
 layout bottom_nav_collection
 layout bottom_nav_myacc
 layout browser_actions_context_menu_page
 layout browser_actions_context_menu_row
 layout chane_checkout_address
 layout chip
+layout choose_country_address
 layout collection_collapsible
 layout collection_row
 layout colours_row
@@ -3571,6 +3814,7 @@ layout com_facebook_smart_device_dialog_fragment
 layout com_facebook_tooltip_bubble
 layout custom_dialog
 layout custom_screen
+layout custom_slider_image_layout
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
 layout design_layout_snackbar
@@ -3630,12 +3874,15 @@ layout fragment_sign_up
 layout fragment_store_credit
 layout fragment_terms_cond
 layout fragment_visit_our_store
+layout gift_message_layout
+layout grid_list_product_layout
 layout grid_product_list
 layout header
 layout home_hori_row
 layout home_row
 layout home_row1
 layout home_slide
+layout horizontal_banner_view
 layout in_store_check
 layout in_store_row
 layout ins_but_xcv_adjacent
@@ -3665,6 +3912,7 @@ layout item_row
 layout layout_newfilter_child
 layout layout_newfilter_parent
 layout level_up_layout
+layout list_product_new
 layout loyalty_dashboard_layout
 layout loyalty_mainpage
 layout loyalty_points_convert_point_item_row
@@ -3714,9 +3962,15 @@ layout my_member_id_layout
 layout my_voucher_empty
 layout new_address_billing
 layout new_address_list
+layout new_banner_table_layout
 layout new_cart_layout
 layout new_checkout_page
+layout new_filter_bottom_sheet
 layout new_filter_sort
+layout new_home_banner_header
+layout new_order_layout
+layout new_product_info_frgament
+layout new_product_list_layout
 layout new_wishlist_grid
 layout notification_action
 layout notification_action_tombstone
@@ -3733,6 +3987,7 @@ layout notification_template_media
 layout notification_template_media_custom
 layout notification_template_part_chronometer
 layout notification_template_part_time
+layout order_confirm_row
 layout order_details_footer_view
 layout order_details_header_view
 layout order_details_item_row
@@ -3746,6 +4001,7 @@ layout payment_footer_view1
 layout payment_header_view
 layout payment_layout
 layout popup_layout
+layout product_info_video_view
 layout progress_layout
 layout progressbar_footer
 layout row_item
@@ -3801,6 +4057,7 @@ menu menu_bottom
 menu menu_enets_payment
 menu menu_ipay88_payment
 menu menu_main
+menu menu_my_acc
 menu menu_paypal_payment
 menu menu_receive
 plurals mtrl_badge_content_description
@@ -3812,7 +4069,6 @@ string LPSC
 string ProdDesc
 string Result
 string Returns
-string UserContact
 string UserEmail
 string UserName
 string abc_action_bar_home_description
@@ -3975,8 +4231,10 @@ string hintBday
 string icon_content_description
 string imgDesc
 string insider_add_testdevice
+string insider_amplification
 string insider_analytics
 string insider_custom_add_testdevice
+string insider_custom_amplification
 string insider_custom_gdpr_consent_get
 string insider_custom_gdpr_consent_set
 string insider_custom_geofences
@@ -4406,6 +4664,8 @@ style Base_Widget_MaterialComponents_PopupMenu_Overflow
 style Base_Widget_MaterialComponents_TextInputEditText
 style Base_Widget_MaterialComponents_TextInputLayout
 style Base_Widget_MaterialComponents_TextView
+style BottomSheetDialogTheme
+style BottomSheetStyle
 style CardView
 style CardView_Dark
 style CardView_Light
@@ -4933,7 +5193,7 @@ styleable CardView android_minWidth android_minHeight cardBackgroundColor cardCo
 styleable Chip android_textAppearance android_textColor android_ellipsize android_maxWidth android_text android_checkable checkedIcon checkedIconEnabled checkedIconVisible chipBackgroundColor chipCornerRadius chipEndPadding chipIcon chipIconEnabled chipIconSize chipIconTint chipIconVisible chipMinHeight chipMinTouchTargetSize chipStartPadding chipStrokeColor chipStrokeWidth chipSurfaceColor closeIcon closeIconEnabled closeIconEndPadding closeIconSize closeIconStartPadding closeIconTint closeIconVisible ensureMinTouchTargetSize hideMotionSpec iconEndPadding iconStartPadding rippleColor shapeAppearance shapeAppearanceOverlay showMotionSpec textEndPadding textStartPadding
 styleable ChipCloud allCaps deselectTransitionMS deselectedColor deselectedFontColor gravity labels minHorizontalSpacing selectMode selectTransitionMS selectedColor selectedFontColor textSize typeface verticalSpacing
 styleable ChipGroup checkedChip chipSpacing chipSpacingHorizontal chipSpacingVertical singleLine singleSelection
-styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color civ_fill_color
+styleable CircleImageView civ_border_color civ_border_overlay civ_border_width civ_circle_background_color
 styleable CirclePageIndicator android_orientation android_background centered fillColor pageColor radius snap strokeColor strokeWidth
 styleable CircularProgressBar cpb_background_progressbar_color cpb_background_progressbar_width cpb_indeterminate_mode cpb_progress cpb_progress_max cpb_progressbar_color cpb_progressbar_width
 styleable CollapsingToolbarLayout collapsedTitleGravity collapsedTitleTextAppearance contentScrim expandedTitleGravity expandedTitleMargin expandedTitleMarginBottom expandedTitleMarginEnd expandedTitleMarginStart expandedTitleMarginTop expandedTitleTextAppearance scrimAnimationDuration scrimVisibleHeightTrigger statusBarScrim title titleEnabled toolbarId
@@ -4985,6 +5245,7 @@ styleable MenuGroup android_enabled android_id android_visible android_menuCateg
 styleable MenuItem android_icon android_enabled android_id android_checked android_visible android_menuCategory android_orderInCategory android_title android_titleCondensed android_alphabeticShortcut android_numericShortcut android_checkable android_onClick actionLayout actionProviderClass actionViewClass alphabeticModifiers contentDescription iconTint iconTintMode numericModifiers showAsAction tooltipText
 styleable MenuView android_windowAnimationStyle android_itemTextAppearance android_horizontalDivider android_verticalDivider android_headerBackground android_itemBackground android_itemIconDisabledAlpha preserveIconSpacing subMenuArrow
 styleable NavigationView android_background android_fitsSystemWindows android_maxWidth elevation headerLayout itemBackground itemHorizontalPadding itemIconPadding itemIconSize itemIconTint itemMaxLines itemShapeAppearance itemShapeAppearanceOverlay itemShapeFillColor itemShapeInsetBottom itemShapeInsetEnd itemShapeInsetStart itemShapeInsetTop itemTextAppearance itemTextColor menu
+styleable PageIndicatorView piv_animationDuration piv_animationType piv_autoVisibility piv_count piv_dynamicCount piv_interactiveAnimation piv_orientation piv_padding piv_radius piv_rtl_mode piv_scaleFactor piv_select piv_selectedColor piv_strokeWidth piv_unselectedColor piv_viewPager
 styleable PopupWindow android_popupBackground android_popupAnimationStyle overlapAnchor
 styleable PopupWindowBackgroundState state_above_anchor
 styleable RecycleListView paddingBottomNoButtons paddingTopNoTitle
@@ -4997,6 +5258,7 @@ styleable Section indexPrefixes noIndex schemaOrgProperty sectionFormat sectionI
 styleable SectionFeature featureType
 styleable ShapeAppearance cornerFamily cornerFamilyBottomLeft cornerFamilyBottomRight cornerFamilyTopLeft cornerFamilyTopRight cornerSize cornerSizeBottomLeft cornerSizeBottomRight cornerSizeTopLeft cornerSizeTopRight
 styleable SignInButton buttonSize colorScheme scopeUris
+styleable SliderView sliderAnimationDuration sliderAutoCycleDirection sliderAutoCycleEnabled sliderIndicatorAnimationDuration sliderIndicatorEnabled sliderIndicatorGravity sliderIndicatorMargin sliderIndicatorMarginBottom sliderIndicatorMarginLeft sliderIndicatorMarginRight sliderIndicatorMarginTop sliderIndicatorOrientation sliderIndicatorPadding sliderIndicatorRadius sliderIndicatorRtlMode sliderIndicatorSelectedColor sliderIndicatorUnselectedColor sliderScrollTimeInSec sliderStartAutoCycle
 styleable Snackbar snackbarButtonStyle snackbarStyle
 styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode backgroundOverlayColorAlpha elevation maxActionInlineWidth
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme
