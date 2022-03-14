@@ -121,26 +121,26 @@ public class ForgotPasswordFragment extends Fragment implements AsyncTaskComplet
                 }else{
                     String message=result.getString("message");
                     new AlertDialog.Builder(getActivity())
-                            .setTitle("There is no account registered for this email address. Please make sure you have selected the correct shop and entered registered email address")
-                            .setMessage("")
+                            .setTitle("Error")
+                            .setMessage(message)
                             .setNegativeButton("OK", null)
-                            .setNegativeButton("Sign Up", new DialogInterface.OnClickListener()
-                            {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-
-                                    Fragment fragment = new SignUpFragment();
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
-                                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                                    FragmentTransaction ft = fragmentManager.beginTransaction();
-                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                    ft.replace(R.id.fragmentContainer, fragment);
-
-                                    ft.commit();
-
-                                }
-
-                            })
+//                            .setNegativeButton("Sign Up", new DialogInterface.OnClickListener()
+//                            {
+//                                @Override
+//                                public void onClick(DialogInterface dialog, int which) {
+//
+//                                    Fragment fragment = new SignUpFragment();
+//                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+//                                    fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+//                                    FragmentTransaction ft = fragmentManager.beginTransaction();
+//                                    ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                                    ft.replace(R.id.fragmentContainer, fragment);
+//
+//                                    ft.commit();
+//
+//                                }
+//
+//                            })
                             .show();
                 }
 

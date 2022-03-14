@@ -103,7 +103,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 
     String bottomText = "";
 
-    int sale_notice_state;
+    String sale_notice_state;
 
     String shippingPrice;
 
@@ -234,7 +234,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         totalPayableRMTV.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_BLACK_FONT));
 
 
-        bottomMessage = (TextView)footer.findViewById(R.id.bottomMessage);
+        bottomMessage = (TextView)footerEarlyView.findViewById(R.id.bottomMessage);
         giftBarRL = (RelativeLayout)footer.findViewById(R.id.giftBarRL);
         giftOptionsNOIV = (ImageView)footer.findViewById(R.id.giftOptionsNOIV);
         giftOptionsYESIV = (ImageView)footer.findViewById(R.id.giftOptionsYESIV);
@@ -368,7 +368,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
             totalPayableTV.setText(": " +SelectedCountryCurrency+" "+ totalPrice);
         }
 
-        if(sale_notice_state == 1)
+        if(sale_notice_state.equals("1"))
         {
             bottomMessage.setText(bottomText);
             bottomMessage.setVisibility(View.VISIBLE);
@@ -896,9 +896,9 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                         jsonArr = data.getJSONArray("product_list");
                         CartID = data.getString("id_cart");
 
-                        sale_notice_state = data.getInt("sale_delay_notice");
+                        sale_notice_state = data.getString("sale_delay_notice");
 
-                        if(sale_notice_state == 1){
+                        if(sale_notice_state.equals("1")){
                             if(data.has("bottom_message"))
                             {
                                 bottomText = data.getString("bottom_message");

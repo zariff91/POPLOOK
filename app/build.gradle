@@ -9,8 +9,8 @@ android {
         applicationId "com.tiseno.poplook"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 139
-        versionName "6.6.9"
+        versionCode 140
+        versionName "6.7.0"
         manifestPlaceholders = [partner: "poplook"]
         multiDexEnabled true
 
