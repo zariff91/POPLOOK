@@ -85,7 +85,7 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
     EditText voucherET,giftET,leaveET;
 
     RadioGroup paymentRG;
-    RadioButton ccButton,eWalletBtn,onlineBankingBtn,enetsorpaypal;
+    RadioButton ccButton,eWalletBtn,onlineBankingBtn,enetsorpaypal,split;
     ;
 
     TextView saleTop,addressName,addressLbl,addressPhone,addressTitleLabel,shippingLabel,shippingMethod,expectedShipDate,paymentLabel, applyVoucherLbl,addedVoucherLbl,creditLbl,totalCreditLbl,giftOptionTitle,giftOptionText,shoppingLbl,totalItemInCart,retailPriceTxt,totalRetailTxt,subtotalTxt,totalSubTotalTxt,shippingFeeTxt,shippingFeeTotalTxt,storeCreditBottomTitle,storeCreditTotalBottom,totalBottomText,totalPriceBottomTxt,placeOrderTxt,leaveMessageText;
@@ -120,6 +120,8 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
     final int PAYPAL_PAYMENT = 2;
     final int ENETS_PAYMENT = 3;
     final int TNG_EWALLET = 4;
+    final int SPLIT = 5;
+
 
     int SelectedAddress = 0;
     String voucherCode2;
@@ -289,6 +291,10 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
         paymentRG = (RadioGroup)contentView.findViewById(R.id.NewPaymentGroup);
         ccButton = (RadioButton)contentView.findViewById(R.id.CreditCardBtnNew);
         ccButton.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
+
+        split = (RadioButton)contentView.findViewById(R.id.splitPayment);
+        split.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
+
 
         eWalletBtn = (RadioButton)contentView.findViewById(R.id.EWalletBtnNew);
         eWalletBtn.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_ROMAN_FONT));
@@ -460,6 +466,16 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
                         }
 
                         break;
+
+                    case R.id.splitPayment:
+
+                        PAYMENT_METHOD = SPLIT;
+
+                        OpenPaymentPage("split");
+
+
+                        break;
+
                     case R.id.EWalletBtnNew:
 
                         PAYMENT_METHOD = TNG_EWALLET;
@@ -1317,6 +1333,21 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
                             intent.putExtra("CART_ID", CartID);
                             startActivityForResult(intent, 1);
                             getActivity().overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
+                        }
+                        else if(PAYMENT_METHOD == SPLIT)
+                        {
+                            Fragment fragment = new SplitWebView();
+                            Bundle bundle = new Bundle();
+                            bundle.putString("orderID", orderID);
+                            bundle.putString("priceTotal", totalPrice);
+                            bundle.putString("currency","MYR");
+                            fragment.setArguments(bundle);
+                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
                         }
                         Insider.Instance.tagEvent("checkout_visited").build();
 
