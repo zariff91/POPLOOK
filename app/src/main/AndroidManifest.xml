@@ -30,7 +30,7 @@
         android:name=".POPLOOK"
         tools:replace="android:allowBackup"
         android:allowBackup="false"
-        android:icon="@drawable/ic_launcher_new"
+        android:icon="@drawable/raya_2022"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
