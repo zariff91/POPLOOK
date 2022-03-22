@@ -1,11 +1,15 @@
 package com.tiseno.poplook;
 
+import android.annotation.SuppressLint;
 import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +23,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 
 import com.facebook.internal.Utility;
+import com.tiseno.poplook.functions.PaymentSplitInterface;
 
 import org.apache.commons.codec.binary.Hex;
 
@@ -29,8 +34,12 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class SplitWebView extends Fragment {
 
-    String orderID, price, currency;
+    String callbackSuccessURL;
+    Handler mHandler = new Handler();
 
+    String orderID, price, currency;
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    @SuppressLint("JavascriptInterface")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -57,13 +66,14 @@ public class SplitWebView extends Fragment {
         webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
         webView.loadUrl("https://sandbox.paywithsplit.co/process/welcome?currency=MYR&price="+price+"&orderId="+orderID+"&apiKey="+apiKey+"&signature="+signature+"");
+        webView.addJavascriptInterface(new PayUJavaScriptInterface(getActivity()), "Split");
+
+//        webView.postUrl();
         webView.setWebViewClient(new WebViewClient() {
 
             @Override
             public void onPageFinished(WebView view, String url) {
                 String urld = url;
-
-                System.out.println("split finish load = " + urld);
             }
             @Override
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
@@ -73,18 +83,15 @@ public class SplitWebView extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-                if(request.getUrl().toString().contains("process/finish")){
-                    return false;
-                }
-                else {
-                    return true;
-                }
+                return super.shouldOverrideUrlLoading(view, request);
             }
 
 
         });
 
-        return view;    }
+        return view;
+
+    }
 
     public static String encode(String key, String data) throws Exception {
         Mac sha256_HMAC = Mac.getInstance("HmacSHA256");
@@ -92,5 +99,28 @@ public class SplitWebView extends Fragment {
         sha256_HMAC.init(secret_key);
 
         return Hex.encodeHexString(sha256_HMAC.doFinal(data.getBytes("UTF-8")));
+    }
+
+    public class PayUJavaScriptInterface {
+        Context mContext;
+
+        /** Instantiate the interface and set the context */
+        PayUJavaScriptInterface(Context c) {
+            mContext = c;
+        }
+
+
+        public void success(long id, final String paymentId) {
+
+            mHandler.post(() -> {
+
+                mHandler = null;
+                System.out.println("afafdsfasdfa = " + paymentId);
+
+
+            });
+
+        }
+
     }
 }
