@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="100dp"
+    android:orientation="vertical" android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginRight="10dp">
 
     <ProgressBar
         android:id="@+id/loadingImageHorizontal"
@@ -13,28 +14,34 @@
         android:visibility="gone"
         />
 
-    <de.hdodenhof.circleimageview.CircleImageView
+<!--    <de.hdodenhof.circleimageview.CircleImageView-->
+<!--        android:id="@+id/horizontalIconImageView"-->
+<!--        android:layout_width="60dp"-->
+<!--        android:layout_height="60dp"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:src="@drawable/ic_launcher_new"-->
+<!--        app:civ_border_width="0dp"-->
+<!--        app:civ_border_color="#FF000000"/>-->
+    <ImageView
         android:id="@+id/horizontalIconImageView"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_centerHorizontal="true"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:src="@drawable/ic_launcher_new"
-        app:civ_border_width="0dp"
-        app:civ_border_color="#FF000000"/>
+
+
+        >
+
+    </ImageView>
 
 
     <TextView
-        android:layout_below="@+id/horizontalIconImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
-        android:textSize="13dp"
-        android:text="Collection"
-        android:gravity="center"
         android:id="@+id/horizontalIconTextView"
-        >
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/horizontalIconImageView"
+        android:layout_marginRight="5dp"
+        android:gravity="center"
+        android:textSize="15dp">
 
     </TextView>
 

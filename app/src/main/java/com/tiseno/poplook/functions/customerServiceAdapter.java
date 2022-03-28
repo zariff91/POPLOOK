@@ -1,5 +1,6 @@
 package com.tiseno.poplook.functions;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  * Created by rahnrazamai on 24/02/2017.
  */
 
-public class customerServiceAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class customerServiceAdapter extends RecyclerView.Adapter {
 
     //int Resource for header view profile picture
 
@@ -65,25 +66,36 @@ public class customerServiceAdapter extends RecyclerView.Adapter<HomeAdapter.Vie
     // if the viewType is TYPE_HEADER
     // and pass it to the view holder
 
+//    @Override
+//    public HomeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
+//
+//
+//        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row,parent,false); //Inflating the layout
+//
+//        //Creating ViewHolder and passing the object of type view
+//
+//        return new HomeAdapter.ViewHolder(v); // Returning the created object
+//
+//        //inflate your layout and pass it to view holder
+//
+//    }
+
+    @NonNull
     @Override
-    public HomeAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return null;
+    }
 
-
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row,parent,false); //Inflating the layout
-
-        //Creating ViewHolder and passing the object of type view
-
-        return new HomeAdapter.ViewHolder(v); // Returning the created object
-
-        //inflate your layout and pass it to view holder
+    @Override
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
     }
 
     //Next we override a method which is called when the item in a row is needed to be displayed, here the int position
     // Tells us item at which position is being constructed to be displayed and the holder id of the holder object tell us
     // which view type is being created 1 for item row
-    @Override
-    public void onBindViewHolder(final HomeAdapter.ViewHolder holder, int position) {
+//    @Override
+//    public void onBindViewHolder(final HomeAdapter.ViewHolder holder, int position) {
 
 
 
@@ -91,7 +103,7 @@ public class customerServiceAdapter extends RecyclerView.Adapter<HomeAdapter.Vie
 
 //            holder.homeImage.setImageResource(homeImage[position]);           // Similarly we set the resources for header view
 
-    }
+
 
 }
 
