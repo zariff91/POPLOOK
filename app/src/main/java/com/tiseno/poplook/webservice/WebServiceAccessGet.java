@@ -55,8 +55,17 @@ public class WebServiceAccessGet extends AsyncTask<String, Void, JSONObject> {
     public JSONObject SendHttpGet(String action) {
         try {
             Log.i("" + " WEB SERVICE START", "GET URL PARAMS: " + action);
+
+            String baseURL;
+
+            if(action.contains("check-payment-status")){
+                baseURL ="https://sandboxapi.api.paywithsplit.co/";
+            }
+            else {
+                baseURL ="https://poplook.com/webapi/";
+            }
                 Request request = new Request.Builder()
-                        .url("https://poplook.com/webapi/" + action)
+                        .url(baseURL + action)
 //                     .url("https://dev3.poplook.com/webapi/"+action)
                         .get()
                         .build();

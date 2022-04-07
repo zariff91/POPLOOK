@@ -385,7 +385,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                     if (fm.getBackStackEntryCount() > 0) {
                         Log.i("MainActivity", "popping backstack");
                         ProductListFragment productListFragment = (ProductListFragment) fm.findFragmentByTag("ProductListFragment");
-
+                        SplitWebView split = (SplitWebView)fm.findFragmentByTag("SplitWebView");
                         if (productListFragment != null && productListFragment.isVisible()) {
                             // add your code here
                             FragmentTransaction trans = fm.beginTransaction();
@@ -393,7 +393,12 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                             trans.commit();
 
                             fm.popBackStack();
-                        } else {
+                        }
+                        else if (split != null && split.isVisible()) {
+                            // add your code here
+                           split.refreshPaymentStatus();
+
+                        }else {
                             fm.popBackStack();
 
                         }
