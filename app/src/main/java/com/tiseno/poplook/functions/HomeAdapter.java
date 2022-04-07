@@ -325,15 +325,21 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     private void videoView(videoViewHolder holder,String parentName, String parentKey){
-        holder.view.seekTo(1);
-        holder.view.start();
-        holder.view.getLayoutParams().height = getScreenWidth(context) * 29 / 16;
-        holder.view.setVideoPath("https://poplook.com/modules/poplookvideobanner/uploads/viscose_mobile.mp4");
-        holder.view.setOnPreparedListener(mp -> mp.setVolume(0f, 0f));
-        holder.view.setOnCompletionListener (mediaPlayer -> holder.view.start());
-        holder.view.setOnClickListener(view -> {
-            callback.onBannerClickPosition(0,parentKey);
-        });
+
+        if(videoArray.get(0).getlink().contains("mp4")){
+            holder.view.seekTo(1);
+            holder.view.start();
+            holder.view.getLayoutParams().height = getScreenWidth(context) * 29 / 16;
+            holder.view.setVideoPath(videoArray.get(0).getlink());
+            holder.view.setOnPreparedListener(mp -> mp.setVolume(0f, 0f));
+            holder.view.setOnCompletionListener (mediaPlayer -> holder.view.start());
+            holder.view.setOnClickListener(view -> {
+                callback.onBannerClickPosition(0,parentKey);
+            });
+        }
+        else {
+            holder.view.setVisibility(View.GONE);
+        }
     }
 
     public static int getScreenWidth(Context c) {

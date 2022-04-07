@@ -53,6 +53,7 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Vi
             }
 
             else {
+                holder.textView.setTextColor(context.getResources().getColor(R.color.black));
                 holder.textView.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_MEDIUM_FONT));
             }
         }
@@ -74,7 +75,15 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Vi
 
             else {
 
+                if(menuArray.get(position).title.equals("Flash Sale")){
+                    holder.textView.setTextColor(context.getResources().getColor(R.color.flash_sale));
                     holder.textView.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_MEDIUM_FONT));
+                }
+
+                else {
+                    holder.textView.setTextColor(context.getResources().getColor(R.color.black));
+                    holder.textView.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_MEDIUM_FONT));
+                }
             }
 
         }
