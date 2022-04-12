@@ -27,6 +27,7 @@ import com.tiseno.poplook.webservice.WebServiceAccessGet;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -220,10 +221,19 @@ public class ContactUsFragment extends Fragment implements AsyncTaskCompleteList
         //multishop
         String apikey =pref.getString("apikey","");
         String action;
+
+        String encodedMessage = URLEncoder.encode(contactUsMessageET.getText().toString());
+
         if (UserID.length() > 0) {
-            action="SendEmail/mailto?apikey="+apikey+"&email="+contactUs_userEmailET.getText().toString()+"&subject="+subject+"&message="+contactUsMessageET.getText().toString()+"&id_order="+id_orderList.get(orderRef)+"&shop="+SelectedShopID+"";
+
+            if(fromInStore.equals("1")){
+                action="SendEmail/mailto?apikey="+apikey+"&email="+contactUs_userEmailET.getText().toString()+"&subject="+subject+"&message="+encodedMessage+"&id_order=&shop="+SelectedShopID+"";
+            }
+            else {
+                action="SendEmail/mailto?apikey="+apikey+"&email="+contactUs_userEmailET.getText().toString()+"&subject="+subject+"&message="+encodedMessage+"&id_order="+id_orderList.get(orderRef)+"&shop="+SelectedShopID+"";
+            }
         }else{
-            action="SendEmail/mailto?apikey="+apikey+"&email="+contactUs_userEmailET.getText().toString()+"&subject="+subject+"&message="+contactUsMessageET.getText().toString()+"&id_order=&shop="+SelectedShopID+"";
+            action="SendEmail/mailto?apikey="+apikey+"&email="+contactUs_userEmailET.getText().toString()+"&subject="+subject+"&message="+encodedMessage+"&id_order=&shop="+SelectedShopID+"";
         }
         WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
         callws.execute(action);
@@ -260,13 +270,16 @@ public class ContactUsFragment extends Fragment implements AsyncTaskCompleteList
                             contactUs_userEmailET.setEnabled(false);
                             OrderRefLL.setVisibility(View.VISIBLE);
                             subjectDivider1.setVisibility(View.GONE);
-                            getOrderRef();
 
                             if(fromInStore.equals("1"))
                             {
                                 OrderRefLL.setVisibility(View.GONE);
                                 spinner.setEnabled(false);
                                 spinner.setClickable(false);
+
+                            }
+                            else {
+                                getOrderRef();
 
                             }
 

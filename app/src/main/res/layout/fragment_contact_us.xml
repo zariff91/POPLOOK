@@ -370,22 +370,23 @@
                 android:layout_marginLeft="20dp"
                 android:layout_marginBottom="10dp"
                 android:text="Message"/>
+
             <EditText
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:layout_marginTop="2dp"
-                android:gravity="top"
-                android:inputType="textMultiLine"
-                android:background="@drawable/textlines"
-                android:paddingTop="7dp"
-                android:hint="Type your message here"
+                android:id="@+id/contactUsMessageET"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:paddingLeft="10dp"
-                android:textSize="15dp"
                 android:layout_below="@+id/contactUsMessageTV"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/textlines"
+                android:gravity="top"
+                android:hint="Type your message here"
+                android:inputType="textMultiLine"
+                android:paddingLeft="10dp"
+                android:paddingTop="7dp"
                 android:paddingRight="10dp"
-                android:id="@+id/contactUsMessageET" />
+                android:textSize="15dp" />
 
             <Button
                 android:layout_alignParentBottom="true"

@@ -75,7 +75,7 @@ public class BottomMenuAdapter extends RecyclerView.Adapter<BottomMenuAdapter.Vi
 
             else {
 
-                if(menuArray.get(position).title.equals("Flash Sale")){
+                if(menuArray.get(position).title.equals("Ramadhan Bazaar")){
                     holder.textView.setTextColor(context.getResources().getColor(R.color.flash_sale));
                     holder.textView.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_MEDIUM_FONT));
                 }
