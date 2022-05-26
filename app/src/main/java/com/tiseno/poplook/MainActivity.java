@@ -138,6 +138,8 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         //First commit bugs branch
         //Conflict fix
 
+        //conflict solved
+
         Runtime rt = Runtime.getRuntime();
         long maxMemory = rt.maxMemory();
         Log.v("onCreate Here", "maxMemory:" + Long.toString(maxMemory));
