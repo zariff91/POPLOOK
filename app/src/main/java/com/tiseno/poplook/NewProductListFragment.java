@@ -144,6 +144,7 @@ public class NewProductListFragment extends Fragment implements AsyncTaskComplet
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
         //multishop
         String apikey =pref.getString("apikey","");
+        SelectedShopID  = pref.getString("SelectedShopID", "1");
         String action="banners/mobilev2/shop/"+SelectedShopID+"/lang/1?apikey="+apikey;
         WebServiceAccessGetWithoutLoading callws = new WebServiceAccessGetWithoutLoading(getActivity(), this);
         callws.execute(action);

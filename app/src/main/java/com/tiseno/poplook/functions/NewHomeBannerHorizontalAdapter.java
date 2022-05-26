@@ -54,17 +54,16 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-
-        holder.horizontalBannerTitle.setText(data.get(position).getcatName());
-        holder.horizontalBannerTitle.setTypeface(FontUtil.getTypeface(mContext, FontUtil.FontType.AVENIR_MEDIUM_FONT));
-        holder.horizontalBannerTitle.setTextColor(Color.BLACK);
-
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
                 .cacheOnDisk(true)
                 .build();
 
         display(holder.horizontalBannerIcon, data.get(position).gethref(), options,holder.loadingImg);
+
+        holder.horizontalBannerTitle.setText(data.get(position).getcatName());
+        holder.horizontalBannerTitle.setTypeface(FontUtil.getTypeface(mContext, FontUtil.FontType.AVENIR_MEDIUM_FONT));
+        holder.horizontalBannerTitle.setTextColor(Color.BLACK);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

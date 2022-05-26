@@ -326,11 +326,11 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
 
     private void videoView(videoViewHolder holder,String parentName, String parentKey){
 
-        if(videoArray.get(0).getlink().contains("mp4")){
+        if(videoArray.get(0).gethref().contains("mp4")){
             holder.view.seekTo(1);
             holder.view.start();
             holder.view.getLayoutParams().height = getScreenWidth(context) * 29 / 16;
-            holder.view.setVideoPath(videoArray.get(0).getlink());
+            holder.view.setVideoPath(videoArray.get(0).gethref());
             holder.view.setOnPreparedListener(mp -> mp.setVolume(0f, 0f));
             holder.view.setOnCompletionListener (mediaPlayer -> holder.view.start());
             holder.view.setOnClickListener(view -> {
