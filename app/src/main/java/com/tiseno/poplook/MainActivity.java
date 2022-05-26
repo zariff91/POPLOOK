@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         //First commit bugs branch
+        //Fix title here
 
         Runtime rt = Runtime.getRuntime();
         long maxMemory = rt.maxMemory();
