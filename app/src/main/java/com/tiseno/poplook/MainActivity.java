@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", 0);
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        //First commit bugs branch
 
         Runtime rt = Runtime.getRuntime();
         long maxMemory = rt.maxMemory();
