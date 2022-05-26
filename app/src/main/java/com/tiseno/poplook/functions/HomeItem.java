@@ -6,16 +6,17 @@ package com.tiseno.poplook.functions;
 public class HomeItem {
 
     String categoryID;
-    String link,href,catName;
+    String link,href,catName,parentName;
     String position;
 
-    public HomeItem(String categoryID, String catName, String link, String href, String position) {
+    public HomeItem(String categoryID, String catName, String link, String href, String position,String parentName) {
         super();
         this.categoryID = categoryID;
         this.catName = catName;
         this.link = link;
         this.href = href;
         this.position = position;
+        this.parentName = parentName;
 
 
     }
@@ -47,6 +48,10 @@ public class HomeItem {
     public String gethref() {
         return href;
     }
+    public String getParentName() {
+        return parentName;
+    }
+
 
     public void sethref(String href) {
         this.href = href;

@@ -31,7 +31,7 @@ public class ShopFragment extends Fragment {
         FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-        ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
+        ft.replace(R.id.fragmentContainer, new NewProductListFragment(), "NewProductListFragment");
         //                ft.addToBackStack(null);
         ft.commit();
 

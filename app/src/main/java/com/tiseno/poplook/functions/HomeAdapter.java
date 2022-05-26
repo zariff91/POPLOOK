@@ -1,13 +1,16 @@
 package com.tiseno.poplook.functions;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -25,6 +28,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import com.bumptech.glide.Glide;
@@ -43,319 +47,203 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 import com.squareup.picasso.Picasso;
 import com.tiseno.poplook.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
+public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements VerticalAdapter.ViewHolder.AdapterCallback ,NewHomeBannerHorizontalAdapter.ViewHolder.AdapterCallback{
 
-         //int Resource for header view profile picture
-         ImageLoader imageLoader= ImageLoader.getInstance();
+    private final int VERTICAL = 1;
+    private final int HORIZONTAL = 2;
+    private final int VIDEO = 3;
 
-    ArrayList<HomeItem> data ;
+
+    ImageLoader imageLoader= ImageLoader.getInstance();
+    ArrayList<HashMap<String,ArrayList>> data;
+    JSONObject jsonObject;
+    JSONObject jsonObjectVideo;
+    JSONArray jsonArrayVideo;
+    ArrayList<HomeItem>horiData = new  ArrayList<>();
+    ArrayList<HomeItem>verticalData = new  ArrayList<>();
+    ArrayList<HomeItem>videoArray = new  ArrayList<>();
+    ArrayList<String>parentTitle = new  ArrayList<>();
+
+    AdapterHomeCallback callback;
+
     boolean collection;
     String videoURL;
+    String sliderTitle;
+
     Context context;
 
-    ViewHolder.AdapterCallback buttonListener;
+    @Override
+    public void onMethodCallback(int positionClicked, String parentName) {
+        callback.onBannerClickPosition(positionClicked,parentName);
 
+    }
 
-    // Creating a ViewHolder which extends the RecyclerView View Holder
-    // ViewHolder are used to to store the inflated views in order to recycle them
+    @Override
+    public void onMethodCallbackHorizontal(int positionClicked, String parentName) {
+        callback.onBannerClickPosition(positionClicked,parentName);
+    }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public interface AdapterHomeCallback {
+        void onBannerClickPosition(int position,String parentName);
+    }
 
-        ImageView homeImage;
-        FrameLayout frameL;
-        ProgressBar loadingImageHome;
+    public HomeAdapter(JSONObject data1,ArrayList<String> parentTitle,JSONObject jsonVideo, Context context1, boolean collection1,AdapterHomeCallback callback){
 
-        VideoView videoView;
-
-        WebView youTubePlayerView;
-
-
-        public interface AdapterCallback {
-            void onMethodCallback(String bannerID, String href, String categoryName, String link);
-        }
-
-
-        public ViewHolder(View itemView) {                 // Creating ViewHolder Constructor with View and viewType As a parameter
-            super(itemView);
-
-
-            // Here we set the appropriate view in accordance with the the view type as passed when the holder object is created
-            homeImage = (ImageView) itemView.findViewById(R.id.homeImage);// Creating Image view object from header.xml for profile pic
-            frameL = (FrameLayout) itemView.findViewById(R.id.frameL);
-            loadingImageHome = (ProgressBar) itemView.findViewById(R.id.loadingImageHome);
-            videoView = (VideoView)itemView.findViewById(R.id.videoViewPlayer);
-            youTubePlayerView = itemView.findViewById(R.id.youtubeWebView);
-            // Setting holder id = 0 as the object being populated are of type header view
-            }
-        }
-
-
-
-
-
-
-    public HomeAdapter(ArrayList<HomeItem> data1, Context context1, boolean collection1, ViewHolder.AdapterCallback adapter){ // MyAdapter Constructor with titles and icons parameter
-        // titles, icons, name, email, profile pic are passed from the main activity as we
-
-        data = data1;
+        jsonObject = data1;
+        this.parentTitle = parentTitle;
         context = context1;
         collection = collection1;
-        this.buttonListener = adapter;
-        //here we assign those passed values to the values we declared here
-        //in adapter
-
-
+        this.jsonObjectVideo = jsonVideo;
+        this.callback = callback;
 
     }
 
     @Override
     public int getItemCount() {
-        return data.size(); // the number of items in the list will be +1 the titles including the header view.
+        return parentTitle.size();// the number of items in the list will be +1 the titles including the header view.
+    }
+    @Override
+    public int getItemViewType(int position){
+
+        verticalData.clear();
+
+        try {
+            String key = parentTitle.get(position);
+
+            if(key.equals("isVideo")){
+
+//                if(videoArray.size() != jsonArrayVideo.length())
+//                {
+
+                jsonArrayVideo = jsonObjectVideo.getJSONArray("data");
+
+                    JSONObject videoData = jsonArrayVideo.getJSONObject(0);
+//
+                    String catIDPrimary = videoData.getString("category_id");
+                    String catNamePrimary = videoData.getString("category_name");
+                    String linkPrimary = videoData.getString("link");
+                    String hrefPrimary = videoData.getString("href");
+                    String positions = videoData.getString("position");
+
+                    int x = Integer.parseInt(positions)-1;
+
+                    videoArray.add(new HomeItem(catIDPrimary,catNamePrimary,linkPrimary,hrefPrimary,positions,""));
+
+//                }
+                return VIDEO;
+            }
+            else {
+
+                JSONObject child_object = jsonObject.getJSONObject(key);
+
+
+                String banner_type = child_object.getString("type");
+
+                if(banner_type.equals("slider")){
+
+                    JSONArray jsonArr = null;
+                    jsonArr = child_object.getJSONArray("data");
+                    sliderTitle = child_object.getString("name");
+
+                    if(horiData.size() != jsonArr.length()){
+
+                        for (int j = 0; j < jsonArr.length(); j++) {
+
+                            String categori_id = jsonArr.getJSONObject(j).getString("category_id");
+                            String category_name = jsonArr.getJSONObject(j).getString("category_name");
+                            String link = jsonArr.getJSONObject(j).getString("link");
+                            String href = jsonArr.getJSONObject(j).getString("href");
+                            horiData.add(new HomeItem(categori_id, category_name, link, href, "",key));
+                        }
+                    }
+
+                    return HORIZONTAL;
+
+                }
+                else {
+
+                    JSONArray jsonArr = null;
+                    jsonArr = child_object.getJSONArray("data");
+
+                    for (int y = 0; y < jsonArr.length (); ++y) {
+
+                        String catIDPrimary = jsonArr.getJSONObject(y).getString("category_id");
+                        String catNamePrimary = jsonArr.getJSONObject(y).getString("category_name");
+                        String linkPrimary = jsonArr.getJSONObject(y).getString("link");
+                        String hrefPrimary = jsonArr.getJSONObject(y).getString("href");
+                        verticalData.add(new HomeItem(catIDPrimary, catNamePrimary, linkPrimary, hrefPrimary,"",key));
+                    }
+
+                    return VERTICAL;
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return VERTICAL;
+
+        }
     }
 
-    //Below first we ovverride the method onCreateViewHolder which is called when the ViewHolder is
-    //Created, In this method we inflate the item_row.xml layout if the viewType is Type_ITEM or else we inflate header.xml
-    // if the viewType is TYPE_HEADER
-    // and pass it to the view holder
-
     @Override
-    public void onViewAttachedToWindow(ViewHolder holder) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        if(holder.videoView.getVisibility() == View.VISIBLE)
-        {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        View view;
+        RecyclerView.ViewHolder holder;
 
-            holder.videoView.setVideoPath(videoURL);
-            holder.videoView.seekTo(1);
-            holder.videoView.start();
-            holder.loadingImageHome.setVisibility(View.VISIBLE);
+        switch (viewType){
+            case VERTICAL:
+                view = inflater.inflate(R.layout.vertical_rv,parent,false);
+                holder = new verticalViewHolder(view);
+                break;
+            case  HORIZONTAL:
+                view = inflater.inflate(R.layout.horizontal_rv,parent,false);
+                holder = new horizontalViewHolder(view);
+                break;
+            case  VIDEO:
+                view = inflater.inflate(R.layout.video_view_banner,parent,false);
+                holder = new videoViewHolder(view);
+                break;
+            default:
+                view = inflater.inflate(R.layout.vertical_rv,parent,false);
+                holder = new verticalViewHolder(view);
+                break;
         }
 
-    }
-
-
-    @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int position) {
-
-        imageLoader.init(ImageLoaderConfiguration.createDefault(context.getApplicationContext()));
-
-//        if(collection) {
-//            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row, parent, false); //Inflating the layout
-//
-//            //Creating ViewHolder and passing the object of type view
-//
-//            return new ViewHolder(v); // Returning the created object
-//        }else {
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_row1, parent, false); //Inflating the layout
-
-            //Creating ViewHolder and passing the object of type view
-
-            return new ViewHolder(v); // Returning the created object
-//        }
-            //inflate your layout and pass it to view holder
+        return holder;
 
     }
 
     //Next we override a method which is called when the item in a row is needed to be displayed, here the int position
     // Tells us item at which position is being constructed to be displayed and the holder id of the holder object tell us
     // which view type is being created 1 for item row
+    @SuppressLint("RecyclerView")
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        
+        String parentKey = parentTitle.get(position);
 
-        if(data.get(position).gethref().length()==0){
-
-            holder.loadingImageHome.setVisibility(View.GONE);
-            holder.homeImage.setVisibility(View.GONE);
-            holder.videoView.setVisibility(View.GONE);
-            holder.youTubePlayerView.setVisibility(View.GONE);
-
-        }else {
-
-            int height = getScreenHeight();
-            int width = getScreenWidth();
-            if (collection) {
-                holder.frameL.getLayoutParams().width = width - 100;
-            } else {
-//                holder.frameL.getLayoutParams().width = width-200;
-            }
-
-                if (data.get(position).getlink().equals("isVideo")) {
-
-                    videoURL = data.get(position).gethref();
-
-                    DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
-
-                    int x = displayMetrics.heightPixels;
-                    double y = displayMetrics.widthPixels/2.086;
-
-                    String widthh = String.valueOf(y);
-
-                    if(videoURL.contains("youtube"))
-                    {
-                        String youtubeID = videoURL.substring(30);
-
-                        String playVideo= "<html><body><br> <iframe class=\"youtube-player\" type=\"text/html\" width=\"100%\" height=\"250\" src=\""+videoURL+"\" frameborder=\"0\"></body></html>";
-
-                        holder.youTubePlayerView.loadData(playVideo,"text/html", "utf-8");
-                        holder.youTubePlayerView.getSettings().setJavaScriptEnabled(true);
-                        holder.youTubePlayerView.getSettings().setLoadWithOverviewMode(true);
-//                        holder.youTubePlayerView.getSettings().setUseWideViewPort(true);
-
-//                        holder.youTubePlayerView.addYouTubePlayerListener(new AbstractYouTubePlayerListener() {
-//                            @Override
-//                            public void onReady(YouTubePlayer youTubePlayer) {
-//                                String videoId = youtubeID;
-//                                youTubePlayer.loadVideo(videoId, 0);
-//
-//                            }
-//                        });
-
-                        holder.homeImage.setVisibility(View.GONE);
-                        holder.loadingImageHome.setVisibility(View.GONE);
-                        holder.youTubePlayerView.setVisibility(View.VISIBLE);
-                    }
-
-                    else {
-
-                        if(videoURL.equals(""))
-                        {
-                            holder.videoView.setVisibility(View.GONE);
-                            holder.homeImage.setVisibility(View.GONE);
-                            holder.loadingImageHome.setVisibility(View.GONE);
-                        }
-
-                        else {
-
-                            holder.videoView.setVideoPath(videoURL);
-//                holder.videoView.setMediaController(new MediaController(context));
-                            holder.videoView.seekTo(1);
-                            holder.videoView.start();
-                            holder.loadingImageHome.setVisibility(View.VISIBLE);
-
-
-                            holder.videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                @Override
-                                public void onCompletion(MediaPlayer mediaPlayer) {
-                                    holder.videoView.start();
-
-                                }
-                            });
-
-                            holder.videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-                                @Override
-                                public void onPrepared(MediaPlayer mp) {
-                                    mp.setVolume(0f, 0f);
-                                    holder.loadingImageHome.setVisibility(View.INVISIBLE);
-                                    holder.videoView.setVisibility(View.VISIBLE);
-
-
-                                }
-                            });
-                            holder.videoView.setVisibility(View.VISIBLE);
-                            holder.homeImage.setVisibility(View.GONE);
-                            holder.videoView.getLayoutParams().height = getScreenWidth(context) * 29 / 16;
-
-                            holder.frameL.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-
-                                    buttonListener.onMethodCallback(data.get(position).getcategoryID(), data.get(position).gethref(),data.get(position).getcatName(),data.get(position).getlink());
-
-                                }
-                            });
-
-                        }
-                    }
-                }
-
-            else {
-
-                holder.videoView.setVisibility(View.GONE);
-                holder.youTubePlayerView.setVisibility(View.GONE);
-                holder.homeImage.setVisibility(View.VISIBLE);
-
-                holder.homeImage.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        buttonListener.onMethodCallback(data.get(position).getcategoryID(), data.get(position).gethref(),data.get(position).getcatName(),data.get(position).getlink());
-
-                    }
-                });
-
-                DisplayImageOptions options = new DisplayImageOptions.Builder()
-                        .cacheInMemory(true)
-                        .cacheOnDisk(true)
-                        .build();
-                display(holder.homeImage, data.get(position).gethref(), options, holder.loadingImageHome);
-//                    Picasso.with(holder.homeImage.getContext()).load(data.get(position).gethref()).into(holder.homeImage);
-//                    Glide.with(holder.homeImage.getContext()).load(data.get(position).gethref()).listener(new RequestListener<Drawable>() {
-//                        @Override
-//                        public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                            holder.loadingImageHome.setVisibility(View.VISIBLE);
-//
-//                            return false;
-//                        }
-//
-//                        @Override
-//                        public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-//
-//                            holder.loadingImageHome.setVisibility(View.INVISIBLE);
-//
-//                            return false;
-//                        }
-//                    }).into(holder.homeImage);
-
-                    if(data.get(position).gethref().contains("gif")) {
-
-                        Glide.with(holder.homeImage.getContext())
-                                .load(data.get(position).gethref())
-                                .listener(new RequestListener<Drawable>() {
-                                    @Override
-                                    public boolean onLoadFailed(@Nullable GlideException e, Object model, Target<Drawable> target, boolean isFirstResource) {
-//                            Log.e(TAG, "Load failed", e);
-//
-                                        // You can also log the individual causes:
-                                        for (Throwable t : e.getRootCauses()) {
-//                                Log.e(TAG, "Caused by", t);
-                                        }
-                                        // Or, to log all root causes locally, you can use the built in helper method:
-//                            e.logRootCauses(TAG);
-                                        holder.loadingImageHome.setVisibility(View.GONE);
-                                        holder.homeImage.setVisibility(View.VISIBLE);
-                                        return false;
-                                    }
-
-                                    @Override
-                                    public boolean onResourceReady(Drawable resource, Object model, Target<Drawable> target, DataSource dataSource, boolean isFirstResource) {
-                                        holder.loadingImageHome.setVisibility(View.GONE);
-                                        holder.homeImage.setVisibility(View.VISIBLE);
-                                        return false;
-                                    }
-                                })
-                                .into(holder.homeImage);
-                    }
-//            Picasso.with(holder.homeImage.getContext()).load(data.get(position).gethref())
-//                    .into(holder.homeImage, new Callback() {
-//                        @Override
-//                        public void onSuccess() {
-//                            holder.loadingImageHome.setVisibility(View.GONE);
-//                            holder.homeImage.setVisibility(View.VISIBLE);
-//                        }
-//
-//                        @Override
-//                        public void onError() {
-//                            //error
-//                        }
-//                    });
-            }
+        if(holder.getItemViewType() == VERTICAL){
+            verticalView((verticalViewHolder)holder,parentKey);
         }
-//            holder.homeImage.setImageResource(homeImage[position]);           // Similarly we set the resources for header view
-
+        else if(holder.getItemViewType() == HORIZONTAL){
+            horizontalView((horizontalViewHolder) holder,sliderTitle,parentKey);
         }
+
+        else if(holder.getItemViewType() == VIDEO){
+           videoView((videoViewHolder)holder,"",parentKey);
+        }
+    }
     public void display(final ImageView img, String url, DisplayImageOptions options, final ProgressBar spinner)
     {
         imageLoader.displayImage(url, img, options, new ImageLoadingListener() {
@@ -386,12 +274,72 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         });
     }
-    public static int getScreenWidth() {
-        return Resources.getSystem().getDisplayMetrics().widthPixels;
+
+    public class horizontalViewHolder extends RecyclerView.ViewHolder {
+        RecyclerView view;
+        TextView title;
+        horizontalViewHolder(View itemView){
+            super(itemView);
+            view = (RecyclerView)itemView.findViewById(R.id.inner_rv_horizontal);
+            title = (TextView) itemView.findViewById(R.id.title_slider);
+
+
+        };
+
     }
 
-    public static int getScreenHeight() {
-        return Resources.getSystem().getDisplayMetrics().heightPixels;
+    public class videoViewHolder extends RecyclerView.ViewHolder {
+        VideoView view;
+        videoViewHolder(View itemView){
+            super(itemView);
+            view = (VideoView) itemView.findViewById(R.id.videoViewPlayer);
+
+        };
+
+    }
+
+    public class verticalViewHolder extends RecyclerView.ViewHolder {
+        RecyclerView view;
+        verticalViewHolder(View itemView){
+            super(itemView);
+            view = (RecyclerView)itemView.findViewById(R.id.inner_rv);
+
+        };
+
+    }
+
+    private void verticalView(verticalViewHolder holder, String parentName){
+        VerticalAdapter adapter1 = new VerticalAdapter(verticalData,context,false,this,parentName);
+        holder.view.setLayoutManager(new LinearLayoutManager(context));
+        holder.view.setAdapter(adapter1);
+    }
+    private void horizontalView(horizontalViewHolder holder,String parentName, String parentKey){
+        NewHomeBannerHorizontalAdapter adapter2 = new NewHomeBannerHorizontalAdapter(context,horiData,this,parentKey);
+        holder.view.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false));
+        holder.view.setAdapter(adapter2);
+        holder.title.setText(parentName);
+        holder.title.setTypeface(FontUtil.getTypeface(context, FontUtil.FontType.AVENIR_BLACK_FONT));
+        holder.title.setTextColor(Color.BLACK);
+
+
+    }
+
+    private void videoView(videoViewHolder holder,String parentName, String parentKey){
+
+        if(videoArray.get(0).gethref().contains("mp4")){
+            holder.view.seekTo(1);
+            holder.view.start();
+            holder.view.getLayoutParams().height = getScreenWidth(context) * 29 / 16;
+            holder.view.setVideoPath(videoArray.get(0).gethref());
+            holder.view.setOnPreparedListener(mp -> mp.setVolume(0f, 0f));
+            holder.view.setOnCompletionListener (mediaPlayer -> holder.view.start());
+            holder.view.setOnClickListener(view -> {
+                callback.onBannerClickPosition(0,parentKey);
+            });
+        }
+        else {
+            holder.view.setVisibility(View.GONE);
+        }
     }
 
     public static int getScreenWidth(Context c) {
@@ -406,6 +354,5 @@ public class HomeAdapter extends RecyclerView.Adapter<HomeAdapter.ViewHolder> {
 
         return screenWidth;
     }
-
 }
 

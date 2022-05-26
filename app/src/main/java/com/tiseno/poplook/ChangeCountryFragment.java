@@ -86,9 +86,9 @@ public class ChangeCountryFragment extends ListFragment implements AsyncTaskComp
 
         ((MainActivity) getActivity()).changeToolBarText("Change Country");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
-        ((MainActivity) getActivity()).changeBtnSearchView(true);
+        ((MainActivity) getActivity()).changeBtnSearchView(false);
         ((MainActivity) getActivity()).changeBtnBagView(true);
         ((MainActivity) getActivity()).changeBtnWishlistView(true);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);

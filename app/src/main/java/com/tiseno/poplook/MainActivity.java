@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             @Override
             public void onClick(View view) {
                 mDrawer.closeDrawer(GravityCompat.START,true);
-                openFragment(new HomeFragment(), "HomeFragment");
+                openFragment(new NewProductListFragment(), "NewProductListFragment");
 
             }
         });
@@ -502,7 +502,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
             fm.popBackStack();
         } else {
             Log.i("MainActivity", "nothing on backstack, calling super");
-            HomeFragment homeFragment = (HomeFragment) fm.findFragmentByTag("HomeFragment");
+            NewProductListFragment homeFragment = (NewProductListFragment) fm.findFragmentByTag("NewProductListFragment");
 
             if (homeFragment != null && homeFragment.isVisible()) {
                 new AlertDialog.Builder(this)
@@ -524,7 +524,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 FragmentTransaction ft = fm.beginTransaction();
 //                ft.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right,R.anim.slide_in_right, R.anim.slide_out_left);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
+                ft.replace(R.id.fragmentContainer, new NewProductListFragment(), "NewProductListFragment");
 //                ft.addToBackStack(null);
                 ft.commit();
             }
@@ -1076,7 +1076,7 @@ public class MainActivity extends AppCompatActivity implements AsyncTaskComplete
                 FragmentManager fm = getFragmentManager();
                 FragmentTransaction ft = fm.beginTransaction();
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                ft.replace(R.id.fragmentContainer, new HomeFragment(), "HomeFragment");
+                ft.replace(R.id.fragmentContainer, new NewProductListFragment(), "NewProductListFragment");
 //                ft.addToBackStack(null);
                 ft.commit();
             }

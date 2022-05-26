@@ -9,10 +9,12 @@
     <item name="red" type="color">#FF0000</item>
     <item name="light_green" type="color">#1CAE49</item>
     <item name="birtday_orange" type="color">#E65E1C</item>
-    <item name="raya_22" type="color">#AFAACB</item>
     <color name="darkgrey2">#5E5E5E</color>
     <color name="grey">#959595</color>
     <color name="powder_blue">#E5E4E2</color>
+
+    <item name="raya_22" type="color">#008A6E</item>
+    <item name="flash_sale" type="color">#DD1080</item>
 
     <color name="darkblue">#3960a1</color>
     <color name="lightblack">#2E2E2E</color>

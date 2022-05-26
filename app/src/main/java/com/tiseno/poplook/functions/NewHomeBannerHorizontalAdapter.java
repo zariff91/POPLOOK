@@ -1,5 +1,6 @@
 package com.tiseno.poplook.functions;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -26,19 +27,18 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
 
     private Context mContext;
     ArrayList<HomeItem> data;
-    private ItemClickListener mItemClickListener;
-
     ImageLoader imageLoader= ImageLoader.getInstance();
+    String parentName;
 
-    public NewHomeBannerHorizontalAdapter(Context context,ArrayList<HomeItem> data1){
+    ViewHolder.AdapterCallback listener;
+
+    public NewHomeBannerHorizontalAdapter(Context context,ArrayList<HomeItem> data1, ViewHolder.AdapterCallback callback,String parentName){
 
         mContext = context;
         data = data1;
+        this.listener = callback;
+        this.parentName = parentName;
 
-    }
-
-    public void addItemClickListener(ItemClickListener listener) {
-        mItemClickListener = listener;
     }
 
     @NonNull
@@ -52,12 +52,7 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-
-        holder.horizontalBannerTitle.setText(data.get(position).getcatName());
-        holder.horizontalBannerTitle.setTypeface(FontUtil.getTypeface(mContext, FontUtil.FontType.AVENIR_MEDIUM_FONT));
-        holder.horizontalBannerTitle.setTextColor(Color.BLACK);
+    public void onBindViewHolder(@NonNull ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
         DisplayImageOptions options = new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
@@ -66,13 +61,14 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
 
         display(holder.horizontalBannerIcon, data.get(position).gethref(), options,holder.loadingImg);
 
+        holder.horizontalBannerTitle.setText(data.get(position).getcatName());
+        holder.horizontalBannerTitle.setTypeface(FontUtil.getTypeface(mContext, FontUtil.FontType.AVENIR_MEDIUM_FONT));
+        holder.horizontalBannerTitle.setTextColor(Color.BLACK);
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (mItemClickListener != null) {
-                    mItemClickListener.onItemHorizontalClick(position);
-                }
+                listener.onMethodCallbackHorizontal(position,parentName);
             }
         });
     }
@@ -88,6 +84,10 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
         ProgressBar loadingImg;
 
         View itemView;
+
+        public interface AdapterCallback {
+            void onMethodCallbackHorizontal(int positionClicked,String parentName);
+        }
 
 
         public ViewHolder(View view) {
@@ -105,10 +105,6 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
         }
     }
 
-    public interface ItemClickListener {
-        void onItemHorizontalClick(int position);
-    }
-
     public void display(final ImageView img, String url, DisplayImageOptions options,ProgressBar spinner)
     {
         imageLoader.displayImage(url, img, options, new ImageLoadingListener() {
@@ -121,7 +117,7 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
             @Override
             public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
                 img.setVisibility(View.VISIBLE);
-//                spinner.setVisibility(View.GONE); // set the spinenr visibility to gone
+                spinner.setVisibility(View.GONE); // set the spinenr visibility to gone
 
 
             }
@@ -129,7 +125,7 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
             @Override
             public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                 img.setVisibility(View.VISIBLE);
-//                spinner.setVisibility(View.GONE); //  loading completed set the spinenr visibility to gone
+                spinner.setVisibility(View.GONE); //  loading completed set the spinenr visibility to gone
             }
 
             @Override

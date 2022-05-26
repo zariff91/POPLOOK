@@ -59,7 +59,7 @@ import okhttp3.RequestBody;
  * Demonstrates the use of {@link RecyclerView} with a {@link LinearLayoutManager} and a
  * {@link GridLayoutManager}.
  */
-public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<JSONObject> , HomeAdapter.ViewHolder.AdapterCallback {
+public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<JSONObject>  {
 
     private static final String TAG = "RecyclerViewFragment";
     private static final String KEY_LAYOUT_MANAGER = "layoutManager";
@@ -629,7 +629,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
                                     String linkPrimary = jsonArr.getJSONObject(y).getString("link");
                                     String hrefPrimary = jsonArr.getJSONObject(y).getString("href");
 
-                                mImagesCategory.add(new HomeItem(catIDPrimary, catNamePrimary, linkPrimary, hrefPrimary,""));
+//                                mImagesCategory.add(new HomeItem(catIDPrimary, catNamePrimary, linkPrimary, hrefPrimary,""));
 
 
                             }
@@ -657,7 +657,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
                             String position = videoData.getString("position");
 
                             int x = Integer.parseInt(position)-1;
-                            mImagesCategory.add(x,new HomeItem(catIDPrimary, catNamePrimary, "isVideo", hrefPrimary, position));
+//                            mImagesCategory.add(x,new HomeItem(catIDPrimary, catNamePrimary, "isVideo", hrefPrimary, position));
 
 
                         }
@@ -665,7 +665,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
                     }
 
 
-                    mAdapterCategory = new HomeAdapter(mImagesCategory,getActivity(),false,this);
+//                    mAdapterCategory = new HomeAdapter(mImagesCategory,getActivity(),false);
 
                     System.out.println("get banners amount " + mImagesCategory.size());
 
@@ -754,68 +754,68 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
     }
 
 
-    @Override
-    public void onMethodCallback(String bannerID, String href, String categoryName, String link) {
-
-        System.out.println("banner data 1 = " + bannerID);
-        System.out.println("banner data 2 = " + href);
-        System.out.println("banner data 3 = " + categoryName);
-        System.out.println("banner data 4 = " + link);
-
-
-        try{
-
-                                         if(link.contains("http")){
-
-//                                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mImagesCategory.get(position).getlink()));
-//                                        startActivity(browserIntent);
-//                                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-//                                            CustomTabsIntent customTabsIntent = builder.build();
-//                                            customTabsIntent.launchUrl(getActivity(), Uri.parse(mImagesCategory.get(position).getlink()));
-
-
-                                            String linkBrowser = "https://poplook.com"+link;
-                                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkBrowser));
-                                            startActivity(browserIntent);
-
-
-                                        } else {
-                                             Fragment fragment = new ListOfProductFragment();
-
-                                             if (bannerID.equals("null") || categoryName.equals("null")) {
-
-                                             } else {
-                                                 Bundle bundle = new Bundle();
-                                                 bundle.putString("prodID", bannerID);
-                                                 bundle.putString("catName", categoryName);
-                                                 bundle.putString("fromHome", "Home");
-                                                 fragment.setArguments(bundle);
-                                                 FragmentManager fragmentManager = getActivity().getFragmentManager();
-                                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                                                 fragmentTransaction.addToBackStack(null);
-                                                 fragmentTransaction.commit();
-                                                 mImagesCategory.clear();
-                                             }
-                                         }
-
-                                    }catch (Exception e){
-                                        Fragment fragment = new ListOfProductFragment();
-                                        Bundle bundle = new Bundle();
-                                        bundle.putString("prodID", bannerID);
-                                        bundle.putString("catName", categoryName);
-                                        bundle.putString("fromHome","Home");
-                                        fragment.setArguments(bundle);
-                                        FragmentManager fragmentManager = getActivity().getFragmentManager();
-                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
-                                        fragmentTransaction.addToBackStack(null);
-                                        fragmentTransaction.commit();
-                                        mImagesCategory.clear();
-                                    }
-
-    }
+//    @Override
+//    public void onMethodCallback(String bannerID, String href, String categoryName, String link) {
+//
+//        System.out.println("banner data 1 = " + bannerID);
+//        System.out.println("banner data 2 = " + href);
+//        System.out.println("banner data 3 = " + categoryName);
+//        System.out.println("banner data 4 = " + link);
+//
+//
+//        try{
+//
+//                                         if(link.contains("http")){
+//
+////                                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(mImagesCategory.get(position).getlink()));
+////                                        startActivity(browserIntent);
+////                                            CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+////                                            CustomTabsIntent customTabsIntent = builder.build();
+////                                            customTabsIntent.launchUrl(getActivity(), Uri.parse(mImagesCategory.get(position).getlink()));
+//
+//
+//                                            String linkBrowser = "https://poplook.com"+link;
+//                                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(linkBrowser));
+//                                            startActivity(browserIntent);
+//
+//
+//                                        } else {
+//                                             Fragment fragment = new ListOfProductFragment();
+//
+//                                             if (bannerID.equals("null") || categoryName.equals("null")) {
+//
+//                                             } else {
+//                                                 Bundle bundle = new Bundle();
+//                                                 bundle.putString("prodID", bannerID);
+//                                                 bundle.putString("catName", categoryName);
+//                                                 bundle.putString("fromHome", "Home");
+//                                                 fragment.setArguments(bundle);
+//                                                 FragmentManager fragmentManager = getActivity().getFragmentManager();
+//                                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+//                                                 fragmentTransaction.addToBackStack(null);
+//                                                 fragmentTransaction.commit();
+//                                                 mImagesCategory.clear();
+//                                             }
+//                                         }
+//
+//                                    }catch (Exception e){
+//                                        Fragment fragment = new ListOfProductFragment();
+//                                        Bundle bundle = new Bundle();
+//                                        bundle.putString("prodID", bannerID);
+//                                        bundle.putString("catName", categoryName);
+//                                        bundle.putString("fromHome","Home");
+//                                        fragment.setArguments(bundle);
+//                                        FragmentManager fragmentManager = getActivity().getFragmentManager();
+//                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                                        fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+//                                        fragmentTransaction.addToBackStack(null);
+//                                        fragmentTransaction.commit();
+//                                        mImagesCategory.clear();
+//                                    }
+//
+//    }
 
 }

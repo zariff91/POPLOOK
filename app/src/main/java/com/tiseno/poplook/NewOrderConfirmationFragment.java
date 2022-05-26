@@ -73,7 +73,9 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
     String forBilling;
     String carrierID_forAPI = "";
     String UserID, CartID;
-    String SelectedShopID;
+    String SelectedShopID
+
+            ;
     String couponCodeForInsider;
 
     String[] onlineBankingArray;
@@ -1331,7 +1333,7 @@ public class NewOrderConfirmationFragment extends Fragment implements AsyncTaskC
                         String message=result.getString("message");
 
                         if (!message.equals("This voucher does not exists")) {
-                            Toast.makeText(getActivity(), "Voucher Accepted", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                             Insider.Instance.tagEvent("coupon_used").addParameterWithString("coupon_code",couponCodeForInsider).build();
 
                             String apikey =pref.getString("apikey","");
