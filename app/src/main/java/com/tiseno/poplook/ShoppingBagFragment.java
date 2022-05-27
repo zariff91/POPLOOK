@@ -126,7 +126,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
 
         ((MainActivity) getActivity()).changeToolBarText("Shopping Bag");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(false);
+        ((MainActivity) getActivity()).changeBtnBackView(true);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
         ((MainActivity) getActivity()).changeBtnSearchView(false);
         ((MainActivity) getActivity()).changeBtnBagView(false);
