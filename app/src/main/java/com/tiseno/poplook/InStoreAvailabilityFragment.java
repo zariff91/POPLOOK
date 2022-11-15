@@ -1,8 +1,8 @@
 package com.tiseno.poplook;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -184,7 +184,7 @@ public class InStoreAvailabilityFragment extends Fragment implements AsyncTaskCo
 
 
                                            fragment.setArguments(bundle);
-                                           FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                           FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                            fragmentTransaction.replace(R.id.fragmentContainer, fragment);

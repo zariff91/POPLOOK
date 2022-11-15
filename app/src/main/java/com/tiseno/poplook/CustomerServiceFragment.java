@@ -1,12 +1,11 @@
 package com.tiseno.poplook;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AlertDialog;
 
 import android.view.LayoutInflater;
@@ -31,7 +30,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
         // Required empty public constructor
     }
 
-    LinearLayout CSContactUsLL, CSRegistrationLL, CSMakingAnOrderLL, CSGSTLL, CSBackorderLL,CSLPSCLL,CSReturnsLL,CSLocalDevLL,CSInterDevLL,CSGiftLL, CSPoplookRewards;
+    LinearLayout CSContactUsLL, CSRegistrationLL, CSMakingAnOrderLL, CSGSTLL, CSBackorderLL,CSLPSCLL,CSReturnsLL,CSLocalDevLL,CSInterDevLL,CSGiftLL, CSPoplookRewards,CSGiftCardLL;
     TextView CSContactUsTV, CSRegistrationTV, CSMakingAnOrderTV, CSGSTTV, CSBackorderTV,CSLPSCTV,CSReturnsTV,CSLocalDevTV,CSInterDevTV,CSGiftTV, CSPoplookTV;
     ArrayList<customerServiceItem> arrayList= new ArrayList<customerServiceItem>();
     String title,content,fromHome="";
@@ -70,6 +69,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
         CSInterDevLL = (LinearLayout) contentView.findViewById(R.id.CSInterDevLL);
         CSGiftLL = (LinearLayout) contentView.findViewById(R.id.CSGiftLL);
         CSPoplookRewards = (LinearLayout) contentView.findViewById(R.id.CSPoplookReward);
+        CSGiftCardLL = (LinearLayout) contentView.findViewById(R.id.CSGiftCard);
 
         CSContactUsTV = (TextView) contentView.findViewById(R.id.CSContactUsTV);
         CSRegistrationTV = (TextView) contentView.findViewById(R.id.CSRegistrationTV);
@@ -104,7 +104,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 Bundle bundle = new Bundle();
                 bundle.putString("fromInstore", "0");
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -137,7 +137,37 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
+
+        CSGiftCardLL.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                for(int j = 0; j < arrayList.size(); j++)
+                {
+
+                    if(arrayList.get(j).getcategoryID().equals("Gift Cards")){
+
+                        title=arrayList.get(j).getcategoryID();
+                        content=arrayList.get(j).getlink();
+                        break;
+                    }
+
+                }
+
+                Fragment fragment = new CSWVFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("title", title);
+                bundle.putString("content",content);
+                fragment.setArguments(bundle);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -165,7 +195,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -193,7 +223,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -221,7 +251,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -249,7 +279,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -277,7 +307,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -304,7 +334,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -331,7 +361,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -357,7 +387,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -384,7 +414,7 @@ public class CustomerServiceFragment extends Fragment implements AsyncTaskComple
                 bundle.putString("title", title);
                 bundle.putString("content",content);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);

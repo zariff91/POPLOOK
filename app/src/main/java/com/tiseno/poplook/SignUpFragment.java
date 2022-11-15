@@ -1,9 +1,9 @@
 package com.tiseno.poplook;
 
 import android.app.DatePickerDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -145,7 +145,7 @@ public class SignUpFragment extends Fragment implements AsyncTaskCompleteListene
                 Bundle bundle = new Bundle();
                 bundle.putString("fromSignUp", "Yeah");
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -158,7 +158,7 @@ public class SignUpFragment extends Fragment implements AsyncTaskCompleteListene
             @Override
             public void onClick(View v) {
                 Fragment fragment = new PersonalDataProtectionFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -518,7 +518,7 @@ public class SignUpFragment extends Fragment implements AsyncTaskCompleteListene
                                 bundle.putInt("COME_FROM_WHERE", 2);
                                 bundle.putBoolean("EDIT_ADDRESS", false);
                                 fragment.setArguments(bundle);
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);

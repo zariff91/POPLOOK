@@ -2,13 +2,13 @@ package com.tiseno.poplook;
 
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.text.Editable;
@@ -834,7 +834,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
         {
             AlertDialog.Builder builder1 = new AlertDialog.Builder(getActivity());
             builder1.setTitle("Out of stock");
-            builder1.setMessage("Some of the items have sold out. These items will be removed from cart.");
+            builder1.setMessage("Some of the items have sold out or unavailable. These items will be removed from cart.");
             builder1.setCancelable(true);
 
             builder1.setPositiveButton(
@@ -952,9 +952,11 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                             String productRef = jObj.getString("reference");
                             String quantity = jObj.getString("quantity");
                             String item_total = jObj.getString("total");
+                            String availability = jObj.getString("active");
+
                             Integer quantity_available = jObj.getInt("quantity_available");
 //
-                            if(quantity_available == 0 || quantity_available < 1)
+                            if(quantity_available == 0 || quantity_available < 1 || !availability.equals("1"))
                             {
                                 haveOutOfStock = true;
                                 listArray_outofstockitem.add(jObj);
@@ -1194,7 +1196,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                             else {
 
                                 Fragment fragment = new NewOrderConfirmationFragment();
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment, "NewOrderConfirmationFragment");
@@ -1224,7 +1226,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                             bundle.putInt("COME_FROM_WHERE", 3);
                             bundle.putBoolean("EDIT_ADDRESS", false);
                             fragment.setArguments(bundle);
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1236,7 +1238,7 @@ public class ShoppingBagFragment extends Fragment implements AsyncTaskCompleteLi
                             // Reload current fragment
                             Fragment frg = null;
                             frg = getFragmentManager().findFragmentByTag("ShoppingBagFragment");
-                            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+                            final FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
                             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             ft.detach(frg);
                             ft.attach(frg);

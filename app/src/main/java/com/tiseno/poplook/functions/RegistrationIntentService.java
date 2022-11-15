@@ -111,7 +111,7 @@ public class RegistrationIntentService extends IntentService implements AsyncTas
         //apikey
         String apikey=pref.getString("apikey","");
         String action="Devices/addInfo";
-        WebServiceAccessPutWithoutLoading callws = new WebServiceAccessPutWithoutLoading(this, this);
+        WebServiceAccessPutWithoutLoading callws = new WebServiceAccessPutWithoutLoading( this);
         RequestBody formBody = new FormBody.Builder()
                 .add("apikey",apikey)
                 .add("device_type", "Android")

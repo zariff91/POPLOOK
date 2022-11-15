@@ -1,8 +1,8 @@
 package com.tiseno.poplook;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -22,14 +22,11 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.adroitandroid.chipcloud.ChipCloud;
 import com.adroitandroid.chipcloud.ChipListener;
-import com.adroitandroid.chipcloud.FlowLayout;
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.tiseno.poplook.functions.EndlessScrollListener;
@@ -41,7 +38,6 @@ import com.tiseno.poplook.functions.savedItemsItem;
 import com.tiseno.poplook.webservice.AsyncTaskCompleteListener;
 import com.tiseno.poplook.webservice.WebServiceAccessDelete;
 import com.tiseno.poplook.webservice.WebServiceAccessGet;
-import com.tiseno.poplook.webservice.WebServiceAccessGetWithoutLoading;
 import com.tiseno.poplook.webservice.WebServiceAccessPut;
 import com.useinsider.insider.Insider;
 
@@ -55,9 +51,6 @@ import okhttp3.FormBody;
 import okhttp3.RequestBody;
 
 public class ListOfProductFragment extends Fragment implements AsyncTaskCompleteListener<JSONObject>, GridViewProductAdapter.ItemClickListener {
-
-    BottomSheetBehavior sheetBehavior;
-    LinearLayout layoutBottomSheet;
 
     RecyclerView productListTable;
     GridLayoutManager mLayoutManager;
@@ -155,6 +148,7 @@ public class ListOfProductFragment extends Fragment implements AsyncTaskComplete
             ((MainActivity) getActivity()).changeBtnSearchView(true);
             ((MainActivity) getActivity()).changeBtnBagView(true);
             ((MainActivity) getActivity()).changeBtnWishlistView(true);
+            ((MainActivity) getActivity()).hideTopBar(false);
 
             if(fromSearch.equals("Search")){
                 ((MainActivity) getActivity()).changeToolBarText("Search ''" + search + "''");
@@ -1152,7 +1146,7 @@ public class ListOfProductFragment extends Fragment implements AsyncTaskComplete
         bundle.putString("prodID",mProductObj.get(position).getproductID());
         bundle.putString("catName", catName);
         fragment.setArguments(bundle);
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");

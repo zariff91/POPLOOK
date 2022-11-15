@@ -3,15 +3,18 @@ package com.tiseno.poplook;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import com.atome.sdk.AtomeSDK;
 import com.google.android.material.appbar.AppBarLayout;
 
 import androidx.core.app.ActivityCompat;
@@ -23,6 +26,7 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.UnderlineSpan;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +51,7 @@ import com.tiseno.poplook.functions.voucherItem;
 import com.tiseno.poplook.webservice.AsyncTaskCompleteListener;
 import com.tiseno.poplook.webservice.WebServiceAccessDelete;
 import com.tiseno.poplook.webservice.WebServiceAccessGet;
+import com.tiseno.poplook.webservice.WebServiceAccessPost;
 import com.tumblr.bookends.Bookends;
 import com.useinsider.insider.Insider;
 
@@ -59,6 +64,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import okhttp3.FormBody;
+import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
 
@@ -69,7 +75,10 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
     String UserID, CartID, LanguageID,noInBag,totalPriceWt,totalPriceWt_sc,totalPrice,taxAmount,shipping_price;
 
-    String bank_msg_enable,first_bank_message,second_bank_message;
+    String bank_msg_enable,first_bank_message,second_bank_message,OrderID,OrderIDTimeStamp;
+
+    String appVersion="1.0.0";
+
 
     JSONObject cartResultJObj;
     JSONObject refreshStep3Obj;
@@ -129,6 +138,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
     boolean TermCondChecked = false;
 
+    boolean fromAtome = false;
+
     boolean isCCSelected = false;
 
     boolean eWalletExist = false;
@@ -154,6 +165,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
     RadioButton paymentList2;
     RadioButton paymentList3;
     RadioButton paymentList4;
+    RadioButton paymentList5;
+
 
     ImageButton applyCodeBtn;
 
@@ -202,6 +215,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
     final int PAYPAL_PAYMENT = 2;
     final int ENETS_PAYMENT = 3;
     final int TNG_EWALLET = 4;
+    final int ATOME_PAYMENT = 5;
+
 
 
     public PaymentFragment() {
@@ -1326,7 +1341,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 Bundle bundle = new Bundle();
                 bundle.putString("fromPayment", "Yeah");
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1342,7 +1357,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 Bundle bundle = new Bundle();
                 bundle.putString("fromSignUp", "Nope");
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1398,6 +1413,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         paymentList2 = newHeader.findViewById(R.id.EWalletBtn);
         paymentList3 = newHeader.findViewById(R.id.onlineBankingBtn);
         paymentList4 = newHeader.findViewById(R.id.enetsorpaypal);
+        paymentList5 = newHeader.findViewById(R.id.atomePay);
+
 
         shipping_text_choice.setText(carrier_selected);
 
@@ -1408,6 +1425,8 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         paymentList2.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
         paymentList3.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
         paymentList4.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+        paymentList5.setTypeface(FontUtil.getTypeface(getActivity(), FontUtil.FontType.AVENIR_MEDIUM_FONT));
+
 
 
         paymentGroup.setOnCheckedChangeListener((radioGroup, i) -> {
@@ -1986,6 +2005,11 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
                                     GoToNextStepWS("enets");
                                     break;
+                                case R.id.atomePay:
+
+                                    PAYMENT_METHOD = ATOME_PAYMENT;
+                                    GoToNextStepWS("atome");
+                                    break;
                                 default:
                                     Toast.makeText(getActivity(), "Please select payment type", Toast.LENGTH_SHORT).show();
                                     break;
@@ -2078,6 +2102,11 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                             break;
                         case R.id.enetsRB:
 
+                            break;
+                        case R.id.atomePay:
+
+                            PAYMENT_METHOD = ATOME_PAYMENT;
+                            GoToNextStepWS("atome");
                             break;
                         default:
                             Toast.makeText(getActivity(), "Please select payment type", Toast.LENGTH_SHORT).show();
@@ -2257,149 +2286,228 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
     public void onTaskComplete(JSONObject result) {
         if(result!=null){
             try{
-                int totalquantity=0;
-                String action = result.getString("action");
 
-                if(action.equals("Carts_OrderStep4"))
-                {
-                    if(result.getBoolean("status"))
-                    {
+                if(result.has("action")) {
 
-                        AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
-                        params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
-                                | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
+                    String action = result.getString("action");
 
-                        if(result.getJSONObject("data").getString("next_page").equals("callPaymentGateway"))
+                    if (action.equals("Carts_OrderStep4")) {
+                        if (result.getBoolean("status")) {
 
-                        {
-                            JSONObject data = result.getJSONObject("data");
-                            CartID=data.getString("id_cart");
-                            SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
-                            SharedPreferences.Editor editor = pref.edit();
-                            editor.putString("giftMessage", "");
-                            editor.putString("LeaveMessage", "");
-                            editor.putString("CartID",CartID);
-                            editor.apply();
+                            AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
+                            params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL
+                                    | AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS);
 
-                            String orderID = data.getString("id_order");
-                            String totalPrice= data.getString("totalPrice");
+                            if (result.getJSONObject("data").getString("next_page").equals("callPaymentGateway")) {
+                                JSONObject data = result.getJSONObject("data");
+                                CartID = data.getString("id_cart");
+                                SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+                                SharedPreferences.Editor editor = pref.edit();
+                                editor.putString("giftMessage", "");
+                                editor.putString("LeaveMessage", "");
+                                editor.putString("CartID", CartID);
+                                editor.apply();
 
-                            System.out.println("SINI LALALLA = "+ totalPrice );
+                                String orderID = data.getString("id_order");
+                                OrderID= data.getString("id_order");
+                                String totalPrice = data.getString("totalPrice");
 
-                            if(PAYMENT_METHOD == CREDIT_CARD_PAYMENT)
-                            {
+                                System.out.println("SINI LALALLA = " + totalPrice);
 
-                                if(!SelectedShopID.equals("2")) {
+                                if (PAYMENT_METHOD == CREDIT_CARD_PAYMENT) {
 
-                                    System.out.println("here for myr/usd payment");
+                                    if (!SelectedShopID.equals("2")) {
+
+                                        System.out.println("here for myr/usd payment");
+
+                                        Intent ipay88Intent = new Intent(getActivity(), IPay88PaymentActivity.class);
+                                        ipay88Intent.putExtra("CREDITCARD_PAYMENT", "1");
+                                        ipay88Intent.putExtra("ORDER_ID", orderID);
+                                        ipay88Intent.putExtra("CART_ID", CartID);
+                                        ipay88Intent.putExtra("ITEM_PRICE", totalPrice);
+                                        startActivityForResult(ipay88Intent, 1);
+                                        getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
+                                    } else {
+
+                                        System.out.println("here for sgd payment");
+
+
+                                        Intent intent = new Intent(getActivity(), ENetsPaymentActivity.class);
+                                        intent.putExtra("CREDITCARD_PAYMENT", "1");
+                                        intent.putExtra("ITEM_DETAIL", "POPLOOK purchase");
+                                        intent.putExtra("ITEM_PRICE", totalPrice);
+                                        intent.putExtra("ORDER_ID", orderID);
+                                        intent.putExtra("CART_ID", CartID);
+
+                                        System.out.println("ENETS input 1 = " + totalPrice);
+                                        System.out.println("ENETS input 2 = " + orderID);
+                                        System.out.println("ENETS input 3 = " + CartID);
+
+
+                                        if (data.has("payment_voucher")) {
+
+                                            String paymentVoucher = data.getString("payment_voucher");
+//
+                                            System.out.println("voucher code 1 = " + paymentVoucher);
+
+                                            intent.putExtra("PAYMENT_VOUCHER", paymentVoucher);
+
+                                        } else {
+                                            intent.putExtra("PAYMENT_VOUCHER", "0");
+
+                                        }
+                                        startActivityForResult(intent, 1);
+                                        getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
+                                    }
+                                } else if (PAYMENT_METHOD == TNG_EWALLET) {
 
                                     Intent ipay88Intent = new Intent(getActivity(), IPay88PaymentActivity.class);
-                                    ipay88Intent.putExtra("CREDITCARD_PAYMENT", "1");
+                                    ipay88Intent.putExtra("CREDITCARD_PAYMENT", "4");
+                                    ipay88Intent.putExtra("eWallet", eWalletID);
                                     ipay88Intent.putExtra("ORDER_ID", orderID);
                                     ipay88Intent.putExtra("CART_ID", CartID);
                                     ipay88Intent.putExtra("ITEM_PRICE", totalPrice);
                                     startActivityForResult(ipay88Intent, 1);
                                     getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
-                                }else{
 
-                                    System.out.println("here for sgd payment");
+                                } else if (PAYMENT_METHOD == ONLINE_BANKING_PAYMENT) {
+                                    Intent ipay88Intent2 = new Intent(getActivity(), IPay88PaymentActivity.class);
+                                    ipay88Intent2.putExtra("CREDITCARD_PAYMENT", "0");
+                                    ipay88Intent2.putExtra("ITEM_PRICE", totalPrice);
+                                    ipay88Intent2.putExtra("PAYMENT_ID", PaymentIDForIPay88);
+                                    ipay88Intent2.putExtra("ORDER_ID", orderID);
+                                    ipay88Intent2.putExtra("CART_ID", CartID);
+                                    startActivityForResult(ipay88Intent2, 1);
+                                    getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
 
-
-                                    Intent intent = new Intent(getActivity(), ENetsPaymentActivity.class);
-                                    intent.putExtra("CREDITCARD_PAYMENT", "1");
+                                } else if (PAYMENT_METHOD == PAYPAL_PAYMENT) {
+                                    Intent intent = new Intent(getActivity(), PaypalPaymentActivity.class);
                                     intent.putExtra("ITEM_DETAIL", "POPLOOK purchase");
                                     intent.putExtra("ITEM_PRICE", totalPrice);
                                     intent.putExtra("ORDER_ID", orderID);
                                     intent.putExtra("CART_ID", CartID);
-
-                                    System.out.println("ENETS input 1 = "+totalPrice);
-                                    System.out.println("ENETS input 2 = "+ orderID);
-                                    System.out.println("ENETS input 3 = "+CartID);
-
-
-                                    if(data.has("payment_voucher"))
-                                    {
-
-                                        String paymentVoucher = data.getString("payment_voucher");
-//
-                                    System.out.println("voucher code 1 = " + paymentVoucher);
-
-                                        intent.putExtra("PAYMENT_VOUCHER", paymentVoucher);
-
-                                    }
-                                    else {
-                                        intent.putExtra("PAYMENT_VOUCHER", "0");
-
-                                    }
                                     startActivityForResult(intent, 1);
-                                    getActivity().overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
+                                    getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
+
+                                } else if (PAYMENT_METHOD == ENETS_PAYMENT) {
+                                    Intent intent = new Intent(getActivity(), ENetsPaymentActivity.class);
+                                    intent.putExtra("CREDITCARD_PAYMENT", "0");
+                                    intent.putExtra("ITEM_DETAIL", "POPLOOK purchases");
+                                    intent.putExtra("ITEM_PRICE", totalPrice);
+                                    intent.putExtra("ORDER_ID", orderID);
+                                    intent.putExtra("CART_ID", CartID);
+                                    startActivityForResult(intent, 1);
+                                    getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
+                                } else if (PAYMENT_METHOD == ATOME_PAYMENT) {
+                                    String userName = pref.getString("Name", "") + " " + pref.getString("LastName", "");
+                                    String email = pref.getString("Email", "");
+
+                                    JSONObject addressInvoice = data.getJSONObject("address_invoice");
+
+                                    String urlAtome = "https://api.apaylater.com/v2/payments";
+
+                                    JSONObject customerInfo = new JSONObject();
+                                    try {
+                                        customerInfo.put("mobileNumber", addressInvoice.getString("phone"));
+                                        customerInfo.put("fullName", userName);
+                                        customerInfo.put("email", email);
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    JSONObject shippingInfo = new JSONObject();
+                                    try {
+
+                                        JSONArray address = new JSONArray();
+                                        address.put(addressInvoice.getString("address1"));
+                                        address.put(addressInvoice.getString("address2"));
+                                        address.put(addressInvoice.getString("postcode"));
+
+                                        String SelectedCountryIsoCode = pref.getString("SelectedCountryIsoCode", "MY");
+
+                                        shippingInfo.put("countryCode", SelectedCountryIsoCode);
+                                        shippingInfo.put("lines", address);
+                                        shippingInfo.put("postCode", addressInvoice.getString("postcode"));
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+
+                                    JSONArray itemArray = new JSONArray();
+                                    JSONObject itemList = new JSONObject();
+
+                                    for(int x=0;x<listArray_shoppingBag.size();x++){
+
+                                        final shoppingBagItem item = listArray_shoppingBag.get(x);
+
+
+                                        try {
+                                            itemList.put("itemId", item.getproductID());
+                                            itemList.put("name", item.getproductName());
+
+                                            String itemPrice = item.getproductTotalPrice();
+                                            double price = Double.parseDouble(itemPrice);
+                                            double convertPrice = price*100;
+
+                                            String priceStr = String.valueOf(convertPrice);
+
+                                            itemList.put("price", priceStr);
+                                            itemList.put("quantity", item.getproductQuantity());
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+                                        itemArray.put(itemList);
+                                    }
+
+                                    Long tsLong = System.currentTimeMillis()/1000;
+                                    String ts = tsLong.toString();
+
+                                    OrderIDTimeStamp = orderID+ts;
+
+                                    JSONObject atomeBody = new JSONObject();
+                                    try {
+                                        atomeBody.put("referenceId", OrderIDTimeStamp);
+                                        atomeBody.put("currency", data.getString("currency"));
+                                        double price = Double.parseDouble(totalPrice);
+                                        double convertPrice = price*100;
+                                        String priceStr = String.valueOf(convertPrice);
+
+                                        atomeBody.put("amount", priceStr);
+                                        atomeBody.put("callbackUrl", "https://poplook.com/modules/atome_payment/atome_payment_get.php?referenceid=" + OrderIDTimeStamp + "&cart_id=" + CartID);
+                                        atomeBody.put("paymentResultUrl", "https://dev3.poplook.com");
+                                        atomeBody.put("paymentCancelUrl", "https://dev3.poplook.com");
+
+                                        atomeBody.put("merchantReferenceId", CartID);
+
+                                        atomeBody.put("taxAmount", 0);
+
+                                        atomeBody.put("customerInfo", customerInfo);
+                                        atomeBody.put("shippingAddress", shippingInfo);
+                                        atomeBody.put("items", itemArray);
+
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                    MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                                    RequestBody formBody = RequestBody.create(JSON, atomeBody.toString());
+
+                                    WebServiceAccessPost callws = new WebServiceAccessPost(getActivity(), this);
+                                    callws.setAction(urlAtome);
+                                    callws.execute(formBody);
                                 }
-                            }
-                            else if(PAYMENT_METHOD == TNG_EWALLET)
-                            {
+                                Insider.Instance.tagEvent("checkout_visited").build();
 
-                                Intent ipay88Intent = new Intent(getActivity(), IPay88PaymentActivity.class);
-                                ipay88Intent.putExtra("CREDITCARD_PAYMENT", "4");
-                                ipay88Intent.putExtra("eWallet", eWalletID);
-                                ipay88Intent.putExtra("ORDER_ID", orderID);
-                                ipay88Intent.putExtra("CART_ID", CartID);
-                                ipay88Intent.putExtra("ITEM_PRICE", totalPrice);
-                                startActivityForResult(ipay88Intent, 1);
-                                getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
+                            } else if (result.getJSONObject("data").getString("next_page").equals("cart")) {
+                                Fragment fragment = new ShoppingBagFragment();
+                                FragmentManager fragmentManager = getFragmentManager();
+                                fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
+                                fragmentTransaction.commit();
+                            }
 
-                            }
-                            else if(PAYMENT_METHOD == ONLINE_BANKING_PAYMENT)
-                            {
-                                Intent ipay88Intent2 = new Intent(getActivity(), IPay88PaymentActivity.class);
-                                ipay88Intent2.putExtra("CREDITCARD_PAYMENT", "0");
-                                ipay88Intent2.putExtra("ITEM_PRICE", totalPrice);
-                                ipay88Intent2.putExtra("PAYMENT_ID", PaymentIDForIPay88);
-                                ipay88Intent2.putExtra("ORDER_ID", orderID);
-                                ipay88Intent2.putExtra("CART_ID", CartID);
-                                startActivityForResult(ipay88Intent2, 1);
-                                getActivity().overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
-
-                            }
-                            else if(PAYMENT_METHOD == PAYPAL_PAYMENT)
-                            {
-                                Intent intent = new Intent(getActivity(), PaypalPaymentActivity.class);
-                                intent.putExtra("ITEM_DETAIL", "POPLOOK purchase");
-                                intent.putExtra("ITEM_PRICE", totalPrice);
-                                intent.putExtra("ORDER_ID", orderID);
-                                intent.putExtra("CART_ID", CartID);
-                                startActivityForResult(intent, 1);
-                                getActivity().overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
-
-                            }
-                            else if(PAYMENT_METHOD == ENETS_PAYMENT)
-                            {
-                                Intent intent = new Intent(getActivity(), ENetsPaymentActivity.class);
-                                intent.putExtra("CREDITCARD_PAYMENT", "0");
-                                intent.putExtra("ITEM_DETAIL", "POPLOOK purchases");
-                                intent.putExtra("ITEM_PRICE", totalPrice);
-                                intent.putExtra("ORDER_ID", orderID);
-                                intent.putExtra("CART_ID", CartID);
-                                startActivityForResult(intent, 1);
-                                getActivity().overridePendingTransition(R.anim.fadeoutanim,R.anim.fadeinanim);
-                            }
-                            Insider.Instance.tagEvent("checkout_visited").build();
 
                         }
-                        else if(result.getJSONObject("data").getString("next_page").equals("cart"))
-                        {
-                            Fragment fragment = new ShoppingBagFragment();
-                            FragmentManager fragmentManager = getFragmentManager();
-                            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
-                            fragmentTransaction.commit();
-                        }
-
-
-
-
-                    }
 
 //                    else if(result.getJSONObject("data").getString("next_page").equals("cart"))
 //
@@ -2426,76 +2534,197 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 //                        getActivity().overridePendingTransition(R.anim.fadeoutanim, R.anim.fadeinanim);
 //
 //                    }
-                    else
-                    {
-                        String message = result.getString("message");
-                        new AlertDialog.Builder(getActivity())
-                                .setTitle("POPLOOK")
-                                .setMessage(message)
-                                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                                    public void onClick(DialogInterface dialog, int id) {
-                                        dialog.cancel();
-                                        Fragment fragment = new ShoppingBagFragment();
-                                        FragmentManager fragmentManager = getFragmentManager();
-                                        fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-                                        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                                        fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                                        fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
-                                        fragmentTransaction.addToBackStack(null);
-                                        fragmentTransaction.commit();
-                                    }
-                                }).show();
+                        else {
+                            String message = result.getString("message");
+                            new AlertDialog.Builder(getActivity())
+                                    .setTitle("POPLOOK")
+                                    .setMessage(message)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            dialog.cancel();
+                                            Fragment fragment = new ShoppingBagFragment();
+                                            FragmentManager fragmentManager = getFragmentManager();
+                                            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+                                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                                            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ShoppingBagFragment");
+                                            fragmentTransaction.addToBackStack(null);
+                                            fragmentTransaction.commit();
+                                        }
+                                    }).show();
+                        }
                     }
-                }
-                else if(action.equals("Vouchers_validate"))
-                {
-                    if(result.getBoolean("status"))
-                    {
-                        String message=result.getString("message");
+                    else if (action.equals("Carts_OrderStep5")) {
 
-                        if (!message.equals("This voucher does not exists")) {
-                            Toast.makeText(getActivity(), "Voucher Accepted", Toast.LENGTH_LONG).show();
+                        if (result.getBoolean("status")) {
+                            SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+                            SharedPreferences.Editor editor = pref.edit();
+                            editor.putString("order_success_id", OrderID);
+                            editor.apply();
+                            Fragment fragment = new OrderConfirmationFragment();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+                        else
+                        {
+                            Toast toast = Toast.makeText(getActivity(),
+                                    "Payment Failed", Toast.LENGTH_LONG);
+                            toast.setGravity(Gravity.BOTTOM, 0, 50);
+                            toast.show();
+
+                            Fragment fragment = new OrderHistoryFragment();
+                            FragmentManager fragmentManager = getFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+                            fragmentTransaction.replace(R.id.fragmentContainer, fragment, "OrderHistoryFragment");
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+
+                    }else if (action.equals("Vouchers_validate")) {
+                        if (result.getBoolean("status")) {
+                            String message = result.getString("message");
+
+                            if (!message.equals("This voucher does not exists")) {
+                                Toast.makeText(getActivity(), "Voucher Accepted", Toast.LENGTH_LONG).show();
 //                             Insider.Instance.tagEvent("coupon_used").addParameterWithString("coupon_code",couponCode).build();
 
+                                refreshAppliedVoucher();
+
+                            } else {
+                                Toast.makeText(getActivity(), "Invalid Voucher Code", Toast.LENGTH_LONG).show();
+                            }
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                        } else {
+                            String message = result.getString("message");
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                        }
+
+                    } else if (action.equals("Carts_OrderStep3")) {
+                        refreshVoucher = true;
+                        refreshStep3Obj = result;
+                        getCartDetailList1();
+                    } else if (action.equals("Carts_removeVoucher")) {
+                        if (result.getBoolean("status")) {
+                            String message = result.getString("message");
+                            Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
                             refreshAppliedVoucher();
+                        } else {
+
+                            Toast.makeText(getActivity(), "Unable to remove voucher please try again", Toast.LENGTH_LONG).show();
 
                         }
-                        else  {
-                            Toast.makeText(getActivity(), "Invalid Voucher Code", Toast.LENGTH_LONG).show();
+
+                    }
+                }
+                else {
+
+                    SharedPreferences pref = getActivity().getSharedPreferences("MyPref", 0);
+                    SharedPreferences.Editor editor = pref.edit();
+
+                    String paymentStatus = result.getString("status");
+                    int totalAmount = result.getInt("amount");
+                    if (paymentStatus.equals("PAID")) {
+
+                        PackageInfo pInfo = null;
+
+                        try {
+                            pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            e.printStackTrace();
                         }
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+
+                        //get the app version Name for display
+                        appVersion = pInfo.versionName;
+
+                        System.out.println("atome payment result 7 = " + totalAmount);
+
+
+                        double finalAmount = totalAmount / 100;
+
+                        System.out.println("atome payment result 6 = " + finalAmount);
+
+                        String totalAmountStr = String.valueOf(finalAmount);
+
+                        System.out.println("atome payment result 5 = " + totalAmountStr);
+
+                        JSONObject paymentDetail = result.getJSONObject("paymentTransaction");
+                        String transactionID = paymentDetail.getString("transactionId");
+
+                        String apikey = pref.getString("apikey", "");
+                        String action = "Carts/OrderStep5?apikey="+apikey +"&device_type=android&id_order="+OrderID+"&transaction_status=1&payment_type=atome&total_paid=" + totalAmountStr + "&transaction_id=" + transactionID + "&app_version=" + appVersion;
+                        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+                        callws.execute(action);
                     }
-                    else
-                    {
-                        String message=result.getString("message");
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
+                    else if(paymentStatus.equals("PROCESSING")){
+                        String paymentUrl = result.getString("appPaymentUrl");
+//                    Fragment fragment = new AtomeFragment();
+
+                        if(fromAtome){
+                            PackageInfo pInfo = null;
+
+                            try {
+                                pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                            } catch (PackageManager.NameNotFoundException e) {
+                                e.printStackTrace();
+                            }
+
+                            //get the app version Name for display
+                            appVersion = pInfo.versionName;
+
+                            double finalAmount = totalAmount / 100;
+                            String totalAmountStr = String.valueOf(finalAmount);
+
+                            String apikey = pref.getString("apikey", "");
+                            String action = "Carts/OrderStep5?apikey=" + apikey + "&device_type=android&id_order=" + OrderID + "&transaction_status=0&payment_type=atome&total_paid=" + totalAmountStr + "&transaction_id&app_version=" + appVersion;
+                            WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+                            callws.execute(action);
+                        }
+                        else {
+                            fromAtome = true;
+                            AtomeSDK.INSTANCE.setPaymentUrl(paymentUrl);
+                        }
                     }
+
+                    else {
+                        PackageInfo pInfo = null;
+
+                        try {
+                            pInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), 0);
+                        } catch (PackageManager.NameNotFoundException e) {
+                            e.printStackTrace();
+                        }
+
+                        //get the app version Name for display
+                        appVersion = pInfo.versionName;
+
+                        double finalAmount = totalAmount / 100;
+                        String totalAmountStr = String.valueOf(finalAmount);
+
+                        String apikey = pref.getString("apikey", "");
+                        String action = "Carts/OrderStep5?apikey=" + apikey + "&device_type=android&id_order=" + OrderID + "&transaction_status=0&payment_type=atome&total_paid=" + totalAmountStr + "&transaction_id&app_version=" + appVersion;
+                        WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+                        callws.execute(action);
+                    }
+
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("paymentURL", paymentUrl);
+//                    bundle.putString("referenceID", OrderID);
+//
+//                    fragment.setArguments(bundle);
+//                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+//                    fragmentTransaction.replace(R.id.fragmentContainer, fragment);
+//                    fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.commit();
 
                 }
 
-                else if(action.equals("Carts_OrderStep3"))
-                {
-                    refreshVoucher = true;
-                    refreshStep3Obj = result;
-                    getCartDetailList1();
-                }
-
-                else if(action.equals("Carts_removeVoucher"))
-                {
-                    if(result.getBoolean("status"))
-                    {
-                        String message=result.getString("message");
-                        Toast.makeText(getActivity(), message, Toast.LENGTH_LONG).show();
-                        refreshAppliedVoucher();
-                    }
-                    else
-                    {
-
-                        Toast.makeText(getActivity(), "Unable to remove voucher please try again", Toast.LENGTH_LONG).show();
-
-                    }
-
-                }
 
             }
             catch (Exception e){
@@ -2532,7 +2761,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
 
                     Fragment fragment = new OrderConfirmationFragment();
 
-                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -2545,7 +2774,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
                 {
 
                     Fragment fragment = new MyAccountFragment();
-                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentManager fragmentManager = getChildFragmentManager();
                     fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -2564,7 +2793,7 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
             }
             else if(resultCode == Activity.RESULT_CANCELED){
                 Fragment fragment = new MyAccountFragment();
-                FragmentManager fragmentManager = getFragmentManager();
+                FragmentManager fragmentManager = getChildFragmentManager();
                 fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
 
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -2719,6 +2948,18 @@ public class PaymentFragment extends Fragment implements AsyncTaskCompleteListen
         WebServiceAccessDelete callws = new WebServiceAccessDelete(getActivity(), this);
         callws.setAction(action);
         callws.execute(formBody);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if(fromAtome) {
+            String urlAtome = "https://api.apaylater.com/v2/payments/"+OrderIDTimeStamp;
+            WebServiceAccessGet callws = new WebServiceAccessGet(getActivity(), this);
+            callws.execute(urlAtome);
+        }
 
     }
 }

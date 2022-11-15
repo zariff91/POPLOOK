@@ -3,14 +3,12 @@ package com.tiseno.poplook;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,7 +19,6 @@ import android.widget.CheckBox;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.EditText;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.tiseno.poplook.functions.FontUtil;
@@ -126,7 +123,7 @@ public class CheckOutMethodFragment extends Fragment implements AsyncTaskComplet
                     args.putString("fromGuestCheckOut","1");
                     fragment.setArguments(args);
 
-                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -160,7 +157,7 @@ public class CheckOutMethodFragment extends Fragment implements AsyncTaskComplet
 
 
                 Fragment fragment = new ForgotPasswordFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -267,7 +264,7 @@ public class CheckOutMethodFragment extends Fragment implements AsyncTaskComplet
                             if(nextPage.equals("addressPage"))
                             {
                                 Fragment fragment = new NewOrderConfirmationFragment();
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewOrderConfirmationFragment");
@@ -294,7 +291,7 @@ public class CheckOutMethodFragment extends Fragment implements AsyncTaskComplet
                                 bundle.putInt("COME_FROM_WHERE", 3);
                                 bundle.putBoolean("EDIT_ADDRESS", false);
                                 fragment.setArguments(bundle);
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);

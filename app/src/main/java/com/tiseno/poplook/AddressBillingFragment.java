@@ -2,14 +2,13 @@ package com.tiseno.poplook;
 
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.app.Fragment;
-import com.google.android.material.appbar.AppBarLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
@@ -629,7 +628,7 @@ public class AddressBillingFragment extends Fragment implements AsyncTaskComplet
                         if(nextPage.equals("shippingMethod"))
                         {
                             Fragment fragment = new shippingMethodFragment();
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1019,7 +1018,7 @@ public class AddressBillingFragment extends Fragment implements AsyncTaskComplet
                 bundle.putInt("COME_FROM_WHERE", 1);
                 bundle.putBoolean("EDIT_ADDRESS", false);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1244,7 +1243,7 @@ public class AddressBillingFragment extends Fragment implements AsyncTaskComplet
                 String cartResultJObjString = cartResultJObj.toString();
                 bundle.putString("cartResultJObj", cartResultJObjString);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1263,7 +1262,7 @@ public class AddressBillingFragment extends Fragment implements AsyncTaskComplet
                 String cartResultJObjString = cartResultJObj.toString();
                 bundle.putString("cartResultJObj", cartResultJObjString);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1296,7 +1295,7 @@ public class AddressBillingFragment extends Fragment implements AsyncTaskComplet
                 String cartResultJObjString = cartResultJObj.toString();
                 bundle.putString("cartResultJObj", cartResultJObjString);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1315,7 +1314,7 @@ public class AddressBillingFragment extends Fragment implements AsyncTaskComplet
                 String cartResultJObjString = cartResultJObj.toString();
                 bundle.putString("cartResultJObj", cartResultJObjString);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);

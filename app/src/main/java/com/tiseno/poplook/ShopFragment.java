@@ -1,12 +1,10 @@
 package com.tiseno.poplook;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.SharedPreferences;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +26,7 @@ public class ShopFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_shop, container, false);
 
-        FragmentManager fm = getFragmentManager();
+        FragmentManager fm = getActivity().getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         ft.replace(R.id.fragmentContainer, new NewProductListFragment(), "NewProductListFragment");

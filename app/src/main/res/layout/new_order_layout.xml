@@ -189,14 +189,12 @@
                 android:id="@+id/paymentLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Payment Method"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"
-                android:textSize="15dp"
+                android:text="Payment Method"
                 android:textColor="@color/black"
-                >
-            </TextView>
+                android:textSize="15dp"></TextView>
 
             <RadioGroup
                 android:id="@+id/NewPaymentGroup"
@@ -264,6 +262,14 @@
                     >
 
                 </TextView>
+
+                <RadioButton
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/atomePayment"
+                    android:text="Atome"
+                    ></RadioButton>
 
             </RadioGroup>
 
@@ -498,14 +504,12 @@
                     android:id="@+id/giftOptionTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Gift Option"
                     android:layout_marginLeft="10dp"
-                    android:textSize="15dp"
-                    android:layout_marginBottom="15dp"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:text="Gift Option"
                     android:textColor="@color/black"
-                    >
-                </TextView>
+                    android:textSize="15dp"></TextView>
 
                 <ImageView
                     android:id="@+id/nextIcon"
@@ -559,6 +563,25 @@
                     >
 
                 </EditText>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/editTextGift"
+                    android:background="@color/white"
+
+                    >
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/giftWrapRV"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:scrollbars="none">
+                    </androidx.recyclerview.widget.RecyclerView>
+
+                </RelativeLayout>
+
 
 
             </RelativeLayout>
@@ -703,14 +726,12 @@
                 android:id="@+id/retailTotalTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RM 320.00"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:textSize="15dp"
+                android:text="RM 0.00"
                 android:textColor="@color/black"
-                >
-            </TextView>
+                android:textSize="15dp"></TextView>
 
             <TextView
                 android:id="@+id/subTotalTextTV"
@@ -730,15 +751,13 @@
                 android:id="@+id/subTotalTV"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RM 220.00"
+                android:layout_below="@+id/retailTotalTV"
+                android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_alignParentRight="true"
-                android:textSize="15dp"
-                android:layout_below="@+id/retailTotalTV"
+                android:text="RM 0.00"
                 android:textColor="@color/black"
-                >
-            </TextView>
+                android:textSize="15dp"></TextView>
 
 
             <TextView

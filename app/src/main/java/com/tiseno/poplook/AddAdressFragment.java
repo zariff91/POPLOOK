@@ -2,8 +2,9 @@ package com.tiseno.poplook;
 
 
 import android.app.DatePickerDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,14 +13,12 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.os.Handler;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -1087,7 +1086,7 @@ public class AddAdressFragment extends Fragment implements AsyncTaskCompleteList
                                 if(actionIn.equals("Addresses_addAddress")) {
                                     Toast.makeText(getActivity(), "Added New Address", Toast.LENGTH_LONG).show();
                                     Fragment fragment = new NewOrderConfirmationFragment();
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewOrderConfirmationFragment");
@@ -1106,7 +1105,7 @@ public class AddAdressFragment extends Fragment implements AsyncTaskCompleteList
                                 }else {
                                     Toast.makeText(getActivity(), "Address Edited", Toast.LENGTH_LONG).show();
                                     Fragment fragment = new NewOrderConfirmationFragment();
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewOrderConfirmationFragment");
@@ -1131,7 +1130,7 @@ public class AddAdressFragment extends Fragment implements AsyncTaskCompleteList
                             else if(COME_FROM_WHERE == FROM_SHOPPING_BAG_NOADDRESS)
                             {
                                 Fragment fragment = new NewAddressBillingFragment();
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewAddressBillingFragment");
@@ -1158,7 +1157,7 @@ public class AddAdressFragment extends Fragment implements AsyncTaskCompleteList
                             bundle.putInt("COME_FROM_WHERE", 3);
                             bundle.putBoolean("EDIT_ADDRESS", false);
                             fragment.setArguments(bundle);
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment);

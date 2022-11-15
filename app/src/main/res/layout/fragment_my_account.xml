@@ -90,6 +90,7 @@
             android:orientation="horizontal"
             android:weightSum="1"
             android:clickable="true"
+            android:visibility="gone"
             android:background="?android:attr/selectableItemBackground">
 
             <TextView

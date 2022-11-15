@@ -4,11 +4,9 @@
     package="com.tiseno.poplook">
 
     <uses-sdk tools:overrideLibrary="com.paypal.android.sdk.payments" />
-
     <!-- <uses-feature -->
     <!-- android:glEsVersion="0x00020000" -->
     <!-- android:required="true" /> -->
-
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
@@ -17,46 +15,59 @@
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" tools:node="remove"/>
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.ACCESS_COARSE_LOCATION"
+        tools:node="remove" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" tools:node="remove"/>
+    <uses-permission
+        android:name="android.permission.ACCESS_BACKGROUND_LOCATION"
+        tools:node="remove" />
 
-
-    <!-- PUSH NOTIFICATION PERMISSIONS -->
     <application
         android:name=".POPLOOK"
-        tools:replace="android:allowBackup"
-        android:allowBackup="false"
+        android:allowBackup="true"
+        android:appComponentFactory="someString"
         android:icon="@drawable/ic_launcher_new"
         android:label="@string/app_name"
+        android:resizeableActivity="true"
         android:screenOrientation="portrait"
         android:supportsRtl="true"
-        android:resizeableActivity="true"
+        android:theme="@style/AppTheme.NoActionBar"
         android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        tools:replace="android:appComponentFactory,android:icon">
+        <activity
+            android:name=".AtomePaymentActivity"
+            android:exported="false"
+            android:label="@string/title_activity_atome_payment"
+            android:theme="@style/AppTheme.NoActionBar.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:resizeableActivity="true"
             android:launchMode="singleTask"
+            android:resizeableActivity="true"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="http" android:host="poplook.com" android:pathPrefix="/en/home" />
+            <intent-filter tools:ignore="AppLinkUrlError">
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.OPENABLE"/>
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+
+                <data android:host="dev3.poplook.com" />
             </intent-filter>
         </activity>
         <activity
             android:name=".functions.TestHTML5WebView"
+            android:hardwareAccelerated="true"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:hardwareAccelerated="true"/>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".CountryPickerFragment"
             android:label="@string/app_name"
@@ -66,9 +77,7 @@
             android:name=".PaypalPaymentActivity"
             android:label="@string/title_activity_paypal_payment"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-
-        <!-- PAYPAL -->
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- PAYPAL -->
         <service
             android:name="com.paypal.android.sdk.payments.PayPalService"
             android:exported="false" />
@@ -96,48 +105,38 @@
         <activity
             android:name="io.card.payment.DataEntryActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <!-- PAYPAL -->
-
-
+            android:theme="@style/AppTheme.NoActionBar" /> <!-- PAYPAL -->
         <!-- IPAY88 -->
-
-
-        <!--<activity-->
-            <!--android:name="my.com.ipay88.androidsdkmerchanthosted.IPayMHActivity"-->
-            <!--android:configChanges="orientation|screenSize" />-->
-
+        <!-- <activity -->
+        <!-- android:name="my.com.ipay88.androidsdkmerchanthosted.IPayMHActivity" -->
+        <!-- android:configChanges="orientation|screenSize" /> -->
         <activity
             android:name="com.ipay.IPayIHActivity"
-            android:configChanges="orientation|screenSize"
-             />
+            android:configChanges="orientation|screenSize" />
         <activity
             android:name="com.ipay.IPayIHAcitivityR"
-            android:configChanges="orientation|screenSize"
-            />
-        <!-- IPAY88  -->
-
+            android:configChanges="orientation|screenSize" /> <!-- IPAY88 -->
         <activity
             android:name=".IPay88PaymentActivity"
             android:label="@string/title_activity_ipay88_payment"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar" />
 
-        <service
-            android:name=".functions.MyFcmListenerService">
+        <service android:name=".functions.MyFcmListenerService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
-        <!-- FirebaseInstanceIdService performs security checks at runtime,
-      no need for explicit permissions despite exported="true"             -->
-<!--        <service android:name=".functions.MyFcmListenerService" android:exported="true">-->
-<!--            <intent-filter>-->
-<!--                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>-->
-<!--            </intent-filter>-->
-<!--        </service>-->
+        <!--
+ FirebaseInstanceIdService performs security checks at runtime,
+      no need for explicit permissions despite exported="true"
+        -->
+        <!-- <service android:name=".functions.MyFcmListenerService" android:exported="true"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/> -->
+        <!-- </intent-filter> -->
+        <!-- </service> -->
         <!-- &lt;!&ndash; [START gcm_listener] &ndash;&gt; -->
-
         <service
             android:name=".functions.RegistrationIntentService"
             android:exported="false" />
@@ -164,26 +163,30 @@
         <activity
             android:name=".SplashActivity"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
-            >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".ChooseCountryActivity2" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-
-        <meta-data android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
-            android:value="true"/>
-        <meta-data android:name="com.facebook.sdk.AutoInitEnabled"
-            android:value="true"/>
-        <meta-data android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
-            android:value="true"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoInitEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+            android:value="true" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-7719270692211726~2806079163"/>
+            android:value="ca-app-pub-7719270692211726~2806079163" />
     </application>
 
 </manifest>

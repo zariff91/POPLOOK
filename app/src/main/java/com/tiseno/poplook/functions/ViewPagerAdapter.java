@@ -5,9 +5,8 @@ package com.tiseno.poplook.functions;
  * Created by rahn on 9/1/15.
  */
 
-    import android.app.Fragment;
-    import android.app.FragmentManager;
-    import android.app.FragmentTransaction;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
     import android.content.Context;
     import android.content.Intent;
     import android.graphics.Bitmap;
@@ -123,7 +122,7 @@ public class ViewPagerAdapter extends PagerAdapter {
                             bundle.putString("videoURL", vidUrl);
                             fragment.setArguments(bundle);
 
-                            FragmentManager fragmentManager = activity.getFragmentManager();
+                            FragmentManager fragmentManager = activity.getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment);

@@ -13,6 +13,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -43,15 +44,34 @@ public class WebServiceAccessPost extends AsyncTask<RequestBody, Void, JSONObjec
     public JSONObject SendHttpPost(RequestBody postParams) {
         try {
             Log.i("" + " WEB SERVICE START", "POST URL PARAMS: "+ action + " " + postParams);
-            Request request = new Request.Builder()
-                    .url("https://poplook.com/webapi/"+action)
-//                    .url("https://dev3.poplook.com/webapi/"+action)
-                    .post(postParams)
-                    .build();
 
-            Response response = client.newCall(request).execute();
-            JSONObject json=new JSONObject(response.body().string());
-            return json;
+            String URLll = "";
+
+            if(action.contains("apaylater")){
+                URLll = action;
+                Request request = new Request.Builder()
+//                    .url("https://poplook.com/webapi/"+action)
+                        .url(URLll)
+                        .post(postParams)
+                        .addHeader("Authorization", Credentials.basic("eac2f0df26f8403b998c2fae5a5e4f64","d33f0678ad224f979e991682807e3adb"))
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                JSONObject json=new JSONObject(response.body().string());
+                return json;
+            }
+            else {
+//                 URLll= "https://dev3.poplook.com/webapi/"+action;
+                Request request = new Request.Builder()
+                    .url("https://poplook.com/webapi/"+action)
+//                        .url(URLll)
+                        .post(postParams)
+                        .build();
+
+                Response response = client.newCall(request).execute();
+                JSONObject json=new JSONObject(response.body().string());
+                return json;
+            }
 
         }
         catch (Exception e)

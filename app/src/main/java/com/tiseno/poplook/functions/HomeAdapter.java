@@ -87,8 +87,8 @@ public class HomeAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> i
     }
 
     @Override
-    public void onMethodCallbackHorizontal(int positionClicked, String parentName) {
-        callback.onBannerClickPosition(positionClicked,parentName);
+    public void onMethodCallbackHorizontal(String categoryID, String parentName) {
+
     }
 
     public interface AdapterHomeCallback {

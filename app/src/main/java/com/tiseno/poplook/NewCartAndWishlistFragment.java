@@ -2,33 +2,23 @@ package com.tiseno.poplook;
 
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.content.Context;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,10 +26,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.tiseno.poplook.functions.CustomGridWishlist;
 import com.tiseno.poplook.functions.GridBookends;
-import com.tiseno.poplook.functions.EndlessScrollListenerLinearLayout;
 import com.tiseno.poplook.functions.FontUtil;
-import com.tiseno.poplook.functions.MyLinearLayoutManager;
-import com.tiseno.poplook.functions.savedItemsAdapter;
 import com.tiseno.poplook.functions.savedItemsItem;
 import com.tiseno.poplook.functions.shoppingBagAdapter;
 import com.tiseno.poplook.functions.shoppingBagItem;
@@ -615,7 +602,7 @@ public class NewCartAndWishlistFragment extends Fragment implements AsyncTaskCom
 //                            editor.apply();
 
                             Fragment fragment = new NewAddressBillingFragment();
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentManager fragmentManager = getChildFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment,"NewAddressBillingFragment");
@@ -644,7 +631,7 @@ public class NewCartAndWishlistFragment extends Fragment implements AsyncTaskCom
                             bundle.putInt("COME_FROM_WHERE", 3);
                             bundle.putBoolean("EDIT_ADDRESS", false);
                             fragment.setArguments(bundle);
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentManager fragmentManager = getChildFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment);

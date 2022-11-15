@@ -1,20 +1,13 @@
 package com.tiseno.poplook;
 
 import android.annotation.SuppressLint;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.app.Fragment;
-
-import androidx.annotation.IntegerRes;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,18 +15,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.NumberPicker;
-import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-
 import com.facebook.appevents.AppEventsConstants;
 import com.facebook.appevents.AppEventsLogger;
 import com.google.android.material.appbar.AppBarLayout;
@@ -446,7 +432,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
                                                    Fragment fragment = new NewFilterAndSortFragment();
 
                                                    fragment.setArguments(bundle);
-                                                   FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                                   FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                                    fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                                    fragmentTransaction.replace(R.id.fragmentContainer, fragment, "NewFilterAndSortFragment");
@@ -1096,7 +1082,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
             String actionBarSearchName = "Search ''" + search + "''";
             bundle.putString("catName", actionBarSearchName);
             fragment.setArguments(bundle);
-            FragmentManager fragmentManager = getActivity().getFragmentManager();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
@@ -1108,7 +1094,7 @@ public class ProductListFragment extends Fragment implements AsyncTaskCompleteLi
             bundle.putString("prodID", mItems.get(pos).getproductID());
             bundle.putString("catName", catName);
             fragment.setArguments(bundle);
-            FragmentManager fragmentManager = getActivity().getFragmentManager();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");

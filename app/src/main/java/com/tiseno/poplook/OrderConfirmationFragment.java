@@ -1,8 +1,8 @@
 package com.tiseno.poplook;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -171,14 +171,14 @@ public class OrderConfirmationFragment extends Fragment  implements AsyncTaskCom
                             @Override
                             public void onClick(View v) {
 
-                                Fragment fragment = new ProductListFragment();
+                                Fragment fragment = new ListOfProductFragment();
                                 Bundle bundle = new Bundle();
                                 bundle.putString("prodID", "45");
                                 bundle.putString("catName","What's New");
                                 bundle.putString("fromHome", "Home");
                                 fragment.setArguments(bundle);
 
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);

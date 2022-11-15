@@ -21,13 +21,11 @@ import okio.Buffer;
 public class WebServiceAccessPutWithoutLoading extends AsyncTask<RequestBody, Void, JSONObject> {
 
     AsyncTaskCompleteListener<JSONObject> callback;
-    static Context curContext;
     String action;
     OkHttpClient client = new OkHttpClient();
 
-    public WebServiceAccessPutWithoutLoading(Context context, AsyncTaskCompleteListener<JSONObject> listener){
+    public WebServiceAccessPutWithoutLoading(AsyncTaskCompleteListener<JSONObject> listener){
         this.callback = listener;
-        curContext = context;
     }
     public void setAction(String action1){
         action=action1;

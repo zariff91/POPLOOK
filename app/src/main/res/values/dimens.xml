@@ -5,4 +5,5 @@
     <dimen name="txtSize1">10sp</dimen>
     <dimen name="txtSize2">18sp</dimen>
     <dimen name="txtSize3">22sp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>

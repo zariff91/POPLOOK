@@ -2,14 +2,14 @@ package com.tiseno.poplook;
 
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
@@ -1069,7 +1069,7 @@ public class shippingMethodFragment extends Fragment implements AsyncTaskComplet
                         if(nextPage.equals("paymentSelectionPage"))
                         {
                             Fragment fragment = new PaymentFragment();
-                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                             fragmentTransaction.replace(R.id.fragmentContainer, fragment,"PaymentFragment");
@@ -1174,7 +1174,7 @@ public class shippingMethodFragment extends Fragment implements AsyncTaskComplet
                                     public void onClick(DialogInterface dialog, int id) {
                                         dialog.cancel();
                                         Fragment fragment = new ShoppingBagFragment();
-                                        FragmentManager fragmentManager = getFragmentManager();
+                                        FragmentManager fragmentManager = getChildFragmentManager();
                                         fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -1227,7 +1227,7 @@ public class shippingMethodFragment extends Fragment implements AsyncTaskComplet
 
     private void reloadFragment(){
         Fragment fragment = new shippingMethodFragment();
-        FragmentManager fragmentManager = getActivity().getFragmentManager();
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         fragmentTransaction.replace(R.id.fragmentContainer, fragment);

@@ -4,7 +4,7 @@ package com.tiseno.poplook;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;

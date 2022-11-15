@@ -2,11 +2,11 @@ package com.tiseno.poplook;
 
 
 import android.app.AlertDialog;
-import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -60,11 +60,11 @@ public class MyAddressFragment extends Fragment implements AsyncTaskCompleteList
 
         ((MainActivity) getActivity()).changeToolBarText("My Addresses");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(true);
+        ((MainActivity) getActivity()).changeBtnBackView(false);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
-        ((MainActivity) getActivity()).changeBtnSearchView(true);
-        ((MainActivity) getActivity()).changeBtnBagView(true);
-        ((MainActivity) getActivity()).changeBtnWishlistView(true);
+        ((MainActivity) getActivity()).changeBtnSearchView(false);
+        ((MainActivity) getActivity()).changeBtnBagView(false);
+        ((MainActivity) getActivity()).changeBtnWishlistView(false);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
         ((MainActivity) getActivity()).setDrawerState(true);
 

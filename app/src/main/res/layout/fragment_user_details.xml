@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserDetailsFragment">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+
+            <ImageView
+                android:layout_marginTop="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:src="@drawable/logo_new"
+                >
+
+            </ImageView>
+
+            <RelativeLayout
+                android:id="@+id/changeCountryRL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                >
+
+                <TextView
+                    android:id="@+id/shipToTextView"
+                    android:text="Shipping to "
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/changeCountryTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="10dp"
+                    android:gravity="end"
+                    android:text="change"
+                    android:textColor="@color/black"
+                    android:textSize="15dp">
+
+                </TextView>
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/userWelcomeTextView"
+                android:text="Welcome User"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:textSize="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                >
+
+            </TextView>
+
+            <View
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/lightGrey">
+
+            </View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal"
+                android:id="@+id/myAcLL"
+                >
+
+                <TextView
+                    android:id="@+id/myAccountText"
+                    android:text="My Account"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </TextView>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_nextstep"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal"
+                android:id="@+id/settingsLL"
+                >
+
+                <TextView
+                    android:id="@+id/settingsText"
+                    android:text="Settings"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </TextView>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_nextstep"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:id="@+id/followUsLL"
+                >
+
+                <TextView
+                    android:id="@+id/followUsText"
+                    android:text="Follow Us"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </TextView>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_nextstep"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                </ImageView>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:id="@+id/loyaltyLL"
+                >
+
+                <TextView
+                    android:id="@+id/loyaltyText"
+                    android:text="POPLOOK Loyalty"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </TextView>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_nextstep"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                </ImageView>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp"
+                android:id="@+id/visitOurStoreLL"
+                >
+
+                <TextView
+                    android:id="@+id/visitOurStoreText"
+                    android:text="Visit Our Store"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    >
+
+                </TextView>
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/icon_nextstep"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    >
+
+                </ImageView>
+
+            </LinearLayout>
+
+
+            <Button
+                android:id="@+id/logoutButton"
+                android:layout_margin="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:textColor="@color/white"
+                android:background="@color/black"
+                android:text="LOG OUT"
+                >
+            </Button>
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</FrameLayout>

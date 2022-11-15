@@ -5,7 +5,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -54,11 +54,11 @@ public class StoreCreditFragment extends Fragment implements AsyncTaskCompleteLi
 
         ((MainActivity) getActivity()).changeToolBarText("Store Credit");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(true);
+        ((MainActivity) getActivity()).changeBtnBackView(false);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
-        ((MainActivity) getActivity()).changeBtnSearchView(true);
-        ((MainActivity) getActivity()).changeBtnBagView(true);
-        ((MainActivity) getActivity()).changeBtnWishlistView(true);
+        ((MainActivity) getActivity()).changeBtnSearchView(false);
+        ((MainActivity) getActivity()).changeBtnBagView(false);
+        ((MainActivity) getActivity()).changeBtnWishlistView(false);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
         ((MainActivity) getActivity()).setDrawerState(true);
 

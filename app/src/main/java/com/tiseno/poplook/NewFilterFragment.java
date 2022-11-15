@@ -1,15 +1,14 @@
 package com.tiseno.poplook;
 
-import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -317,7 +316,7 @@ public class NewFilterFragment extends Fragment implements AsyncTaskCompleteList
             public void onClick(View v) {
 
 
-                FragmentManager fm = getActivity().getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack();
                 ((MainActivity) getActivity()).getSupportActionBar().show();
 
@@ -339,7 +338,7 @@ public class NewFilterFragment extends Fragment implements AsyncTaskCompleteList
                     listArray_attribute_selected.clear();
                     listArray_attribute.clear();
 
-                    FragmentManager fm = getActivity().getFragmentManager();
+                    FragmentManager fm = getActivity().getSupportFragmentManager();
                     fm.popBackStack();
                     ((MainActivity) getActivity()).getSupportActionBar().show();
 
@@ -375,7 +374,7 @@ public class NewFilterFragment extends Fragment implements AsyncTaskCompleteList
                     System.out.println("size selected is " + sizesSelected);
                     System.out.println("colour selected is " + colourSelected);
                     fragment.setArguments(bundle);
-                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     NewFilterFragment filterFragment = (NewFilterFragment)fragmentManager.findFragmentByTag("NewFilterFragment");
 
                     ((MainActivity) getActivity()).getSupportActionBar().show();
@@ -427,7 +426,7 @@ public class NewFilterFragment extends Fragment implements AsyncTaskCompleteList
                 System.out.println("size selected is " + listArray_attribute);
                 System.out.println("colour selected is " + listArray_colour);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 NewFilterFragment filterFragment = (NewFilterFragment)fragmentManager.findFragmentByTag("NewFilterFragment");
 
                 ((MainActivity) getActivity()).getSupportActionBar().show();
@@ -655,13 +654,6 @@ public class NewFilterFragment extends Fragment implements AsyncTaskCompleteList
         }
 
     }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ((MainActivity) getActivity()).backBtnControl("");
-    }
-
 
 }
 

@@ -1,8 +1,8 @@
 package com.tiseno.poplook;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -348,7 +348,7 @@ public class FilterAndSortFragment extends Fragment implements AsyncTaskComplete
 
                 Fragment fragment = new ProductListFragment();
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FilterAndSortFragment filterFragment = (FilterAndSortFragment)fragmentManager.findFragmentByTag("FilterSortFragment");
 
                 ((MainActivity) getActivity()).getSupportActionBar().show();
@@ -378,7 +378,7 @@ public class FilterAndSortFragment extends Fragment implements AsyncTaskComplete
             public void onClick(View v) {
 
 
-                FragmentManager fm = getActivity().getFragmentManager();
+                FragmentManager fm = getActivity().getSupportFragmentManager();
                 fm.popBackStack();
                 ((MainActivity) getActivity()).getSupportActionBar().show();
 

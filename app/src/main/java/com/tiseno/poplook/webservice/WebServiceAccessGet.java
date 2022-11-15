@@ -12,6 +12,7 @@ import com.tiseno.poplook.R;
 
 import org.json.JSONObject;
 
+import okhttp3.Credentials;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -52,12 +53,19 @@ public class WebServiceAccessGet extends AsyncTask<String, Void, JSONObject> {
     }
 
 
-    public JSONObject SendHttpGet(String action) {
+    public JSONObject  SendHttpGet(String action) {
         try {
             Log.i("" + " WEB SERVICE START", "GET URL PARAMS: " + action);
+
+            String URLll = "";
+
+            if(action.contains("apaylater")) {
+                URLll = action;
+
                 Request request = new Request.Builder()
-                        .url("https://poplook.com/webapi/" + action)
-//                     .url("https://dev3.poplook.com/webapi/"+action)
+//                        .url("https://poplook.com/webapi/" + action)
+                        .url(URLll)
+                        .addHeader("Authorization", Credentials.basic("eac2f0df26f8403b998c2fae5a5e4f64","d33f0678ad224f979e991682807e3adb"))
                         .get()
                         .build();
 //            client = new OkHttpClient.Builder()
@@ -66,13 +74,25 @@ public class WebServiceAccessGet extends AsyncTask<String, Void, JSONObject> {
 //                    .readTimeout(30, TimeUnit.SECONDS)
 //                    .build();
                 Response response = client.newCall(request).execute();
-
-            long tx = response.sentRequestAtMillis();
-            long rx = response.receivedResponseAtMillis();
-            System.out.println("okhttp3 response time : "+(rx - tx)+" ms");
-
                 JSONObject json = new JSONObject(response.body().string());
                 return json;
+            }
+            else {
+                Request request = new Request.Builder()
+                        .url("https://poplook.com/webapi/" + action)
+//                        .url("https://dev3.poplook.com/webapi/" + action)
+                        .get()
+                        .build();
+//            client = new OkHttpClient.Builder()
+//                    .connectTimeout(10, TimeUnit.SECONDS)
+//                    .writeTimeout(10, TimeUnit.SECONDSexception)
+//                    .readTimeout(30, TimeUnit.SECONDS)
+//                    .build();
+                Response response = client.newCall(request).execute();
+                JSONObject json = new JSONObject(response.body().string());
+                return json;
+            }
+
         }
         catch (Exception e)
         {

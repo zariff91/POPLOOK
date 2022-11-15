@@ -4,7 +4,7 @@ package com.tiseno.poplook;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
+import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AlertDialog;
 
 import android.view.LayoutInflater;

@@ -12,8 +12,8 @@
         android:layout_marginRight="15dp"
         android:layout_height="?android:attr/actionBarSize">
         <ImageButton
-            android:layout_width="27dp"
-            android:layout_height="27dp"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
             android:src="@drawable/btn_menu"
             android:scaleType="centerInside"
             android:background="?attr/selectableItemBackgroundBorderless"
@@ -21,15 +21,16 @@
             android:visibility="visible"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"/>
-            <ImageButton
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/btn_back_pressed"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:id="@+id/backBtn"
-                android:visibility="gone"
-                android:layout_alignParentLeft="true"
-                android:layout_centerVertical="true"/>
+        <ImageButton
+            android:layout_width="27dp"
+            android:layout_height="27dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/btn_back_pressed"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:id="@+id/backBtn"
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"/>
 
         <ImageButton
             android:layout_width="27dp"
@@ -39,101 +40,103 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:id="@+id/searchBtn"
             android:scaleType="fitXY"
-            android:layout_toRightOf="@+id/btnHome"
+            android:layout_toRightOf="@+id/backBtn"
             android:layout_marginRight="5dp"
-            android:layout_marginLeft="15dp"/>
+            android:layout_marginLeft="5dp"/>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@android:color/transparent">
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="Poplook"
+                android:textColor="@color/darkgrey"
+                android:textSize="18dp"
+                android:visibility="gone" />
+
+            <ImageView
+                android:id="@+id/toolbar_title_image"
+                android:layout_width="200dp"
                 android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/logo_new"
+                android:visibility="visible" />
+        </RelativeLayout>
 
-                android:background="@android:color/transparent">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Poplook"
-                    android:textColor="@color/darkgrey"
-                    android:textSize="18dp"
-                    android:layout_centerInParent="true"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:ellipsize="end"
-                    android:id="@+id/toolbar_title"
-                    android:visibility="gone" />
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/rightRL"
+            android:layout_marginRight="15dp"
+            android:id="@+id/centerRL">
 
-                <ImageView
-                    android:id="@+id/toolbar_title_image"
-                    android:layout_width="200dp"
-                    android:layout_height="match_parent"
-                    android:layout_centerInParent="true"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/logo_new"
-                    android:visibility="visible" />
-            </RelativeLayout>
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="wrap_content"
+            <ImageButton
+                android:id="@+id/wishlistBtn"
+                android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/rightRL"
-                android:layout_marginRight="15dp"
-                android:id="@+id/centerRL">
-                <ImageButton
-                    android:layout_marginTop="2dp"
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:scaleType="fitEnd"
-                    android:src="@drawable/love_wishlist_icon"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:id="@+id/wishlistBtn"
-                    />
-                <TextView
-                    android:id="@+id/wishlistNoti"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/wishlistBtn"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="3dp"
-                    android:visibility="gone"
-                    android:text=""
-                    android:textColor="@color/black"
-                    android:textSize="15dp"/>
-            </RelativeLayout>
-
-            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_marginTop="2dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="fitEnd"
+                android:src="@drawable/love_wishlist_icon" />
+            <TextView
+                android:id="@+id/wishlistNoti"
                 android:layout_width="wrap_content"
-                android:layout_height="25dp"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/wishlistBtn"
                 android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/rightRL">
-                <ImageButton
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/btn_addtobag_new"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:id="@+id/shoppingBagBtn"
-                    />
-                <ImageButton
-                    android:layout_width="25dp"
-                    android:layout_height="25dp"
-                    android:src="@drawable/btn_close_pressed"
-                    android:background="?attr/selectableItemBackgroundBorderless"
-                    android:id="@+id/xCloseBtn"
-                    android:visibility="gone"
-                    />
-                <TextView
-                    android:id="@+id/bagNoti"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/shoppingBagBtn"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="3dp"
-                    android:text=""
-                    android:visibility="invisible"
-                    android:textColor="@color/black"
-                    android:textSize="15dp"/>
-            </RelativeLayout>
+                android:layout_marginLeft="3dp"
+                android:visibility="gone"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="wrap_content"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:id="@+id/rightRL">
+
+            <ImageButton
+                android:id="@+id/shoppingBagBtn"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
+                android:src="@drawable/btn_addtobag_new" />
+            <ImageButton
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/btn_close_pressed"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:id="@+id/xCloseBtn"
+                android:visibility="gone"
+                />
+
+            <TextView
+                android:id="@+id/bagNoti"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="3dp"
+                android:layout_toRightOf="@id/shoppingBagBtn"
+                android:text=""
+                android:textColor="@color/black"
+                android:textSize="15dp"
+                android:visibility="invisible" />
+        </RelativeLayout>
 
 
     </RelativeLayout>

@@ -1,10 +1,8 @@
 package com.tiseno.poplook;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -12,7 +10,6 @@ import android.graphics.Color;
 import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
@@ -357,7 +354,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
             public void onClick(View v) {
 
                 Fragment fragment = new ShoppingBagFragment();
-                FragmentManager fragmentManager = getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.setCustomAnimations(R.anim.slide_in_left, R.anim.slide_out_right, R.anim.slide_in_right, R.anim.slide_out_left);
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -433,7 +430,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                     Bundle bundle = new Bundle();
                     bundle.putString("forWishlist", "0");
                     fragment.setArguments(bundle);
-                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
@@ -541,7 +538,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
                                     Fragment fragment = new LoginFragment();
 
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -592,7 +589,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
                                     Fragment fragment = new LoginFragment();
 
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -671,7 +668,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
 
                 fragment.setArguments(bundle);
 
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment, "InStoreAvailabilityFragment");
@@ -1512,7 +1509,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                                     bundle.putString("prodID", shownHereWithItemsArr.get(position).shownWithID());
                                     bundle.putString("catName", catName);
                                     fragment.setArguments(bundle);
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
@@ -1593,7 +1590,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                                     bundle.putString("prodID", matchItemWithArr.get(position).matchItemWithID());
                                     bundle.putString("catName", catName);
                                     fragment.setArguments(bundle);
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
@@ -1678,7 +1675,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                                     bundle.putString("prodID", motherAndDaughterArr.get(position).motherAndDaughterID());
                                     bundle.putString("catName", catName);
                                     fragment.setArguments(bundle);
-                                    FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                     fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                     fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
@@ -1898,7 +1895,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                                         bundle.putString("prodID", mItems.get(position).getstyleWithID());
                                         bundle.putString("catName", catName);
                                         fragment.setArguments(bundle);
-                                        FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -1924,7 +1921,7 @@ public class ProductInfoFragment extends Fragment implements AsyncTaskCompleteLi
                                         bundle.putString("prodID", mColoursItems.get(position).getColorProdID());
                                         bundle.putString("catName", catName);
                                         fragment.setArguments(bundle);
-                                        FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                         fragmentTransaction.replace(R.id.fragmentContainer, fragment);

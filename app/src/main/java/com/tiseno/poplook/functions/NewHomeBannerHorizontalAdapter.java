@@ -68,7 +68,7 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onMethodCallbackHorizontal(position,parentName);
+                listener.onMethodCallbackHorizontal(data.get(position).getcategoryID(),data.get(position).getcatName());
             }
         });
     }
@@ -86,7 +86,7 @@ public class NewHomeBannerHorizontalAdapter extends RecyclerView.Adapter<NewHome
         View itemView;
 
         public interface AdapterCallback {
-            void onMethodCallbackHorizontal(int positionClicked,String parentName);
+            void onMethodCallbackHorizontal(String categoryID,String parentName);
         }
 
 

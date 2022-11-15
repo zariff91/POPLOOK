@@ -1,10 +1,10 @@
 package com.tiseno.poplook;
 
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,11 +29,11 @@ public class SettingsFragment extends Fragment {
 
         ((MainActivity) getActivity()).changeToolBarText("Settings");
         ((MainActivity) getActivity()).changeToolBarTextView(true);
-        ((MainActivity) getActivity()).changeBtnBackView(true);
+        ((MainActivity) getActivity()).changeBtnBackView(false);
         ((MainActivity) getActivity()).changeToolBarImageView(false);
-        ((MainActivity) getActivity()).changeBtnSearchView(true);
-        ((MainActivity) getActivity()).changeBtnBagView(true);
-        ((MainActivity) getActivity()).changeBtnWishlistView(true);
+        ((MainActivity) getActivity()).changeBtnSearchView(false);
+        ((MainActivity) getActivity()).changeBtnBagView(false);
+        ((MainActivity) getActivity()).changeBtnWishlistView(false);
         ((MainActivity) getActivity()).changeBtnCloseXView(false);
         ((MainActivity) getActivity()).setDrawerState(true);
 
@@ -69,7 +69,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
 
                 Fragment fragment = new VisitOurStoreFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -87,7 +87,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
 
                 Fragment fragment = new AboutUsFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -105,7 +105,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
 
                 Fragment fragment = new CustomerServiceFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -122,7 +122,7 @@ public class SettingsFragment extends Fragment {
             public void onClick(View v) {
 
                 Fragment fragment = new MyPreferenceFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -137,7 +137,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new PushNotificationFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -152,7 +152,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment fragment = new ShippingInfoFragment();
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -171,7 +171,7 @@ public class SettingsFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("fromPayment", "Nope");
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -191,7 +191,7 @@ public class SettingsFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putString("fromSignUp", "Nope");
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                 fragmentTransaction.replace(R.id.fragmentContainer, fragment);

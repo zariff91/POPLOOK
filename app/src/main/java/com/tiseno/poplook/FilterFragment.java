@@ -1,16 +1,13 @@
 package com.tiseno.poplook;
 
 import android.app.AlertDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
-import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -196,7 +193,6 @@ if(!sizesSelected.equals("")||!colourSelected.equals("")){
                 linearLayoutSize.setVisibility(View.VISIBLE);
                 linearLayoutBtnColorSize.setVisibility(View.VISIBLE);
                 ((MainActivity) getActivity()).changeToolBarText("Filter By: Sizes");
-                ((MainActivity) getActivity()).backBtnControl("CHANGE");
                 linearLayoutFilter.setVisibility(View.GONE);
                 linearLayoutBtnFilter.setVisibility(View.GONE);
                 getSizeList();
@@ -213,7 +209,6 @@ if(!sizesSelected.equals("")||!colourSelected.equals("")){
                 linearLayoutColor.setVisibility(View.VISIBLE);
                 linearLayoutBtnColorSize.setVisibility(View.VISIBLE);
                 ((MainActivity) getActivity()).changeToolBarText("Filter By: Colours");
-                ((MainActivity) getActivity()).backBtnControl("CHANGE");
                 linearLayoutFilter.setVisibility(View.GONE);
                 linearLayoutBtnFilter.setVisibility(View.GONE);
                 getColorsList();
@@ -229,7 +224,6 @@ if(!sizesSelected.equals("")||!colourSelected.equals("")){
                 linearLayoutSize.setVisibility(View.VISIBLE);
                 linearLayoutBtnColorSize.setVisibility(View.VISIBLE);
                 ((MainActivity) getActivity()).changeToolBarText("Filter By: Sizes");
-                ((MainActivity) getActivity()).backBtnControl("CHANGE");
                 linearLayoutFiltered.setVisibility(View.GONE);
                 linearLayoutBtnFiltered.setVisibility(View.GONE);
                 getSizeList();
@@ -247,7 +241,6 @@ if(!sizesSelected.equals("")||!colourSelected.equals("")){
                 linearLayoutColor.setVisibility(View.VISIBLE);
                 linearLayoutBtnColorSize.setVisibility(View.VISIBLE);
                 ((MainActivity) getActivity()).changeToolBarText("Filter By: Colours");
-                ((MainActivity) getActivity()).backBtnControl("CHANGE");
                 linearLayoutFiltered.setVisibility(View.GONE);
                 linearLayoutBtnFiltered.setVisibility(View.GONE);
                 getColorsList();
@@ -638,7 +631,7 @@ if(!sizesSelected.equals("")||!colourSelected.equals("")){
                 System.out.println("size selected is " + sizesSelected);
                 System.out.println("colour selected is " + colourSelected);
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FilterFragment filterFragment = (FilterFragment)fragmentManager.findFragmentByTag("FilterFragment");
 
                 if (filterFragment != null && filterFragment.isVisible()) {
@@ -894,9 +887,4 @@ if(!sizesSelected.equals("")||!colourSelected.equals("")){
 
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        ((MainActivity) getActivity()).backBtnControl("");
-    }
 }

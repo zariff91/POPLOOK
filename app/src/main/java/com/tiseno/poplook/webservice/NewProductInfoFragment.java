@@ -1,8 +1,8 @@
 package com.tiseno.poplook.webservice;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
@@ -622,7 +622,7 @@ public class NewProductInfoFragment extends Fragment implements AsyncTaskComplet
 
                                 fragment.setArguments(bundle);
 
-                                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                 fragmentTransaction.replace(R.id.fragmentContainer, fragment, "InStoreAvailabilityFragment");
@@ -665,7 +665,7 @@ public class NewProductInfoFragment extends Fragment implements AsyncTaskComplet
                                             bundle.putString("prodID", colour_list_array.get(position).getColorProdID());
                                             bundle.putString("catName","");
                                             fragment.setArguments(bundle);
-                                            FragmentManager fragmentManager = getActivity().getFragmentManager();
+                                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                                             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                                             fragmentTransaction.replace(R.id.fragmentContainer, fragment);

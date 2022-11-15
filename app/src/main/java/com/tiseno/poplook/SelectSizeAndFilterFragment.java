@@ -1,8 +1,8 @@
 package com.tiseno.poplook;
 
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -77,7 +77,7 @@ public class SelectSizeAndFilterFragment extends Fragment {
 
                 frag.setArguments(bundle);
 
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 SelectSizeAndFilterFragment filterFragment = (SelectSizeAndFilterFragment)fragmentManager.findFragmentByTag("SelectSizeAndFilterFragment");
 
                 ((MainActivity) getActivity()).getSupportActionBar().show();

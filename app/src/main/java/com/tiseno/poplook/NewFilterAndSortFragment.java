@@ -1,9 +1,9 @@
 package com.tiseno.poplook;
 
 import android.app.AlertDialog;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -211,7 +211,7 @@ public class NewFilterAndSortFragment extends Fragment implements AsyncTaskCompl
 
                 Fragment fragment = new ProductListFragment();
                 fragment.setArguments(bundle);
-                FragmentManager fragmentManager = getActivity().getFragmentManager();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 NewFilterAndSortFragment filterFragment = (NewFilterAndSortFragment) fragmentManager.findFragmentByTag("NewFilterAndSortFragment");
 
                 ((MainActivity) getActivity()).getSupportActionBar().show();

@@ -2,15 +2,15 @@ package com.tiseno.poplook;
 
 
 import android.app.DatePickerDialog;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.browser.customtabs.CustomTabsIntent;
 import androidx.appcompat.app.AlertDialog;
@@ -89,7 +89,6 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
     protected int scrollPosition = 0;
     protected int scrollPositionHori = 0;
 
-    static  FrameLayout saleBannerFrame;
 
     TextView firstLabel,scdLabel, termsLabel, fourthLabel, birthDateLabel, tvWithEnddate, tvBelow;
 
@@ -249,7 +248,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
             bundle.putString("prodID", LoginFromSavedItemProductID);
             bundle.putString("catName", LoginFromSavedItemCatName);
             fragment.setArguments(bundle);
-            FragmentManager fragmentManager = getActivity().getFragmentManager();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
             fragmentTransaction.replace(R.id.fragmentContainer, fragment, "ProductInfoFragment");
@@ -460,7 +459,7 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
 
                         Fragment fragment = new LoyaltyDashboardFragment();
 
-                        FragmentManager fragmentManager = getActivity().getFragmentManager();
+                        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
                         fragmentTransaction.replace(R.id.fragmentContainer, fragment);
@@ -571,10 +570,13 @@ public class HomeFragment extends Fragment implements AsyncTaskCompleteListener<
         //multishop
         String apikey =pref.getString("apikey","");
         String action="banners/video/1?apikey="+apikey;
-        WebServiceAccessGetWithoutLoading callws = new WebServiceAccessGetWithoutLoading(getActivity(), this);
-        callws.execute(action);
+        WebServiceAccessGetWithoutLoading callws = new WebServiceAccessGetWithoutLoading(getActivity(), null);
+//        callws.SendHttpGet(action);
 
-        System.out.println("api home banner url "+action);
+        JSONObject test = callws.SendHttpGet(action);
+//        callws.execute(action);
+
+        System.out.println("get home api = "+test);
 
 
     }

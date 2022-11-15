@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
+import com.atome.sdk.AtomeSDK;
+
 
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.karumi.dexter.Dexter;
@@ -25,6 +27,7 @@ POPLOOK extends Application {
     public void onCreate() {
         super.onCreate();
         Dexter.initialize(this);
+        AtomeSDK.INSTANCE.init(this);
 
         Insider.Instance.init(this,"poplook");
         Insider.Instance.setSplashActivity(SplashActivity.class);

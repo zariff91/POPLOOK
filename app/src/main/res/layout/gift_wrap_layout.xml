@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="100dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+        >
+
+        <ImageView
+            android:id="@+id/giftImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:adjustViewBounds="true"
+            android:scaleType="fitXY">
+
+        </ImageView>
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        >
+
+        <ImageView
+            android:id="@+id/selectedIcon"
+            android:layout_width="12dp"
+            android:layout_height="12dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/checkbox_layout"></ImageView>
+
+        <TextView
+            android:id="@+id/giftWrapItemTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/selectedIcon"
+            >
+
+        </TextView>
+
+    </RelativeLayout>
+
+</LinearLayout>
